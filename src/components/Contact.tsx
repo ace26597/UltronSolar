@@ -28,6 +28,8 @@ export default function Contact() {
                 method="POST"
                 className="max-w-md mx-auto text-left space-y-4 mb-10"
               >
+                <input type="hidden" name="_replyto" value="ace.tech.gg@gmail.com" />
+                <input type="hidden" name="_subject" value="New Solar Quote Request from Website" />
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input
@@ -90,7 +92,7 @@ export default function Contact() {
             <div className="flex flex-col items-center space-y-6">
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="mailto:ultronvij@gmail.com?subject=Solar%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20solar%20energy%20solutions."
+                  href="mailto:ace.tech.gg@gmail.com?subject=Solar%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20solar%20energy%20solutions."
                   className="bg-primary-blue text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-primary-blue-dark transition-colors shadow-lg inline-block text-center"
                 >
                   📧 Email Us Now
@@ -106,7 +108,7 @@ export default function Contact() {
                 <p className="text-sm text-gray-500">
                   Email:{" "}
                   <a 
-                    href="mailto:ultronvij@gmail.com" 
+                    href="mailto:ace.tech.gg@gmail.com" 
                     className="text-primary-blue hover:underline font-semibold"
                   >
                     ultronvij@gmail.com

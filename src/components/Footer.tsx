@@ -58,7 +58,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <a href="mailto:ultronvij@gmail.com" className="hover:text-primary-blue transition-colors">
+                <a href="mailto:ace.tech.gg@gmail.com" className="hover:text-primary-blue transition-colors">
                   ultronvij@gmail.com
                 </a>
               </li>
