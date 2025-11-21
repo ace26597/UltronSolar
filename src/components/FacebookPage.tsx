@@ -74,9 +74,11 @@ export default function FacebookPage() {
           >
             Visit Our Facebook Page
           </a>
+          {/* Dev text hidden for production
           <p className="text-xs text-gray-400 mt-4">
             If the timeline doesn&apos;t load, check the page URL in FacebookPage.tsx
           </p>
+          */}
         </div>
       </div>
     </section>

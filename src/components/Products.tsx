@@ -85,7 +85,7 @@ export default function Products() {
                     href="#contact"
                     className="block text-center bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors"
                   >
-                    Learn More
+                    Get Quote
                   </a>
                 </div>
               </div>

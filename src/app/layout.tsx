@@ -9,12 +9,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ultron-solar.vercel.app"),
-  title: "Ultron Power Systems - Solar Energy Solutions | Dhule, Maharashtra",
-  description: "Your one-stop solution for solar power and solar system installation. Expert installations for residential, commercial, industrial, and farm applications. Complete EPC services in Dhule, Maharashtra.",
-  keywords: "solar energy, solar panels, renewable energy, solar installation, solar water pump, EPC services, Dhule, Maharashtra, solar power systems",
+  title: "Ultron Power Systems - Solar Solutions in Dhule & North Maharashtra",
+  description: "Trusted solar installation for homes, farms, and businesses in Dhule, Jalgaon, and Nashik. Get complete EPC solutions, solar water pumps, and subsidy assistance.",
+  keywords: "solar installation dhule, solar water pump maharashtra, rooftop solar jalgaon, solar epc nashik, ultron power systems, solar subsidy maharashtra",
   openGraph: {
-    title: "Ultron Power Systems - Solar Energy Solutions",
-    description: "Your one-stop solution for solar power and solar system installation. Expert installations for residential, commercial, industrial, and farm applications.",
+    title: "Ultron Power Systems - Solar Solutions in Dhule",
+    description: "Expert solar installation for homes, businesses, and farms in North Maharashtra. 25-year warranty & subsidy support.",
     url: "https://ultron-solar.vercel.app",
     siteName: "Ultron Power Systems",
     images: [
@@ -22,14 +22,14 @@ export const metadata: Metadata = {
         url: "/images/gallery-project-2.jpg",
         width: 1200,
         height: 630,
-        alt: "Ultron Power Systems Solar Installation",
+        alt: "Ultron Power Systems Solar Project",
       },
     ],
     locale: "en_IN",
     type: "website",
   },
   verification: {
-    google: "google-site-verification-code-here", // User needs to replace this
+    google: "google-site-verification-code-here",
   },
 };
 

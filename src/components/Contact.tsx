@@ -21,6 +21,70 @@ export default function Contact() {
                 Fill out the form below or reach out to us directly via email. 
                 Our team will get back to you within 24 hours.
               </p>
+              
+              {/* Contact Form using Formspree */}
+              <form
+                action="https://formspree.io/f/xkgwgalb" 
+                method="POST"
+                className="max-w-md mx-auto text-left space-y-4 mb-10"
+              >
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                    placeholder="Your Name"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    pattern="[0-9]{10}"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                    placeholder="10-digit mobile number"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email (Optional)</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="requirement" className="block text-sm font-medium text-gray-700 mb-1">Requirement</label>
+                  <select
+                    id="requirement"
+                    name="requirement"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                  >
+                    <option value="Home Solar">Home Solar System</option>
+                    <option value="Commercial Solar">Commercial / Office</option>
+                    <option value="Solar Pump">Solar Water Pump</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-energy-green text-white font-bold py-3 rounded-lg hover:bg-energy-green-dark transition-colors shadow-md"
+                >
+                  Get Free Quote
+                </button>
+              </form>
             </div>
 
             <div className="flex flex-col items-center space-y-6">
@@ -68,8 +132,8 @@ export default function Contact() {
             <div className="mt-12 pt-8 border-t border-gray-200">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-solar-red mb-2">24/7</div>
-                  <div className="text-gray-600">Support Available</div>
+                  <div className="text-2xl font-bold text-solar-red mb-2">Dedicated</div>
+                  <div className="text-gray-600">Support Team</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-primary-blue mb-2">Free</div>
@@ -77,7 +141,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-energy-green mb-2">Fast</div>
-                  <div className="text-gray-600">Response Time</div>
+                  <div className="text-gray-600">Response (24hrs)</div>
                 </div>
               </div>
             </div>

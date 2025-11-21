@@ -42,28 +42,28 @@ export default function About() {
                 <div className="flex items-start">
                   <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
-                    <h4 className="font-semibold text-navy-dark">Complete EPC Solutions</h4>
+                    <h3 className="font-semibold text-navy-dark">Complete EPC Solutions</h3>
                     <p className="text-gray-600">From initial design and engineering to procurement and construction, we handle every aspect of your solar project.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
-                    <h4 className="font-semibold text-navy-dark">Multiple Applications</h4>
+                    <h3 className="font-semibold text-navy-dark">Multiple Applications</h3>
                     <p className="text-gray-600">We serve residential properties, commercial businesses, industrial facilities, farms, and apartments with customized solutions.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
-                    <h4 className="font-semibold text-navy-dark">High-Quality & Reliable</h4>
+                    <h3 className="font-semibold text-navy-dark">High-Quality & Reliable</h3>
                     <p className="text-gray-600">Our full-service approach ensures peace of mind with premium equipment and expert installation.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
-                    <h4 className="font-semibold text-navy-dark">Customized Solutions</h4>
+                    <h3 className="font-semibold text-navy-dark">Customized Solutions</h3>
                     <p className="text-gray-600">We tailor solutions to meet the unique needs of each customer, ensuring optimal performance and value.</p>
                   </div>
                 </div>

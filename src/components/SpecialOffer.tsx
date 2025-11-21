@@ -91,7 +91,7 @@ export default function SpecialOffer() {
               href="#contact"
               className="inline-block bg-energy-green text-white px-10 py-4 rounded-lg font-bold text-xl hover:bg-energy-green-dark transition-colors shadow-lg"
             >
-              Get Quotation Now
+              Claim Offer Now
             </a>
             <p className="text-sm text-gray-500 mt-4">
               Limited time offer - Contact us today to take a step towards a greener tomorrow

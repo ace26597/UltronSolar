@@ -38,7 +38,7 @@ export default function Navbar() {
                 href="#contact"
                 className="bg-energy-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-energy-green-dark transition-colors shadow-md ml-4"
               >
-                Get Quote
+                Get Free Quote
               </a>
             </div>
           </div>

@@ -24,16 +24,20 @@ export default function Hero() {
             <span className="block text-solar-red mt-2">Ultron Power Systems</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto drop-shadow-lg">
-            Your one-stop solution for solar power and solar system installation. We are dedicated 
-            to providing high-quality and sustainable energy solutions for residential, commercial 
-            and industrial properties. Join the green energy revolution today.
+            Rooftop solar solutions for homes, farms and businesses in Dhule & North Maharashtra.
           </p>
+          
+          <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8 border border-white/20">
+            <span className="text-solar-gold font-bold">Packages starting at ₹99,999*</span>
+            <span className="text-xs text-gray-300 ml-2 block sm:inline">*T&C apply</span>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contact"
               className="bg-energy-green text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-energy-green-dark transition-colors shadow-lg"
             >
-              Get Started Today
+              Get Free Solar Quote
             </a>
             <a
               href="#features"

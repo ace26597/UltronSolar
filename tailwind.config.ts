@@ -15,9 +15,9 @@ const config: Config = {
           "red-light": "#EF4444",
         },
         energy: {
-          green: "#22c55e",
-          "green-dark": "#16a34a",
-          "green-light": "#4ade80",
+          green: "#16a34a", // Increased contrast (was #22c55e)
+          "green-dark": "#15803d", // Darker hover state
+          "green-light": "#22c55e", // Original green for light accents
         },
         primary: {
           blue: "#2563EB",
