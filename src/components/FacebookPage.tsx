@@ -33,9 +33,11 @@ export default function FacebookPage() {
     };
   }, []);
 
-  // Replace YOUR_FACEBOOK_PAGE_URL with your actual Facebook page URL
-  // Example: https://www.facebook.com/YourPageName
-  const facebookPageUrl = "https://www.facebook.com/YourPageName";
+  // Your Facebook page URL - update this with your actual page URL
+  // To find your page URL: Go to your Facebook page, click "About" section, 
+  // and copy the URL shown there (should look like: https://www.facebook.com/YourPageName)
+  // Common formats: https://www.facebook.com/ultronpowersystems or https://www.facebook.com/UltronPowerSystems
+  const facebookPageUrl = "https://www.facebook.com/ultronpowersystems";
 
   return (
     <section id="facebook-timeline" className="py-20 bg-gray-50">
@@ -64,9 +66,6 @@ export default function FacebookPage() {
         </div>
         
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500 mb-4">
-            Note: Replace &quot;YourPageName&quot; in the component with your actual Facebook page URL
-          </p>
           <a
             href={facebookPageUrl}
             target="_blank"
@@ -75,6 +74,9 @@ export default function FacebookPage() {
           >
             Visit Our Facebook Page
           </a>
+          <p className="text-xs text-gray-400 mt-4">
+            If the timeline doesn&apos;t load, check the page URL in FacebookPage.tsx
+          </p>
         </div>
       </div>
     </section>
