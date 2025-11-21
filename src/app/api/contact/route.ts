@@ -81,7 +81,7 @@ Follow up ASAP.
   } catch (err) {
     console.error("Contact form error:", err);
     return NextResponse.json(
-      { error: "Failed to send message" },
+      { error: err instanceof Error ? err.message : "Failed to send message" },
       { status: 500 }
     );
   }
