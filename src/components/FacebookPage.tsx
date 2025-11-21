@@ -1,0 +1,83 @@
+"use client";
+
+import { useEffect } from "react";
+
+declare global {
+  interface Window {
+    FB: any;
+  }
+}
+
+export default function FacebookPage() {
+  useEffect(() => {
+    // Load Facebook SDK
+    if (typeof window !== "undefined" && !window.FB) {
+      const script = document.createElement("script");
+      script.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0";
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        if (window.FB) {
+          window.FB.XFBML.parse();
+        }
+      };
+    } else if (window.FB) {
+      window.FB.XFBML.parse();
+    }
+
+    return () => {
+      // Cleanup if needed
+    };
+  }, []);
+
+  // Replace YOUR_FACEBOOK_PAGE_URL with your actual Facebook page URL
+  // Example: https://www.facebook.com/YourPageName
+  const facebookPageUrl = "https://www.facebook.com/YourPageName";
+
+  return (
+    <section id="facebook-timeline" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
+            Follow Us on Facebook
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Stay updated with our latest projects, promotions, and solar energy news
+          </p>
+        </div>
+
+        <div className="flex justify-center">
+          <div
+            className="fb-page"
+            data-href={facebookPageUrl}
+            data-width="500"
+            data-height="600"
+            data-tabs="timeline"
+            data-hide-cover="false"
+            data-show-facepile="true"
+            data-adapt-container-width="true"
+            data-small-header="false"
+          ></div>
+        </div>
+        
+        <div className="mt-8 text-center">
+          <p className="text-sm text-gray-500 mb-4">
+            Note: Replace &quot;YourPageName&quot; in the component with your actual Facebook page URL
+          </p>
+          <a
+            href={facebookPageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+          >
+            Visit Our Facebook Page
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+

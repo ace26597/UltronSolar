@@ -1,0 +1,4 @@
+# This folder is for static assets like images, videos, and other files
+# Files placed here can be accessed directly via URL
+# Example: /image.jpg will serve public/image.jpg
+
