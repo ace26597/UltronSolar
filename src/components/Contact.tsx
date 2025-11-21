@@ -141,7 +141,7 @@ export default function Contact() {
                     name="requirement"
                     value={form.requirement}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white appearance-none"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white text-gray-900 appearance-none"
                     disabled={status === "loading"}
                   >
                     <option value="Home Solar System">Home Solar System</option>

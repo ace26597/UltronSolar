@@ -93,13 +93,13 @@ export default function Products() {
           <div className="hidden md:flex gap-2">
             <button
               onClick={() => scroll("left")}
-              className="p-2 rounded-full border border-gray-300 hover:bg-solar-red hover:text-white hover:border-solar-red transition-colors"
+              className="p-2 rounded-full bg-white border border-gray-300 text-navy-dark hover:bg-solar-red hover:text-white hover:border-solar-red transition-colors shadow-sm"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
             </button>
             <button
               onClick={() => scroll("right")}
-              className="p-2 rounded-full border border-gray-300 hover:bg-solar-red hover:text-white hover:border-solar-red transition-colors"
+              className="p-2 rounded-full bg-white border border-gray-300 text-navy-dark hover:bg-solar-red hover:text-white hover:border-solar-red transition-colors shadow-sm"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             </button>
