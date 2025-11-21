@@ -13,6 +13,7 @@ import FacebookPage from "@/components/FacebookPage";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingWidget from "@/components/FloatingWidget";
+import About from "@/components/About";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <WeServe />
+      <About />
       <Features />
       <Products />
       <SpecialOffer />
