@@ -60,9 +60,9 @@ export default function Testimonials() {
                   {testimonial.name.charAt(0)}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-navy-dark">
+                  <h3 className="font-semibold text-navy-dark">
                     {testimonial.name}
-                  </h4>
+                  </h3>
                   <p className="text-sm text-gray-500">
                     {testimonial.role}
                   </p>
