@@ -69,7 +69,7 @@ export default function Contact() {
                   <select
                     id="requirement"
                     name="requirement"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent bg-white text-gray-700"
                   >
                     <option value="Home Solar">Home Solar System</option>
                     <option value="Commercial Solar">Commercial / Office</option>
