@@ -91,7 +91,7 @@ export default function About() {
               </p>
               <a
                 href="#contact"
-                className="inline-block bg-white text-navy-dark px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-block bg-energy-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-energy-green-dark transition-colors"
               >
                 Contact Us Today
               </a>

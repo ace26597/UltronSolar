@@ -27,7 +27,7 @@ export default function Contact() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="mailto:ultronvij@gmail.com?subject=Solar%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20solar%20energy%20solutions."
-                  className="bg-solar-red text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-solar-red-dark transition-colors shadow-lg inline-block text-center"
+                  className="bg-primary-blue text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-primary-blue-dark transition-colors shadow-lg inline-block text-center"
                 >
                   📧 Email Us Now
                 </a>

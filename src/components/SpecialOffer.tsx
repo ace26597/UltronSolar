@@ -89,7 +89,7 @@ export default function SpecialOffer() {
             </p>
             <a
               href="#contact"
-              className="inline-block bg-solar-red text-white px-10 py-4 rounded-lg font-bold text-xl hover:bg-solar-red-dark transition-colors shadow-lg"
+              className="inline-block bg-energy-green text-white px-10 py-4 rounded-lg font-bold text-xl hover:bg-energy-green-dark transition-colors shadow-lg"
             >
               Get Quotation Now
             </a>

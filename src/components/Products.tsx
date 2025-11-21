@@ -83,7 +83,7 @@ export default function Products() {
                 <div className="pt-6 border-t border-gray-200 mt-auto">
                   <a
                     href="#contact"
-                    className="block text-center bg-solar-red text-white px-6 py-3 rounded-lg font-semibold hover:bg-solar-red-dark transition-colors"
+                    className="block text-center bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-blue-dark transition-colors"
                   >
                     Learn More
                   </a>

@@ -36,7 +36,7 @@ export default function Navbar() {
               </a>
               <a
                 href="#contact"
-                className="bg-solar-red text-white px-6 py-2 rounded-lg font-semibold hover:bg-solar-red-dark transition-colors shadow-md ml-4"
+                className="bg-energy-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-energy-green-dark transition-colors shadow-md ml-4"
               >
                 Get Quote
               </a>
@@ -82,7 +82,7 @@ export default function Navbar() {
             </a>
             <a
               href="#contact"
-              className="block px-3 py-2 bg-solar-red text-white rounded-lg font-semibold hover:bg-solar-red-dark transition-colors text-center mt-2"
+              className="block px-3 py-2 bg-energy-green text-white rounded-lg font-semibold hover:bg-energy-green-dark transition-colors text-center mt-2"
             >
               Get Quote
             </a>

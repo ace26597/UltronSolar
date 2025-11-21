@@ -31,13 +31,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contact"
-              className="bg-solar-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-solar-red-dark transition-colors shadow-lg"
+              className="bg-energy-green text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-energy-green-dark transition-colors shadow-lg"
             >
               Get Started Today
             </a>
             <a
               href="#features"
-              className="bg-transparent border-2 border-primary-blue text-primary-blue px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-blue hover:text-white transition-colors"
+              className="bg-primary-blue text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-blue-dark transition-colors shadow-lg"
             >
               Learn More
             </a>
