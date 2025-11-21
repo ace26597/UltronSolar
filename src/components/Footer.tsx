@@ -6,9 +6,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
-            <h3 className="text-xl font-bold text-solar-gold mb-4">Ultron Solar</h3>
+            <h3 className="text-xl font-bold text-solar-gold mb-4">Ultron Power Systems</h3>
             <p className="text-gray-300 text-sm">
-              Leading the way in clean, renewable solar energy solutions.
+              Your one-stop solution for solar power and solar system installation. 
+              Dedicated to providing high-quality and sustainable energy solutions.
             </p>
           </div>
           
@@ -22,7 +23,12 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#features" className="hover:text-solar-gold transition-colors">
-                  Features
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#products" className="hover:text-solar-gold transition-colors">
+                  Products
                 </a>
               </li>
               <li>
@@ -41,10 +47,10 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>Residential Solar</li>
-              <li>Commercial Solar</li>
-              <li>Solar Maintenance</li>
-              <li>Energy Consulting</li>
+              <li>Expert Installations</li>
+              <li>Complete Solar Solutions (EPC)</li>
+              <li>Flexible Payment Options</li>
+              <li>Warranty & Support</li>
             </ul>
           </div>
 
@@ -52,17 +58,25 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <a href="mailto:info@ultronsolar.in" className="hover:text-solar-gold transition-colors">
-                  info@ultronsolar.in
+                <a href="mailto:ultronvij@gmail.com" className="hover:text-solar-gold transition-colors">
+                  ultronvij@gmail.com
                 </a>
               </li>
-              <li>India</li>
+              <li>
+                <a href="tel:+919422787438" className="hover:text-solar-gold transition-colors">
+                  +91 9422787438
+                </a>
+              </li>
+              <li className="pt-2">
+                Kanishka Apartment, Kshire Colony<br />
+                Deopur, Dhule, Maharashtra 424002
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-700 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; {currentYear} Ultron Solar. All rights reserved.</p>
+          <p>&copy; {currentYear} Ultron Power Systems. All rights reserved.</p>
         </div>
       </div>
     </footer>

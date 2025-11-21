@@ -4,12 +4,13 @@ export default function Hero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Power Your Future with
-            <span className="block text-solar-gold mt-2">Solar Energy</span>
+            Welcome to
+            <span className="block text-solar-gold mt-2">Ultron Power Systems</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
-            Transform your home or business with clean, renewable solar power. 
-            Save money, reduce your carbon footprint, and join the energy revolution.
+            Your one-stop solution for solar power and solar system installation. We are dedicated 
+            to providing high-quality and sustainable energy solutions for residential, commercial 
+            and industrial properties. Join the green energy revolution today.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

@@ -5,12 +5,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ultron Solar - Clean Energy Solutions",
-  description: "Leading solar energy solutions provider. Save money and reduce your carbon footprint with our premium solar installations.",
-  keywords: "solar energy, solar panels, renewable energy, clean energy, solar installation",
+  title: "Ultron Power Systems - Solar Energy Solutions | Dhule, Maharashtra",
+  description: "Your one-stop solution for solar power and solar system installation. Expert installations for residential, commercial, industrial, and farm applications. Complete EPC services in Dhule, Maharashtra.",
+  keywords: "solar energy, solar panels, renewable energy, solar installation, solar water pump, EPC services, Dhule, Maharashtra, solar power systems",
   openGraph: {
-    title: "Ultron Solar - Clean Energy Solutions",
-    description: "Leading solar energy solutions provider. Save money and reduce your carbon footprint.",
+    title: "Ultron Power Systems - Solar Energy Solutions",
+    description: "Your one-stop solution for solar power and solar system installation. Expert installations for residential, commercial, industrial, and farm applications.",
     type: "website",
   },
 };
@@ -29,18 +29,23 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "Ultron Solar",
-              "description": "Leading solar energy solutions provider",
+              "name": "Ultron Power Systems",
+              "description": "Your one-stop solution for solar power and solar system installation",
               "url": "https://ultronsolar.in",
-              "telephone": "+91-XXXXXXXXXX",
+              "telephone": "+91-9422787438",
+              "email": "ultronvij@gmail.com",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "Kanishka Apartment, Kshire Colony, Deopur",
+                "addressLocality": "Dhule",
+                "addressRegion": "Maharashtra",
+                "postalCode": "424002",
                 "addressCountry": "IN"
               },
-              "priceRange": "$$",
+              "priceRange": "₹₹",
               "areaServed": {
-                "@type": "Country",
-                "name": "India"
+                "@type": "State",
+                "name": "Maharashtra"
               }
             }),
           }}

@@ -12,7 +12,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold text-solar-gold">
-              Ultron Solar
+              Ultron Power Systems
             </Link>
           </div>
           
@@ -23,7 +23,10 @@ export default function Navbar() {
                 Home
               </a>
               <a href="#features" className="text-navy-dark hover:text-solar-gold transition-colors">
-                Features
+                Services
+              </a>
+              <a href="#products" className="text-navy-dark hover:text-solar-gold transition-colors">
+                Products
               </a>
               <a href="#about" className="text-navy-dark hover:text-solar-gold transition-colors">
                 About
@@ -60,7 +63,10 @@ export default function Navbar() {
               Home
             </a>
             <a href="#features" className="block px-3 py-2 text-navy-dark hover:text-solar-gold">
-              Features
+              Services
+            </a>
+            <a href="#products" className="block px-3 py-2 text-navy-dark hover:text-solar-gold">
+              Products
             </a>
             <a href="#about" className="block px-3 py-2 text-navy-dark hover:text-solar-gold">
               About

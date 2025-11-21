@@ -23,22 +23,46 @@ export default function Contact() {
               </p>
             </div>
 
-            <div className="flex flex-col items-center space-y-4">
-              <a
-                href="mailto:info@ultronsolar.in?subject=Solar%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20solar%20energy%20solutions."
-                className="bg-solar-gold text-navy-dark px-10 py-4 rounded-lg font-semibold text-lg hover:bg-solar-orange transition-colors shadow-lg inline-block"
-              >
-                📧 Email Us Now
-              </a>
-              <p className="text-sm text-gray-500 mt-4">
-                Or send an email directly to:{" "}
-                <a 
-                  href="mailto:info@ultronsolar.in" 
-                  className="text-solar-gold hover:underline font-semibold"
+            <div className="flex flex-col items-center space-y-6">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="mailto:ultronvij@gmail.com?subject=Solar%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20solar%20energy%20solutions."
+                  className="bg-solar-gold text-navy-dark px-10 py-4 rounded-lg font-semibold text-lg hover:bg-solar-orange transition-colors shadow-lg inline-block text-center"
                 >
-                  info@ultronsolar.in
+                  📧 Email Us Now
                 </a>
-              </p>
+                <a
+                  href="tel:+919422787438"
+                  className="bg-eco-green text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-eco-dark transition-colors shadow-lg inline-block text-center"
+                >
+                  📞 Call Us: 9422787438
+                </a>
+              </div>
+              <div className="text-center space-y-2">
+                <p className="text-sm text-gray-500">
+                  Email:{" "}
+                  <a 
+                    href="mailto:ultronvij@gmail.com" 
+                    className="text-solar-gold hover:underline font-semibold"
+                  >
+                    ultronvij@gmail.com
+                  </a>
+                </p>
+                <p className="text-sm text-gray-500">
+                  Phone:{" "}
+                  <a 
+                    href="tel:+919422787438" 
+                    className="text-solar-gold hover:underline font-semibold"
+                  >
+                    +91 9422787438
+                  </a>
+                </p>
+                <p className="text-sm text-gray-500 mt-4">
+                  <strong>Address:</strong><br />
+                  Kanishka Apartment, Kshire Colony, Deopur<br />
+                  Dhule, Maharashtra 424002, India
+                </p>
+              </div>
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-200">
