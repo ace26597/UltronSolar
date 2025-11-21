@@ -5,6 +5,7 @@ import Products from "@/components/Products";
 import SpecialOffer from "@/components/SpecialOffer";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
 import FacebookPage from "@/components/FacebookPage";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -19,6 +20,7 @@ export default function Home() {
       <SpecialOffer />
       <About />
       <Gallery />
+      <Testimonials />
       <FacebookPage />
       <Contact />
       <Footer />
