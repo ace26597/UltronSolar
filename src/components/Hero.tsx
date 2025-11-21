@@ -1,0 +1,33 @@
+export default function Hero() {
+  return (
+    <section id="home" className="relative bg-gradient-to-br from-navy-dark via-navy-light to-navy-dark text-white py-20 lg:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Power Your Future with
+            <span className="block text-solar-gold mt-2">Solar Energy</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+            Transform your home or business with clean, renewable solar power. 
+            Save money, reduce your carbon footprint, and join the energy revolution.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#contact"
+              className="bg-solar-gold text-navy-dark px-8 py-4 rounded-lg font-semibold text-lg hover:bg-solar-orange transition-colors shadow-lg"
+            >
+              Get Started Today
+            </a>
+            <a
+              href="#features"
+              className="bg-transparent border-2 border-solar-gold text-solar-gold px-8 py-4 rounded-lg font-semibold text-lg hover:bg-solar-gold hover:text-navy-dark transition-colors"
+            >
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
