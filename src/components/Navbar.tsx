@@ -34,6 +34,12 @@ export default function Navbar() {
               <a href="#contact" className="text-navy-dark hover:text-solar-gold transition-colors">
                 Contact
               </a>
+              <a
+                href="#contact"
+                className="bg-solar-gold text-navy-dark px-6 py-2 rounded-lg font-semibold hover:bg-solar-orange transition-colors shadow-md ml-4"
+              >
+                Get Quote
+              </a>
             </div>
           </div>
 
@@ -73,6 +79,12 @@ export default function Navbar() {
             </a>
             <a href="#contact" className="block px-3 py-2 text-navy-dark hover:text-solar-gold">
               Contact
+            </a>
+            <a
+              href="#contact"
+              className="block px-3 py-2 bg-solar-gold text-navy-dark rounded-lg font-semibold hover:bg-solar-orange transition-colors text-center mt-2"
+            >
+              Get Quote
             </a>
           </div>
         </div>
