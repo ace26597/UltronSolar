@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
 export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   const faqs = [
     {
       question: "How much does a 3kW solar system cost in Dhule?",
@@ -15,6 +21,14 @@ export default function FAQ() {
     {
       question: "What is the warranty on your solar systems?",
       answer: "We provide a standard 25-year performance warranty on solar panels and a 5-10 year warranty on inverters, backed by the respective manufacturers. Our installation workmanship is also guaranteed."
+    },
+    {
+      question: "Do I need batteries for my solar system?",
+      answer: "For on-grid systems (most common in cities), batteries are not required as you export excess power to the grid. Off-grid or hybrid systems require batteries for backup during power cuts."
+    },
+    {
+      question: "How much roof space is required?",
+      answer: "Approximately 100 sq. ft. of shadow-free area is required for every 1kW of solar capacity. So, a 3kW system would need about 300 sq. ft. of clear roof space."
     }
   ];
 
@@ -32,12 +46,12 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="faq" className="py-20 bg-gray-50">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-navy-dark mb-4">
             Frequently Asked Questions
@@ -47,18 +61,31 @@ export default function FAQ() {
           </p>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div 
+            <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+              className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden transition-all duration-300"
             >
-              <h3 className="text-lg font-semibold text-navy-dark mb-2">
-                {faq.question}
-              </h3>
-              <p className="text-gray-600">
-                {faq.answer}
-              </p>
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors"
+                aria-expanded={openIndex === index}
+              >
+                <span className="font-semibold text-navy-dark text-lg pr-8">{faq.question}</span>
+                <span className={`transform transition-transform duration-300 text-primary-blue ${openIndex === index ? 'rotate-180' : ''}`}>
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </span>
+              </button>
+
+              <div
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+              >
+                <div className="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                  {faq.answer}
+                </div>
+              </div>
             </div>
           ))}
         </div>

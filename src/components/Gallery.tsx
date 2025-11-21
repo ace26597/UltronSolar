@@ -1,6 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Gallery() {
+  const [selectedImage, setSelectedImage] = useState<number | null>(null);
+
   const projects = [
     { src: "/images/gallery-project-1.jpg", caption: "5 kW Residential Rooftop – Dhule, Maharashtra" },
     { src: "/images/gallery-project-2.jpg", caption: "10 kW Commercial Installation – Dhule" },
@@ -30,27 +35,81 @@ export default function Gallery() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {projects.map((project, index) => (
-            <div 
-              key={index} 
-              className="relative h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow group"
+            <div
+              key={index}
+              onClick={() => setSelectedImage(index)}
+              className="relative h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1"
             >
               <Image
                 src={project.src}
                 alt={project.caption}
                 fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-medium">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   {project.caption}
+                  <div className="mt-2 text-xs text-gray-300 uppercase tracking-wider">Click to view</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {selectedImage !== null && (
+        <div
+          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white text-5xl hover:text-solar-red transition-colors z-50 focus:outline-none"
+            onClick={() => setSelectedImage(null)}
+          >
+            &times;
+          </button>
+
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-full transition-colors hidden md:block"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage((prev) => (prev === null || prev === 0 ? projects.length - 1 : prev - 1));
+            }}
+          >
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+
+          <div
+            className="relative max-w-5xl w-full h-[80vh] flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full h-full">
+              <Image
+                src={projects[selectedImage].src}
+                alt={projects[selectedImage].caption}
+                fill
+                className="object-contain"
+                quality={100}
+              />
+            </div>
+            <p className="text-white text-lg mt-4 font-medium text-center bg-black/50 px-6 py-2 rounded-full backdrop-blur-md">
+              {projects[selectedImage].caption}
+            </p>
+          </div>
+
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-full transition-colors hidden md:block"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage((prev) => (prev === null || prev === projects.length - 1 ? 0 : prev + 1));
+            }}
+          >
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      )}
     </section>
   );
 }
-
