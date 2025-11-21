@@ -9,12 +9,12 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ultron-solar.vercel.app"),
-  title: "Ultron Power Systems - Solar Solutions in Dhule & North Maharashtra",
-  description: "Trusted solar installation for homes, farms, and businesses in Dhule, Jalgaon, and Nashik. Get complete EPC solutions, solar water pumps, and subsidy assistance.",
-  keywords: "solar installation dhule, solar water pump maharashtra, rooftop solar jalgaon, solar epc nashik, ultron power systems, solar subsidy maharashtra",
+  title: "Ultron Power Systems | Solar Rooftop & Solar Water Pumps in Dhule, Maharashtra",
+  description: "Ultron Power Systems provides rooftop solar, solar water pumps, inverters and complete EPC solutions in Dhule, Maharashtra. Residential, commercial and farm solar with bank loan and subsidy support.",
+  keywords: "solar installation dhule, solar water pump maharashtra, rooftop solar jalgaon, solar epc nashik, ultron power systems, solar subsidy maharashtra, solar inverter dhule",
   openGraph: {
-    title: "Ultron Power Systems - Solar Solutions in Dhule",
-    description: "Expert solar installation for homes, businesses, and farms in North Maharashtra. 25-year warranty & subsidy support.",
+    title: "Ultron Power Systems - Solar Energy Solutions in Dhule, Maharashtra",
+    description: "Rooftop solar, solar water pumps, inverters and EPC solutions in Dhule, Maharashtra with financing and subsidy support.",
     url: "https://ultron-solar.vercel.app",
     siteName: "Ultron Power Systems",
     images: [
@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     ],
     locale: "en_IN",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ultron Power Systems - Solar Solutions in Dhule",
+    description: "Expert solar installation for homes, businesses, and farms in North Maharashtra.",
+    images: ["/images/gallery-project-2.jpg"],
   },
   verification: {
     google: "google-site-verification-code-here",
@@ -60,8 +66,12 @@ export default function RootLayout({
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": 20.897038,
-          "longitude": 74.767688
+          "latitude": 20.916225468005663,
+          "longitude": 74.76856980970072
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Dhule"
         },
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",

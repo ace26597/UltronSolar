@@ -23,12 +23,16 @@ export default function Hero() {
             Welcome to
             <span className="block text-solar-red mt-2">Ultron Power Systems</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto drop-shadow-lg">
+          <p className="text-xl md:text-2xl mb-4 text-gray-200 max-w-3xl mx-auto drop-shadow-lg">
             Rooftop solar solutions for homes, farms and businesses in Dhule & North Maharashtra.
           </p>
           
+          <p className="text-base md:text-lg mb-8 text-gray-300 max-w-2xl mx-auto">
+            Serving Dhule, Jalgaon, Nashik, and nearby towns since 2015
+          </p>
+          
           <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8 border border-white/20">
-            <span className="text-solar-gold font-bold">Packages starting at ₹99,999*</span>
+            <span className="text-white font-bold">Packages starting at ₹99,999*</span>
             <span className="text-xs text-gray-300 ml-2 block sm:inline">*T&C apply</span>
           </div>
 
@@ -40,10 +44,10 @@ export default function Hero() {
               Get Free Solar Quote
             </a>
             <a
-              href="#features"
+              href="tel:+919422787438"
               className="bg-primary-blue text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-blue-dark transition-colors shadow-lg"
             >
-              Learn More
+              📞 Call Now
             </a>
           </div>
         </div>

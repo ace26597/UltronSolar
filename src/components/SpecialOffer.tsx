@@ -10,11 +10,17 @@ export default function SpecialOffer() {
               Special Deal
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-navy-dark mb-4">
-              Solar Rooftop System Under ₹1,00,000
+              3 kW Solar Rooftop System - Starting at ₹99,999
             </h2>
-            <div className="text-5xl md:text-6xl font-bold text-solar-red mb-6">
-              ₹99,999
+            <div className="text-5xl md:text-6xl font-bold text-solar-red mb-4">
+              ₹99,999*
             </div>
+            <p className="text-sm text-gray-600 mb-2">
+              *For Dhule city & nearby areas. Final price may vary based on site conditions & DISCOM requirements.
+            </p>
+            <p className="text-base text-gray-700 font-medium">
+              System Size: 3 kW / 3.3 kW | Includes: Panels, Inverter, Structure, Installation, Basic Wiring, Subsidy Documentation
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
@@ -26,23 +32,23 @@ export default function SpecialOffer() {
                 <div className="space-y-3">
                   <div className="flex items-start">
                     <span className="text-solar-red text-xl mr-3">✓</span>
-                    <p className="text-gray-700">State-of-the-art solar panel systems</p>
+                    <p className="text-gray-700">Solar panels (mono/polycrystalline)</p>
                   </div>
                   <div className="flex items-start">
                     <span className="text-solar-red text-xl mr-3">✓</span>
-                    <p className="text-gray-700">Robust and reliable installation</p>
+                    <p className="text-gray-700">Solar inverter (on-grid compatible)</p>
                   </div>
                   <div className="flex items-start">
                     <span className="text-solar-red text-xl mr-3">✓</span>
-                    <p className="text-gray-700">Exceptional after-sales service</p>
+                    <p className="text-gray-700">Mounting structure & installation</p>
                   </div>
                   <div className="flex items-start">
                     <span className="text-solar-red text-xl mr-3">✓</span>
-                    <p className="text-gray-700">Comprehensive maintenance support</p>
+                    <p className="text-gray-700">Basic wiring & DC/AC connections</p>
                   </div>
                   <div className="flex items-start">
                     <span className="text-solar-red text-xl mr-3">✓</span>
-                    <p className="text-gray-700">Best quality solar solutions</p>
+                    <p className="text-gray-700">Subsidy documentation support</p>
                   </div>
                 </div>
               </div>

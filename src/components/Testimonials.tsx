@@ -3,18 +3,21 @@ export default function Testimonials() {
     {
       name: "Rajesh Patil",
       role: "Homeowner",
+      location: "Dhule",
       content: "Excellent service from Ultron Power Systems. The team was professional and completed the solar installation for my home on time. Seeing a significant drop in my electricity bill already!",
       rating: 5,
     },
     {
       name: "Amit Deshmukh",
       role: "Business Owner",
+      location: "Dhule",
       content: "We installed a 10kW system for our office. The guidance on subsidies and the seamless installation process made it a great experience. Highly recommended for commercial solar needs.",
       rating: 5,
     },
     {
       name: "Suresh Choudhary",
       role: "Farm Owner",
+      location: "Near Dhule",
       content: "The solar water pump system has been a game changer for my farm. No more worries about power cuts. Thank you to the Ultron team for the suggestion and support.",
       rating: 5,
     },
@@ -64,7 +67,7 @@ export default function Testimonials() {
                     {testimonial.name}
                   </h3>
                   <p className="text-sm text-gray-500">
-                    {testimonial.role}
+                    {testimonial.role} – {testimonial.location}
                   </p>
                 </div>
               </div>
