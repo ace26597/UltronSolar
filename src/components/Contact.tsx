@@ -27,13 +27,13 @@ export default function Contact() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="mailto:ultronvij@gmail.com?subject=Solar%20Inquiry&body=Hello,%20I%20am%20interested%20in%20learning%20more%20about%20solar%20energy%20solutions."
-                  className="bg-solar-gold text-navy-dark px-10 py-4 rounded-lg font-semibold text-lg hover:bg-solar-orange transition-colors shadow-lg inline-block text-center"
+                  className="bg-solar-red text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-solar-red-dark transition-colors shadow-lg inline-block text-center"
                 >
                   📧 Email Us Now
                 </a>
                 <a
                   href="tel:+919422787438"
-                  className="bg-eco-green text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-eco-dark transition-colors shadow-lg inline-block text-center"
+                  className="bg-energy-green text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-energy-green-dark transition-colors shadow-lg inline-block text-center"
                 >
                   📞 Call Us: 9422787438
                 </a>
@@ -43,7 +43,7 @@ export default function Contact() {
                   Email:{" "}
                   <a 
                     href="mailto:ultronvij@gmail.com" 
-                    className="text-solar-gold hover:underline font-semibold"
+                    className="text-primary-blue hover:underline font-semibold"
                   >
                     ultronvij@gmail.com
                   </a>
@@ -52,7 +52,7 @@ export default function Contact() {
                   Phone:{" "}
                   <a 
                     href="tel:+919422787438" 
-                    className="text-solar-gold hover:underline font-semibold"
+                    className="text-primary-blue hover:underline font-semibold"
                   >
                     +91 9422787438
                   </a>
@@ -68,15 +68,15 @@ export default function Contact() {
             <div className="mt-12 pt-8 border-t border-gray-200">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-solar-gold mb-2">24/7</div>
+                  <div className="text-2xl font-bold text-solar-red mb-2">24/7</div>
                   <div className="text-gray-600">Support Available</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-solar-gold mb-2">Free</div>
+                  <div className="text-2xl font-bold text-primary-blue mb-2">Free</div>
                   <div className="text-gray-600">Consultation</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-solar-gold mb-2">Fast</div>
+                  <div className="text-2xl font-bold text-energy-green mb-2">Fast</div>
                   <div className="text-gray-600">Response Time</div>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export default function Contact() {
 
         <div className="mt-16 bg-white rounded-lg shadow-lg p-4 h-[400px] overflow-hidden">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3726.7548876849747!2d74.76768777596325!3d20.89703839142645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdbed9700000001%3A0x800d33f0365357d6!2sUltron%20Power%20Systems!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+            src={`https://www.google.com/maps?q=20.916225468005663,74.76856980970072&hl=en&z=17&output=embed`}
             width="100%" 
             height="100%" 
             style={{ border: 0 }} 

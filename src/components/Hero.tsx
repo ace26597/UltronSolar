@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Welcome to
-            <span className="block text-solar-gold mt-2">Ultron Power Systems</span>
+            <span className="block text-solar-red mt-2">Ultron Power Systems</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200 max-w-3xl mx-auto drop-shadow-lg">
             Your one-stop solution for solar power and solar system installation. We are dedicated 
@@ -31,13 +31,13 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contact"
-              className="bg-solar-gold text-navy-dark px-8 py-4 rounded-lg font-semibold text-lg hover:bg-solar-orange transition-colors shadow-lg"
+              className="bg-solar-red text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-solar-red-dark transition-colors shadow-lg"
             >
               Get Started Today
             </a>
             <a
               href="#features"
-              className="bg-transparent border-2 border-solar-gold text-solar-gold px-8 py-4 rounded-lg font-semibold text-lg hover:bg-solar-gold hover:text-navy-dark transition-colors"
+              className="bg-transparent border-2 border-primary-blue text-primary-blue px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-blue hover:text-white transition-colors"
             >
               Learn More
             </a>

@@ -10,19 +10,24 @@ const config: Config = {
     extend: {
       colors: {
         solar: {
-          yellow: "#FFD700",
-          gold: "#FFA500",
-          orange: "#FF8C00",
+          red: "#DC2626",
+          "red-dark": "#B91C1C",
+          "red-light": "#EF4444",
+        },
+        energy: {
+          green: "#22c55e",
+          "green-dark": "#16a34a",
+          "green-light": "#4ade80",
+        },
+        primary: {
+          blue: "#2563EB",
+          "blue-dark": "#1E40AF",
+          "blue-light": "#3B82F6",
         },
         navy: {
-          DEFAULT: "#1a237e",
-          dark: "#0d1b2a",
-          light: "#2d3a5f",
-        },
-        eco: {
-          green: "#22c55e",
-          dark: "#16a34a",
-          light: "#4ade80",
+          DEFAULT: "#1e3a8a",
+          dark: "#1e293b",
+          light: "#334155",
         },
       },
     },

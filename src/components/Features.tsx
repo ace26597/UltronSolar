@@ -42,12 +42,12 @@ export default function Features() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-solar-gold"
+              className="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow border-l-4 border-solar-red"
             >
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <div className="text-5xl mb-2">{service.icon}</div>
-                  <div className="text-2xl font-bold text-solar-gold">{service.number}</div>
+                  <div className="text-2xl font-bold text-primary-blue">{service.number}</div>
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-semibold text-navy-dark mb-3">

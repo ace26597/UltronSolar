@@ -21,9 +21,9 @@ export default function About() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-solar-gold p-6 rounded-lg shadow-xl hidden lg:block">
-              <div className="text-3xl font-bold text-navy-dark">10+</div>
-              <div className="text-sm text-navy-dark">Years Experience</div>
+            <div className="absolute -bottom-6 -right-6 bg-solar-red p-6 rounded-lg shadow-xl hidden lg:block">
+              <div className="text-3xl font-bold text-white">10+</div>
+              <div className="text-sm text-white">Years Experience</div>
             </div>
           </div>
           
@@ -40,28 +40,28 @@ export default function About() {
               </p>
               <div className="space-y-3">
                 <div className="flex items-start">
-                  <span className="text-solar-gold text-xl mr-3">✓</span>
+                  <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
                     <h4 className="font-semibold text-navy-dark">Complete EPC Solutions</h4>
                     <p className="text-gray-600">From initial design and engineering to procurement and construction, we handle every aspect of your solar project.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-solar-gold text-xl mr-3">✓</span>
+                  <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
                     <h4 className="font-semibold text-navy-dark">Multiple Applications</h4>
                     <p className="text-gray-600">We serve residential properties, commercial businesses, industrial facilities, farms, and apartments with customized solutions.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-solar-gold text-xl mr-3">✓</span>
+                  <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
                     <h4 className="font-semibold text-navy-dark">High-Quality & Reliable</h4>
                     <p className="text-gray-600">Our full-service approach ensures peace of mind with premium equipment and expert installation.</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-solar-gold text-xl mr-3">✓</span>
+                  <span className="text-solar-red text-xl mr-3">✓</span>
                   <div>
                     <h4 className="font-semibold text-navy-dark">Customized Solutions</h4>
                     <p className="text-gray-600">We tailor solutions to meet the unique needs of each customer, ensuring optimal performance and value.</p>
@@ -73,7 +73,7 @@ export default function About() {
         </div>
         
         {/* Additional Info Card */}
-        <div className="mt-16 bg-gradient-to-br from-solar-yellow to-solar-orange p-8 rounded-xl shadow-lg text-white">
+        <div className="mt-16 bg-gradient-to-br from-primary-blue to-energy-green p-8 rounded-xl shadow-lg text-white">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h3 className="text-2xl font-bold mb-4">About Us</h3>

@@ -31,8 +31,8 @@ export default function Testimonials() {
             Trusted by homeowners and businesses across Maharashtra
           </p>
           <div className="mt-4 flex justify-center items-center space-x-2">
-            <span className="text-solar-gold text-xl font-bold">4.9/5</span>
-            <div className="flex text-solar-gold">
+            <span className="text-solar-red text-xl font-bold">4.9/5</span>
+            <div className="flex text-solar-red">
               {[...Array(5)].map((_, i) => (
                 <span key={i}>★</span>
               ))}
@@ -47,7 +47,7 @@ export default function Testimonials() {
               key={index}
               className="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-100"
             >
-              <div className="flex text-solar-gold mb-4">
+              <div className="flex text-solar-red mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <span key={i} className="text-xl">★</span>
                 ))}
@@ -56,7 +56,7 @@ export default function Testimonials() {
                 &quot;{testimonial.content}&quot;
               </p>
               <div className="flex items-center">
-                <div className="w-10 h-10 bg-navy-light rounded-full flex items-center justify-center text-white font-bold mr-3">
+                <div className="w-10 h-10 bg-primary-blue rounded-full flex items-center justify-center text-white font-bold mr-3">
                   {testimonial.name.charAt(0)}
                 </div>
                 <div>
@@ -77,7 +77,7 @@ export default function Testimonials() {
             href="https://www.google.com/search?q=Ultron+Power+Systems+Dhule"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center text-navy-dark hover:text-solar-gold font-semibold transition-colors"
+            className="inline-flex items-center text-navy-dark hover:text-primary-blue font-semibold transition-colors"
           >
             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
               <path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-2.14-.15-2.14z" />
