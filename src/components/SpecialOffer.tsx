@@ -78,12 +78,12 @@ export default function SpecialOffer() {
               </div>
             </div>
 
-            <div className="relative min-h-[400px] lg:h-auto rounded-xl overflow-hidden shadow-lg border-4 border-gray-100">
+            <div className="relative min-h-[500px] lg:min-h-[600px] rounded-xl overflow-hidden shadow-lg border-4 border-gray-100 bg-white">
               <Image
                 src="/images/special-offer-brochure.jpg"
                 alt="Solar System Special Offer Brochure"
                 fill
-                className="object-contain bg-white hover:scale-105 transition-transform duration-500"
+                className="object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>

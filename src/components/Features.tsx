@@ -20,7 +20,7 @@ export default function Features() {
     },
     {
       title: "Peace of Mind Warranty",
-      description: "We stand behind the quality of our work and the products we install. That&apos;s why we offer a comprehensive warranty on all our solar installations as per terms and conditions of principal suppliers of solar panels and materials. With us, you can have peace of mind knowing that your solar system is protected.",
+      description: "We stand behind the quality of our work and the products we install. That's why we offer a comprehensive warranty on all our solar installations as per terms and conditions of principal suppliers of solar panels and materials. With us, you can have peace of mind knowing that your solar system is protected.",
       icon: "🛡️",
       number: "04",
     },
