@@ -5,13 +5,32 @@ export const runtime = "nodejs"; // make sure this runs on Node, not edge
 
 export async function POST(req: Request) {
   try {
-    const { name, phone, email, requirement, message } = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch (parseError) {
+      return NextResponse.json(
+        { error: "Invalid request body" },
+        { status: 400 }
+      );
+    }
+
+    const { name, phone, email, requirement, message } = body;
 
     // Basic validation
     if (!name || !phone || !requirement) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
+      );
+    }
+
+    // Check environment variables
+    if (!process.env.CONTACT_EMAIL || !process.env.CONTACT_EMAIL_APP_PASS) {
+      console.error("Missing email configuration environment variables");
+      return NextResponse.json(
+        { error: "Email service not configured. Please contact support." },
+        { status: 500 }
       );
     }
 

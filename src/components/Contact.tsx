@@ -31,10 +31,24 @@ export default function Contact() {
         body: JSON.stringify(form),
       });
 
-      const data = await res.json();
+      // Check if response has content before parsing JSON
+      const contentType = res.headers.get("content-type");
+      let data: any = {};
+
+      if (contentType && contentType.includes("application/json")) {
+        const text = await res.text();
+        if (text) {
+          try {
+            data = JSON.parse(text);
+          } catch (parseError) {
+            console.error("Failed to parse JSON response:", parseError);
+            throw new Error("Invalid response from server");
+          }
+        }
+      }
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to send message");
+        throw new Error(data.error || `Server error: ${res.status} ${res.statusText}`);
       }
 
       setStatus("success");
@@ -48,7 +62,7 @@ export default function Contact() {
     } catch (error) {
       console.error("Error sending message:", error);
       setStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "Something went wrong");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again or call us directly.");
     }
   };
 
