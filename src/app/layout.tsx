@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ultron-solar.vercel.app"),
   title: "Ultron Power Systems - Solar Energy Solutions | Dhule, Maharashtra",
   description: "Your one-stop solution for solar power and solar system installation. Expert installations for residential, commercial, industrial, and farm applications. Complete EPC services in Dhule, Maharashtra.",
   keywords: "solar energy, solar panels, renewable energy, solar installation, solar water pump, EPC services, Dhule, Maharashtra, solar power systems",
@@ -150,7 +153,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
