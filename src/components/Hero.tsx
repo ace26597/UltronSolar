@@ -6,7 +6,7 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/gallery-project-4.jpg"
+          src="/images/gallery-project-9.jpg"
           alt="Solar Panel Installation"
           fill
           className="object-cover"
