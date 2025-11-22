@@ -161,7 +161,7 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => setCurrentIndex(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-solar-red w-6' : 'bg-gray-300 hover:bg-gray-400'
+                className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 box-content p-2 ${i === currentIndex ? 'bg-solar-red w-8' : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                 aria-label={`Go to slide ${i + 1}`}
               />

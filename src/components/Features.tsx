@@ -71,11 +71,11 @@ export default function Features() {
                     <h3 className="text-2xl font-bold text-navy-dark group-hover:text-solar-red transition-colors">
                       {service.title}
                     </h3>
-                    <span className="text-4xl font-black text-gray-100 group-hover:text-red-50 transition-colors select-none">
+                    <span className="text-4xl font-black text-gray-100 group-hover:text-red-50 transition-colors select-none" aria-hidden="true">
                       {service.number}
                     </span>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-gray-700 leading-relaxed mb-4">
                     {service.description}
                   </p>
                   <a href="#contact" className="inline-flex items-center text-solar-red font-semibold hover:text-solar-red-dark transition-colors">
