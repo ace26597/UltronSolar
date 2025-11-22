@@ -78,29 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
                                 <span className="font-medium text-lg">{post.author}</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                {/* Content */}
-                <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div
-                        className="prose prose-lg max-w-none
-              text-gray-900
-              prose-headings:text-navy-dark prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-8
-              prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
-              prose-p:text-gray-800 prose-p:leading-relaxed prose-p:mb-6
-              prose-a:text-solar-red prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-navy-dark prose-strong:font-bold
-              prose-li:text-gray-800
-              prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6
-              prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-6"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-
-                    {/* Tags */}
-                    <div className="mt-12 pt-8 border-t border-gray-100">
-                        <h3 className="text-lg font-bold text-navy-dark mb-4">Related Topics:</h3>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2 mt-8">
                             {post.tags.map((tag) => (
                                 <span key={tag} className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors cursor-default">
                                     #{tag}
@@ -119,6 +97,6 @@ export default async function BlogPostPage({ params }: Props) {
             </article>
 
             <Footer />
-        </main>
+        </main >
     );
 }

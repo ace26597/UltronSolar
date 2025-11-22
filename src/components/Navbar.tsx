@@ -47,7 +47,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center">
             <div className="flex-shrink-0">
               <Link href="/" className="text-2xl font-bold text-navy-dark flex items-center gap-2">
-                Ultron <span className="text-solar-red">Power</span>
+                Ultron <span className="text-solar-red">Power Systems</span>
               </Link>
             </div>
 
@@ -140,4 +140,3 @@ export default function Navbar() {
     </>
   );
 }
-
