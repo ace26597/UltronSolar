@@ -58,18 +58,15 @@ export default async function ProductPage({ params }: Props) {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                         {/* Product Image */}
-                        <div className="bg-gray-100 rounded-2xl overflow-hidden h-[400px] lg:h-[500px] relative flex items-center justify-center">
-                            {/* Placeholder for actual product image */}
-                            <span className="text-6xl">☀️</span>
-                            {/*
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                fill
-                className="object-cover"
-                priority
-              />
-              */}
+                        <div className="bg-gray-100 rounded-2xl overflow-hidden h-[400px] lg:h-[500px] relative">
+                            <Image
+                                src={product.imageUrl}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
                         </div>
 
                         {/* Product Info */}

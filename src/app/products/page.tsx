@@ -29,19 +29,14 @@ export default function ProductsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product) => (
                         <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full group">
-                            <Link href={`/products/${product.slug}`} className="relative h-64 w-full block bg-gray-100">
-                                {/* Placeholder for actual product image - using a div with text if image fails or for now */}
-                                <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
-                                    <span className="text-4xl">☀️</span>
-                                </div>
-                                {/* 
-                <Image
-                  src={product.imageUrl}
-                  alt={product.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                */}
+                            <Link href={`/products/${product.slug}`} className="relative h-64 w-full block bg-gray-100 overflow-hidden">
+                                <Image
+                                    src={product.imageUrl}
+                                    alt={product.name}
+                                    fill
+                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                />
                             </Link>
                             <div className="p-6 flex-1 flex flex-col">
                                 <div className="text-sm text-solar-red font-semibold mb-2 uppercase tracking-wide">

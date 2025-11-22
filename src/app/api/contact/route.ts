@@ -46,7 +46,7 @@ export async function POST(req: Request) {
     // Email to business owner
     await transporter.sendMail({
       from: `"UltronSolar Website" <${process.env.CONTACT_EMAIL}>`,
-      to: process.env.OWNER_EMAIL || process.env.CONTACT_EMAIL,
+      to: "ultronvij@gmail.com",
       subject: `New solar lead: ${name} - ${requirement}`,
       text: `
 New lead from UltronSolar website:
