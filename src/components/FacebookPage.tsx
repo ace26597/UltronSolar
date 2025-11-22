@@ -51,20 +51,22 @@ export default function FacebookPage() {
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <div
-            className="fb-page"
-            data-href={facebookPageUrl}
-            data-width="500"
-            data-height="600"
-            data-tabs="timeline"
-            data-hide-cover="false"
-            data-show-facepile="true"
-            data-adapt-container-width="true"
-            data-small-header="false"
-          ></div>
+        <div className="w-full flex justify-center overflow-hidden">
+          <div className="w-full max-w-[500px] overflow-hidden bg-white rounded-lg shadow-sm">
+            <div
+              className="fb-page"
+              data-href={facebookPageUrl}
+              data-width="500"
+              data-height="600"
+              data-tabs="timeline"
+              data-hide-cover="false"
+              data-show-facepile="true"
+              data-adapt-container-width="true"
+              data-small-header="false"
+            ></div>
+          </div>
         </div>
-        
+
         <div className="mt-8 text-center">
           <a
             href={facebookPageUrl}
