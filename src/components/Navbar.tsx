@@ -54,10 +54,10 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-8">
-                {["Home", "Services", "Products", "About", "Contact"].map((item) => (
+                {["Home", "Services", "Products", "About", "Blog", "Contact"].map((item) => (
                   <a
                     key={item}
-                    href={`#${item.toLowerCase()}`}
+                    href={item === "Blog" ? "/blog" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
                     className="text-navy-light hover:text-solar-red font-medium transition-colors"
                   >
                     {item}
@@ -103,10 +103,10 @@ export default function Navbar() {
             </div>
 
             <div className="flex-1 overflow-y-auto py-6 px-4 space-y-4">
-              {["Home", "Services", "Products", "About", "Contact"].map((item) => (
+              {["Home", "Services", "Products", "About", "Blog", "Contact"].map((item) => (
                 <a
                   key={item}
-                  href={`#${item.toLowerCase()}`}
+                  href={item === "Blog" ? "/blog" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
                   className="block px-4 py-3 text-lg font-medium text-navy-dark hover:bg-gray-50 hover:text-solar-red rounded-lg transition-colors"
                 >
