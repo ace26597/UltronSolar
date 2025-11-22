@@ -3,7 +3,7 @@ title: "The Ultimate Guide to Solar Energy: How It Works and Its Benefits"
 excerpt: "Discover how solar panels convert sunlight into electricity and why switching to solar is the best decision for your wallet and the planet."
 author: "Ultron Solar Team"
 date: "November 21, 2025"
-imageUrl: "/images/gallery-project-1.jpg"
+imageUrl: "/images/blog_guide_to_solar.png"
 readTime: "5 min read"
 tags: ["Solar Energy", "Renewable Energy", "Cost Savings", "Green Tech"]
 ---
