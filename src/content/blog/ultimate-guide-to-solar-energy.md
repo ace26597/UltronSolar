@@ -4,6 +4,8 @@ excerpt: "Discover how solar panels convert sunlight into electricity and why sw
 author: "Ultron Solar Team"
 date: "November 21, 2025"
 imageUrl: "/images/blog_guide_to_solar.png"
+containerImageUrl: "/images/blog_guide_to_solar.png"
+footerImageUrl: "/images/blog_guide_to_solar.png"
 readTime: "5 min read"
 tags: ["Solar Energy", "Renewable Energy", "Cost Savings", "Green Tech"]
 ---

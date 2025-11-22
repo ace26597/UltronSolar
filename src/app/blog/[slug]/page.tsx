@@ -98,7 +98,37 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                     <div className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(250px,1fr)]">
                         <div>
-                            <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+                            {(() => {
+                                let contentHtml = post.content;
+                                if (post.containerImageUrl) {
+                                    const parts = contentHtml.split('</p>');
+                                    if (parts.length > 2) {
+                                        // Insert after the second paragraph
+                                        const imageHtml = `
+                                            <div class="float-right ml-6 mb-6 w-full md:w-1/2 relative h-64 md:h-80 rounded-xl overflow-hidden my-4">
+                                                <img src="${post.containerImageUrl}" alt="Blog container image" class="object-cover w-full h-full" />
+                                            </div>
+                                        `;
+                                        // Reconstruct the content: first 2 paragraphs + image + rest
+                                        // Note: split consumes '</p>', so we need to add it back for the parts we join
+                                        const firstPart = parts.slice(0, 2).join('</p>') + '</p>';
+                                        const rest = parts.slice(2).join('</p>');
+                                        contentHtml = firstPart + imageHtml + rest;
+                                    }
+                                }
+                                return <div className="blog-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />;
+                            })()}
+
+                            {post.footerImageUrl && (
+                                <div className="mt-8 relative h-[300px] w-full rounded-2xl overflow-hidden">
+                                    <Image
+                                        src={post.footerImageUrl}
+                                        alt="Blog footer image"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                            )}
 
                             <div className="mt-12 rounded-3xl bg-navy-dark text-white p-8 space-y-4">
                                 <p className="text-sm uppercase tracking-[0.25em] text-white/80">Need a solar partner?</p>

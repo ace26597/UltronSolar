@@ -15,6 +15,8 @@ export interface BlogPost {
     author: string;
     date: string;
     imageUrl: string;
+    containerImageUrl?: string;
+    footerImageUrl?: string;
     readTime: string;
     tags: string[];
 }
