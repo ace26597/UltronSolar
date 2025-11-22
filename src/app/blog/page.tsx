@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { blogPosts } from "@/data/blog-posts";
+import { getSortedPostsData } from "@/lib/blog";
 
 export const metadata = {
     title: "Blog | Ultron Solar - Solar Energy Insights",
@@ -10,6 +10,8 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+    const blogPosts = getSortedPostsData();
+
     return (
         <main className="min-h-screen bg-gray-50">
             <Navbar />

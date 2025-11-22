@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { blogPosts } from "@/data/blog-posts";
+import { getPostData, getAllPostIds } from "@/lib/blog";
 
 interface Props {
     params: Promise<{
@@ -13,29 +13,33 @@ interface Props {
 
 export async function generateMetadata({ params }: Props) {
     const { slug } = await params;
-    const post = blogPosts.find((p) => p.slug === slug);
-
-    if (!post) {
+    try {
+        const post = await getPostData(slug);
+        return {
+            title: `${post.title} | Ultron Solar Blog`,
+            description: post.excerpt,
+        };
+    } catch (error) {
         return {
             title: "Post Not Found | Ultron Solar",
         };
     }
-
-    return {
-        title: `${post.title} | Ultron Solar Blog`,
-        description: post.excerpt,
-    };
 }
 
 export async function generateStaticParams() {
-    return blogPosts.map((post) => ({
-        slug: post.slug,
-    }));
+    const paths = getAllPostIds();
+    return paths.map((path) => path.params);
 }
 
 export default async function BlogPostPage({ params }: Props) {
     const { slug } = await params;
-    const post = blogPosts.find((p) => p.slug === slug);
+    let post;
+
+    try {
+        post = await getPostData(slug);
+    } catch (error) {
+        notFound();
+    }
 
     if (!post) {
         notFound();
@@ -80,12 +84,14 @@ export default async function BlogPostPage({ params }: Props) {
                 {/* Content */}
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div
-                        className="prose prose-lg prose-navy max-w-none
+                        className="prose prose-lg max-w-none
+              text-gray-800
               prose-headings:text-navy-dark prose-headings:font-bold
               prose-p:text-gray-700 prose-p:leading-relaxed
               prose-a:text-solar-red prose-a:no-underline hover:prose-a:underline
               prose-strong:text-navy-dark
-              prose-li:text-gray-700"
+              prose-li:text-gray-700
+              prose-ul:list-disc prose-ol:list-decimal"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                     />
 
