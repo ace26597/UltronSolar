@@ -6,14 +6,15 @@ import Footer from "@/components/Footer";
 import { getPostData, getAllPostIds, getSortedPostsData } from "@/lib/blog";
 
 type BlogPostPageProps = {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 };
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
+    const { slug } = await params;
     try {
-        const post = await getPostData(params.slug);
+        const post = await getPostData(slug);
         return {
             title: `${post.title} | Ultron Solar Blog`,
             description: post.excerpt,
@@ -31,7 +32,7 @@ export function generateStaticParams() {
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const { slug } = params;
+    const { slug } = await params;
 
     let post: Awaited<ReturnType<typeof getPostData>> | null = null;
     try {
