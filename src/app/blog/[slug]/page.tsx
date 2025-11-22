@@ -3,18 +3,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getPostData, getAllPostIds } from "@/lib/blog";
+import { getPostData, getAllPostIds, getSortedPostsData } from "@/lib/blog";
 
-interface Props {
-    params: Promise<{
+type BlogPostPageProps = {
+    params: {
         slug: string;
-    }>;
-}
+    };
+};
 
-export async function generateMetadata({ params }: Props) {
-    const { slug } = await params;
+export async function generateMetadata({ params }: BlogPostPageProps) {
     try {
-        const post = await getPostData(slug);
+        const post = await getPostData(params.slug);
         return {
             title: `${post.title} | Ultron Solar Blog`,
             description: post.excerpt,
@@ -26,15 +25,15 @@ export async function generateMetadata({ params }: Props) {
     }
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
     const paths = getAllPostIds();
     return paths.map((path) => path.params);
 }
 
-export default async function BlogPostPage({ params }: Props) {
-    const { slug } = await params;
-    let post;
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+    const { slug } = params;
 
+    let post: Awaited<ReturnType<typeof getPostData>> | null = null;
     try {
         post = await getPostData(slug);
     } catch (error) {
@@ -45,58 +44,108 @@ export default async function BlogPostPage({ params }: Props) {
         notFound();
     }
 
+    const relatedPosts = getSortedPostsData()
+        .filter((related) => related.slug !== slug)
+        .slice(0, 3);
+
+    const primaryTag = post.tags?.[0] ?? "Solar Insights";
+
     return (
         <main className="min-h-screen bg-white">
             <Navbar />
 
-            <article className="pt-24 pb-16">
-                {/* Hero Image */}
-                <div className="relative h-[400px] md:h-[500px] w-full mb-12">
+            <article>
+                <section className="relative h-[420px] md:h-[520px] w-full">
                     <Image
                         src={post.imageUrl}
                         alt={post.title}
                         fill
-                        className="object-cover"
                         priority
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 100vw"
                     />
-                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/80"></div>
                     <div className="absolute inset-0 flex items-end">
-                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 text-white">
-                            <div className="flex items-center space-x-4 text-sm md:text-base mb-4 opacity-90">
-                                <span className="bg-solar-red px-3 py-1 rounded-full font-semibold">{post.tags[0]}</span>
+                        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 text-white">
+                            <Link href="/blog" className="inline-flex items-center text-sm font-semibold uppercase tracking-wide text-white/80 hover:text-white transition-colors">
+                                ← Back to all articles
+                            </Link>
+                            <div className="flex flex-wrap items-center gap-3 text-sm md:text-base mt-6">
+                                <span className="bg-solar-red px-4 py-1 rounded-full font-semibold">{primaryTag}</span>
                                 <span>{post.date}</span>
                                 <span>•</span>
                                 <span>{post.readTime}</span>
+                                <span>•</span>
+                                <span>By {post.author}</span>
                             </div>
-                            <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">
+                            <h1 className="text-3xl md:text-5xl font-bold leading-tight mt-6">
                                 {post.title}
                             </h1>
-                            <div className="flex items-center space-x-3">
-                                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-xl">
-                                    👤
+                            {post.tags?.length > 1 && (
+                                <div className="flex flex-wrap gap-2 mt-6">
+                                    {post.tags.map((tag) => (
+                                        <span key={tag} className="bg-white/10 border border-white/25 px-3 py-1 rounded-full text-sm font-medium">
+                                            #{tag}
+                                        </span>
+                                    ))}
                                 </div>
-                                <span className="font-medium text-lg">{post.author}</span>
+                            )}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(250px,1fr)]">
+                        <div>
+                            <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+
+                            <div className="mt-12 rounded-3xl bg-navy-dark text-white p-8 space-y-4">
+                                <p className="text-sm uppercase tracking-[0.25em] text-white/80">Need a solar partner?</p>
+                                <h2 className="text-2xl font-bold">Let’s turn this insight into your next project.</h2>
+                                <p className="text-white/80">
+                                    Our engineers can design a custom solar system for your site, handle paperwork, and monitor performance once it is live.
+                                </p>
+                                <div className="flex flex-wrap gap-4">
+                                    <Link href="/#contact" className="bg-white text-navy-dark font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition-colors">
+                                        Talk to Ultron Solar
+                                    </Link>
+                                    <Link href="/products" className="border border-white/40 text-white font-semibold px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
+                                        Explore solutions
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex flex-wrap gap-2 mt-8">
-                            {post.tags.map((tag) => (
-                                <span key={tag} className="bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors cursor-default">
-                                    #{tag}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
 
-                    {/* Back to Blog */}
-                    <div className="mt-12">
-                        <Link href="/blog" className="inline-flex items-center text-solar-red font-bold hover:underline">
-                            ← Back to All Articles
-                        </Link>
+                        <aside className="space-y-8">
+                            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+                                <h3 className="text-lg font-semibold text-navy-dark mb-4">Quick facts</h3>
+                                <ul className="space-y-3 text-sm text-gray-600">
+                                    <li><strong className="text-navy-dark">Primary topic:</strong> {primaryTag}</li>
+                                    <li><strong className="text-navy-dark">Estimated read:</strong> {post.readTime}</li>
+                                    <li><strong className="text-navy-dark">Published:</strong> {post.date}</li>
+                                    <li><strong className="text-navy-dark">Author:</strong> {post.author}</li>
+                                </ul>
+                            </div>
+
+                            <div className="rounded-2xl bg-gray-50 border border-gray-100 p-6">
+                                <h3 className="text-lg font-semibold text-navy-dark mb-4">Related reads</h3>
+                                <div className="space-y-4">
+                                    {relatedPosts.length === 0 && <p className="text-sm text-gray-600">More articles coming soon.</p>}
+                                    {relatedPosts.map((related) => (
+                                        <Link key={related.slug} href={`/blog/${related.slug}`} className="block p-4 rounded-xl bg-white hover:shadow-md transition-shadow border border-gray-100">
+                                            <p className="text-xs uppercase text-gray-500 tracking-wide mb-1">{related.tags?.[0] ?? "Solar Insights"}</p>
+                                            <p className="text-base font-semibold text-navy-dark">{related.title}</p>
+                                            <p className="text-sm text-gray-500 mt-1">{related.readTime}</p>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        </aside>
                     </div>
-                </div>
+                </section>
             </article>
 
             <Footer />
-        </main >
+        </main>
     );
 }
