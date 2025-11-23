@@ -8,14 +8,17 @@ export default function YouTubeVideos() {
     {
       id: "WvzA18Vtybg",
       title: "Ultron Power Systems - Solar Energy Solutions",
+      type: "video", // regular video
     },
     {
       id: "ftZTqt5dvhg",
       title: "Solar Installation Short",
+      type: "short", // YouTube Short
     },
     {
       id: "9qgrF0x1jAM",
       title: "Solar Energy Tips Short",
+      type: "short", // YouTube Short
     },
   ];
 
@@ -40,32 +43,41 @@ export default function YouTubeVideos() {
           </p>
         </div>
 
-        <div className={`grid gap-6 ${
-          videos.length === 1 
-            ? 'grid-cols-1 max-w-4xl mx-auto' 
-            : videos.length === 2
-            ? 'grid-cols-1 md:grid-cols-2'
-            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-        }`}>
-          {videos.map((video, index) => (
-            <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-              <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full"
-                  src={getEmbedUrl(video.id)}
-                  title={video.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  loading="lazy"
-                ></iframe>
-              </div>
-              {video.title && (
-                <div className="p-4">
-                  <h3 className="font-semibold text-navy-dark">{video.title}</h3>
+        <div className="flex flex-wrap justify-center gap-6">
+          {videos.map((video, index) => {
+            const isShort = video.type === "short";
+            return (
+              <div 
+                key={index} 
+                className={`bg-gray-50 rounded-lg overflow-hidden shadow-lg ${
+                  isShort 
+                    ? 'w-full sm:w-80 max-w-sm' // Smaller width for shorts
+                    : 'w-full max-w-2xl' // Full width for regular videos
+                }`}
+              >
+                <div 
+                  className="relative w-full" 
+                  style={{ 
+                    paddingBottom: isShort ? "177.78%" : "56.25%" // 9:16 for shorts, 16:9 for videos
+                  }}
+                >
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src={getEmbedUrl(video.id)}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
                 </div>
-              )}
-            </div>
-          ))}
+                {video.title && (
+                  <div className="p-4">
+                    <h3 className="font-semibold text-navy-dark">{video.title}</h3>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         <div className="mt-8 text-center">
