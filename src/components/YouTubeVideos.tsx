@@ -6,14 +6,17 @@ export default function YouTubeVideos() {
   // For Shorts: https://www.youtube.com/shorts/VIDEO_ID (same format)
   const videos = [
     {
-      id: "WvzA18Vtybg", // Add more video IDs here as needed
+      id: "WvzA18Vtybg",
       title: "Ultron Power Systems - Solar Energy Solutions",
     },
-    // Add more videos like this:
-    // {
-    //   id: "YOUR_NEXT_VIDEO_ID",
-    //   title: "Video Title",
-    // },
+    {
+      id: "ftZTqt5dvhg",
+      title: "Solar Installation Short",
+    },
+    {
+      id: "9qgrF0x1jAM",
+      title: "Solar Energy Tips Short",
+    },
   ];
 
   // Function to get embed URL
