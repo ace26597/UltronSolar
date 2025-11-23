@@ -3,7 +3,7 @@ title: "5 Myths About Solar Energy Debunked"
 excerpt: "We separate fact from fiction and debunk common myths about solar power reliability, cost, and maintenance."
 author: "Ultron Solar Team"
 date: "November 15, 2025"
-imageUrl: "/images/gallery-project-2.jpg"
+imageUrl: "/images/blog_5_myths_debunked.png"
 readTime: "4 min read"
 tags: ["Myths", "Solar Facts", "Education"]
 ---
