@@ -1,81 +1,68 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsToShow, setItemsToShow] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
 
   const testimonials = [
     {
-      name: "Rajesh Patil",
-      role: "Homeowner",
-      location: "Dhule",
-      content: "Excellent service from Ultron Power Systems. The team was professional and completed the solar installation for my home on time. Seeing a significant drop in my electricity bill already!",
+      name: "Pradip Deore",
+      seoInfo: "4 Google Reviews • 5 months ago",
+      content: "My experience at Ultron Power Systems was outstanding! Their hassle-free process made installation a breeze. The high-quality solar products exceeded my expectations, and I appreciated the available discounts. Timely delivery and a reliable partner ensured everything arrived as promised. The experienced staff provided excellent support throughout. Highly recommended!",
       rating: 5,
+      systemType: "Solar Installation & Products",
     },
     {
-      name: "Amit Deshmukh",
-      role: "Business Owner",
-      location: "Dhule",
-      content: "We installed a 10kW system for our office. The guidance on subsidies and the seamless installation process made it a great experience. Highly recommended for commercial solar needs.",
+      name: "Pritish Mekha",
+      seoInfo: "3 Google Reviews • 5 months ago",
+      content: "Exceptional service and top-notch installation from Ultron Solar Power System. The team was professional, knowledgeable, and efficient from initial consultation to final setup. The installation process was smooth and timely, with clear communication throughout. Their attention to detail and commitment to customer satisfaction truly sets them apart. A solid 5/5 experience—highly recommended for anyone considering solar energy.",
       rating: 5,
+      systemType: "Rooftop Solar Installation",
     },
     {
-      name: "Suresh Choudhary",
-      role: "Farm Owner",
-      location: "Near Dhule",
-      content: "The solar water pump system has been a game changer for my farm. No more worries about power cuts. Thank you to the Ultron team for the suggestion and support.",
+      name: "Shubham Mali",
+      seoInfo: "1 Google Review • 5 months ago",
+      content: "We had an absolutely fantastic experience with Ultron Services for our home solar installation! From our very first inquiry to the final activation, their team demonstrated professionalism, expertise, and a genuine commitment to customer satisfaction.",
       rating: 5,
+      systemType: "Home Solar System",
     },
     {
-      name: "Dr. Sanjay Gupta",
-      role: "Hospital Owner",
-      location: "Jalgaon",
-      content: "Reliable power backup was crucial for my hospital. Ultron's solar hybrid system works perfectly. Their after-sales support is also very responsive.",
+      name: "Rohit Patil",
+      seoInfo: "1 Google Review • 5 months ago",
+      content: "The experience was wonderful with Ultron solar team was very humble and cooperative, they have given quality products and even more than they have promised, and also completed there job in Time. Thank you Ultron solar team, For dedication of your work and have bright future in what you do.",
       rating: 5,
+      systemType: "Solar Products & Installation",
     },
     {
-      name: "Vikram Singh",
-      role: "Industrialist",
-      location: "Nashik",
-      content: "Ultron provided a comprehensive EPC solution for our factory. Their technical expertise and project management were impressive. The system is performing above expectations.",
+      name: "Shubham Patil",
+      seoInfo: "1 Google Review • 1 year ago",
+      content: "I Have Installed 3kw net metering solar system from Ultron Power Systems. Good workmanship of installation and work was executed in time. Fully satisfied with services provided. Experienced good team work of company.",
       rating: 5,
+      systemType: "3kW Net Metering System",
+    },
+    {
+      name: "Nilesh Rajput",
+      seoInfo: "5 Google Reviews • 1 year ago",
+      content: "Using battery inverters for the past eight years and using solar net meter system for the past four years has been a great service from time to time. Owner's nature is very nice.",
+      rating: 5,
+      systemType: "Solar Net Metering & Battery Inverters",
+    },
+    {
+      name: "Nagaraj Mahajan",
+      seoInfo: "1 Google Review • 1 year ago",
+      content: "Excellent coordination and great team work and enthusiastic staff nice and useful guidance for the customer and service very good",
+      rating: 5,
+      systemType: "Solar Consultation & Service",
     }
   ];
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsToShow(3);
-      } else if (window.innerWidth >= 768) {
-        setItemsToShow(2);
-      } else {
-        setItemsToShow(1);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % (testimonials.length - itemsToShow + 1));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [testimonials.length, itemsToShow]);
-
-  const maxIndex = testimonials.length - itemsToShow;
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
-  };
+  // Split testimonials into tabs with 3 reviews per tab
+  const tabs = [
+    testimonials.slice(0, 3),  // Tab 1: 3 reviews
+    testimonials.slice(3, 6),  // Tab 2: 3 reviews
+    testimonials.slice(6, 7),  // Tab 3: 1 review
+  ].filter(tab => tab.length > 0); // Remove empty tabs
 
   return (
     <section id="testimonials" className="py-20 bg-white">
@@ -98,73 +85,64 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="relative">
-          <div className="overflow-hidden px-4 -mx-4">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
+        {/* Tab Navigation */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8 border-b border-gray-200 pb-4">
+          {tabs.map((tab, tabIndex) => (
+            <button
+              key={tabIndex}
+              onClick={() => setActiveTab(tabIndex)}
+              className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                activeTab === tabIndex
+                  ? "bg-solar-red text-white shadow-md"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              aria-label={`View reviews tab ${tabIndex + 1}`}
             >
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 px-4"
-                  style={{ width: `${100 / itemsToShow}%` }}
-                >
-                  <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full flex flex-col relative">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-md border-4 border-white">
-                      {testimonial.name.charAt(0)}
-                    </div>
+              Review {tabIndex + 1}
+            </button>
+          ))}
+        </div>
 
-                    <div className="flex justify-center text-solar-red mb-4 mt-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-lg">★</span>
-                      ))}
-                    </div>
-
-                    <p className="text-gray-700 mb-6 italic leading-relaxed flex-grow text-sm md:text-base">
-                      &quot;{testimonial.content}&quot;
-                    </p>
-
-                    <div>
-                      <h3 className="text-lg font-bold text-navy-dark">
-                        {testimonial.name}
-                      </h3>
-                      <p className="text-gray-500 text-sm font-medium">
-                        {testimonial.role} – {testimonial.location}
-                      </p>
-                    </div>
-                  </div>
+        {/* Tab Content */}
+        <div className="relative">
+          <div className={`grid gap-6 ${
+            tabs[activeTab]?.length === 1 
+              ? 'grid-cols-1 max-w-2xl mx-auto' 
+              : tabs[activeTab]?.length === 2
+              ? 'grid-cols-1 md:grid-cols-2'
+              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+          }`}>
+            {tabs[activeTab]?.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full flex flex-col relative"
+              >
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-md border-4 border-white">
+                  {testimonial.name.charAt(0)}
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-6 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-navy-dark z-10 border border-gray-200 hidden md:block"
-            aria-label="Previous testimonial"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-6 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-navy-dark z-10 border border-gray-200 hidden md:block"
-            aria-label="Next testimonial"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-          </button>
+                <div className="flex justify-center text-solar-red mb-4 mt-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="text-lg">★</span>
+                  ))}
+                </div>
 
-          {/* Dots Navigation */}
-          <div className="flex justify-center mt-8 gap-2">
-            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentIndex(i)}
-                className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 box-content p-2 ${i === currentIndex ? 'bg-solar-red w-8' : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                aria-label={`Go to slide ${i + 1}`}
-              />
+                <p className="text-gray-700 mb-6 italic leading-relaxed flex-grow text-sm md:text-base">
+                  &quot;{testimonial.content}&quot;
+                </p>
+
+                <div>
+                  <h3 className="text-lg font-bold text-navy-dark mb-1">
+                    {testimonial.name}
+                  </h3>
+                  <p className="text-gray-500 text-sm font-medium mb-2">
+                    {testimonial.seoInfo}
+                  </p>
+                  <p className="text-primary-blue text-xs font-semibold uppercase tracking-wide">
+                    {testimonial.systemType}
+                  </p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
