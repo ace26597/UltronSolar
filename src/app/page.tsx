@@ -6,6 +6,7 @@ import Products from "@/components/Products";
 import SpecialOffer from "@/components/SpecialOffer";
 import Brands from "@/components/Brands";
 import Gallery from "@/components/Gallery";
+import YouTubeVideos from "@/components/YouTubeVideos";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import ServiceAreas from "@/components/ServiceAreas";
@@ -27,6 +28,7 @@ export default function Home() {
       <SpecialOffer />
       <Brands />
       <Gallery />
+      <YouTubeVideos />
       <Testimonials />
       <FAQ />
       <ServiceAreas />
