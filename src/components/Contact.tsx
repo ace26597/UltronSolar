@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import StoreLocator from "./StoreLocator";
+import AddressAutocomplete from "./AddressAutocomplete";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -9,7 +11,68 @@ export default function Contact() {
     email: "",
     requirement: "Home Solar System",
     message: "",
+    address: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    country: "",
   });
+  
+  const [showAddressFields, setShowAddressFields] = useState(false);
+
+  // Watch for address field changes from autocomplete
+  useEffect(() => {
+    if (!showAddressFields) return;
+
+    const updateAddressFromFields = () => {
+      const addressInput = document.getElementById('location-input') as HTMLInputElement;
+      const cityInput = document.getElementById('locality-input') as HTMLInputElement;
+      const stateInput = document.getElementById('administrative_area_level_1-input') as HTMLInputElement;
+      const postalInput = document.getElementById('postal_code-input') as HTMLInputElement;
+      const countryInput = document.getElementById('country-input') as HTMLInputElement;
+
+      if (addressInput || cityInput || stateInput || postalInput || countryInput) {
+        const address = addressInput?.value || '';
+        const city = cityInput?.value || '';
+        const state = stateInput?.value || '';
+        const postalCode = postalInput?.value || '';
+        const country = countryInput?.value || '';
+
+        setForm(prev => ({
+          ...prev,
+          address,
+          city,
+          state,
+          postalCode,
+          country,
+        }));
+
+        // Update display
+        const displayEl = document.getElementById('address-display');
+        if (displayEl) {
+          const addressParts = [address, city, state, postalCode, country].filter(Boolean);
+          if (addressParts.length > 0) {
+            displayEl.innerHTML = `
+              <div class="space-y-1">
+                ${address ? `<div class="font-medium">${address}</div>` : ''}
+                <div class="text-gray-600">
+                  ${[city, state, postalCode].filter(Boolean).join(', ')}
+                  ${country ? `<br/>${country}` : ''}
+                </div>
+              </div>
+            `;
+          } else {
+            displayEl.innerHTML = '<span class="text-gray-400">Address will appear here after selection...</span>';
+          }
+        }
+      }
+    };
+
+    // Check periodically for changes
+    const interval = setInterval(updateAddressFromFields, 500);
+
+    return () => clearInterval(interval);
+  }, [showAddressFields]);
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -58,7 +121,13 @@ export default function Contact() {
         email: "",
         requirement: "Home Solar System",
         message: "",
+        address: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        country: "",
       });
+      setShowAddressFields(false);
     } catch (error) {
       console.error("Error sending message:", error);
       setStatus("error");
@@ -171,6 +240,44 @@ export default function Contact() {
                 />
               </div>
 
+              {/* Address Section - Optional */}
+              <div className="border-t border-gray-200 pt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Your Address (Optional)
+                    </label>
+                    <p className="text-xs text-gray-500">
+                      Help us get more context about your location for better investigation and service planning
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowAddressFields(!showAddressFields)}
+                    className="text-sm text-primary-blue hover:text-primary-blue-dark font-medium"
+                    disabled={status === "loading"}
+                  >
+                    {showAddressFields ? "Hide" : "Add Address"}
+                  </button>
+                </div>
+
+                {showAddressFields && (
+                  <div className="space-y-4 bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <div className="mb-4">
+                      <AddressAutocomplete />
+                    </div>
+                    
+                    {/* Display captured address in a readable format */}
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <p className="font-medium text-gray-700">Selected Address:</p>
+                      <div id="address-display" className="bg-white p-3 rounded border border-gray-200 min-h-[60px] text-gray-700">
+                        <span className="text-gray-400">Address will appear here after selection...</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <button
                 type="submit"
                 disabled={status === "loading"}
@@ -259,17 +366,8 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[300px] border border-gray-100">
-              <iframe
-                src={`https://www.google.com/maps?q=20.916225468005663,74.76856980970072&hl=en&z=17&output=embed`}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ultron Power Systems Location"
-              ></iframe>
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+              <StoreLocator />
             </div>
           </div>
         </div>
