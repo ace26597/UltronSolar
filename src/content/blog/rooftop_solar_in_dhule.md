@@ -12,9 +12,9 @@ tags: ["Dhule", "Rooftop Solar", "Maharashtra", "Homeowners", "Guide"]
 
 ## Introduction
 
-Electricity bills in Dhule, Jalgaon, and across North Maharashtra have been creeping up year after year. Residential consumers with higher monthly usage now pay well over ₹10 per unit in many slabs, even after recent “reductions.”:contentReference[oaicite:0]{index=0} For a typical middle-class family, it’s common to see monthly bills of ₹1,800–₹3,500 or more.
+Electricity bills in Dhule, Jalgaon, and across North Maharashtra have been creeping up year after year. Residential consumers with higher monthly usage now pay well over ₹10 per unit in many slabs, even after recent “reductions.” For a typical middle-class family, it’s common to see monthly bills of ₹1,800–₹3,500 or more.
 
-At the same time, Dhule district is one of Maharashtra’s best locations for solar power. Utility-scale solar parks were set up here precisely because the region gets strong sunshine and high solar irradiation, typically in the range of 5.5–6.0 kWh/m² per day.:contentReference[oaicite:1]{index=1} In simple language: your roof gets a lot of good-quality sun.
+At the same time, Dhule district is one of Maharashtra’s best locations for solar power. Utility-scale solar parks were set up here precisely because the region gets strong sunshine and high solar irradiation, typically in the range of 5.5–6.0 kWh/m² per day. In simple language: your roof gets a lot of good-quality sun.
 
 Put those two facts together and rooftop solar in Dhule is no longer a luxury. For many homes, it’s one of the most sensible financial decisions they can make in 2025.
 
@@ -24,11 +24,11 @@ This guide is written specifically for homeowners in Dhule, Jalgaon, and nearby 
 
 Dhule’s location and climate tick almost every box for rooftop solar:
 
-- **Plenty of sunshine:** Maharashtra typically gets 250–300 sunny days per year with average solar radiation of 4–6 kWh/m²/day.:contentReference[oaicite:2]{index=2} Dhule is on the stronger side of that range.
+- **Plenty of sunshine:** Maharashtra typically gets 250–300 sunny days per year with average solar radiation of 4–6 kWh/m²/day. Dhule is on the stronger side of that range.
 - **Hot summers, strong sun:** Long, bright summers mean more units generated per kW of solar installed.
-- **High grid tariffs:** Residential tariffs for 101–300 units per month in Maharashtra are now in the ₹12–13 per unit range for many consumers, with additional charges like FAC on top.:contentReference[oaicite:3]{index=3}
+- **High grid tariffs:** Residential tariffs for 101–300 units per month in Maharashtra are now in the ₹12–13 per unit range for many consumers, with additional charges like FAC on top.
 - **Rising fuel adjustment and surcharges:** Even if base tariffs are reduced slightly, periodic hikes in fuel adjustment charges keep pushing bills up.
-- **Government push for rooftop solar:** The central PM Surya Ghar: Muft Bijli Yojana offers significant subsidies (up to ₹78,000) for residential rooftop solar systems up to 3 kW.:contentReference[oaicite:4]{index=4}
+- **Government push for rooftop solar:** The central PM Surya Ghar: Muft Bijli Yojana offers significant subsidies (up to ₹78,000) for residential rooftop solar systems up to 3 kW.
 
 In Dhule, a properly designed 3kW solar system can easily offset a big chunk of your monthly consumption, especially if your family uses 250–350 units per month.
 
@@ -122,7 +122,7 @@ For middle-class homes in Dhule and Jalgaon, these sizes are the most common:
   - Suitable for large bungalows, small commercial setups, or mixed-use buildings.
   - More common on institutional or small industrial roofs in North Maharashtra.
 
-As a rough thumb rule, in Maharashtra’s climate, **1 kW of good-quality rooftop solar can generate about 1,400–1,600 units per year**, averaging around 4–4.5 units per day over the year.:contentReference[oaicite:5]{index=5}
+As a rough thumb rule, in Maharashtra’s climate, **1 kW of good-quality rooftop solar can generate about 1,400–1,600 units per year**, averaging around 4–4.5 units per day over the year.
 
 ### Ballpark Cost Range (On-Grid Systems)
 
@@ -160,7 +160,7 @@ These are realistic working numbers for a well-executed rooftop solar project in
 
 ### Central Government Subsidy (PM Surya Ghar)
 
-Under **PM Surya Ghar: Muft Bijli Yojana**, central subsidy for residential rooftop solar is currently:​:contentReference[oaicite:6]{index=6}
+Under **PM Surya Ghar: Muft Bijli Yojana**, central subsidy for residential rooftop solar is currently:​
 
 - **Up to 2 kW:** ₹30,000 per kW  
 - **2–3 kW:** ₹30,000 per kW for first 2 kW + ₹18,000 per kW for the next 1 kW  
@@ -178,8 +178,8 @@ This is a rough working illustration. Exact subsidy will depend on final MNRE no
 Assume:
 
 - 3 kW system in Dhule
-- Annual generation ≈ 4,500 units (1,500 units per kW per year):contentReference[oaicite:7]{index=7}
-- Effective blended grid tariff (including charges) ≈ ₹8.5–₹9 per unit for the slabs where solar primarily offsets your consumption:contentReference[oaicite:8]{index=8}
+- Annual generation ≈ 4,500 units (1,500 units per kW per year)
+- Effective blended grid tariff (including charges) ≈ ₹8.5–₹9 per unit for the slabs where solar primarily offsets your consumption
 
 Then:
 
@@ -363,7 +363,7 @@ We give you a simple maintenance checklist at handover.
 Yes, but with reduced output.
 
 - On very cloudy monsoon days, generation can drop significantly.
-- Over the year, Dhule still gets strong sunshine, especially from October to May, which compensates for weaker monsoon months.:contentReference[oaicite:9]{index=9}
+- Over the year, Dhule still gets strong sunshine, especially from October to May, which compensates for weaker monsoon months.
 
 Solar systems are designed on **annual average generation**, not on a single bad-weather day.
 
