@@ -52,7 +52,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
   commercial_quote_en: {
     id: 'commercial_quote_en',
     label: 'Compare Your Current Bill',
-    subtext: 'Share your last 3 months' bills and we'll send a simple solar saving report.',
+    subtext: 'Share your last 3 months\' bills and we\'ll send a simple solar saving report.',
     audience: 'commercial',
     intent: 'quote',
     scrollToId: 'contact',
