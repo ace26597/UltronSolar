@@ -8,14 +8,17 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ultron-solar.vercel.app"),
+  metadataBase: new URL("https://www.ultronsolar.in"),
   title: "Ultron Power Systems | Solar Rooftop & Solar Water Pumps in Dhule, Maharashtra",
   description: "Ultron Power Systems provides rooftop solar, solar water pumps, inverters and complete EPC solutions in Dhule, Maharashtra. Residential, commercial and farm solar with bank loan and subsidy support.",
   keywords: "solar installation dhule, solar water pump maharashtra, rooftop solar jalgaon, solar epc nashik, ultron power systems, solar subsidy maharashtra, solar inverter dhule",
+  alternates: {
+    canonical: "https://www.ultronsolar.in/",
+  },
   openGraph: {
     title: "Ultron Power Systems - Solar Energy Solutions in Dhule, Maharashtra",
     description: "Rooftop solar, solar water pumps, inverters and EPC solutions in Dhule, Maharashtra with financing and subsidy support.",
-    url: "https://ultron-solar.vercel.app",
+    url: "https://www.ultronsolar.in",
     siteName: "Ultron Power Systems",
     images: [
       {
@@ -48,11 +51,33 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LocalBusiness",
-        "@id": "https://ultron-solar.vercel.app/#organization",
+        "@type": "Organization",
+        "@id": "https://www.ultronsolar.in/#organization",
         "name": "Ultron Power Systems",
-        "image": "https://ultron-solar.vercel.app/images/product-solar-ups.jpg",
-        "url": "https://ultron-solar.vercel.app",
+        "url": "https://www.ultronsolar.in",
+        "logo": "https://www.ultronsolar.in/images/product-solar-ups.jpg",
+        "image": "https://www.ultronsolar.in/images/product-solar-ups.jpg",
+        "telephone": "+91-9422787438",
+        "email": "ultronvij@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Kanishka Apartment, Kshire Colony, Deopur",
+          "addressLocality": "Dhule",
+          "addressRegion": "Maharashtra",
+          "postalCode": "424002",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://www.facebook.com/ultronpowersystems",
+          "https://www.ultronsolar.in"
+        ]
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.ultronsolar.in/#localbusiness",
+        "name": "Ultron Power Systems",
+        "image": "https://www.ultronsolar.in/images/product-solar-ups.jpg",
+        "url": "https://www.ultronsolar.in",
         "telephone": "+91-9422787438",
         "email": "ultronvij@gmail.com",
         "priceRange": "₹₹",
@@ -86,9 +111,12 @@ export default function RootLayout({
           "opens": "09:00",
           "closes": "19:00"
         },
+        "parentOrganization": {
+          "@id": "https://www.ultronsolar.in/#organization"
+        },
         "sameAs": [
           "https://www.facebook.com/ultronpowersystems",
-          "https://ultron-solar.vercel.app"
+          "https://www.ultronsolar.in"
         ]
       },
       {
@@ -99,7 +127,7 @@ export default function RootLayout({
             "@type": "Product",
             "name": "Solar Water Pump System",
             "description": "Solar powered water pump installation for farms and poultry.",
-            "image": "https://ultron-solar.vercel.app/images/product-solar-pump.jpg",
+            "image": "https://www.ultronsolar.in/images/product-solar-pump.jpg",
             "brand": {
               "@type": "Brand",
               "name": "Ultron Power Systems"
@@ -114,7 +142,7 @@ export default function RootLayout({
             "@type": "Product",
             "name": "Solar Rooftop System",
             "description": "Complete solar rooftop system installation for homes and businesses.",
-            "image": "https://ultron-solar.vercel.app/images/gallery-project-2.jpg",
+            "image": "https://www.ultronsolar.in/images/gallery-project-2.jpg",
             "brand": {
               "@type": "Brand",
               "name": "Ultron Power Systems"
@@ -132,7 +160,7 @@ export default function RootLayout({
             "name": "Solar EPC Solutions",
             "description": "Engineering, Procurement, and Construction of solar power systems.",
             "provider": {
-              "@id": "https://ultron-solar.vercel.app/#organization"
+              "@id": "https://www.ultronsolar.in/#organization"
             }
           }
         ]

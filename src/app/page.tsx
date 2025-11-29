@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import WeServe from "@/components/WeServe";
@@ -15,6 +16,12 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingWidget from "@/components/FloatingWidget";
 import About from "@/components/About";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://www.ultronsolar.in/",
+  },
+};
 
 export default function Home() {
   return (

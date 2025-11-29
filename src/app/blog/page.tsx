@@ -1,12 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getSortedPostsData } from "@/lib/blog";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Blog | Ultron Solar - Solar Energy Insights",
     description: "Read the latest news, tips, and insights about solar energy, installation, and cost savings from Ultron Solar.",
+    alternates: {
+        canonical: "https://www.ultronsolar.in/blog",
+    },
 };
 
 export default function BlogPage() {

@@ -1,12 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { products } from "@/data/products";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Our Products | Ultron Solar - Premium Solar Solutions",
     description: "Explore our range of high-quality solar panels, inverters, water heaters, and lighting solutions for residential and commercial use.",
+    alternates: {
+        canonical: "https://www.ultronsolar.in/products",
+    },
 };
 
 export default function ProductsPage() {

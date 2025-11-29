@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,7 +12,7 @@ interface Props {
     }>;
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
     const product = products.find((p) => p.slug === slug);
 
@@ -21,9 +22,28 @@ export async function generateMetadata({ params }: Props) {
         };
     }
 
+    const url = `https://www.ultronsolar.in/products/${slug}`;
     return {
         title: `${product.name} | Ultron Solar Products`,
         description: product.shortDescription,
+        alternates: {
+            canonical: url,
+        },
+        openGraph: {
+            title: product.name,
+            description: product.shortDescription,
+            url: url,
+            siteName: "Ultron Solar",
+            images: [
+                {
+                    url: product.imageUrl.startsWith('http') ? product.imageUrl : `https://www.ultronsolar.in${product.imageUrl}`,
+                    width: 1200,
+                    height: 630,
+                    alt: product.name,
+                },
+            ],
+            type: "website",
+        },
     };
 }
 

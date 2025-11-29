@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,13 +12,33 @@ type BlogPostPageProps = {
     }>;
 };
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
     const { slug } = await params;
     try {
         const post = await getPostData(slug);
+        const url = `https://www.ultronsolar.in/blog/${slug}`;
         return {
             title: `${post.title} | Ultron Solar Blog`,
             description: post.excerpt,
+            alternates: {
+                canonical: url,
+            },
+            openGraph: {
+                title: post.title,
+                description: post.excerpt,
+                url: url,
+                siteName: "Ultron Solar",
+                images: [
+                    {
+                        url: post.imageUrl.startsWith('http') ? post.imageUrl : `https://www.ultronsolar.in${post.imageUrl}`,
+                        width: 1200,
+                        height: 630,
+                        alt: post.title,
+                    },
+                ],
+                type: "article",
+                publishedTime: post.date,
+            },
         };
     } catch (error) {
         return {
