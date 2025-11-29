@@ -24,20 +24,20 @@ export default function WeServe() {
   ];
 
   return (
-    <section className="bg-white py-12 border-b border-gray-100">
+    <section className="bg-futuristic-bg-primary py-12 border-b border-futuristic-accent-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           {sectors.map((sector, index) => (
             <Link
               key={index}
               href={sector.link}
-              className="flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 transition-colors group text-center"
+              className="flex flex-col items-center p-4 rounded-none glass border border-futuristic-accent-primary/10 hover:border-futuristic-accent-primary hover:shadow-[0_0_15px_rgba(0,240,255,0.2)] transition-all duration-300 group text-center"
             >
               <span className="text-3xl mb-2 group-hover:scale-110 transition-transform">
                 {sector.icon}
               </span>
-              <span className="font-semibold text-navy-dark">{sector.title}</span>
-              <span className="text-xs text-primary-blue font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="font-semibold font-montserrat text-futuristic-text-main">{sector.title}</span>
+              <span className="text-xs text-futuristic-accent-primary font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity font-montserrat">
                 {sector.getQuote}
               </span>
             </Link>
@@ -45,12 +45,12 @@ export default function WeServe() {
         </div>
         
         {/* Commercial CTA Section */}
-        <div className="mt-8 pt-8 border-t border-gray-200">
+        <div className="mt-8 pt-8 border-t border-futuristic-accent-primary/20">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-navy-dark mb-3">
+            <h3 className="text-2xl font-orbitron font-bold text-futuristic-text-main mb-3 uppercase tracking-wide">
               {t.weServe.commercial.title}
             </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-futuristic-text-muted mb-6 max-w-2xl mx-auto font-montserrat">
               {t.weServe.commercial.description}
             </p>
             <div className="flex justify-center">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Orbitron, Montserrat } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,8 +9,19 @@ import ChatWidget from "@/components/chat/ChatWidget";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
+import "./backgrounds.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
+  weight: ["400", "700", "900"],
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+  weight: ["300", "400", "600"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ultronsolar.in"),
@@ -183,7 +194,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${orbitron.variable} ${montserrat.variable} font-montserrat bg-futuristic-bg-primary text-futuristic-text-main`}>
         <CookieConsentProvider>
           <AnalyticsScripts />
           <LanguageProvider>

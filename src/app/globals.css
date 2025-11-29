@@ -3,17 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 226, 232, 240; /* futuristic-text-main */
+  --background-start-rgb: 11, 17, 32; /* futuristic-bg-primary */
+  --background-end-rgb: 11, 17, 32;
 }
 
 html {
@@ -23,24 +15,39 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #0B1120; /* futuristic-bg-primary */
   @apply antialiased;
 }
 
 @layer components {
+  /* Power Button Style */
+  .btn-power {
+    @apply relative px-8 py-4 bg-transparent overflow-hidden rounded-none border-2 border-futuristic-accent-primary transition-all duration-300;
+    @apply text-futuristic-accent-primary font-orbitron font-bold tracking-widest uppercase;
+  }
+
+  .btn-power:hover {
+    @apply bg-futuristic-accent-primary text-futuristic-bg-primary shadow-[0_0_30px_rgba(0,240,255,0.6)];
+  }
+
+  .btn-power-cta {
+    @apply relative px-8 py-4 bg-transparent overflow-hidden rounded-none border-2 border-futuristic-accent-secondary transition-all duration-300;
+    @apply text-futuristic-accent-secondary font-orbitron font-bold tracking-widest uppercase;
+  }
+
+  .btn-power-cta:hover {
+    @apply bg-futuristic-accent-secondary text-white shadow-[0_0_30px_rgba(255,77,0,0.6)];
+  }
+
+  /* Blog Content - Dark Theme */
   .blog-content {
-    @apply space-y-6 text-gray-700 leading-relaxed text-lg;
+    @apply space-y-6 text-futuristic-text-main leading-relaxed text-lg;
   }
 
   .blog-content h2,
   .blog-content h3,
   .blog-content h4 {
-    @apply text-navy-dark font-bold mt-10 mb-4;
+    @apply text-futuristic-text-main font-orbitron font-bold mt-10 mb-4 tracking-wide uppercase;
   }
 
   .blog-content h2 {
@@ -56,12 +63,12 @@ body {
   }
 
   .blog-content p {
-    @apply text-gray-600;
+    @apply text-futuristic-text-muted;
   }
 
   .blog-content ul,
   .blog-content ol {
-    @apply pl-6 space-y-2 text-gray-600;
+    @apply pl-6 space-y-2 text-futuristic-text-muted;
   }
 
   .blog-content ul {
@@ -73,7 +80,7 @@ body {
   }
 
   .blog-content blockquote {
-    @apply border-l-4 border-solar-red pl-4 italic bg-gray-50 py-2 rounded-r-lg;
+    @apply border-l-4 border-futuristic-accent-primary pl-4 italic bg-futuristic-bg-secondary/50 py-2 rounded-r-lg;
   }
 
   .blog-content img {
@@ -81,7 +88,11 @@ body {
   }
 
   .blog-content strong {
-    @apply text-navy-dark;
+    @apply text-futuristic-text-main;
+  }
+
+  .blog-content a {
+    @apply text-futuristic-accent-primary hover:text-futuristic-accent-primary/80 underline;
   }
 }
 

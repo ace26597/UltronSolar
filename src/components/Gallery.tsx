@@ -26,13 +26,13 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-gray-50">
+    <section id="gallery" className="py-20 bg-futuristic-bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
+          <h2 className="text-3xl md:text-4xl font-orbitron font-bold text-futuristic-text-main mb-4 uppercase tracking-wide">
             {t.gallery.title}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-futuristic-text-muted max-w-2xl mx-auto font-montserrat">
             {t.gallery.subtitle}
           </p>
         </div>
@@ -42,7 +42,7 @@ export default function Gallery() {
             <div
               key={index}
               onClick={() => setSelectedImage(index)}
-              className="relative h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+              className="relative h-64 rounded-none overflow-hidden shadow-md hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] transition-all duration-300 group cursor-pointer hover:-translate-y-1 border border-futuristic-accent-primary/10 hover:border-futuristic-accent-primary"
             >
               <Image
                 src={project.src}

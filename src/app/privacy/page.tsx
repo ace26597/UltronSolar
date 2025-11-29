@@ -12,31 +12,31 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-futuristic-bg-primary">
       <Navbar />
       <div className="pt-24 pb-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-navy-dark mb-4">
+          <h1 className="text-4xl md:text-5xl font-orbitron font-bold text-futuristic-text-main mb-4 uppercase tracking-wide">
             Privacy Policy
           </h1>
-          <p className="text-gray-600 mb-8">
+          <p className="text-futuristic-text-muted mb-8 font-montserrat">
             <em>Last updated: 29 November 2025</em>
           </p>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-futuristic-text-muted leading-relaxed font-montserrat">
               Ultron Power Systems (&quot;Ultron Solar&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates the website{" "}
               <strong>https://www.ultronsolar.in/</strong> and provides solar energy consulting,
               installation, and related services in Dhule, Jalgaon, and North Maharashtra, India.
             </p>
 
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
               We respect your privacy and are committed to protecting your personal data. This
               Privacy Policy explains what information we collect, how we use it, and what choices
               and rights you have.
             </p>
 
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
               If you have any questions, you can contact us using the details in the{" "}
               <strong>Contact Us</strong> section below.
             </p>
@@ -44,25 +44,25 @@ export default function PrivacyPage() {
             <hr className="my-8 border-gray-300" />
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">1. Who we are</h2>
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">1. Who we are</h2>
               <div className="bg-gray-50 rounded-lg p-6 mb-4">
-                <p className="font-semibold text-navy-dark mb-2">Ultron Power Systems</p>
-                <p className="text-gray-700 mb-1">(Registered business details to be added here)</p>
-                <p className="text-gray-700 mb-1">Dhule, Maharashtra, India</p>
-                <p className="text-gray-700 mb-1">
+                <p className="font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-2">Ultron Power Systems</p>
+                <p className="text-futuristic-text-muted font-montserrat mb-1">(Registered business details to be added here)</p>
+                <p className="text-futuristic-text-muted font-montserrat mb-1">Dhule, Maharashtra, India</p>
+                <p className="text-futuristic-text-muted font-montserrat mb-1">
                   <strong>Website:</strong> https://www.ultronsolar.in/
                 </p>
-                <p className="text-gray-700 mb-1">
+                <p className="text-futuristic-text-muted font-montserrat mb-1">
                   <strong>Email:</strong> info@ultronsolar.in
                 </p>
-                <p className="text-gray-700">
+                <p className="text-futuristic-text-muted font-montserrat">
                   <strong>Phone:</strong> +91-94227 87438
                 </p>
               </div>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 This Privacy Policy applies to:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4">
                 <li>Visitors to our website (`ultronsolar.in` and any subdomains), and</li>
                 <li>
                   Prospective and existing customers who contact us for quotes, consultations, and
@@ -72,20 +72,20 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 2. What information we collect
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 We may collect the following categories of information:
               </p>
 
-              <h3 className="text-xl font-semibold text-navy-dark mb-3">
+              <h3 className="text-xl font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-3">
                 2.1. Information you provide to us
               </h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 When you use our website or contact us, you may provide:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4 mb-4">
                 <li>
                   <strong>Contact details</strong> – name, phone number, WhatsApp number, email
                   address
@@ -109,13 +109,13 @@ export default function PrivacyPage() {
                 </li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-navy-dark mb-3">
+              <h3 className="text-xl font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-3">
                 2.2. Information collected automatically
               </h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 When you visit our website, we may automatically collect:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4 mb-4">
                 <li>
                   <strong>Device and usage data</strong> – IP address, browser type, operating
                   system, device type, language settings, referring URLs
@@ -130,18 +130,18 @@ export default function PrivacyPage() {
                   analytics and marketing.
                 </li>
               </ul>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 This kind of tracking is common and used to understand how websites are used and to
                 improve user experience.
               </p>
 
-              <h3 className="text-xl font-semibold text-navy-dark mb-3">
+              <h3 className="text-xl font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-3">
                 2.3. Information from third parties
               </h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 We may receive limited information from:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4">
                 <li>
                   <strong>Analytics providers</strong> (e.g. Google Analytics) – aggregated usage
                   statistics, if you consent to analytics cookies
@@ -158,13 +158,13 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 3. Why we collect and use your data
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 We use your information for the following purposes:
               </p>
-              <ol className="list-decimal list-inside text-gray-700 space-y-3 ml-4">
+              <ol className="list-decimal list-inside text-futuristic-text-muted font-montserrat space-y-3 ml-4">
                 <li>
                   <strong>To respond to enquiries and provide quotes</strong>
                   <ul className="list-disc list-inside ml-6 mt-1 space-y-1">
@@ -223,27 +223,27 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 4. Legal basis for processing
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 Because visitors may come from different regions, we align with both Indian law
                 (DPDP Act) and international privacy principles such as GDPR.
               </p>
 
-              <h3 className="text-xl font-semibold text-navy-dark mb-3">
+              <h3 className="text-xl font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-3">
                 Under India&apos;s Digital Personal Data Protection Act (DPDP Act)
               </h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 The DPDP Act requires that personal data of individuals in India is processed for
                 lawful purposes and generally with their{" "}
                 <strong>free, informed, specific and unambiguous consent</strong>, except for
                 certain legitimate uses.
               </p>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 We rely on:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4 mb-4">
                 <li>
                   <strong>Your consent</strong> – when you submit forms, sign up to receive updates,
                   or allow analytics/marketing cookies
@@ -255,14 +255,14 @@ export default function PrivacyPage() {
                 </li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-navy-dark mb-3">
+              <h3 className="text-xl font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-3">
                 Under GDPR (for EU / UK visitors)
               </h3>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 If you are located in the EU or UK, we process your data under one or more of the
                 following lawful bases:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4">
                 <li>
                   <strong>Consent</strong> – for analytics and marketing cookies and for optional
                   communications
@@ -276,26 +276,26 @@ export default function PrivacyPage() {
                   in ways that do not override your fundamental rights and freedoms.
                 </li>
               </ul>
-              <p className="text-gray-700 leading-relaxed mt-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mt-4">
                 You can withdraw your consent at any time (see <strong>Your rights</strong>).
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 5. Cookies and similar technologies
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 We use cookies to:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4 mb-4">
                 <li>Keep the site secure and functioning (essential cookies)</li>
                 <li>Measure usage and performance (analytics cookies, if you consent)</li>
                 <li>
                   Support remarketing and campaign measurement (marketing cookies, if you consent).
                 </li>
               </ul>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 Our cookie categories and consent options are explained in detail in our{" "}
                 <strong>Cookie Policy</strong>, which you can read at{" "}
                 <a href="/cookies" className="text-solar-red hover:underline">
@@ -308,16 +308,16 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 6. How we share your information
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 We do <strong>not</strong> sell your personal data.
               </p>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 We may share limited personal data with:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4 mb-4">
                 <li>
                   <strong>Service providers / processors</strong>
                   <ul className="list-disc list-inside ml-6 mt-1 space-y-1">
@@ -348,35 +348,35 @@ export default function PrivacyPage() {
                   </ul>
                 </li>
               </ul>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 We require our service providers to handle your data securely and only for the
                 purposes we specify.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 7. International transfers
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 Our website infrastructure and some of our service providers may be located outside
                 India, including in countries whose data protection laws may differ from those in
                 India.
               </p>
-              <p className="text-gray-700 leading-relaxed mt-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mt-2">
                 Where required, we take reasonable steps to ensure that appropriate safeguards (such
                 as contractual protections) are in place when data is processed in other countries.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 8. How long we keep your data
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 We keep personal data only for as long as necessary to:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4">
                 <li>Respond to your enquiry or provide services</li>
                 <li>Maintain records for tax, accounting, and legal obligations</li>
                 <li>
@@ -384,22 +384,22 @@ export default function PrivacyPage() {
                   periods).
                 </li>
               </ul>
-              <p className="text-gray-700 leading-relaxed mt-4">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mt-4">
                 After this, we either delete or anonymise the data, unless we are legally required
                 to retain it longer.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 9. How we protect your data
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 We take reasonable technical and organisational measures to protect your personal
                 data against loss, misuse, unauthorised access, disclosure, alteration, or
                 destruction.
               </p>
-              <p className="text-gray-700 leading-relaxed mt-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mt-2">
                 This includes using reputable hosting providers, restricting internal access on a
                 need-to-know basis, and monitoring for suspicious activity. However, no system can
                 be 100% secure, and we cannot guarantee absolute security.
@@ -407,11 +407,11 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">10. Your rights</h2>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">10. Your rights</h2>
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 Your rights will depend on where you live, but generally may include:
               </p>
-              <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4 mb-4">
+              <ul className="list-disc list-inside text-futuristic-text-muted font-montserrat space-y-2 ml-4 mb-4">
                 <li>
                   <strong>Right to access</strong> – ask what personal data we hold about you
                 </li>
@@ -432,20 +432,20 @@ export default function PrivacyPage() {
                   protection authority.
                 </li>
               </ul>
-              <p className="text-gray-700 leading-relaxed mb-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-2">
                 Under India&apos;s DPDP Act, individuals (Data Principals) have rights to access,
                 correction, updating and erasure of their personal data, as well as access to
                 grievance redressal mechanisms.
               </p>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 To exercise any of these rights, please contact us using the details below. We may
                 need to verify your identity before acting on your request.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">11. Children&apos;s privacy</h2>
-              <p className="text-gray-700 leading-relaxed">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">11. Children&apos;s privacy</h2>
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 Our website and services are not directed at children under 18. We do not knowingly
                 collect personal data from children. If you believe a child has provided us
                 personal data, please contact us and we will take steps to delete it.
@@ -453,34 +453,34 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">
                 12. Updates to this policy
               </h2>
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed">
                 We may update this Privacy Policy from time to time to reflect changes in our
                 practices, technologies, or legal requirements. When we do, we will update the
                 &quot;Last updated&quot; date at the top of this page.
               </p>
-              <p className="text-gray-700 leading-relaxed mt-2">
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mt-2">
                 We encourage you to review this page periodically.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">13. Contact us</h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
+              <h2 className="text-2xl font-bold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-4">13. Contact us</h2>
+              <p className="text-futuristic-text-muted font-montserrat leading-relaxed mb-4">
                 If you have questions, requests, or concerns about this Privacy Policy or our data
                 practices, you can contact:
               </p>
               <div className="bg-gray-50 rounded-lg p-6">
-                <p className="font-semibold text-navy-dark mb-2">Ultron Power Systems</p>
-                <p className="text-gray-700 mb-1">
+                <p className="font-semibold text-futuristic-text-main font-orbitron uppercase tracking-wide mb-2">Ultron Power Systems</p>
+                <p className="text-futuristic-text-muted font-montserrat mb-1">
                   <strong>Email:</strong> ultronvij@gmail.com
                 </p>
-                <p className="text-gray-700 mb-1">
+                <p className="text-futuristic-text-muted font-montserrat mb-1">
                   <strong>Phone:</strong> +91-94227 87438
                 </p>
-                <p className="text-gray-700">
+                <p className="text-futuristic-text-muted font-montserrat">
                   <strong>Address:</strong> Dhule, Maharashtra, India
                 </p>
               </div>
