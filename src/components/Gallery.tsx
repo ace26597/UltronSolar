@@ -2,9 +2,13 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
 
   const projects = [
     { src: "/images/gallery-project-1.jpg", caption: "5 kW Residential Rooftop Solar System – Dhule, Maharashtra" },
@@ -26,10 +30,10 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
-            Our Recent Projects
+            {t.gallery.title}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Glimpses of our successful installations and happy customers
+            {t.gallery.subtitle}
           </p>
         </div>
 
@@ -50,7 +54,7 @@ export default function Gallery() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                   {project.caption}
-                  <div className="mt-2 text-xs text-gray-300 uppercase tracking-wider">Click to view</div>
+                  <div className="mt-2 text-xs text-gray-300 uppercase tracking-wider">{t.gallery.clickToView}</div>
                 </div>
               </div>
             </div>

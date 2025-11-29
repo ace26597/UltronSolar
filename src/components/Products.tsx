@@ -5,8 +5,9 @@ import { useRef } from "react";
 import CtaButton from "@/components/cta/CtaButton";
 import { useLanguage } from "@/context/LanguageContext";
 import { selectCta } from "@/utils/ctaSelector";
+import { getTranslations } from "@/lib/translations";
 
-const ProductCard = ({ product, ctaId }: { product: any; ctaId: string }) => (
+const ProductCard = ({ product, ctaId, viewDetailsText }: { product: any; ctaId: string; viewDetailsText: string }) => (
   <div className="min-w-[280px] md:min-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group">
     <div className="relative h-56 w-full overflow-hidden">
       <Image
@@ -16,7 +17,7 @@ const ProductCard = ({ product, ctaId }: { product: any; ctaId: string }) => (
         className="object-cover group-hover:scale-110 transition-transform duration-500"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-        <span className="text-white font-semibold">View Details</span>
+        <span className="text-white font-semibold">{viewDetailsText}</span>
       </div>
     </div>
     <div className="p-6 flex-grow flex flex-col">
@@ -39,6 +40,7 @@ const ProductCard = ({ product, ctaId }: { product: any; ctaId: string }) => (
 export default function Products() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
   const productCta = selectCta({
     page: 'residential',
     audience: 'residential',
@@ -53,44 +55,30 @@ export default function Products() {
     }
   };
 
-  const products = [
-    {
-      title: "Solar Water Pump",
-      description: "Reliable solar powered water pump systems for agriculture and irrigation needs.",
-      image: "/images/product-solar-pump.jpg",
-      alt: "Solar Water Pump System for Agriculture",
-    },
-    {
-      title: "Solar Power UPS",
-      description: "Uninterrupted power supply solutions for homes and businesses.",
-      image: "/images/product-solar-ups.jpg",
-      alt: "Solar Power UPS and Battery Backup System",
-    },
-    {
-      title: "Voltage Stabilizer",
-      description: "Servo controlled voltage stabilizers for equipment protection.",
-      image: "/images/product-servo-stabilizer.jpg",
-      alt: "Servo Controlled Voltage Stabilizer",
-    },
-    {
-      title: "Solar Street Lights",
-      description: "Automatic, energy-efficient lighting for streets and campuses.",
-      image: "/images/product-solar-lights.jpg",
-      alt: "Automatic Solar Street Light System",
-    },
-    {
-      title: "Rooftop Solar Panels",
-      description: "High-efficiency solar panels for maximum energy generation.",
-      image: "/images/gallery-project-2.jpg",
-      alt: "Rooftop Solar Panel Installation for Home and Business",
-    },
-    {
-      title: "Solar Water Heater",
-      description: "Cost-effective water heating solutions for all seasons.",
-      image: "/images/gallery-project-1.jpg",
-      alt: "Solar Water Heater System",
-    },
-  ];
+  const products = t.products.items.map((item, index) => {
+    const imageMap = [
+      "/images/product-solar-pump.jpg",
+      "/images/product-solar-ups.jpg",
+      "/images/product-servo-stabilizer.jpg",
+      "/images/product-solar-lights.jpg",
+      "/images/gallery-project-2.jpg",
+      "/images/gallery-project-1.jpg",
+    ];
+    const altMap = [
+      "Solar Water Pump System for Agriculture",
+      "Solar Power UPS and Battery Backup System",
+      "Servo Controlled Voltage Stabilizer",
+      "Automatic Solar Street Light System",
+      "Rooftop Solar Panel Installation for Home and Business",
+      "Solar Water Heater System",
+    ];
+    return {
+      title: item.title,
+      description: item.description,
+      image: imageMap[index] || "/images/product-solar-pump.jpg",
+      alt: altMap[index] || item.title,
+    };
+  });
 
   return (
     <section id="products" className="py-20 bg-white overflow-hidden">
@@ -98,10 +86,10 @@ export default function Products() {
         <div className="flex justify-between items-end mb-12">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
-              Our Products
+              {t.products.title}
             </h2>
             <p className="text-lg text-gray-600">
-              Premium quality solar equipment for residential, commercial, and agricultural use.
+              {t.products.subtitle}
             </p>
           </div>
 
@@ -129,7 +117,7 @@ export default function Products() {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {products.map((product, index) => (
-            <ProductCard key={index} product={product} ctaId={productCta.id} />
+            <ProductCard key={index} product={product} ctaId={productCta.id} viewDetailsText={t.products.viewDetails} />
           ))}
         </div>
       </div>

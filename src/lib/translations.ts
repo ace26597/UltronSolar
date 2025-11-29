@@ -197,6 +197,30 @@ export interface Translations {
     note: string;
   };
   
+  // Brands Section
+  brands: {
+    title: string;
+    subtitle: string;
+  };
+  
+  // Gallery Section
+  gallery: {
+    title: string;
+    subtitle: string;
+    clickToView: string;
+  };
+  
+  // Products Section
+  products: {
+    title: string;
+    subtitle: string;
+    viewDetails: string;
+    items: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+  
   // Common
   common: {
     readMore: string;
@@ -420,6 +444,46 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon',
       note: 'Available for projects in nearby villages & industrial areas',
     },
+    brands: {
+      title: 'Trusted Brands We Work With',
+      subtitle: 'We partner with leading solar energy brands to deliver the best quality products and solutions',
+    },
+    gallery: {
+      title: 'Our Recent Projects',
+      subtitle: 'Glimpses of our successful installations and happy customers',
+      clickToView: 'Click to view',
+    },
+    products: {
+      title: 'Our Products',
+      subtitle: 'Premium quality solar equipment for residential, commercial, and agricultural use.',
+      viewDetails: 'View Details',
+      items: [
+        {
+          title: 'Solar Water Pump',
+          description: 'Reliable solar powered water pump systems for agriculture and irrigation needs.',
+        },
+        {
+          title: 'Solar Power UPS',
+          description: 'Uninterrupted power supply solutions for homes and businesses.',
+        },
+        {
+          title: 'Voltage Stabilizer',
+          description: 'Servo controlled voltage stabilizers for equipment protection.',
+        },
+        {
+          title: 'Solar Street Lights',
+          description: 'Automatic, energy-efficient lighting for streets and campuses.',
+        },
+        {
+          title: 'Rooftop Solar Panels',
+          description: 'High-efficiency solar panels for maximum energy generation.',
+        },
+        {
+          title: 'Solar Water Heater',
+          description: 'Cost-effective water heating solutions for all seasons.',
+        },
+      ],
+    },
     common: {
       readMore: 'Read More',
       learnMore: 'Learn More',
@@ -639,6 +703,46 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       title: 'उत्तर महाराष्ट्रात सेवा देत आहोत',
       locations: 'धुळे • जळगाव • नाशिक • नंदुरबार • साक्री • शिरपूर • दोंडाईचा • मालेगाव',
       note: 'जवळच्या गावांमध्ये आणि औद्योगिक क्षेत्रांमध्ये प्रकल्पांसाठी उपलब्ध',
+    },
+    brands: {
+      title: 'आम्ही ज्या विश्वासार्ह ब्रँड्ससोबत काम करतो',
+      subtitle: 'आम्ही अग्रगण्य सौर ऊर्जा ब्रँड्ससोबत भागीदारी करतो जेणेकरून सर्वोत्तम गुणवत्तेची उत्पादने आणि उपाय प्रदान करू शकू',
+    },
+    gallery: {
+      title: 'आमचे अलीकडील प्रकल्प',
+      subtitle: 'आमच्या यशस्वी स्थापना आणि आनंदी ग्राहकांचे झलक',
+      clickToView: 'पाहण्यासाठी क्लिक करा',
+    },
+    products: {
+      title: 'आमची उत्पादने',
+      subtitle: 'निवासी, व्यावसायिक आणि कृषी वापरासाठी प्रीमियम गुणवत्तेची सौर उपकरणे.',
+      viewDetails: 'तपशील पहा',
+      items: [
+        {
+          title: 'सौर पाणी पंप',
+          description: 'शेती आणि सिंचन गरजांसाठी विश्वासार्ह सौर-चालित पाणी पंप प्रणाली.',
+        },
+        {
+          title: 'सौर पॉवर UPS',
+          description: 'घरे आणि व्यवसायांसाठी अखंड वीज पुरवठा उपाय.',
+        },
+        {
+          title: 'व्होल्टेज स्टॅबिलायझर',
+          description: 'उपकरण संरक्षणासाठी सर्व्हो नियंत्रित व्होल्टेज स्टॅबिलायझर.',
+        },
+        {
+          title: 'सौर स्ट्रीट लाइट्स',
+          description: 'रस्ते आणि कॅम्पससाठी स्वयंचलित, ऊर्जा-कुशल प्रकाश.',
+        },
+        {
+          title: 'छतावरील सौर पॅनेल',
+          description: 'जास्तीत जास्त ऊर्जा निर्मितीसाठी उच्च-कार्यक्षमता सौर पॅनेल.',
+        },
+        {
+          title: 'सौर पाणी हीटर',
+          description: 'सर्व हंगामासाठी किफायतशीर पाणी गरम करण्याचे उपाय.',
+        },
+      ],
     },
     common: {
       readMore: 'अधिक वाचा',
@@ -860,6 +964,46 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       title: 'Serving North Maharashtra',
       locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon',
       note: 'Available for projects in nearby villages & industrial areas',
+    },
+    brands: {
+      title: 'Trusted Brands We Work With',
+      subtitle: 'We partner with leading solar energy brands to deliver the best quality products and solutions',
+    },
+    gallery: {
+      title: 'Our Recent Projects',
+      subtitle: 'Glimpses of our successful installations and happy customers',
+      clickToView: 'Click to view',
+    },
+    products: {
+      title: 'Our Products',
+      subtitle: 'Premium quality solar equipment for residential, commercial, and agricultural use.',
+      viewDetails: 'View Details',
+      items: [
+        {
+          title: 'Solar Water Pump',
+          description: 'Reliable solar powered water pump systems for agriculture and irrigation needs.',
+        },
+        {
+          title: 'Solar Power UPS',
+          description: 'Uninterrupted power supply solutions for homes and businesses.',
+        },
+        {
+          title: 'Voltage Stabilizer',
+          description: 'Servo controlled voltage stabilizers for equipment protection.',
+        },
+        {
+          title: 'Solar Street Lights',
+          description: 'Automatic, energy-efficient lighting for streets and campuses.',
+        },
+        {
+          title: 'Rooftop Solar Panels',
+          description: 'High-efficiency solar panels for maximum energy generation.',
+        },
+        {
+          title: 'Solar Water Heater',
+          description: 'Cost-effective water heating solutions for all seasons.',
+        },
+      ],
     },
     common: {
       readMore: 'Read More',

@@ -1,4 +1,12 @@
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
+
 export default function Brands() {
+  const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
+  
   const brands = [
     { name: "Tata Power Solar", icon: "⚡" },
     { name: "Adani Solar", icon: "☀️" },
@@ -13,10 +21,10 @@ export default function Brands() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-navy-dark mb-4">
-            Trusted Brands We Work With
+            {t.brands.title}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            We partner with leading solar energy brands to deliver the best quality products and solutions
+            {t.brands.subtitle}
           </p>
         </div>
 
