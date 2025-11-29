@@ -58,21 +58,68 @@ export async function POST(req: NextRequest) {
       })),
     ];
 
+    const modelName = process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
+    
+    // Validate model name - common valid models
+    const validModels = ['gpt-4o-mini', 'gpt-4o', 'gpt-4-turbo', 'gpt-3.5-turbo', 'gpt-4', 'gpt-5.1', 'gpt-5.1-mini'];
+    if (!validModels.includes(modelName) && !modelName.startsWith('gpt-')) {
+      console.warn(`Warning: Model name "${modelName}" may not be valid. Using default gpt-4o-mini.`);
+    }
+    
     const completion = await openai.chat.completions.create({
-      model: process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini',
+      model: modelName,
       messages: chatMessages,
       temperature: 0.7,
       max_tokens: 500,
     });
 
+    const reply = completion.choices[0].message.content;
+    
+    if (!reply) {
+      console.error('No content in completion response:', completion);
+      return NextResponse.json(
+        { error: 'No response generated from model' },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json({
-      reply: completion.choices[0].message.content || '',
+      reply,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Chat API error:', error);
+    console.error('Error details:', JSON.stringify(error, null, 2));
+    
+    // Provide more detailed error information
+    let errorMessage = 'Failed to generate response';
+    let statusCode = 500;
+    
+    // OpenAI SDK error format
+    if (error?.error) {
+      // OpenAI API error object
+      statusCode = error.status || error.error.status || 500;
+      errorMessage = error.error.message || error.message || errorMessage;
+      console.error('OpenAI API error:', error.error);
+    } else if (error?.response) {
+      // Alternative error format
+      statusCode = error.response.status || 500;
+      errorMessage = error.response.data?.error?.message || error.message || errorMessage;
+      console.error('OpenAI API error details:', error.response.data);
+    } else if (error?.message) {
+      errorMessage = error.message;
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to generate response' },
-      { status: 500 }
+      { 
+        error: errorMessage,
+        model: process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini',
+        details: process.env.NODE_ENV === 'development' ? {
+          message: error?.message,
+          status: error?.status,
+          type: error?.type,
+        } : undefined
+      },
+      { status: statusCode }
     );
   }
 }
