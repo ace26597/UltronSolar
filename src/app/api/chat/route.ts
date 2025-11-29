@@ -60,17 +60,10 @@ export async function POST(req: NextRequest) {
 
     const modelName = process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
     
-    // Validate model name - common valid models
-    const validModels = ['gpt-4o-mini', 'gpt-4o', 'gpt-4-turbo', 'gpt-3.5-turbo', 'gpt-4', 'gpt-5.1', 'gpt-5.1-mini'];
-    if (!validModels.includes(modelName) && !modelName.startsWith('gpt-')) {
-      console.warn(`Warning: Model name "${modelName}" may not be valid. Using default gpt-4o-mini.`);
-    }
-    
+    // Use default parameters - let OpenAI handle defaults for temperature, max_tokens, etc.
     const completion = await openai.chat.completions.create({
       model: modelName,
       messages: chatMessages,
-      temperature: 0.7,
-      max_tokens: 500,
     });
 
     const reply = completion.choices[0].message.content;
