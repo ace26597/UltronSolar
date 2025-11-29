@@ -1,13 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
 
 export default function Contact() {
+  const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    requirement: "Home Solar System",
+    requirement: t.contact.requirements[0],
     message: "",
   });
 
@@ -56,13 +60,13 @@ export default function Contact() {
         name: "",
         phone: "",
         email: "",
-        requirement: "Home Solar System",
+        requirement: t.contact.requirements[0],
         message: "",
       });
     } catch (error) {
       console.error("Error sending message:", error);
       setStatus("error");
-      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again or call us directly.");
+      setErrorMessage(error instanceof Error ? error.message : t.contact.form.error);
     }
   };
 
@@ -71,10 +75,10 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
-            Get in Touch
+            {t.contact.title}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Ready to go solar? Contact us today for a free consultation and quote.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -82,13 +86,13 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="bg-gray-50 rounded-2xl shadow-lg p-8 md:p-10 border border-gray-100">
             <h3 className="text-2xl font-bold text-navy-dark mb-6">
-              Request a Free Quote
+              {t.contact.formTitle || 'Request a Free Quote'}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.name} *</label>
                   <input
                     type="text"
                     id="name"
@@ -97,13 +101,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white"
-                    placeholder="Your Name"
+                    placeholder={t.contact.form.namePlaceholder || 'Your Name'}
                     disabled={status === "loading"}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.phone} *</label>
                   <input
                     type="tel"
                     id="phone"
@@ -113,14 +117,14 @@ export default function Contact() {
                     required
                     pattern="[0-9]{10}"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white"
-                    placeholder="10-digit mobile"
+                    placeholder={t.contact.form.phonePlaceholder || '10-digit mobile'}
                     disabled={status === "loading"}
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email (Optional)</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.email}</label>
                 <input
                   type="email"
                   id="email"
@@ -128,13 +132,13 @@ export default function Contact() {
                   value={form.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white"
-                  placeholder="your@email.com"
+                  placeholder={t.contact.form.emailPlaceholder || 'your@email.com'}
                   disabled={status === "loading"}
                 />
               </div>
 
               <div>
-                <label htmlFor="requirement" className="block text-sm font-medium text-gray-700 mb-2">Requirement</label>
+                <label htmlFor="requirement" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.requirement}</label>
                 <div className="relative">
                   <select
                     id="requirement"
@@ -144,10 +148,9 @@ export default function Contact() {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white text-gray-900 appearance-none"
                     disabled={status === "loading"}
                   >
-                    <option value="Home Solar System">Home Solar System</option>
-                    <option value="Commercial Solar">Commercial / Office</option>
-                    <option value="Solar Pump">Solar Water Pump</option>
-                    <option value="Other">Other</option>
+                    {t.contact.requirements.map((req, index) => (
+                      <option key={index} value={req}>{req}</option>
+                    ))}
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
                     <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
@@ -157,7 +160,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message (Optional)
+                  {t.contact.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -166,7 +169,7 @@ export default function Contact() {
                   onChange={handleChange}
                   rows={4}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white resize-none"
-                  placeholder="Any specific requirements or questions?"
+                  placeholder={t.contact.form.messagePlaceholder || 'Any specific requirements or questions?'}
                   disabled={status === "loading"}
                 />
               </div>
@@ -182,21 +185,21 @@ export default function Contact() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Sending...
+                    {t.contact.form.submitting}
                   </span>
-                ) : "Get Free Quote"}
+                ) : t.contact.form.submit}
               </button>
 
               {status === "success" && (
                 <div className="p-4 bg-green-50 text-green-700 rounded-lg text-center border border-green-200 animate-fade-in">
-                  <p className="font-semibold">Thank you! Your request has been sent.</p>
-                  <p className="text-sm mt-1">We will contact you within 24 hours.</p>
+                  <p className="font-semibold">{t.contact.form.success}</p>
+                  <p className="text-sm mt-1">{t.contact.form.successSubtext || 'We will contact you within 24 hours.'}</p>
                 </div>
               )}
 
               {status === "error" && (
                 <div className="p-4 bg-red-50 text-red-700 rounded-lg text-center border border-red-200 animate-fade-in">
-                  {errorMessage || "Something went wrong. Please try again."}
+                  {errorMessage || t.contact.form.error}
                 </div>
               )}
             </form>
@@ -208,7 +211,7 @@ export default function Contact() {
               <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-5 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-solar-red opacity-10 rounded-full blur-3xl"></div>
 
-              <h3 className="text-2xl font-bold mb-6 relative z-10">Contact Information</h3>
+              <h3 className="text-2xl font-bold mb-6 relative z-10">{t.contact.contactInfo?.title || 'Contact Information'}</h3>
 
               <div className="space-y-6 relative z-10">
                 <div className="flex items-start">
@@ -216,10 +219,9 @@ export default function Contact() {
                     <span className="text-2xl">📍</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">Visit Us</p>
+                    <p className="font-semibold text-lg">{t.contact.contactInfo?.visitUs || 'Visit Us'}</p>
                     <p className="text-gray-300 mt-1">
-                      Kanishka Apartment, Kshire Colony,<br />
-                      Deopur, Dhule, Maharashtra 424002
+                      {t.contact.contactInfo?.address || 'Kanishka Apartment, Kshire Colony, Deopur, Dhule, Maharashtra 424002'}
                     </p>
                   </div>
                 </div>
@@ -229,7 +231,7 @@ export default function Contact() {
                     <span className="text-2xl">📞</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">Call Us</p>
+                    <p className="font-semibold text-lg">{t.contact.contactInfo?.callUs || 'Call Us'}</p>
                     <a href="tel:+919422787438" className="text-gray-300 mt-1 block hover:text-white transition-colors">
                       +91 94227 87438
                     </a>
@@ -241,7 +243,7 @@ export default function Contact() {
                     <span className="text-2xl">📧</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">Email Us</p>
+                    <p className="font-semibold text-lg">{t.contact.contactInfo?.emailUs || 'Email Us'}</p>
                     <a href="mailto:ultronvij@gmail.com" className="text-gray-300 mt-1 block hover:text-white transition-colors">
                       ultronvij@gmail.com
                     </a>

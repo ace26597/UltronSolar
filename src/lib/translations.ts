@@ -83,6 +83,118 @@ export interface Translations {
     contact: string;
     followUs: string;
     copyright: string;
+    quickLinksItems: {
+      home: string;
+      services: string;
+      products: string;
+      projects: string;
+      contact: string;
+    };
+    servicesList: {
+      residential: string;
+      commercial: string;
+      pumps: string;
+      industrial: string;
+      maintenance: string;
+    };
+    newsletter: {
+      title: string;
+      description: string;
+      placeholder: string;
+      button: string;
+    };
+    links: {
+      privacy: string;
+      cookies: string;
+      cookieSettings: string;
+      sitemap: string;
+    };
+  };
+  
+  // FAQ Section
+  faq: {
+    title: string;
+    subtitle: string;
+    questions: Array<{
+      question: string;
+      answer: string;
+    }>;
+  };
+  
+  // Special Offer Section
+  specialOffer: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    systemTitle: string;
+    price: string;
+    originalPrice: string;
+    exclusiveNote: string;
+    whatsIncluded: string;
+    includedItems: string[];
+    whyGrab: string;
+    benefits: {
+      saveMoney: {
+        title: string;
+        description: string;
+      };
+      ecoFriendly: {
+        title: string;
+        description: string;
+      };
+    };
+    claimButton: string;
+    terms: string;
+  };
+  
+  // Contact Section
+  contact: {
+    title: string;
+    subtitle: string;
+    formTitle: string;
+    form: {
+      name: string;
+      phone: string;
+      email: string;
+      requirement: string;
+      message: string;
+      submit: string;
+      submitting: string;
+      success: string;
+      successSubtext: string;
+      error: string;
+      namePlaceholder: string;
+      phonePlaceholder: string;
+      emailPlaceholder: string;
+      messagePlaceholder: string;
+    };
+    requirements: string[];
+    contactInfo: {
+      title: string;
+      visitUs: string;
+      address: string;
+      callUs: string;
+      emailUs: string;
+    };
+  };
+  
+  // WeServe Section
+  weServe: {
+    sectors: Array<{
+      title: string;
+      getQuote: string;
+    }>;
+    commercial: {
+      title: string;
+      description: string;
+    };
+  };
+  
+  // ServiceAreas Section
+  serviceAreas: {
+    title: string;
+    locations: string;
+    note: string;
   };
   
   // Common
@@ -160,12 +272,153 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       },
     },
     footer: {
-      description: 'Leading solar EPC company in Dhule, Jalgaon, and North Maharashtra. Powering homes, businesses, and farms with clean, renewable energy.',
+      description: 'Empowering Maharashtra with sustainable solar energy solutions. Quality installation, reliable support, and guaranteed savings.',
       quickLinks: 'Quick Links',
-      services: 'Services',
+      services: 'Our Services',
       contact: 'Contact',
       followUs: 'Follow Us',
       copyright: '© 2024 Ultron Power Systems. All rights reserved.',
+      quickLinksItems: {
+        home: 'Home',
+        services: 'Services',
+        products: 'Products',
+        projects: 'Projects',
+        contact: 'Contact Us',
+      },
+      servicesList: {
+        residential: 'Residential Rooftop',
+        commercial: 'Commercial Solar',
+        pumps: 'Solar Water Pumps',
+        industrial: 'Industrial Solutions',
+        maintenance: 'Operation & Maintenance',
+      },
+      newsletter: {
+        title: 'Stay Updated',
+        description: 'Subscribe to our newsletter for latest solar trends and exclusive offers.',
+        placeholder: 'Enter your email',
+        button: 'Subscribe',
+      },
+      links: {
+        privacy: 'Privacy Policy',
+        cookies: 'Cookie Policy',
+        cookieSettings: 'Cookie Settings',
+        sitemap: 'Sitemap',
+      },
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'Common questions about solar installation in Maharashtra',
+      questions: [
+        {
+          question: 'How much does a 3kW solar system cost in Dhule?',
+          answer: 'A standard 3kW on-grid solar system typically ranges from ₹1.8 Lakh to ₹2.2 Lakh before subsidy. Prices vary based on component brands (panels, inverters) and site conditions. Contact us for a precise quote tailored to your roof.',
+        },
+        {
+          question: 'What subsidies are available in Maharashtra?',
+          answer: 'Under the PM Surya Ghar Muft Bijli Yojana, residential consumers can get subsidies up to ₹30,000 per kW for the first 2kW and ₹18,000 for additional capacity up to 3kW. We assist with the entire application process.',
+        },
+        {
+          question: 'How many units will a 3kW system generate?',
+          answer: 'In Maharashtra\'s climate, a 3kW system generates approximately 12-15 units per day, or about 360-450 units per month, depending on sunlight availability and panel efficiency.',
+        },
+        {
+          question: 'What is the warranty on your solar systems?',
+          answer: 'We provide a standard 25-year performance warranty on solar panels and a 5-10 year warranty on inverters, backed by the respective manufacturers. Our installation workmanship is also guaranteed.',
+        },
+        {
+          question: 'Do I need batteries for my solar system?',
+          answer: 'For on-grid systems (most common in cities), batteries are not required as you export excess power to the grid. Off-grid or hybrid systems require batteries for backup during power cuts.',
+        },
+        {
+          question: 'How much roof space is required?',
+          answer: 'Approximately 100 sq. ft. of shadow-free area is required for every 1kW of solar capacity. So, a 3kW system would need about 300 sq. ft. of clear roof space.',
+        },
+      ],
+    },
+    specialOffer: {
+      badge: 'LIMITED TIME OFFER',
+      title: 'Power Your Home for Less',
+      subtitle: 'Get a complete 3kW Solar Rooftop System at an unbeatable price.',
+      systemTitle: '3kW Rooftop Solar System',
+      price: '₹99,999',
+      originalPrice: '₹1,45,000',
+      exclusiveNote: '*Exclusive offer for Dhule & North Maharashtra',
+      whatsIncluded: 'What\'s Included:',
+      includedItems: [
+        'High-efficiency Polycrystalline Panels',
+        'Advanced Solar Inverter (On-grid)',
+        'Complete Mounting Structure',
+        'Professional Installation & Wiring',
+        'Net Metering Assistance',
+        'Subsidy Documentation Support',
+      ],
+      whyGrab: 'Why Grab This Deal?',
+      benefits: {
+        saveMoney: {
+          title: 'Save Money',
+          description: 'Reduce electricity bills by up to 90%',
+        },
+        ecoFriendly: {
+          title: 'Eco-Friendly',
+          description: 'Reduce your carbon footprint',
+        },
+      },
+      claimButton: 'Claim Offer Now',
+      terms: '*Terms & Conditions apply. Price subject to site inspection and government subsidy availability.',
+    },
+    contact: {
+      title: 'Get in Touch',
+      subtitle: 'Ready to go solar? Contact us today for a free consultation and quote.',
+      formTitle: 'Request a Free Quote',
+      form: {
+        name: 'Name',
+        phone: 'Phone Number',
+        email: 'Email (Optional)',
+        requirement: 'Requirement',
+        message: 'Message (Optional)',
+        submit: 'Get Free Quote',
+        submitting: 'Sending...',
+        success: 'Thank you! Your request has been sent.',
+        successSubtext: 'We will contact you within 24 hours.',
+        error: 'Something went wrong. Please try again or call us directly.',
+        namePlaceholder: 'Your Name',
+        phonePlaceholder: '10-digit mobile',
+        emailPlaceholder: 'your@email.com',
+        messagePlaceholder: 'Any specific requirements or questions?',
+      },
+      requirements: [
+        'Home Solar System',
+        'Commercial Solar System',
+        'Solar Water Pump',
+        'Industrial Solar Solution',
+        'Solar UPS/Inverter',
+        'Other',
+      ],
+      contactInfo: {
+        title: 'Contact Information',
+        visitUs: 'Visit Us',
+        address: 'Kanishka Apartment, Kshire Colony, Deopur, Dhule, Maharashtra 424002',
+        callUs: 'Call Us',
+        emailUs: 'Email Us',
+      },
+    },
+    weServe: {
+      sectors: [
+        { title: 'Homeowners', getQuote: 'Get Quote →' },
+        { title: 'Offices & Shops', getQuote: 'Get Quote →' },
+        { title: 'Industries', getQuote: 'Get Quote →' },
+        { title: 'Farms & Pumps', getQuote: 'Get Quote →' },
+        { title: 'Apartments', getQuote: 'Get Quote →' },
+      ],
+      commercial: {
+        title: 'Commercial & Industrial Solutions',
+        description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
+      },
+    },
+    serviceAreas: {
+      title: 'Serving North Maharashtra',
+      locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon',
+      note: 'Available for projects in nearby villages & industrial areas',
     },
     common: {
       readMore: 'Read More',
@@ -239,12 +492,153 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       },
     },
     footer: {
-      description: 'धुळे, जळगाव आणि उत्तर महाराष्ट्रातील अग्रगण्य सौर EPC कंपनी. स्वच्छ, नूतनीकरणीय ऊर्जेसह घरे, व्यवसाय आणि शेतांना शक्ती देणे.',
+      description: 'टिकाऊ सौर ऊर्जा उपायांसह महाराष्ट्राला सक्षम करणे. गुणवत्ता स्थापना, विश्वासार्ह समर्थन आणि हमी बचत.',
       quickLinks: 'द्रुत दुवे',
-      services: 'सेवा',
+      services: 'आमच्या सेवा',
       contact: 'संपर्क',
       followUs: 'आमचे अनुसरण करा',
       copyright: '© 2024 अल्ट्रॉन पॉवर सिस्टम्स. सर्व हक्क राखीव.',
+      quickLinksItems: {
+        home: 'मुख्यपृष्ठ',
+        services: 'सेवा',
+        products: 'उत्पादने',
+        projects: 'प्रकल्प',
+        contact: 'आमच्याशी संपर्क साधा',
+      },
+      servicesList: {
+        residential: 'निवासी छतावरील',
+        commercial: 'व्यावसायिक सौर',
+        pumps: 'सौर पाणी पंप',
+        industrial: 'औद्योगिक उपाय',
+        maintenance: 'ऑपरेशन आणि देखभाल',
+      },
+      newsletter: {
+        title: 'अद्ययावत रहा',
+        description: 'नवीनतम सौर ट्रेंड आणि विशेष ऑफरसाठी आमच्या न्यूझलेटरची सदस्यता घ्या.',
+        placeholder: 'तुमचा ईमेल प्रविष्ट करा',
+        button: 'सदस्यता घ्या',
+      },
+      links: {
+        privacy: 'गोपनीयता धोरण',
+        cookies: 'कुकी धोरण',
+        cookieSettings: 'कुकी सेटिंग्ज',
+        sitemap: 'साइटमॅप',
+      },
+    },
+    faq: {
+      title: 'वारंवार विचारले जाणारे प्रश्न',
+      subtitle: 'महाराष्ट्रातील सौर स्थापनेबद्दल सामान्य प्रश्न',
+      questions: [
+        {
+          question: 'धुळे येथे 3kW सौर प्रणालीची किंमत किती आहे?',
+          answer: 'सबसिडीपूर्वी मानक 3kW ऑन-ग्रिड सौर प्रणाली सामान्यतः ₹1.8 लाख ते ₹2.2 लाख पर्यंत असते. किंमत घटक ब्रँड (पॅनेल, इन्व्हर्टर) आणि साइट परिस्थितींवर अवलंबून बदलते. तुमच्या छतासाठी सानुकूलित अचूक कोटसाठी आमच्याशी संपर्क साधा.',
+        },
+        {
+          question: 'महाराष्ट्रात कोणत्या सबसिडी उपलब्ध आहेत?',
+          answer: 'पीएम सूर्य घर मुफ्त बिजली योजनेअंतर्गत, निवासी ग्राहक पहिल्या 2kW साठी प्रति kW ₹30,000 पर्यंत आणि 3kW पर्यंत अतिरिक्त क्षमतेसाठी ₹18,000 पर्यंत सबसिडी मिळू शकतात. आम्ही संपूर्ण अर्ज प्रक्रियेत सहाय्य करतो.',
+        },
+        {
+          question: '3kW प्रणाली किती युनिट निर्माण करेल?',
+          answer: 'महाराष्ट्राच्या हवामानात, 3kW प्रणाली दररोज अंदाजे 12-15 युनिट किंवा दरमहा सुमारे 360-450 युनिट निर्माण करते, सूर्यप्रकाशाची उपलब्धता आणि पॅनेल कार्यक्षमतेवर अवलंबून.',
+        },
+        {
+          question: 'तुमच्या सौर प्रणालींवर वॉरंटी काय आहे?',
+          answer: 'आम्ही सौर पॅनेलवर मानक 25-वर्षाची कार्यप्रदर्शन वॉरंटी आणि इन्व्हर्टरवर 5-10 वर्षांची वॉरंटी प्रदान करतो, संबंधित निर्मात्यांकडून समर्थित. आमची स्थापना कारागीर देखील हमी दिली जाते.',
+        },
+        {
+          question: 'माझ्या सौर प्रणालीसाठी बॅटरी आवश्यक आहेत का?',
+          answer: 'ऑन-ग्रिड प्रणालींसाठी (शहरांमध्ये सर्वात सामान्य), बॅटरी आवश्यक नाहीत कारण तुम्ही जास्त वीज ग्रिडला निर्यात करता. ऑफ-ग्रिड किंवा हायब्रीड प्रणालींना वीज कट दरम्यान बॅकअपसाठी बॅटरी आवश्यक असतात.',
+        },
+        {
+          question: 'किती छत जागा आवश्यक आहे?',
+          answer: 'प्रत्येक 1kW सौर क्षमतेसाठी अंदाजे 100 चौ. फूट सावली-मुक्त क्षेत्र आवश्यक आहे. तर, 3kW प्रणालीसाठी सुमारे 300 चौ. फूट स्पष्ट छत जागा आवश्यक असेल.',
+        },
+      ],
+    },
+    specialOffer: {
+      badge: 'मर्यादित वेळ ऑफर',
+      title: 'कमी किंमतीत तुमच्या घराला शक्ती द्या',
+      subtitle: 'अतुलनीय किंमतीत पूर्ण 3kW सौर छतावरील प्रणाली मिळवा.',
+      systemTitle: '3kW छतावरील सौर प्रणाली',
+      price: '₹99,999',
+      originalPrice: '₹1,45,000',
+      exclusiveNote: '*धुळे आणि उत्तर महाराष्ट्रासाठी विशेष ऑफर',
+      whatsIncluded: 'समाविष्ट काय आहे:',
+      includedItems: [
+        'उच्च-कार्यक्षमता पॉलीक्रिस्टलाइन पॅनेल',
+        'प्रगत सौर इन्व्हर्टर (ऑन-ग्रिड)',
+        'पूर्ण माउंटिंग स्ट्रक्चर',
+        'व्यावसायिक स्थापना आणि वायरिंग',
+        'नेट मीटरिंग सहाय्य',
+        'सबसिडी दस्तऐवजीकरण समर्थन',
+      ],
+      whyGrab: 'हे डील का घ्यावे?',
+      benefits: {
+        saveMoney: {
+          title: 'पैसे वाचवा',
+          description: 'वीज बिल 90% पर्यंत कमी करा',
+        },
+        ecoFriendly: {
+          title: 'पर्यावरण-अनुकूल',
+          description: 'तुमचा कार्बन फुटप्रिंट कमी करा',
+        },
+      },
+      claimButton: 'आता ऑफर क्लेम करा',
+      terms: '*अटी आणि नियम लागू. किंमत साइट तपासणी आणि सरकारी सबसिडी उपलब्धतेवर अवलंबून.',
+    },
+    contact: {
+      title: 'आमच्याशी संपर्क साधा',
+      subtitle: 'सौर जाण्यासाठी तयार आहात? विनामूल्य सल्लामसलत आणि कोटसाठी आजच आमच्याशी संपर्क साधा.',
+      formTitle: 'विनामूल्य कोट विनंती करा',
+      form: {
+        name: 'नाव',
+        phone: 'फोन नंबर',
+        email: 'ईमेल (पर्यायी)',
+        requirement: 'गरज',
+        message: 'संदेश (पर्यायी)',
+        submit: 'विनामूल्य कोट मिळवा',
+        submitting: 'पाठवत आहे...',
+        success: 'धन्यवाद! तुमची विनंती पाठवली गेली आहे.',
+        successSubtext: 'आम्ही 24 तासांत तुमच्याशी संपर्क साधू.',
+        error: 'काहीतरी चुकीचे झाले. कृपया पुन्हा प्रयत्न करा किंवा आम्हाला थेट कॉल करा.',
+        namePlaceholder: 'तुमचे नाव',
+        phonePlaceholder: '10-अंकी मोबाइल',
+        emailPlaceholder: 'तुमचा@ईमेल.com',
+        messagePlaceholder: 'कोणतीही विशिष्ट गरज किंवा प्रश्न?',
+      },
+      requirements: [
+        'घरासाठी सौर प्रणाली',
+        'व्यावसायिक सौर प्रणाली',
+        'सौर पाणी पंप',
+        'औद्योगिक सौर उपाय',
+        'सौर UPS/इन्व्हर्टर',
+        'इतर',
+      ],
+      contactInfo: {
+        title: 'संपर्क माहिती',
+        visitUs: 'आम्हाला भेट द्या',
+        address: 'कनिष्का अपार्टमेंट, क्षीर कॉलनी, देवपूर, धुळे, महाराष्ट्र 424002',
+        callUs: 'आम्हाला कॉल करा',
+        emailUs: 'आम्हाला ईमेल करा',
+      },
+    },
+    weServe: {
+      sectors: [
+        { title: 'घरमालक', getQuote: 'कोट मिळवा →' },
+        { title: 'ऑफिस आणि दुकाने', getQuote: 'कोट मिळवा →' },
+        { title: 'उद्योग', getQuote: 'कोट मिळवा →' },
+        { title: 'शेत आणि पंप', getQuote: 'कोट मिळवा →' },
+        { title: 'अपार्टमेंट', getQuote: 'कोट मिळवा →' },
+      ],
+      commercial: {
+        title: 'व्यावसायिक आणि औद्योगिक उपाय',
+        description: 'तुमच्या व्यवसाय किंवा उद्योगासाठी सौर उपाय शोधत आहात? आम्ही ऑपरेशनल खर्च कमी करण्यासाठी आणि स्थिरता सुधारण्यासाठी डिझाइन केलेले सानुकूलित सौर प्रणाली प्रदान करतो.',
+      },
+    },
+    serviceAreas: {
+      title: 'उत्तर महाराष्ट्रात सेवा देत आहोत',
+      locations: 'धुळे • जळगाव • नाशिक • नंदुरबार • साक्री • शिरपूर • दोंडाईचा • मालेगाव',
+      note: 'जवळच्या गावांमध्ये आणि औद्योगिक क्षेत्रांमध्ये प्रकल्पांसाठी उपलब्ध',
     },
     common: {
       readMore: 'अधिक वाचा',
@@ -319,12 +713,153 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       },
     },
     footer: {
-      description: 'Leading solar EPC company in Dhule, Jalgaon, and North Maharashtra. Powering homes, businesses, and farms with clean, renewable energy.',
+      description: 'Empowering Maharashtra with sustainable solar energy solutions. Quality installation, reliable support, and guaranteed savings.',
       quickLinks: 'Quick Links',
-      services: 'Services',
+      services: 'Our Services',
       contact: 'Contact',
       followUs: 'Follow Us',
       copyright: '© 2024 Ultron Power Systems. All rights reserved.',
+      quickLinksItems: {
+        home: 'Home',
+        services: 'Services',
+        products: 'Products',
+        projects: 'Projects',
+        contact: 'Contact Us',
+      },
+      servicesList: {
+        residential: 'Residential Rooftop',
+        commercial: 'Commercial Solar',
+        pumps: 'Solar Water Pumps',
+        industrial: 'Industrial Solutions',
+        maintenance: 'Operation & Maintenance',
+      },
+      newsletter: {
+        title: 'Stay Updated',
+        description: 'Subscribe to our newsletter for latest solar trends and exclusive offers.',
+        placeholder: 'Enter your email',
+        button: 'Subscribe',
+      },
+      links: {
+        privacy: 'Privacy Policy',
+        cookies: 'Cookie Policy',
+        cookieSettings: 'Cookie Settings',
+        sitemap: 'Sitemap',
+      },
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      subtitle: 'Common questions about solar installation in Maharashtra',
+      questions: [
+        {
+          question: 'How much does a 3kW solar system cost in Dhule?',
+          answer: 'A standard 3kW on-grid solar system typically ranges from ₹1.8 Lakh to ₹2.2 Lakh before subsidy. Prices vary based on component brands (panels, inverters) and site conditions. Contact us for a precise quote tailored to your roof.',
+        },
+        {
+          question: 'What subsidies are available in Maharashtra?',
+          answer: 'Under the PM Surya Ghar Muft Bijli Yojana, residential consumers can get subsidies up to ₹30,000 per kW for the first 2kW and ₹18,000 for additional capacity up to 3kW. We assist with the entire application process.',
+        },
+        {
+          question: 'How many units will a 3kW system generate?',
+          answer: 'In Maharashtra\'s climate, a 3kW system generates approximately 12-15 units per day, or about 360-450 units per month, depending on sunlight availability and panel efficiency.',
+        },
+        {
+          question: 'What is the warranty on your solar systems?',
+          answer: 'We provide a standard 25-year performance warranty on solar panels and a 5-10 year warranty on inverters, backed by the respective manufacturers. Our installation workmanship is also guaranteed.',
+        },
+        {
+          question: 'Do I need batteries for my solar system?',
+          answer: 'For on-grid systems (most common in cities), batteries are not required as you export excess power to the grid. Off-grid or hybrid systems require batteries for backup during power cuts.',
+        },
+        {
+          question: 'How much roof space is required?',
+          answer: 'Approximately 100 sq. ft. of shadow-free area is required for every 1kW of solar capacity. So, a 3kW system would need about 300 sq. ft. of clear roof space.',
+        },
+      ],
+    },
+    specialOffer: {
+      badge: 'LIMITED TIME OFFER',
+      title: 'Power Your Home for Less',
+      subtitle: 'Get a complete 3kW Solar Rooftop System at an unbeatable price.',
+      systemTitle: '3kW Rooftop Solar System',
+      price: '₹99,999',
+      originalPrice: '₹1,45,000',
+      exclusiveNote: '*Exclusive offer for Dhule & North Maharashtra',
+      whatsIncluded: 'What\'s Included:',
+      includedItems: [
+        'High-efficiency Polycrystalline Panels',
+        'Advanced Solar Inverter (On-grid)',
+        'Complete Mounting Structure',
+        'Professional Installation & Wiring',
+        'Net Metering Assistance',
+        'Subsidy Documentation Support',
+      ],
+      whyGrab: 'Why Grab This Deal?',
+      benefits: {
+        saveMoney: {
+          title: 'Save Money',
+          description: 'Reduce electricity bills by up to 90%',
+        },
+        ecoFriendly: {
+          title: 'Eco-Friendly',
+          description: 'Reduce your carbon footprint',
+        },
+      },
+      claimButton: 'Claim Offer Now',
+      terms: '*Terms & Conditions apply. Price subject to site inspection and government subsidy availability.',
+    },
+    contact: {
+      title: 'Get in Touch',
+      subtitle: 'Ready to go solar? Contact us today for a free consultation and quote.',
+      formTitle: 'Request a Free Quote',
+      form: {
+        name: 'Name',
+        phone: 'Phone Number',
+        email: 'Email (Optional)',
+        requirement: 'Requirement',
+        message: 'Message (Optional)',
+        submit: 'Get Free Quote',
+        submitting: 'Sending...',
+        success: 'Thank you! Your request has been sent.',
+        successSubtext: 'We will contact you within 24 hours.',
+        error: 'Something went wrong. Please try again or call us directly.',
+        namePlaceholder: 'Your Name',
+        phonePlaceholder: '10-digit mobile',
+        emailPlaceholder: 'your@email.com',
+        messagePlaceholder: 'Any specific requirements or questions?',
+      },
+      requirements: [
+        'Home Solar System',
+        'Commercial Solar System',
+        'Solar Water Pump',
+        'Industrial Solar Solution',
+        'Solar UPS/Inverter',
+        'Other',
+      ],
+      contactInfo: {
+        title: 'Contact Information',
+        visitUs: 'Visit Us',
+        address: 'Kanishka Apartment, Kshire Colony, Deopur, Dhule, Maharashtra 424002',
+        callUs: 'Call Us',
+        emailUs: 'Email Us',
+      },
+    },
+    weServe: {
+      sectors: [
+        { title: 'Homeowners', getQuote: 'Get Quote →' },
+        { title: 'Offices & Shops', getQuote: 'Get Quote →' },
+        { title: 'Industries', getQuote: 'Get Quote →' },
+        { title: 'Farms & Pumps', getQuote: 'Get Quote →' },
+        { title: 'Apartments', getQuote: 'Get Quote →' },
+      ],
+      commercial: {
+        title: 'Commercial & Industrial Solutions',
+        description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
+      },
+    },
+    serviceAreas: {
+      title: 'Serving North Maharashtra',
+      locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon',
+      note: 'Available for projects in nearby villages & industrial areas',
     },
     common: {
       readMore: 'Read More',

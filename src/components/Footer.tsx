@@ -1,7 +1,12 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
 
   return (
     <footer className="bg-navy-dark text-white pt-16 pb-8 border-t border-navy-light">
@@ -14,8 +19,7 @@ export default function Footer() {
                 <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems Logo" className="h-16 w-auto bg-white rounded px-2 py-1" />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Empowering Maharashtra with sustainable solar energy solutions.
-                Quality installation, reliable support, and guaranteed savings.
+                {t.footer.description}
               </p>
             </div>
 
@@ -37,45 +41,45 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
+            <h4 className="font-bold text-lg mb-6 text-white">{t.footer.quickLinks}</h4>
             <ul className="space-y-3 text-sm text-gray-300">
-              <li><a href="#home" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</a></li>
-              <li><a href="#features" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</a></li>
-              <li><a href="#products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</a></li>
-              <li><a href="#projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</a></li>
-              <li><a href="#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</a></li>
+              <li><a href="#home" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> {t.footer.quickLinksItems.home}</a></li>
+              <li><a href="#features" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> {t.footer.quickLinksItems.services}</a></li>
+              <li><a href="#products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> {t.footer.quickLinksItems.products}</a></li>
+              <li><a href="#projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> {t.footer.quickLinksItems.projects}</a></li>
+              <li><a href="#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> {t.footer.quickLinksItems.contact}</a></li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Our Services</h4>
+            <h4 className="font-bold text-lg mb-6 text-white">{t.footer.services}</h4>
             <ul className="space-y-3 text-sm text-gray-300">
-              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> Residential Rooftop</li>
-              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> Commercial Solar</li>
-              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> Solar Water Pumps</li>
-              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> Industrial Solutions</li>
-              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> Operation & Maintenance</li>
+              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> {t.footer.servicesList.residential}</li>
+              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> {t.footer.servicesList.commercial}</li>
+              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> {t.footer.servicesList.pumps}</li>
+              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> {t.footer.servicesList.industrial}</li>
+              <li className="flex items-center"><span className="w-1.5 h-1.5 bg-energy-green rounded-full mr-2"></span> {t.footer.servicesList.maintenance}</li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Stay Updated</h4>
+            <h4 className="font-bold text-lg mb-6 text-white">{t.footer.newsletter.title}</h4>
             <p className="text-gray-300 text-sm mb-4">
-              Subscribe to our newsletter for latest solar trends and exclusive offers.
+              {t.footer.newsletter.description}
             </p>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <div className="relative">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t.footer.newsletter.placeholder}
                   aria-label="Email Address"
                   className="w-full bg-navy-light text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-solar-red placeholder-gray-500 text-sm"
                 />
               </div>
               <button className="w-full bg-solar-red text-white font-bold py-3 rounded-lg hover:bg-solar-red-dark transition-colors text-sm uppercase tracking-wide">
-                Subscribe
+                {t.footer.newsletter.button}
               </button>
             </form>
           </div>
@@ -83,10 +87,10 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>&copy; {currentYear} Ultron Power Systems. All rights reserved.</p>
+          <p>{t.footer.copyright.replace('2024', currentYear.toString())}</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="/cookies" className="hover:text-white transition-colors">Cookie Policy</a>
+            <a href="/privacy" className="hover:text-white transition-colors">{t.footer.links.privacy}</a>
+            <a href="/cookies" className="hover:text-white transition-colors">{t.footer.links.cookies}</a>
             <button
               onClick={() => {
                 if (typeof window !== 'undefined' && window.reopenCookieBanner) {
@@ -95,9 +99,9 @@ export default function Footer() {
               }}
               className="hover:text-white transition-colors"
             >
-              Cookie Settings
+              {t.footer.links.cookieSettings}
             </button>
-            <a href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</a>
+            <a href="/sitemap.xml" className="hover:text-white transition-colors">{t.footer.links.sitemap}</a>
           </div>
         </div>
       </div>

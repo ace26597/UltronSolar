@@ -1,36 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const faqs = [
-    {
-      question: "How much does a 3kW solar system cost in Dhule?",
-      answer: "A standard 3kW on-grid solar system typically ranges from ₹1.8 Lakh to ₹2.2 Lakh before subsidy. Prices vary based on component brands (panels, inverters) and site conditions. Contact us for a precise quote tailored to your roof."
-    },
-    {
-      question: "What subsidies are available in Maharashtra?",
-      answer: "Under the PM Surya Ghar Muft Bijli Yojana, residential consumers can get subsidies up to ₹30,000 per kW for the first 2kW and ₹18,000 for additional capacity up to 3kW. We assist with the entire application process."
-    },
-    {
-      question: "How many units will a 3kW system generate?",
-      answer: "In Maharashtra's climate, a 3kW system generates approximately 12-15 units per day, or about 360-450 units per month, depending on sunlight availability and panel efficiency."
-    },
-    {
-      question: "What is the warranty on your solar systems?",
-      answer: "We provide a standard 25-year performance warranty on solar panels and a 5-10 year warranty on inverters, backed by the respective manufacturers. Our installation workmanship is also guaranteed."
-    },
-    {
-      question: "Do I need batteries for my solar system?",
-      answer: "For on-grid systems (most common in cities), batteries are not required as you export excess power to the grid. Off-grid or hybrid systems require batteries for backup during power cuts."
-    },
-    {
-      question: "How much roof space is required?",
-      answer: "Approximately 100 sq. ft. of shadow-free area is required for every 1kW of solar capacity. So, a 3kW system would need about 300 sq. ft. of clear roof space."
-    }
-  ];
+  const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
+  const faqs = t.faq.questions;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -54,10 +32,10 @@ export default function FAQ() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-navy-dark mb-4">
-            Frequently Asked Questions
+            {t.faq.title}
           </h2>
           <p className="text-gray-600">
-            Common questions about solar installation in Maharashtra
+            {t.faq.subtitle}
           </p>
         </div>
 
