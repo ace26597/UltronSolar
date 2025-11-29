@@ -12,11 +12,6 @@ export default function Hero() {
     audience: 'residential',
     language: currentLanguage,
   });
-  const secondaryCta = selectCta({
-    page: 'home',
-    audience: 'commercial',
-    language: currentLanguage,
-  });
   return (
     <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center text-white overflow-hidden">
       {/* Background Image with Overlay */}
@@ -43,18 +38,13 @@ export default function Hero() {
           Premium rooftop solar solutions for homes, farms, and businesses in Dhule & North Maharashtra.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex justify-center items-center">
           <CtaButton
             ctaId={primaryCta.id}
             variant="primary"
             className="!text-white"
             trackEventName="hero_primary_cta_click"
             showSubtext={true}
-          />
-          <CtaButton
-            ctaId={secondaryCta.id}
-            variant="secondary"
-            trackEventName="hero_secondary_cta_click"
           />
         </div>
 
