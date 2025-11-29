@@ -5,7 +5,7 @@ import Features from "@/components/Features";
 import Products from "@/components/Products";
 import SpecialOffer from "@/components/SpecialOffer";
 import Brands from "@/components/Brands";
-import Gallery from "@/components/Gallery";
+import ProjectsSummary from "@/components/ProjectsSummary";
 import YouTubeVideos from "@/components/YouTubeVideos";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -27,7 +27,7 @@ export default function Home() {
       <Products />
       <SpecialOffer />
       <Brands />
-      <Gallery />
+      <ProjectsSummary />
       <YouTubeVideos />
       <Testimonials />
       <FAQ />

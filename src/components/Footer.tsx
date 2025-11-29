@@ -44,11 +44,11 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3 text-sm text-gray-300">
-              <li><a href="#home" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</a></li>
-              <li><a href="#features" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</a></li>
-              <li><a href="#products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</a></li>
-              <li><a href="#projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</a></li>
-              <li><a href="#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</a></li>
+              <li><a href="/" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</a></li>
+              <li><a href="/services" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</a></li>
+              <li><a href="/products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</a></li>
+              <li><a href="/projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</a></li>
+              <li><a href="/#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</a></li>
             </ul>
           </div>
 
@@ -72,7 +72,9 @@ export default function Footer() {
             </p>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <div className="relative">
+                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                 <input
+                  id="newsletter-email"
                   type="email"
                   placeholder="Enter your email"
                   className="w-full bg-navy-light text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-solar-red placeholder-gray-500 text-sm"

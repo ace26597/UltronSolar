@@ -26,8 +26,9 @@ const ProductCard = ({ product }: { product: any }) => (
       <a
         href="#contact"
         className="block w-full text-center bg-gray-50 text-navy-dark px-4 py-2 rounded-lg font-semibold hover:bg-solar-red hover:text-white transition-all border border-gray-200 hover:border-solar-red"
+        aria-label={`Get quote for ${product.title}`}
       >
-        Get Quote
+        Enquire Now
       </a>
     </div>
   </div>
@@ -116,6 +117,13 @@ export default function Products() {
           {products.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <a href="/products" className="inline-flex items-center text-navy-dark font-semibold hover:text-solar-red transition-colors">
+            View All Products
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
         </div>
       </div>
     </section>

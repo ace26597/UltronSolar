@@ -90,9 +90,15 @@ export default function SpecialOffer() {
               >
                 Claim Offer Now
               </a>
-              <p className="text-xs text-gray-400 text-center mt-4">
-                *Terms & Conditions apply. Price subject to site inspection and government subsidy availability.
-              </p>
+              <div className="text-center mt-3 space-y-1">
+                <p className="text-sm font-semibold text-green-600">
+                  <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                  Only 5 units left at this price
+                </p>
+                <p className="text-xs text-gray-400">
+                  *Terms & Conditions apply. Price subject to site inspection.
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ export default function Features() {
   const services = [
     {
       title: "Expert Installations",
-      description: "We specialize in offering premium solar panel installation services for homes, businesses, apartments, and farms. Our team of experts is skilled in effective installation and deeply knowledgeable about optimizing the positioning of solar panels to maximize sunlight exposure and energy generation.",
+      description: "Premium solar panel installation for homes, businesses, and farms. Our team ensures optimal positioning for maximum energy generation.",
       icon: (
         <svg className="w-12 h-12 text-solar-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -14,7 +14,7 @@ export default function Features() {
     },
     {
       title: "Flexible Payment Options",
-      description: "We understand that every customer has different preferences when it comes to payment. We provide assistance for bank loans with streamlined processing specifically for solar projects. Additionally, we guide our customers in availing government subsidies designed to support the adoption of solar technology.",
+      description: "Easy financing with bank loan assistance and government subsidy guidance. We make going solar affordable and hassle-free.",
       icon: (
         <svg className="w-12 h-12 text-solar-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -24,7 +24,7 @@ export default function Features() {
     },
     {
       title: "Complete EPC Solutions",
-      description: "At Ultron Power Systems, we offer complete solar EPC (Engineering, Procurement, and Construction) solutions. From initial design and engineering to procurement of high-quality solar equipment and construction of the solar power system, we handle every aspect of the project.",
+      description: "End-to-end services from design and engineering to procurement and construction. We handle every aspect of your solar project.",
       icon: (
         <svg className="w-12 h-12 text-solar-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
@@ -34,7 +34,7 @@ export default function Features() {
     },
     {
       title: "Peace of Mind Warranty",
-      description: "We stand behind the quality of our work and the products we install. That's why we offer a comprehensive warranty on all our solar installations as per terms and conditions of principal suppliers of solar panels and materials. With us, you can have peace of mind knowing that your solar system is protected.",
+      description: "Comprehensive warranty on all installations. We stand behind our work and ensure your system performs for years to come.",
       icon: (
         <svg className="w-12 h-12 text-solar-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -78,10 +78,6 @@ export default function Features() {
                   <p className="text-gray-700 leading-relaxed mb-4">
                     {service.description}
                   </p>
-                  <a href="#contact" className="inline-flex items-center text-solar-red font-semibold hover:text-solar-red-dark transition-colors">
-                    Learn more
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                  </a>
                 </div>
               </div>
             </div>
