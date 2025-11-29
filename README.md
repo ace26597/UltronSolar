@@ -16,6 +16,7 @@ A modern, high-performance marketing website for Ultron Solar built with Next.js
 
 - Node.js 18+ installed
 - npm or yarn package manager
+- OpenAI API key (for chatbot functionality)
 
 ### Installation
 
@@ -24,12 +25,34 @@ A modern, high-performance marketing website for Ultron Solar built with Next.js
 npm install
 ```
 
-2. Run the development server:
+2. Create a `.env.local` file in the root directory:
+```env
+OPENAI_API_KEY=sk-your-openai-api-key-here
+OPENAI_MODEL_NAME=gpt-4o-mini
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Environment Variables
+
+For the AI chatbot to work, you need to set up the following environment variables:
+
+**Local Development (`.env.local`):**
+- `OPENAI_API_KEY` (required): Your OpenAI API key
+- `OPENAI_MODEL_NAME` (optional): Model to use, defaults to `gpt-4o-mini`
+
+**Vercel Deployment:**
+1. Go to Vercel Dashboard → Your Project → Settings → Environment Variables
+2. Add the following variables:
+   - `OPENAI_API_KEY` = your OpenAI API key
+   - `OPENAI_MODEL_NAME` = `gpt-4o-mini` (optional)
+
+**Note:** The OpenAI API key is kept secure on the server-side. Never expose it in client-side code.
 
 ### Build for Production
 

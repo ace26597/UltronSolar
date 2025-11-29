@@ -1,12 +1,12 @@
-export interface ChatRequest {
-  message: string;
-  session_id: string;
-  metadata?: {
-    page?: string;
-    utm_source?: string;
-    lang?: string;
-    [key: string]: any;
-  };
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+export interface RAGContext {
+  content: string;
+  title?: string;
+  source?: string;
 }
 
 export interface ChatResponse {
@@ -22,34 +22,42 @@ export interface ChatResponse {
 export async function sendChatMessage(
   message: string,
   sessionId: string,
-  metadata?: ChatRequest['metadata']
+  conversationHistory: ChatMessage[],
+  context?: RAGContext[]
 ): Promise<ChatResponse> {
-  const chatApiUrl = process.env.NEXT_PUBLIC_CHAT_API_URL;
-
-  if (!chatApiUrl) {
-    throw new Error('Chat API URL is not configured. Please set NEXT_PUBLIC_CHAT_API_URL environment variable.');
-  }
-
   try {
-    const response = await fetch(`${chatApiUrl}/chat`, {
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        message,
-        session_id: sessionId,
-        metadata: metadata || {},
+        messages: conversationHistory,
+        context: context || [],
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(`Chat API error: ${response.status} ${errorText}`);
+      let errorMessage = `Chat API error: ${response.status}`;
+      try {
+        const errorData = JSON.parse(errorText);
+        errorMessage = errorData.error || errorMessage;
+      } catch {
+        errorMessage = errorText || errorMessage;
+      }
+      throw new Error(errorMessage);
     }
 
-    const data: ChatResponse = await response.json();
-    return data;
+    const data = await response.json();
+    return {
+      reply: data.reply || '',
+      session_id: sessionId,
+      sources: context?.map(c => ({
+        title: c.title,
+        snippet: c.content.substring(0, 150),
+      })) || [],
+    };
   } catch (error) {
     if (error instanceof Error) {
       throw error;
