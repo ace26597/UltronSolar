@@ -54,11 +54,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Don't render until initialized to avoid hydration mismatch
-  if (!isInitialized) {
-    return <>{children}</>;
-  }
-
+  // Always provide context value, even during SSR/static generation
+  // Default to 'en' during SSR, will update on client hydration
   return (
     <LanguageContext.Provider value={{ currentLanguage, setLanguage }}>
       {children}
