@@ -68,8 +68,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
+  // During static generation or if provider isn't available, return default
   if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    return {
+      currentLanguage: 'en' as UserLanguage,
+      setLanguage: () => {}, // No-op during static generation
+    };
   }
   return context;
 }
