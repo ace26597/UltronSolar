@@ -1,0 +1,56 @@
+Issues & Improvements
+Design & User Experience
+
+| Issue                                                                                                                                                                                                               | Improvement                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Long, heavy page** – the home page combines every service, product and project into a single scroll. Large uncompressed images and videos can slow down the page and hurt user engagement.                        | Break content into dedicated pages: **Services**, **Products**, **Projects**, **Blog** and a shorter home page summarizing each area.  Compress images and serve modern formats like **WebP/AVIF**.  Google notes that WebP and AVIF offer better compression than PNG/JPEG and reduce load times; use Next.js `<Image>` component with `srcset` and `sizes` to serve appropriately sized images and reduce Largest Contentful Paint. |
+| **Cluttered sections** – some sections (e.g., value propositions and offers) use multiple cards with icons and long paragraphs; spacing is inconsistent and the text can be hard to scan.                           | Simplify each section. Use shorter bullet points and more white space. Limit each section to one clear message and a call to action. Maintain consistent padding and font sizes.                                                                                                                                                                                                                                                      |
+| **Navigation** – navigation links point to anchors on the same page rather than separate pages. This prevents unique page titles/descriptions for different topics and makes the site harder to navigate on mobile. | Create separate pages for Services, Products and Projects with their own navigation items. This allows for unique meta tags and targeted keywords. Use descriptive anchor text in the navigation to improve accessibility and SEO.                                                                                                                                                                                                    |
+| **Accessibility** – images appear without visible alt text when inspected in the code, and some text is overlaid on images with low contrast. Forms are missing explicit `label` elements tied to form fields.      | Provide descriptive `alt` attributes for all non‑decorative images. Google advises writing **useful, information‑rich alt text** and avoiding keyword stuffing.  For decorative images, use empty `alt=""`.  Ensure sufficient colour contrast and link each form input with a `<label>` for screen‑reader accessibility.                                                                                                             |
+| **Calls to action** – there are many “Get Free Quote” buttons; however, they are similar throughout the page and might cause banner blindness.                                                                      | Differentiate calls to action by context (e.g., **Get Quote for Residential**, **Book a Consultation**). Add persuasive micro‑copy near each CTA (e.g., “Save up to 90 % on your electricity bill”).  Consider adding a chat widget or scheduling tool to capture leads.                                                                                                                                                              |
+| **Trust signals** – the site has Google review snippets, but lacks verifiable badges, certificates or team photos.                                                                                                  | Add company certifications (e.g., MNRE approvals), partner logos with links to manufacturer sites, and team photos or founder bios. Provide case studies with before/after results (energy savings, ROI).                                                                                                                                                                                                                             |
+
+
+Content & Engagement
+
+Improve the headline – The current hero headline (“Power Your Future With Solar Energy”) is generic. Make it specific to the business and target region (e.g., “Dhule’s Trusted Rooftop Solar & Water Pump Specialists”). Use a sub‑headline that clearly states the unique selling proposition (e.g., subsidy support, bank loan assistance, reliable EPC services).
+
+Create more educational content – Launch a blog or resources section with regular posts about solar subsidies, installation tips, maintenance guides and success stories. This will attract organic search traffic and establish authority. Link blog posts internally to relevant service/product pages.
+
+Interactive tools – Consider adding a savings calculator (“Estimate your monthly savings with solar”) or quiz (“Is solar right for your home?”) to engage visitors and capture leads.
+
+Testimonials – The site shows review excerpts but lacks structured presentation. Create a dedicated testimonials page or slider with photos of real customers and project details. Video testimonials can further build trust.
+
+SEO & Technical Recommendations
+
+Titles & Meta descriptions – Ensure every page (home, services, individual products, projects and blog posts) has a unique, descriptive title and meta description. Google’s starter guide notes that snippets may come from meta descriptions and that good descriptions are short, unique and summarize the page’s most relevant points
+developers.google.com
+.
+
+Keywords – Avoid stuffing keywords in meta keywords or alt attributes. Google does not use the keywords meta tag
+developers.google.com
+. Instead, write natural copy that includes search terms your customers use (e.g., “solar water pump installation in Dhule”).
+
+Structured data – Add FAQPage structured data for the FAQ section. Google notes that properly marked‑up FAQs may be eligible for rich results and Google Assistant actions
+developers.google.com
+. Include the list of questions and answers in JSON‑LD with @type: FAQPage. Continue using the existing LocalBusiness schema, but fix the URLs to point to https://www.ultronsolar.in and ensure there’s one schema.org/Organization entry.
+
+Canonical & Open Graph URLs – Add a <link rel="canonical" href="https://www.ultronsolar.in/"> to each page to indicate the preferred domain. Update the Open Graph og:url property to match the site’s domain; this prevents duplicate content issues between vercel.app and ultronsolar.in.
+
+Alt text & images – Provide concise, descriptive alt text for all images. Google advises writing alt text that is useful and information‑rich and warns against keyword stuffing
+developers.google.com
+. Position images near relevant text and use descriptive filenames. Avoid embedding important text inside images; keep headings and calls‑to‑action in HTML to maintain accessibility
+hobo-web.co.uk
+.
+
+Modern image formats and compression – Replace large JPEG/PNG files with compressed WebP or AVIF. Web.dev notes that WebP and AVIF provide better compression than older formats and help reduce load time
+web.dev
+. Use Next.js’s <Image> component to automatically serve different sizes based on viewport (srcSet), and lazy‑load images below the fold to improve page speed.
+
+Sitemap & robots – Ensure a valid sitemap.xml listing all pages, images and blog posts is submitted to Google Search Console. Use a robots.txt file to allow crawling and block any unnecessary paths (e.g., staging domains).
+
+Internal linking – Link related pages using descriptive anchor text. This helps users navigate and helps search engines understand the structure. Avoid generic “click here” links.
+
+Mobile & Core Web Vitals – Test the site on PageSpeed Insights. Pay particular attention to Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS). Reduce unused JavaScript and CSS, enable server‑side caching, and implement lazy loading for images/videos to improve metrics.
+
+Security & Privacy – Add a visible privacy policy and cookie consent banner to build trust. If collecting user data via forms, ensure SSL is enabled and add a brief statement about data usage.

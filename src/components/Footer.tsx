@@ -13,10 +13,15 @@ export default function Footer() {
               <div className="mb-4">
                 <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-16 w-auto bg-white rounded px-2 py-1" />
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
+              <p className="text-gray-300 text-sm leading-relaxed mb-4">
                 Empowering Maharashtra with sustainable solar energy solutions.
                 Quality installation, reliable support, and guaranteed savings.
               </p>
+              <div className="flex flex-wrap gap-2 text-xs font-semibold text-energy-green">
+                <span className="bg-white/10 px-2 py-1 rounded">✓ Govt. Approved</span>
+                <span className="bg-white/10 px-2 py-1 rounded">✓ ISO Certified</span>
+                <span className="bg-white/10 px-2 py-1 rounded">✓ 18+ Years</span>
+              </div>
             </div>
 
             <div className="flex space-x-4">
