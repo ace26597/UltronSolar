@@ -7,18 +7,18 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const projects = [
-    { src: "/images/gallery-project-1.jpg", caption: "5 kW Residential Rooftop – Dhule, Maharashtra" },
-    { src: "/images/gallery-project-2.jpg", caption: "10 kW Commercial Installation – Dhule" },
-    { src: "/images/gallery-project-3.jpg", caption: "Solar Panel Array – Industrial Setup" },
-    { src: "/images/gallery-project-4.jpg", caption: "Rooftop Solar System – Residential" },
-    { src: "/images/gallery-project-5.jpg", caption: "Large Scale Solar Installation" },
-    { src: "/images/gallery-project-6.jpg", caption: "Solar Water Pump System – Farm, near Dhule" },
-    { src: "/images/gallery-project-7.jpg", caption: "Commercial Rooftop Solar – Dhule" },
-    { src: "/images/gallery-project-8.jpg", caption: "Residential Solar Setup – Maharashtra" },
-    { src: "/images/gallery-project-9.jpg", caption: "Solar Installation Project" },
-    { src: "/images/gallery-project-10.jpg", caption: "Farm Solar Water Pump – Rural Maharashtra" },
-    { src: "/images/gallery-project-11.jpg", caption: "Industrial Solar System" },
-    { src: "/images/gallery-project-12.png", caption: "Complete Solar EPC Project" },
+    { src: "/images/gallery-project-1.jpg", caption: "5 kW Residential Rooftop Solar System – Dhule, Maharashtra" },
+    { src: "/images/gallery-project-2.jpg", caption: "10 kW Commercial Solar Installation – Dhule" },
+    { src: "/images/gallery-project-3.jpg", caption: "Industrial Solar Panel Array Setup" },
+    { src: "/images/gallery-project-4.jpg", caption: "Residential Rooftop Solar Power System" },
+    { src: "/images/gallery-project-5.jpg", caption: "Large Scale Commercial Solar Installation" },
+    { src: "/images/gallery-project-6.jpg", caption: "Agricultural Solar Water Pump System – Near Dhule" },
+    { src: "/images/gallery-project-7.jpg", caption: "Commercial Rooftop Solar Plant – Dhule" },
+    { src: "/images/gallery-project-8.jpg", caption: "Home Solar Energy Setup – Maharashtra" },
+    { src: "/images/gallery-project-9.jpg", caption: "Professional Solar Installation Project" },
+    { src: "/images/gallery-project-10.jpg", caption: "Farm Solar Water Pump Solution – Rural Maharashtra" },
+    { src: "/images/gallery-project-11.jpg", caption: "Industrial Solar Power System" },
+    { src: "/images/gallery-project-12.png", caption: "Complete Solar EPC Project Execution" },
   ];
 
   return (

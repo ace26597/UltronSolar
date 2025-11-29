@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div>
               <div className="mb-4">
-                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-16 w-auto bg-white rounded px-2 py-1" />
+                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems Logo" className="h-16 w-auto bg-white rounded px-2 py-1" />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Empowering Maharashtra with sustainable solar energy solutions.
@@ -70,6 +70,7 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  aria-label="Email Address"
                   className="w-full bg-navy-light text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-solar-red placeholder-gray-500 text-sm"
                 />
               </div>

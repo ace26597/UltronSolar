@@ -16,7 +16,7 @@ export default function About() {
             <div className="relative h-[600px] rounded-xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/ultron_marketing_fam.jpg"
-                alt="Ultron Power Systems Marketing Family"
+                alt="Happy Indian Family with Solar Savings - Ultron Power Systems Marketing"
                 fill
                 className="object-cover"
               />

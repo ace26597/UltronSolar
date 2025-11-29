@@ -19,14 +19,16 @@ export default function Brands() {
             We partner with leading solar energy brands to deliver the best quality products and solutions
           </p>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {brands.map((brand, index) => (
             <div
               key={index}
               className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-gray-200 flex flex-col items-center justify-center text-center"
             >
-              <div className="text-4xl mb-3">{brand.icon}</div>
+              <div className="text-4xl mb-3">
+                <span role="img" aria-label={`${brand.name} logo`}>{brand.icon}</span>
+              </div>
               <h3 className="text-sm md:text-base font-semibold text-navy-dark">
                 {brand.name}
               </h3>

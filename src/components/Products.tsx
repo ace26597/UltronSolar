@@ -8,7 +8,7 @@ const ProductCard = ({ product }: { product: any }) => (
     <div className="relative h-56 w-full overflow-hidden">
       <Image
         src={product.image}
-        alt={product.title}
+        alt={product.alt || product.title}
         fill
         className="object-cover group-hover:scale-110 transition-transform duration-500"
       />
@@ -49,31 +49,37 @@ export default function Products() {
       title: "Solar Water Pump",
       description: "Reliable solar powered water pump systems for agriculture and irrigation needs.",
       image: "/images/product-solar-pump.jpg",
+      alt: "Solar Water Pump System for Agriculture",
     },
     {
       title: "Solar Power UPS",
       description: "Uninterrupted power supply solutions for homes and businesses.",
       image: "/images/product-solar-ups.jpg",
+      alt: "Solar Power UPS and Battery Backup System",
     },
     {
       title: "Voltage Stabilizer",
       description: "Servo controlled voltage stabilizers for equipment protection.",
       image: "/images/product-servo-stabilizer.jpg",
+      alt: "Servo Controlled Voltage Stabilizer",
     },
     {
       title: "Solar Street Lights",
       description: "Automatic, energy-efficient lighting for streets and campuses.",
       image: "/images/product-solar-lights.jpg",
+      alt: "Automatic Solar Street Light System",
     },
     {
       title: "Rooftop Solar Panels",
       description: "High-efficiency solar panels for maximum energy generation.",
       image: "/images/gallery-project-2.jpg",
+      alt: "Rooftop Solar Panel Installation for Home and Business",
     },
     {
       title: "Solar Water Heater",
       description: "Cost-effective water heating solutions for all seasons.",
       image: "/images/gallery-project-1.jpg",
+      alt: "Solar Water Heater System",
     },
   ];
 
