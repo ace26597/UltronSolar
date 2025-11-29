@@ -25,8 +25,8 @@ export default function CookiesPage() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-700 leading-relaxed">
-              This Cookie Policy explains how <strong>Ultron Power Systems</strong> ("Ultron
-              Solar", "we", "us", "our") uses cookies and similar technologies on{" "}
+              This Cookie Policy explains how <strong>Ultron Power Systems</strong> (&quot;Ultron
+              Solar&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;) uses cookies and similar technologies on{" "}
               <strong>https://www.ultronsolar.in/</strong>.
             </p>
 
@@ -65,7 +65,7 @@ export default function CookiesPage() {
                 <li>To measure and improve our marketing campaigns (if you consent).</li>
               </ul>
               <p className="text-gray-700 leading-relaxed">
-                Under laws such as the EU's GDPR and ePrivacy Directive, and India's Digital
+                Under laws such as the EU&apos;s GDPR and ePrivacy Directive, and India&apos;s Digital
                 Personal Data Protection Act (DPDP), consent is typically required for cookies that
                 are <strong>not strictly necessary</strong> and that process personal data, such as
                 analytics and marketing cookies.
@@ -261,7 +261,7 @@ export default function CookiesPage() {
                 7. Cookies and personal data under Indian DPDP Act
               </h2>
               <p className="text-gray-700 leading-relaxed mb-2">
-                India's Digital Personal Data Protection Act, 2023 (DPDP Act) applies when cookies
+                India&apos;s Digital Personal Data Protection Act, 2023 (DPDP Act) applies when cookies
                 collect or relate to personal data of individuals in India. The Act generally
                 requires <strong>free, informed, and unambiguous consent</strong> before processing
                 such data, except for certain legitimate uses.
@@ -293,7 +293,7 @@ export default function CookiesPage() {
                 <li>Need to reflect changes in law or guidance.</li>
               </ul>
               <p className="text-gray-700 leading-relaxed">
-                When we do, we will update the "Last updated" date at the top. We encourage you to
+                When we do, we will update the &quot;Last updated&quot; date at the top. We encourage you to
                 check this page periodically.
               </p>
             </section>

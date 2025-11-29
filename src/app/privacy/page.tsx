@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-700 leading-relaxed">
-              Ultron Power Systems ("Ultron Solar", "we", "us", "our") operates the website{" "}
+              Ultron Power Systems (&quot;Ultron Solar&quot;, &quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates the website{" "}
               <strong>https://www.ultronsolar.in/</strong> and provides solar energy consulting,
               installation, and related services in Dhule, Jalgaon, and North Maharashtra, India.
             </p>
@@ -232,7 +232,7 @@ export default function PrivacyPage() {
               </p>
 
               <h3 className="text-xl font-semibold text-navy-dark mb-3">
-                Under India's Digital Personal Data Protection Act (DPDP Act)
+                Under India&apos;s Digital Personal Data Protection Act (DPDP Act)
               </h3>
               <p className="text-gray-700 leading-relaxed mb-2">
                 The DPDP Act requires that personal data of individuals in India is processed for
@@ -433,7 +433,7 @@ export default function PrivacyPage() {
                 </li>
               </ul>
               <p className="text-gray-700 leading-relaxed mb-2">
-                Under India's DPDP Act, individuals (Data Principals) have rights to access,
+                Under India&apos;s DPDP Act, individuals (Data Principals) have rights to access,
                 correction, updating and erasure of their personal data, as well as access to
                 grievance redressal mechanisms.
               </p>
@@ -444,7 +444,7 @@ export default function PrivacyPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-navy-dark mb-4">11. Children's privacy</h2>
+              <h2 className="text-2xl font-bold text-navy-dark mb-4">11. Children&apos;s privacy</h2>
               <p className="text-gray-700 leading-relaxed">
                 Our website and services are not directed at children under 18. We do not knowingly
                 collect personal data from children. If you believe a child has provided us
@@ -459,7 +459,7 @@ export default function PrivacyPage() {
               <p className="text-gray-700 leading-relaxed">
                 We may update this Privacy Policy from time to time to reflect changes in our
                 practices, technologies, or legal requirements. When we do, we will update the
-                "Last updated" date at the top of this page.
+                &quot;Last updated&quot; date at the top of this page.
               </p>
               <p className="text-gray-700 leading-relaxed mt-2">
                 We encourage you to review this page periodically.
