@@ -195,7 +195,7 @@ export default function CookiesPage() {
               </p>
               <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
                 <li>
-                  Clicking a link such as <strong>"Privacy & Cookie Settings"</strong> in the
+                  Clicking a link such as <strong>&quot;Privacy & Cookie Settings&quot;</strong> in the
                   footer (we will add this and reopen the banner), or
                 </li>
                 <li>Clearing cookies in your browser and revisiting the site.</li>
@@ -222,7 +222,7 @@ export default function CookiesPage() {
                 functions.
               </p>
               <p className="text-gray-700 leading-relaxed mt-2">
-                For more detailed guidance, refer to your browser's help pages.
+                For more detailed guidance, refer to your browser&apos;s help pages.
               </p>
             </section>
 
