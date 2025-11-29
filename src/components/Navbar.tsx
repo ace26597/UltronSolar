@@ -47,7 +47,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center">
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center gap-2">
-                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-12 w-auto" />
+                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-20 w-auto" />
               </Link>
             </div>
 
