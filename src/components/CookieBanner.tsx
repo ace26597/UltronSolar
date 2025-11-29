@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookieConsent } from '@/context/CookieConsentContext';
 import type { CookieConsentState } from '@/types/cookies';
 
