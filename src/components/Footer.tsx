@@ -85,9 +85,19 @@ export default function Footer() {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>&copy; {currentYear} Ultron Power Systems. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Sitemap</a>
+            <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/cookies" className="hover:text-white transition-colors">Cookie Policy</a>
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.reopenCookieBanner) {
+                  window.reopenCookieBanner();
+                }
+              }}
+              className="hover:text-white transition-colors"
+            >
+              Cookie Settings
+            </button>
+            <a href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</a>
           </div>
         </div>
       </div>

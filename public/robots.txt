@@ -1,0 +1,30 @@
+# robots.txt for https://www.ultronsolar.in/
+
+User-agent: *
+
+# Allow all normal pages
+Disallow:
+
+# Block internal/technical routes that shouldn't be indexed
+Disallow: /api/
+Disallow: /admin/
+Disallow: /draft/
+Disallow: /_next/
+Disallow: /static/
+
+# Optional: block common AI crawlers (purely your choice)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# Point search engines to your sitemap
+Sitemap: https://www.ultronsolar.in/sitemap.xml
+

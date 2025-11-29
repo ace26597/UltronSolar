@@ -2,8 +2,11 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import CtaButton from "@/components/cta/CtaButton";
+import { useLanguage } from "@/context/LanguageContext";
+import { selectCta } from "@/utils/ctaSelector";
 
-const ProductCard = ({ product }: { product: any }) => (
+const ProductCard = ({ product, ctaId }: { product: any; ctaId: string }) => (
   <div className="min-w-[280px] md:min-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group">
     <div className="relative h-56 w-full overflow-hidden">
       <Image
@@ -23,18 +26,24 @@ const ProductCard = ({ product }: { product: any }) => (
       <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
         {product.description}
       </p>
-      <a
-        href="#contact"
-        className="block w-full text-center bg-gray-50 text-navy-dark px-4 py-2 rounded-lg font-semibold hover:bg-solar-red hover:text-white transition-all border border-gray-200 hover:border-solar-red"
-      >
-        Get Quote
-      </a>
+      <CtaButton
+        ctaId={ctaId}
+        className="!w-full !text-center !bg-gray-50 !text-navy-dark !px-4 !py-2 !text-base !font-semibold hover:!bg-solar-red hover:!text-white !border !border-gray-200 hover:!border-solar-red !shadow-none hover:!shadow-md !transform-none hover:!-translate-y-0"
+        variant="outline"
+        trackEventName="product_card_cta_click"
+      />
     </div>
   </div>
 );
 
 export default function Products() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { currentLanguage } = useLanguage();
+  const productCta = selectCta({
+    page: 'residential',
+    audience: 'residential',
+    language: currentLanguage,
+  });
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
@@ -120,7 +129,7 @@ export default function Products() {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+            <ProductCard key={index} product={product} ctaId={productCta.id} />
           ))}
         </div>
       </div>

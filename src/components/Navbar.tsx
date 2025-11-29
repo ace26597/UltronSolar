@@ -2,10 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import CtaButton from "@/components/cta/CtaButton";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/context/LanguageContext";
+import { selectCta } from "@/utils/ctaSelector";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { currentLanguage } = useLanguage();
+  const navbarCta = selectCta({
+    page: 'home',
+    audience: 'residential',
+    language: currentLanguage,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,12 +73,14 @@ export default function Navbar() {
                     {item}
                   </a>
                 ))}
-                <a
-                  href="#contact"
-                  className="bg-solar-red text-white px-6 py-2.5 rounded-lg font-bold hover:bg-solar-red-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                >
-                  Get Free Quote
-                </a>
+                <LanguageToggle />
+                <div className="flex items-center">
+                  <CtaButton
+                    ctaId={navbarCta.id}
+                    className="px-6 py-2.5 text-base"
+                    trackEventName="navbar_cta_click"
+                  />
+                </div>
               </div>
             </div>
 
@@ -114,13 +126,13 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="pt-6 border-t mt-6">
-                <a
-                  href="#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full text-center bg-solar-red text-white px-6 py-3 rounded-lg font-bold hover:bg-solar-red-dark transition-colors shadow-md"
-                >
-                  Get Free Quote
-                </a>
+                <div onClick={() => setIsOpen(false)}>
+                  <CtaButton
+                    ctaId={navbarCta.id}
+                    className="w-full text-center px-6 py-3 text-base"
+                    trackEventName="mobile_navbar_cta_click"
+                  />
+                </div>
               </div>
 
               <div className="mt-8 space-y-4 px-4">

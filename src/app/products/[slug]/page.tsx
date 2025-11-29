@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CtaButton from "@/components/cta/CtaButton";
 import { products } from "@/data/products";
 
 interface Props {
@@ -116,12 +117,11 @@ export default async function ProductPage({ params }: Props) {
 
                             {/* CTA */}
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Link
-                                    href="/#contact"
-                                    className="bg-solar-red text-white text-center font-bold py-4 px-8 rounded-lg hover:bg-solar-red-dark transition-colors text-lg shadow-lg shadow-solar-red/20"
-                                >
-                                    Get a Quote
-                                </Link>
+                                <CtaButton
+                                    ctaId="residential_quote_en"
+                                    className="!text-center"
+                                    trackEventName="product_page_cta_click"
+                                />
                                 <a
                                     href="tel:+919422787438"
                                     className="bg-navy-dark text-white text-center font-bold py-4 px-8 rounded-lg hover:bg-navy-light transition-colors text-lg"

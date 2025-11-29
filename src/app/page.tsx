@@ -14,7 +14,6 @@ import ServiceAreas from "@/components/ServiceAreas";
 import FacebookPage from "@/components/FacebookPage";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import FloatingWidget from "@/components/FloatingWidget";
 import About from "@/components/About";
 
 export const metadata: Metadata = {
@@ -42,7 +41,6 @@ export default function Home() {
       <FacebookPage />
       <Contact />
       <Footer />
-      <FloatingWidget />
     </main>
   );
 }

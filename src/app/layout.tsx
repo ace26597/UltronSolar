@@ -3,6 +3,11 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { CookieConsentProvider } from "@/context/CookieConsentContext";
+import ChatWidget from "@/components/chat/ChatWidget";
+import AnalyticsScripts from "@/components/AnalyticsScripts";
+import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -171,19 +176,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-N5PL09KWTM"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-N5PL09KWTM');
-          `}
-        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -192,9 +184,16 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        {children}
-        <Analytics />
-        <SpeedInsights />
+        <CookieConsentProvider>
+          <AnalyticsScripts />
+          <LanguageProvider>
+            {children}
+            <ChatWidget />
+            <Analytics />
+            <SpeedInsights />
+          </LanguageProvider>
+          <CookieBanner />
+        </CookieConsentProvider>
       </body>
     </html>
   );

@@ -1,6 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import CtaButton from "@/components/cta/CtaButton";
+import { useLanguage } from "@/context/LanguageContext";
+import { selectCta } from "@/utils/ctaSelector";
 
 export default function Hero() {
+  const { currentLanguage } = useLanguage();
+  const primaryCta = selectCta({
+    page: 'home',
+    audience: 'residential',
+    language: currentLanguage,
+  });
+  const secondaryCta = selectCta({
+    page: 'home',
+    audience: 'commercial',
+    language: currentLanguage,
+  });
   return (
     <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center text-white overflow-hidden">
       {/* Background Image with Overlay */}
@@ -28,18 +44,18 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="#contact"
-            className="bg-solar-red text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-solar-red-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-          >
-            Get Free Quote
-          </a>
-          <a
-            href="tel:+919422787438"
-            className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-navy-dark transition-all shadow-lg hover:shadow-xl"
-          >
-            Call Us Now
-          </a>
+          <CtaButton
+            ctaId={primaryCta.id}
+            variant="primary"
+            className="!text-white"
+            trackEventName="hero_primary_cta_click"
+            showSubtext={true}
+          />
+          <CtaButton
+            ctaId={secondaryCta.id}
+            variant="secondary"
+            trackEventName="hero_secondary_cta_click"
+          />
         </div>
 
         <div className="mt-12 inline-block bg-white/10 backdrop-blur-md rounded-full px-6 py-2 border border-white/20">
