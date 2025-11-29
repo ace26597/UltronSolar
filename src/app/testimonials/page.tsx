@@ -64,49 +64,31 @@ export default function TestimonialsPage() {
                 </div>
             </section>
 
-            {/* Testimonials Grid */}
-            <section className="py-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial) => (
-                            <div key={testimonial.id} className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 relative">
-                                <div className="absolute top-4 right-8 text-6xl text-gray-100 font-serif">"</div>
-                                <div className="flex text-yellow-400 mb-4">
-                                    {[...Array(testimonial.rating)].map((_, i) => (
-                                        <span key={i}>★</span>
-                                    ))}
-                                </div>
-                                <p className="text-gray-600 mb-6 italic relative z-10">"{testimonial.content}"</p>
-                                <div className="flex items-center">
-                                    <div className="w-10 h-10 bg-primary-blue rounded-full flex items-center justify-center text-white font-bold mr-3">
-                                        {testimonial.name.charAt(0)}
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-navy-dark">{testimonial.name}</h4>
-                                        <p className="text-sm text-gray-500">{testimonial.role}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <p className="text-sm text-gray-500">{testimonial.role}</p>
+        </div>
+                                </div >
+                            </div >
+                        ))
+}
+                    </div >
+                </div >
+            </section >
 
-            {/* CTA Section */}
-            <section className="bg-energy-green py-16 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-6">Join 500+ Happy Customers</h2>
-                    <p className="text-xl mb-8 max-w-2xl mx-auto">
-                        Experience the power of the sun with Ultron Power Systems.
-                    </p>
-                    <Link
-                        href="/#contact"
-                        className="inline-block bg-white text-energy-green px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
-                    >
-                        Start Your Solar Journey
-                    </Link>
-                </div>
-            </section>
-        </main>
+    {/* CTA Section */ }
+    < section className = "bg-energy-green py-16 text-white" >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-6">Join 500+ Happy Customers</h2>
+            <p className="text-xl mb-8 max-w-2xl mx-auto">
+                Experience the power of the sun with Ultron Power Systems.
+            </p>
+            <Link
+                href="/#contact"
+                className="inline-block bg-white text-energy-green px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+            >
+                Start Your Solar Journey
+            </Link>
+        </div>
+            </section >
+        </main >
     );
 }

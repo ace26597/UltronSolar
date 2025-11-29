@@ -74,22 +74,8 @@ export default function ServicesPage() {
                     </div>
                 </div>
             </section>
-
-            {/* CTA Section */}
-            <section className="bg-solar-red py-16 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold mb-6">Ready to Switch to Solar?</h2>
-                    <p className="text-xl mb-8 max-w-2xl mx-auto">
-                        Contact us today for a free site survey and consultation. Let's power your future together.
-                    </p>
-                    <Link
-                        href="/#contact"
-                        className="bg-white text-solar-red px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
-                    >
-                        Contact Us Now
-                    </Link>
-                </div>
-            </section>
-        </main>
+        </div>
+            </section >
+        </main >
     );
 }

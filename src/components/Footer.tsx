@@ -1,4 +1,5 @@
-"use client";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,8 +11,13 @@ export default function Footer() {
           {/* Brand Information */}
           <div className="space-y-6">
             <div>
-              <div className="mb-4">
-                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-16 w-auto bg-white rounded px-2 py-1" />
+              <div className="mb-4 relative h-16 w-40">
+                <Image
+                  src="/logo/Ultron_Power_Logo_1.png"
+                  alt="Ultron Power Systems"
+                  fill
+                  className="bg-white rounded px-2 py-1 object-contain"
+                />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed mb-4">
                 Empowering Maharashtra with sustainable solar energy solutions.
@@ -44,11 +50,11 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3 text-sm text-gray-300">
-              <li><a href="/" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</a></li>
-              <li><a href="/services" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</a></li>
-              <li><a href="/products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</a></li>
-              <li><a href="/projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</a></li>
-              <li><a href="/#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</a></li>
+              <li><Link href="/" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</Link></li>
+              <li><Link href="/services" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</Link></li>
+              <li><Link href="/products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</Link></li>
+              <li><Link href="/projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</Link></li>
+              <li><Link href="/#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</Link></li>
             </ul>
           </div>
 
