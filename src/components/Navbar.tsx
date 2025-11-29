@@ -46,8 +46,8 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div className="flex-shrink-0">
-              <Link href="/" className="text-2xl font-bold text-navy-dark flex items-center gap-2">
-                Ultron <span className="text-solar-red">Power Systems</span>
+              <Link href="/" className="flex items-center gap-2">
+                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-12 w-auto" />
               </Link>
             </div>
 

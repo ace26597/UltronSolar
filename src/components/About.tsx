@@ -13,7 +13,7 @@ export default function About() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="relative">
-            <div className="relative h-96 rounded-xl overflow-hidden shadow-2xl">
+            <div className="relative h-[600px] rounded-xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/ultron_marketing_fam.jpg"
                 alt="Ultron Power Systems Marketing Family"
