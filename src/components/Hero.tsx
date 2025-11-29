@@ -4,9 +4,11 @@ import Image from "next/image";
 import CtaButton from "@/components/cta/CtaButton";
 import { useLanguage } from "@/context/LanguageContext";
 import { selectCta } from "@/utils/ctaSelector";
+import { getTranslations } from "@/lib/translations";
 
 export default function Hero() {
   const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
   const primaryCta = selectCta({
     page: 'home',
     audience: 'residential',
@@ -30,12 +32,12 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Power Your Future <br />
-          <span className="text-solar-red">With Solar Energy</span>
+          {t.hero.title} <br />
+          <span className="text-solar-red">{t.hero.titleHighlight}</span>
         </h1>
 
         <p className="text-xl md:text-2xl mb-8 text-gray-100 max-w-3xl mx-auto font-light">
-          Premium rooftop solar solutions for homes, farms, and businesses in Dhule & North Maharashtra.
+          {t.hero.subtitle}
         </p>
 
         <div className="flex justify-center items-center">
@@ -49,7 +51,7 @@ export default function Hero() {
         </div>
 
         <div className="mt-12 inline-block bg-white/10 backdrop-blur-md rounded-full px-6 py-2 border border-white/20">
-          <span className="text-white font-medium">⚡ Systems starting at ₹99,999</span>
+          <span className="text-white font-medium">{t.hero.priceNote}</span>
         </div>
       </div>
 

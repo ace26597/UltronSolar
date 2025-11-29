@@ -1,6 +1,12 @@
+"use client";
+
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
 
 export default function About() {
+  const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
   return (
     <section id="about" className="py-20 bg-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -23,41 +29,41 @@ export default function About() {
             </div>
             <div className="absolute -bottom-6 -right-6 bg-solar-red p-6 rounded-lg shadow-xl hidden lg:block">
               <div className="text-3xl font-bold text-white">10+</div>
-              <div className="text-sm text-white">Years Experience</div>
+              <div className="text-sm text-white">{t.about.yearsExperience}</div>
             </div>
           </div>
 
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-6">
-              Why Ultron Power Systems?
+              {t.about.title}
             </h2>
             <div className="space-y-3">
               <div className="flex items-start">
                 <span className="text-solar-red text-xl mr-3">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">Complete EPC Solutions</h3>
-                  <p className="text-gray-600">From initial design and engineering to procurement and construction, we handle every aspect of your solar project.</p>
+                  <h3 className="font-semibold text-navy-dark">{t.about.completeEPC.title}</h3>
+                  <p className="text-gray-600">{t.about.completeEPC.description}</p>
                 </div>
               </div>
               <div className="flex items-start">
                 <span className="text-solar-red text-xl mr-3">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">Multiple Applications</h3>
-                  <p className="text-gray-600">We serve residential properties, commercial businesses, industrial facilities, farms, and apartments with customized solutions.</p>
+                  <h3 className="font-semibold text-navy-dark">{t.about.multipleApplications.title}</h3>
+                  <p className="text-gray-600">{t.about.multipleApplications.description}</p>
                 </div>
               </div>
               <div className="flex items-start">
                 <span className="text-solar-red text-xl mr-3">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">High-Quality & Reliable</h3>
-                  <p className="text-gray-600">Our full-service approach ensures peace of mind with premium equipment and expert installation.</p>
+                  <h3 className="font-semibold text-navy-dark">{t.about.highQuality.title}</h3>
+                  <p className="text-gray-600">{t.about.highQuality.description}</p>
                 </div>
               </div>
               <div className="flex items-start">
                 <span className="text-solar-red text-xl mr-3">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">Customized Solutions</h3>
-                  <p className="text-gray-600">We tailor solutions to meet the unique needs of each customer, ensuring optimal performance and value.</p>
+                  <h3 className="font-semibold text-navy-dark">{t.about.customizedSolutions.title}</h3>
+                  <p className="text-gray-600">{t.about.customizedSolutions.description}</p>
                 </div>
               </div>
             </div>
@@ -68,24 +74,20 @@ export default function About() {
         <div className="mt-16 bg-gradient-to-br from-primary-blue to-energy-green p-8 rounded-xl shadow-lg text-white">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-2xl font-bold mb-4">About Us</h3>
+              <h3 className="text-2xl font-bold mb-4">{t.about.aboutUs.title}</h3>
               <p className="mb-6 text-lg leading-relaxed">
-                Ultron Power Systems is the go-to provider of solar power systems and products.
-                Our team of experts is dedicated to customizing solutions tailored to meet the unique
-                needs of each customer. From rooftop installations to farm, residential and business
-                applications, we have you covered.
+                {t.about.aboutUs.description}
               </p>
             </div>
             <div>
               <p className="mb-6 text-lg leading-relaxed">
-                Our high-quality, reliable and full-service approach ensures peace of mind.
-                Contact us today to learn how we can power your future with solar technology.
+                {t.about.aboutUs.description2}
               </p>
               <a
                 href="#contact"
                 className="inline-block bg-energy-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-energy-green-dark transition-colors"
               >
-                Contact Us Today
+                {t.about.aboutUs.contactButton}
               </a>
             </div>
           </div>

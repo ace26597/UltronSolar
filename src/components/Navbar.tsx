@@ -6,11 +6,13 @@ import CtaButton from "@/components/cta/CtaButton";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useLanguage } from "@/context/LanguageContext";
 import { selectCta } from "@/utils/ctaSelector";
+import { getTranslations } from "@/lib/translations";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { currentLanguage } = useLanguage();
+  const t = getTranslations(currentLanguage);
   const navbarCta = selectCta({
     page: 'home',
     audience: 'residential',
@@ -46,7 +48,7 @@ export default function Navbar() {
             </div>
           </div>
           <div className="flex space-x-4">
-            <span>Serving Dhule, Jalgaon & North Maharashtra</span>
+            <span>{t.topBar.serving}</span>
           </div>
         </div>
       </div>
@@ -64,13 +66,20 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-8">
-                {["Home", "Services", "Products", "About", "Blog", "Contact"].map((item) => (
+                {[
+                  { key: 'home', label: t.nav.home, href: '/' },
+                  { key: 'services', label: t.nav.services, href: '/#services' },
+                  { key: 'products', label: t.nav.products, href: '/products' },
+                  { key: 'about', label: t.nav.about, href: '/#about' },
+                  { key: 'blog', label: t.nav.blog, href: '/blog' },
+                  { key: 'contact', label: t.nav.contact, href: '/#contact' },
+                ].map((item) => (
                   <a
-                    key={item}
-                    href={item === "Blog" ? "/blog" : item === "Products" ? "/products" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
+                    key={item.key}
+                    href={item.href}
                     className="text-navy-light hover:text-solar-red font-medium transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 ))}
                 <LanguageToggle />
@@ -106,7 +115,7 @@ export default function Navbar() {
           {/* Drawer Content */}
           <div className="absolute right-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl flex flex-col">
             <div className="p-6 flex justify-between items-center border-b">
-              <span className="text-xl font-bold text-navy-DEFAULT">Menu</span>
+              <span className="text-xl font-bold text-navy-DEFAULT">{t.nav.menu}</span>
               <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-solar-red">
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -115,14 +124,21 @@ export default function Navbar() {
             </div>
 
             <div className="flex-1 overflow-y-auto py-6 px-4 space-y-4">
-              {["Home", "Services", "Products", "About", "Blog", "Contact"].map((item) => (
+              {[
+                { key: 'home', label: t.nav.home, href: '/' },
+                { key: 'services', label: t.nav.services, href: '/#services' },
+                { key: 'products', label: t.nav.products, href: '/products' },
+                { key: 'about', label: t.nav.about, href: '/#about' },
+                { key: 'blog', label: t.nav.blog, href: '/blog' },
+                { key: 'contact', label: t.nav.contact, href: '/#contact' },
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={item === "Blog" ? "/blog" : item === "Products" ? "/products" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
+                  key={item.key}
+                  href={item.href}
                   onClick={() => setIsOpen(false)}
                   className="block px-4 py-3 text-lg font-medium text-navy-dark hover:bg-gray-50 hover:text-solar-red rounded-lg transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
               <div className="pt-6 border-t mt-6">
