@@ -1,5 +1,4 @@
-import Link from "next/link";
-import Image from "next/image";
+"use client";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,23 +10,13 @@ export default function Footer() {
           {/* Brand Information */}
           <div className="space-y-6">
             <div>
-              <div className="mb-4 relative h-16 w-40">
-                <Image
-                  src="/logo/Ultron_Power_Logo_1.png"
-                  alt="Ultron Power Systems"
-                  fill
-                  className="bg-white rounded px-2 py-1 object-contain"
-                />
+              <div className="mb-4">
+                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-16 w-auto bg-white rounded px-2 py-1" />
               </div>
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              <p className="text-gray-300 text-sm leading-relaxed">
                 Empowering Maharashtra with sustainable solar energy solutions.
                 Quality installation, reliable support, and guaranteed savings.
               </p>
-              <div className="flex flex-wrap gap-2 text-xs font-semibold text-energy-green">
-                <span className="bg-white/10 px-2 py-1 rounded">✓ Govt. Approved</span>
-                <span className="bg-white/10 px-2 py-1 rounded">✓ ISO Certified</span>
-                <span className="bg-white/10 px-2 py-1 rounded">✓ 18+ Years</span>
-              </div>
             </div>
 
             <div className="flex space-x-4">
@@ -50,11 +39,11 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3 text-sm text-gray-300">
-              <li><Link href="/" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</Link></li>
-              <li><Link href="/services" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</Link></li>
-              <li><Link href="/products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</Link></li>
-              <li><Link href="/projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</Link></li>
-              <li><Link href="/#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</Link></li>
+              <li><a href="#home" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Home</a></li>
+              <li><a href="#features" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Services</a></li>
+              <li><a href="#products" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Products</a></li>
+              <li><a href="#projects" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Projects</a></li>
+              <li><a href="#contact" className="hover:text-solar-red transition-colors flex items-center"><span className="mr-2">›</span> Contact Us</a></li>
             </ul>
           </div>
 
@@ -78,9 +67,7 @@ export default function Footer() {
             </p>
             <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
               <div className="relative">
-                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
                 <input
-                  id="newsletter-email"
                   type="email"
                   placeholder="Enter your email"
                   className="w-full bg-navy-light text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-solar-red placeholder-gray-500 text-sm"

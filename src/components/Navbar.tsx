@@ -57,14 +57,7 @@ export default function Navbar() {
                 {["Home", "Services", "Products", "About", "Blog", "Contact"].map((item) => (
                   <a
                     key={item}
-                    href={
-                      item === "Blog" ? "/blog" :
-                        item === "Products" ? "/products" :
-                          item === "Services" ? "/services" :
-                            item === "Home" ? "/" :
-                              item === "Projects" ? "/projects" : // Assuming 'Projects' might be added to the list or mapped from 'Services' if it was there. Wait, the list is ["Home", "Services", "Products", "About", "Blog", "Contact"]
-                                `/#${item.toLowerCase()}`
-                    }
+                    href={item === "Blog" ? "/blog" : item === "Products" ? "/products" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
                     className="text-navy-light hover:text-solar-red font-medium transition-colors"
                   >
                     {item}
@@ -113,14 +106,7 @@ export default function Navbar() {
               {["Home", "Services", "Products", "About", "Blog", "Contact"].map((item) => (
                 <a
                   key={item}
-                  href={
-                    item === "Blog" ? "/blog" :
-                      item === "Products" ? "/products" :
-                        item === "Services" ? "/services" :
-                          item === "Home" ? "/" :
-                            item === "Projects" ? "/projects" :
-                              `/#${item.toLowerCase()}`
-                  }
+                  href={item === "Blog" ? "/blog" : item === "Products" ? "/products" : item === "Home" ? "/" : `/#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
                   className="block px-4 py-3 text-lg font-medium text-navy-dark hover:bg-gray-50 hover:text-solar-red rounded-lg transition-colors"
                 >

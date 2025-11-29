@@ -8,17 +8,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.ultronsolar.in"),
-  alternates: {
-    canonical: "/",
-  },
+  metadataBase: new URL("https://ultron-solar.vercel.app"),
   title: "Ultron Power Systems | Solar Rooftop & Solar Water Pumps in Dhule, Maharashtra",
   description: "Ultron Power Systems provides rooftop solar, solar water pumps, inverters and complete EPC solutions in Dhule, Maharashtra. Residential, commercial and farm solar with bank loan and subsidy support.",
   keywords: "solar installation dhule, solar water pump maharashtra, rooftop solar jalgaon, solar epc nashik, ultron power systems, solar subsidy maharashtra, solar inverter dhule",
   openGraph: {
     title: "Ultron Power Systems - Solar Energy Solutions in Dhule, Maharashtra",
     description: "Rooftop solar, solar water pumps, inverters and EPC solutions in Dhule, Maharashtra with financing and subsidy support.",
-    url: "https://www.ultronsolar.in",
+    url: "https://ultron-solar.vercel.app",
     siteName: "Ultron Power Systems",
     images: [
       {

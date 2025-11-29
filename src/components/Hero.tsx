@@ -19,12 +19,12 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Dhule's Trusted Rooftop Solar <br />
-          <span className="text-solar-red">& Water Pump Specialists</span>
+          Power Your Future <br />
+          <span className="text-solar-red">With Solar Energy</span>
         </h1>
 
         <p className="text-xl md:text-2xl mb-8 text-gray-100 max-w-3xl mx-auto font-light">
-          Govt. Subsidy Approved • Bank Loan Available • 18+ Years Experience
+          Premium rooftop solar solutions for homes, farms, and businesses in Dhule & North Maharashtra.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
