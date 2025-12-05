@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { getTranslations } from "@/lib/translations";
 
@@ -16,7 +17,13 @@ export default function Footer() {
           <div className="space-y-6">
             <div>
               <div className="mb-4">
-                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems Logo" className="h-16 w-auto bg-white rounded px-2 py-1" />
+                <Image 
+                  src="/logo/Ultron_Power_Logo_1.png" 
+                  alt="Ultron Power Systems Logo" 
+                  width={160}
+                  height={64}
+                  className="h-16 w-auto bg-white rounded px-2 py-1"
+                />
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
                 {t.footer.description}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import CtaButton from "@/components/cta/CtaButton";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useLanguage } from "@/context/LanguageContext";
@@ -59,7 +60,14 @@ export default function Navbar() {
           <div className="flex justify-between items-center">
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center gap-2">
-                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-12 sm:h-16 md:h-20 w-auto" />
+                <Image 
+                  src="/logo/Ultron_Power_Logo_1.png" 
+                  alt="Ultron Power Systems" 
+                  width={200}
+                  height={80}
+                  className="h-12 sm:h-16 md:h-20 w-auto"
+                  priority
+                />
               </Link>
             </div>
 

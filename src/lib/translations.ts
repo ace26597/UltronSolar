@@ -399,6 +399,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       form: {
         name: 'Name',
         phone: 'Phone Number',
+        city: 'City',
         email: 'Email (Optional)',
         requirement: 'Requirement',
         message: 'Message (Optional)',
@@ -409,6 +410,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         error: 'Something went wrong. Please try again or call us directly.',
         namePlaceholder: 'Your Name',
         phonePlaceholder: '10-digit mobile',
+        cityPlaceholder: 'Dhule, Nashik, etc.',
         emailPlaceholder: 'your@email.com',
         messagePlaceholder: 'Any specific requirements or questions?',
       },
