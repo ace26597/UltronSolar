@@ -65,8 +65,8 @@ const CookieBanner: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-4">
-      <div className="max-w-3xl w-full rounded-xl border border-gray-700 bg-gray-900/95 text-gray-100 shadow-lg p-4 md:p-5">
+    <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-2 sm:px-4 pb-[72px] md:pb-4">
+      <div className="max-w-3xl w-full rounded-xl border border-gray-700 bg-gray-900/95 text-gray-100 shadow-lg p-3 sm:p-4 md:p-5">
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 md:items-start">
           <div className="flex-1">
             {(forceShow || choice !== 'pending') && (
@@ -158,22 +158,22 @@ const CookieBanner: React.FC = () => {
               .
             </p>
           </div>
-          <div className="flex flex-col gap-2 w-full md:w-40 shrink-0">
+          <div className="flex flex-row md:flex-col gap-2 w-full md:w-40 shrink-0">
             <button
               onClick={handleAcceptAll}
-              className="w-full rounded-lg bg-emerald-500 px-3 py-2 text-sm font-semibold text-black hover:bg-emerald-400"
+              className="flex-1 md:w-full rounded-lg bg-emerald-500 px-3 py-3 md:py-2 text-sm font-semibold text-black hover:bg-emerald-400 touch-manipulation min-h-[44px]"
             >
               Accept all
             </button>
             <button
               onClick={handleRejectNonEssential}
-              className="w-full rounded-lg border border-gray-600 px-3 py-2 text-sm text-gray-100 hover:bg-gray-800"
+              className="flex-1 md:w-full rounded-lg border border-gray-600 px-3 py-3 md:py-2 text-sm text-gray-100 hover:bg-gray-800 touch-manipulation min-h-[44px]"
             >
               Essential only
             </button>
             <button
               onClick={handleSaveCustom}
-              className="w-full rounded-lg text-xs text-gray-300 hover:text-white"
+              className="hidden md:block w-full rounded-lg text-xs text-gray-300 hover:text-white"
             >
               Save custom choices
             </button>

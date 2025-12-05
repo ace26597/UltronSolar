@@ -13,17 +13,17 @@ const AnalyticsScripts: React.FC = () => {
 
   return (
     <>
-      {/* Google Analytics */}
+      {/* Google Analytics - lazyOnload for better mobile performance */}
       {allowAnalytics && GA_MEASUREMENT_ID && (
         <>
           <Script
             id="ga4-base"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           />
           <Script
             id="ga4-config"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
           >{`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -35,10 +35,10 @@ const AnalyticsScripts: React.FC = () => {
         </>
       )}
 
-      {/* Meta Pixel */}
+      {/* Meta Pixel - lazyOnload for better mobile performance */}
       {allowMarketing && META_PIXEL_ID && (
         <>
-          <Script id="meta-pixel" strategy="afterInteractive">{`
+          <Script id="meta-pixel" strategy="lazyOnload">{`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};

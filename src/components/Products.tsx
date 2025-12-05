@@ -9,12 +9,14 @@ import { getTranslations } from "@/lib/translations";
 
 const ProductCard = ({ product, ctaId, viewDetailsText }: { product: any; ctaId: string; viewDetailsText: string }) => (
   <div className="min-w-[280px] sm:min-w-[300px] md:min-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group">
-    <div className="relative h-56 w-full overflow-hidden">
+    <div className="relative h-56 w-full overflow-hidden bg-gray-200">
       <Image
         src={product.image}
         alt={product.alt || product.title}
         fill
         className="object-cover group-hover:scale-110 transition-transform duration-500"
+        sizes="(max-width: 640px) 280px, (max-width: 768px) 300px, 320px"
+        loading="lazy"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
         <span className="text-white font-semibold">{viewDetailsText}</span>

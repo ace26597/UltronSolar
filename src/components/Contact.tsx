@@ -10,10 +10,11 @@ export default function Contact() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    email: "",
+    city: "",
     requirement: t.contact.requirements[0],
     message: "",
   });
+  const [showOptional, setShowOptional] = useState(false);
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
@@ -59,7 +60,7 @@ export default function Contact() {
       setForm({
         name: "",
         phone: "",
-        email: "",
+        city: "",
         requirement: t.contact.requirements[0],
         message: "",
       });
@@ -89,8 +90,9 @@ export default function Contact() {
               {t.contact.formTitle || 'Request a Free Quote'}
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              {/* Essential fields - always visible */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.name} *</label>
                   <input
@@ -100,6 +102,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     required
+                    autoComplete="name"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
                     placeholder={t.contact.form.namePlaceholder || 'Your Name'}
                     disabled={status === "loading"}
@@ -117,6 +120,7 @@ export default function Contact() {
                     required
                     pattern="[0-9]{10}"
                     inputMode="numeric"
+                    autoComplete="tel"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
                     placeholder={t.contact.form.phonePlaceholder || '10-digit mobile'}
                     disabled={status === "loading"}
@@ -124,54 +128,69 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.email}</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  inputMode="email"
-                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
-                  placeholder={t.contact.form.emailPlaceholder || 'your@email.com'}
-                  disabled={status === "loading"}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="requirement" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.requirement}</label>
-                <div className="relative">
-                  <select
-                    id="requirement"
-                    name="requirement"
-                    value={form.requirement}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.city || 'City'} *</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={form.city}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white text-gray-900 appearance-none"
+                    required
+                    autoComplete="address-level2"
+                    className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
+                    placeholder={t.contact.form.cityPlaceholder || 'Dhule, Nashik, etc.'}
                     disabled={status === "loading"}
-                  >
-                    {t.contact.requirements.map((req, index) => (
-                      <option key={index} value={req}>{req}</option>
-                    ))}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
-                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="requirement" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.requirement} *</label>
+                  <div className="relative">
+                    <select
+                      id="requirement"
+                      name="requirement"
+                      value={form.requirement}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white text-gray-900 appearance-none touch-manipulation"
+                      disabled={status === "loading"}
+                    >
+                      {t.contact.requirements.map((req, index) => (
+                        <option key={index} value={req}>{req}</option>
+                      ))}
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-700">
+                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div>
+              {/* Optional fields - collapsible on mobile */}
+              <div className="sm:hidden">
+                <button
+                  type="button"
+                  onClick={() => setShowOptional(!showOptional)}
+                  className="text-sm text-primary-blue hover:text-primary-blue-dark flex items-center gap-1 touch-manipulation"
+                >
+                  {showOptional ? '− Hide' : '+ Add'} message (optional)
+                </button>
+              </div>
+
+              <div className={`${showOptional ? 'block' : 'hidden'} sm:block`}>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.contact.form.message}
+                  {t.contact.form.message} <span className="text-gray-400 font-normal">(optional)</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white resize-none"
-                  placeholder={t.contact.form.messagePlaceholder || 'Any specific requirements or questions?'}
+                  rows={3}
+                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white resize-none touch-manipulation"
+                  placeholder={t.contact.form.messagePlaceholder || 'Any specific requirements? (optional)'}
                   disabled={status === "loading"}
                 />
               </div>

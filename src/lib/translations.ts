@@ -155,6 +155,7 @@ export interface Translations {
     form: {
       name: string;
       phone: string;
+      city: string;
       email: string;
       requirement: string;
       message: string;
@@ -165,6 +166,7 @@ export interface Translations {
       error: string;
       namePlaceholder: string;
       phonePlaceholder: string;
+      cityPlaceholder: string;
       emailPlaceholder: string;
       messagePlaceholder: string;
     };
@@ -657,6 +659,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       form: {
         name: 'नाव',
         phone: 'फोन नंबर',
+        city: 'शहर',
         email: 'ईमेल (पर्यायी)',
         requirement: 'गरज',
         message: 'संदेश (पर्यायी)',
@@ -667,6 +670,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         error: 'काहीतरी चुकीचे झाले. कृपया पुन्हा प्रयत्न करा किंवा आम्हाला थेट कॉल करा.',
         namePlaceholder: 'तुमचे नाव',
         phonePlaceholder: '10-अंकी मोबाइल',
+        cityPlaceholder: 'धुळे, नाशिक, इ.',
         emailPlaceholder: 'तुमचा@ईमेल.com',
         messagePlaceholder: 'कोणतीही विशिष्ट गरज किंवा प्रश्न?',
       },
@@ -918,6 +922,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       form: {
         name: 'Name',
         phone: 'Phone Number',
+        city: 'City',
         email: 'Email (Optional)',
         requirement: 'Requirement',
         message: 'Message (Optional)',
@@ -928,6 +933,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         error: 'Something went wrong. Please try again or call us directly.',
         namePlaceholder: 'Your Name',
         phonePlaceholder: '10-digit mobile',
+        cityPlaceholder: 'Dhule, Nashik, etc.',
         emailPlaceholder: 'your@email.com',
         messagePlaceholder: 'Any specific requirements or questions?',
       },

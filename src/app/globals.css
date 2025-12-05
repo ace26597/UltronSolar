@@ -76,6 +76,31 @@ select {
   display: none;
 }
 
+/* Safe area padding for mobile devices with notch */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+.safe-area-pt {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
+/* Reserve space for mobile contact bar */
+@media (max-width: 767px) {
+  main {
+    padding-bottom: 72px;
+  }
+}
+
+/* Improve tap targets on mobile */
+@media (max-width: 640px) {
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+  }
+}
+
 @layer components {
   .blog-content {
     @apply space-y-6 text-gray-700 leading-relaxed text-lg;

@@ -145,8 +145,8 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {/* Floating Button */}
+    <div className="fixed bottom-6 right-6 z-50 hidden md:block">
+      {/* Floating Button - hidden on mobile since we have MobileContactBar */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -164,9 +164,9 @@ export default function ChatWidget() {
         </button>
       )}
 
-      {/* Chat Panel */}
+      {/* Chat Panel - optimized for desktop */}
       {isOpen && (
-        <div className="bg-white rounded-2xl shadow-2xl w-[380px] h-[600px] flex flex-col border border-gray-200">
+        <div className="bg-white rounded-2xl shadow-2xl w-[380px] h-[500px] flex flex-col border border-gray-200">
           {/* Header */}
           <div className="bg-[#25D366] text-white p-4 rounded-t-2xl flex justify-between items-center">
             <div className="flex items-center gap-2">

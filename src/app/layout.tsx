@@ -5,9 +5,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { CookieConsentProvider } from "@/context/CookieConsentContext";
-import ChatWidget from "@/components/chat/ChatWidget";
+import LazyChatWidget from "@/components/chat/LazyChatWidget";
 import AnalyticsScripts from "@/components/AnalyticsScripts";
 import CookieBanner from "@/components/CookieBanner";
+import MobileContactBar from "@/components/MobileContactBar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -194,7 +195,8 @@ export default function RootLayout({
           <AnalyticsScripts />
           <LanguageProvider>
             {children}
-            <ChatWidget />
+            <MobileContactBar />
+            <LazyChatWidget />
             <Analytics />
             <SpeedInsights />
           </LanguageProvider>
