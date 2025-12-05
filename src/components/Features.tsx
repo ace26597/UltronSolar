@@ -62,11 +62,11 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
+              className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group"
             >
               <div className="flex items-start gap-6">
                 <div className="flex-shrink-0 p-3 bg-red-50 rounded-xl group-hover:bg-red-100 transition-colors">

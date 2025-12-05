@@ -59,7 +59,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center">
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center gap-2">
-                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-20 w-auto" />
+                <img src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" className="h-12 sm:h-16 md:h-20 w-auto" />
               </Link>
             </div>
 
@@ -97,9 +97,10 @@ export default function Navbar() {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsOpen(true)}
-                className="text-navy-dark hover:text-solar-red focus:outline-none p-2"
+                className="text-navy-dark hover:text-solar-red focus:outline-none p-2 touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+                aria-label="Open menu"
               >
-                <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
@@ -136,7 +137,7 @@ export default function Navbar() {
                   key={item.key}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="block px-4 py-3 text-lg font-medium text-navy-dark hover:bg-gray-50 hover:text-solar-red rounded-lg transition-colors"
+                  className="block px-4 py-3 text-lg font-medium text-navy-dark hover:bg-gray-50 hover:text-solar-red rounded-lg transition-colors touch-manipulation min-h-[44px] flex items-center"
                 >
                   {item.label}
                 </a>

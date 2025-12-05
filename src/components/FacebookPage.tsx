@@ -62,7 +62,7 @@ export default function FacebookPage() {
               data-hide-cover="false"
               data-show-facepile="true"
               data-adapt-container-width="true"
-              data-small-header="false"
+              data-small-header="true"
             ></div>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default function FacebookPage() {
             href={facebookPageUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors touch-manipulation min-h-[48px] flex items-center justify-center text-sm sm:text-base"
           >
             Visit Our Facebook Page
           </a>

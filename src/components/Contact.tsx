@@ -82,15 +82,15 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
           {/* Contact Form */}
-          <div className="bg-gray-50 rounded-2xl shadow-lg p-8 md:p-10 border border-gray-100">
+          <div className="bg-gray-50 rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 border border-gray-100">
             <h3 className="text-2xl font-bold text-navy-dark mb-6">
               {t.contact.formTitle || 'Request a Free Quote'}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.name} *</label>
                   <input
@@ -100,7 +100,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white"
+                    className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
                     placeholder={t.contact.form.namePlaceholder || 'Your Name'}
                     disabled={status === "loading"}
                   />
@@ -116,7 +116,8 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     pattern="[0-9]{10}"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white"
+                    inputMode="numeric"
+                    className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
                     placeholder={t.contact.form.phonePlaceholder || '10-digit mobile'}
                     disabled={status === "loading"}
                   />
@@ -131,7 +132,8 @@ export default function Contact() {
                   name="email"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white"
+                  inputMode="email"
+                  className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
                   placeholder={t.contact.form.emailPlaceholder || 'your@email.com'}
                   disabled={status === "loading"}
                 />
@@ -177,7 +179,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full bg-solar-red text-white font-bold py-4 rounded-lg hover:bg-solar-red-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-solar-red text-white font-bold py-4 rounded-lg hover:bg-solar-red-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none touch-manipulation min-h-[48px] text-base sm:text-lg"
               >
                 {status === "loading" ? (
                   <span className="flex items-center justify-center">
@@ -261,7 +263,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[300px] border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[250px] sm:h-[300px] md:h-[400px] border border-gray-100">
               <iframe
                 src={`https://www.google.com/maps?q=20.916225468005663,74.76856980970072&hl=en&z=17&output=embed`}
                 width="100%"

@@ -28,16 +28,16 @@ export default function Brands() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
           {brands.map((brand, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-gray-200 flex flex-col items-center justify-center text-center"
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow border border-gray-200 flex flex-col items-center justify-center text-center min-h-[120px] sm:min-h-[140px]"
             >
-              <div className="text-4xl mb-3">
+              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">
                 <span role="img" aria-label={`${brand.name} logo`}>{brand.icon}</span>
               </div>
-              <h3 className="text-sm md:text-base font-semibold text-navy-dark">
+              <h3 className="text-xs sm:text-sm md:text-base font-semibold text-navy-dark">
                 {brand.name}
               </h3>
             </div>

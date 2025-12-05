@@ -8,7 +8,7 @@ import { selectCta } from "@/utils/ctaSelector";
 import { getTranslations } from "@/lib/translations";
 
 const ProductCard = ({ product, ctaId, viewDetailsText }: { product: any; ctaId: string; viewDetailsText: string }) => (
-  <div className="min-w-[280px] md:min-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group">
+  <div className="min-w-[280px] sm:min-w-[300px] md:min-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group">
     <div className="relative h-56 w-full overflow-hidden">
       <Image
         src={product.image}
@@ -50,7 +50,8 @@ export default function Products() {
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = direction === "left" ? -340 : 340;
+      const cardWidth = window.innerWidth < 640 ? 300 : 340;
+      const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
       current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -113,8 +114,8 @@ export default function Products() {
 
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar -mx-4 px-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
         >
           {products.map((product, index) => (
             <ProductCard key={index} product={product} ctaId={productCta.id} viewDetailsText={t.products.viewDetails} />

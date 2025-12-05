@@ -37,12 +37,12 @@ export default function Gallery() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           {projects.map((project, index) => (
             <div
               key={index}
               onClick={() => setSelectedImage(index)}
-              className="relative h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+              className="relative h-48 sm:h-56 md:h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1 touch-manipulation"
             >
               <Image
                 src={project.src}
@@ -69,8 +69,9 @@ export default function Gallery() {
           onClick={() => setSelectedImage(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white text-5xl hover:text-solar-red transition-colors z-50 focus:outline-none"
+            className="absolute top-4 right-4 text-white text-4xl md:text-5xl hover:text-solar-red transition-colors z-50 focus:outline-none touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setSelectedImage(null)}
+            aria-label="Close image"
           >
             &times;
           </button>

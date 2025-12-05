@@ -26,17 +26,17 @@ export default function WeServe() {
   return (
     <section className="bg-white py-12 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 mb-8">
           {sectors.map((sector, index) => (
             <Link
               key={index}
               href={sector.link}
-              className="flex flex-col items-center p-4 rounded-lg hover:bg-gray-50 transition-colors group text-center"
+              className="flex flex-col items-center p-3 sm:p-4 rounded-lg hover:bg-gray-50 transition-colors group text-center touch-manipulation min-h-[100px] sm:min-h-[120px] justify-center"
             >
-              <span className="text-3xl mb-2 group-hover:scale-110 transition-transform">
+              <span className="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">
                 {sector.icon}
               </span>
-              <span className="font-semibold text-navy-dark">{sector.title}</span>
+              <span className="font-semibold text-navy-dark text-sm sm:text-base">{sector.title}</span>
               <span className="text-xs text-primary-blue font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
                 {sector.getQuote}
               </span>

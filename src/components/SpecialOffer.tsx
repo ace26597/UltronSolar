@@ -29,12 +29,12 @@ export default function SpecialOffer() {
 
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col lg:flex-row">
           {/* Left Column: Pricing & Inclusions */}
-          <div className="lg:w-1/2 p-8 md:p-12 bg-gray-50 border-r border-gray-100">
+          <div className="lg:w-1/2 p-6 sm:p-8 md:p-12 bg-gray-50 border-b lg:border-b-0 lg:border-r border-gray-100">
             <div className="text-center lg:text-left mb-8">
               <h3 className="text-2xl font-bold text-navy-dark mb-2">{t.specialOffer.systemTitle}</h3>
-              <div className="flex items-baseline justify-center lg:justify-start gap-2">
-                <span className="text-5xl md:text-6xl font-black text-solar-red">{t.specialOffer.price}</span>
-                <span className="text-gray-500 text-lg line-through">{t.specialOffer.originalPrice}</span>
+              <div className="flex items-baseline justify-center lg:justify-start gap-2 flex-wrap">
+                <span className="text-4xl sm:text-5xl md:text-6xl font-black text-solar-red">{t.specialOffer.price}</span>
+                <span className="text-gray-500 text-base sm:text-lg line-through">{t.specialOffer.originalPrice}</span>
               </div>
               <p className="text-sm text-gray-500 mt-2">
                 {t.specialOffer.exclusiveNote}
@@ -55,7 +55,7 @@ export default function SpecialOffer() {
           </div>
 
           {/* Right Column: Benefits & CTA */}
-          <div className="lg:w-1/2 p-8 md:p-12 bg-white flex flex-col justify-center">
+          <div className="lg:w-1/2 p-6 sm:p-8 md:p-12 bg-white flex flex-col justify-center">
             <div className="mb-8">
               <h4 className="font-bold text-navy-dark uppercase tracking-wide text-sm mb-6">{t.specialOffer.whyGrab}</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -83,7 +83,7 @@ export default function SpecialOffer() {
             <div className="mt-auto">
               <a
                 href="#contact"
-                className="block w-full text-center bg-solar-red text-white px-8 py-4 rounded-xl font-bold text-xl hover:bg-solar-red-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="block w-full text-center bg-solar-red text-white px-6 sm:px-8 py-4 rounded-xl font-bold text-lg sm:text-xl hover:bg-solar-red-dark transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 touch-manipulation min-h-[48px] flex items-center justify-center"
               >
                 {t.specialOffer.claimButton}
               </a>

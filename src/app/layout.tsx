@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   title: "Ultron Power Systems | Solar Rooftop & Solar Water Pumps in Dhule, Maharashtra",
   description: "Ultron Power Systems provides rooftop solar, solar water pumps, inverters and complete EPC solutions in Dhule, Maharashtra. Residential, commercial and farm solar with bank loan and subsidy support.",
   keywords: "solar installation dhule, solar water pump maharashtra, rooftop solar jalgaon, solar epc nashik, ultron power systems, solar subsidy maharashtra, solar inverter dhule",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   alternates: {
     canonical: "https://www.ultronsolar.in/",
   },
