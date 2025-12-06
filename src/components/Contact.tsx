@@ -282,12 +282,12 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[250px] sm:h-[300px] md:h-[400px] border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[250px] sm:h-[300px] md:h-[400px] border border-gray-100 w-full">
               <iframe
                 src={`https://www.google.com/maps?q=20.916225468005663,74.76856980970072&hl=en&z=17&output=embed`}
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{ border: 0, maxWidth: '100%' }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

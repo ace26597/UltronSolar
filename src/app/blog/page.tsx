@@ -20,7 +20,7 @@ export default function BlogPage() {
     const highlightTags = Array.from(new Set(blogPosts.flatMap((post) => post.tags ?? []))).slice(0, 6);
 
     return (
-        <main className="min-h-screen bg-gray-50">
+        <main className="min-h-screen bg-gray-50 overflow-x-hidden w-full">
             <Navbar />
 
             <section className="bg-navy-dark text-white py-20">
@@ -52,8 +52,9 @@ export default function BlogPage() {
                                 alt={featuredPost.title}
                                 fill
                                 priority
-                                className="object-cover"
+                                className="object-cover object-center"
                                 sizes="(max-width: 1024px) 100vw, 50vw"
+                                quality={85}
                             />
                             <span className="absolute top-4 left-4 bg-white text-navy-dark text-xs font-semibold tracking-wide px-3 py-1 rounded-full">Editor&rsquo;s pick</span>
                         </Link>
@@ -101,8 +102,9 @@ export default function BlogPage() {
                                         src={post.imageUrl}
                                         alt={post.title}
                                         fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        quality={85}
                                     />
                                 </Link>
                                 <div className="p-6 flex flex-col flex-1">

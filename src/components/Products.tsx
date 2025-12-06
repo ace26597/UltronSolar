@@ -14,9 +14,10 @@ const ProductCard = ({ product, ctaId, viewDetailsText }: { product: any; ctaId:
         src={product.image}
         alt={product.alt || product.title}
         fill
-        className="object-cover group-hover:scale-110 transition-transform duration-500"
+        className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
         sizes="(max-width: 640px) 280px, (max-width: 768px) 300px, 320px"
         loading="lazy"
+        quality={80}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
         <span className="text-white font-semibold">{viewDetailsText}</span>
@@ -116,7 +117,7 @@ export default function Products() {
 
         <div
           ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar -mx-4 px-4"
+          className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
         >
           {products.map((product, index) => (

@@ -15,14 +15,14 @@ export default function Hero() {
     language: currentLanguage,
   });
   return (
-    <section id="home" className="relative h-screen min-h-[500px] max-h-[800px] md:min-h-[600px] md:max-h-none flex items-center justify-center text-white overflow-hidden">
+    <section id="home" className="relative h-screen min-h-[500px] max-h-[800px] md:min-h-[600px] md:max-h-none flex items-center justify-center text-white overflow-hidden w-full">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 w-full h-full">
         <Image
           src="/images/gallery-project-9.jpg"
           alt="Rooftop Solar Panel Installation in Dhule, Maharashtra"
           fill
-          className="object-cover"
+          className="object-cover object-center"
           priority
           fetchPriority="high"
           quality={75}

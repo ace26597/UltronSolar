@@ -8,7 +8,7 @@ export default function SpecialOffer() {
   const { currentLanguage } = useLanguage();
   const t = getTranslations(currentLanguage);
   return (
-    <section id="special-offer" className="py-20 bg-gradient-to-br from-navy-dark to-navy-DEFAULT text-white overflow-hidden relative">
+    <section id="special-offer" className="py-20 bg-gradient-to-br from-navy-dark to-navy-DEFAULT text-white overflow-hidden relative w-full">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/images/pattern.png')] bg-repeat opacity-20"></div>

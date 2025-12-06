@@ -111,8 +111,8 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="relative">
-          <div className="overflow-hidden px-4 -mx-4">
+        <div className="relative overflow-hidden">
+          <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
@@ -120,7 +120,7 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 px-4"
+                  className="flex-shrink-0 px-2 sm:px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
                   <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full flex flex-col relative">

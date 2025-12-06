@@ -82,8 +82,8 @@ export default function YouTubeVideos() {
           </p>
         </div>
 
-        <div className="relative">
-          <div className="overflow-hidden px-4 -mx-4">
+        <div className="relative overflow-hidden">
+          <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
@@ -91,7 +91,7 @@ export default function YouTubeVideos() {
               {videos.map((video, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 px-4"
+                  className="flex-shrink-0 px-2 sm:px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
