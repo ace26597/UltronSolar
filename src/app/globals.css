@@ -4,47 +4,44 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --background-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+/* Force light mode - prevent dark mode issues */
 html {
   font-size: 16px;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  width: 100%;
-  max-width: 100vw;
+  color-scheme: light;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(var(--background-rgb));
   @apply antialiased;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
-  position: relative;
 }
 
 /* Mobile optimizations */
 @media (max-width: 640px) {
   html {
     font-size: 14px;
+  }
+  
+  /* Prevent horizontal overflow on mobile */
+  body, #__next, main {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  /* Ensure images don't overflow */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -96,31 +93,23 @@ select {
 @media (max-width: 767px) {
   main {
     padding-bottom: 72px;
+    overflow-x: hidden;
   }
-}
-
-/* Prevent horizontal overflow on all elements */
-* {
-  max-width: 100%;
-}
-
-/* Ensure containers don't overflow */
-.container,
-.max-w-7xl,
-.max-w-5xl,
-.max-w-4xl,
-.max-w-3xl,
-.max-w-2xl {
-  overflow-x: hidden;
-}
-
-/* Fix image overflow on mobile */
-img,
-picture,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  
+  /* Fix container width on mobile */
+  .max-w-7xl,
+  .max-w-3xl,
+  .max-w-2xl {
+    max-width: calc(100vw - 2rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Prevent any fixed-width elements from causing overflow */
+  section {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 }
 
 /* Improve tap targets on mobile */
@@ -178,21 +167,6 @@ video {
 
   .blog-content img {
     @apply rounded-2xl shadow-lg my-8;
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .blog-content .float-right,
-  .blog-content .float-left {
-    @apply float-none md:float-right;
-    width: 100% !important;
-  }
-  
-  @media (min-width: 768px) {
-    .blog-content .float-right {
-      width: 50% !important;
-    }
   }
 
   .blog-content strong {

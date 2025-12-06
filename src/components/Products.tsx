@@ -8,31 +8,30 @@ import { selectCta } from "@/utils/ctaSelector";
 import { getTranslations } from "@/lib/translations";
 
 const ProductCard = ({ product, ctaId, viewDetailsText }: { product: any; ctaId: string; viewDetailsText: string }) => (
-  <div className="min-w-[280px] sm:min-w-[300px] md:min-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group">
-    <div className="relative h-56 w-full overflow-hidden bg-gray-200">
+  <div className="w-[calc(100vw-3rem)] min-w-[260px] max-w-[320px] sm:min-w-[280px] sm:max-w-[300px] md:min-w-[300px] md:max-w-[320px] snap-center bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col border border-gray-100 group flex-shrink-0">
+    <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-gray-200">
       <Image
         src={product.image}
         alt={product.alt || product.title}
         fill
         className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
-        sizes="(max-width: 640px) 280px, (max-width: 768px) 300px, 320px"
+        sizes="(max-width: 640px) 260px, (max-width: 768px) 280px, 320px"
         loading="lazy"
-        quality={80}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
         <span className="text-white font-semibold">{viewDetailsText}</span>
       </div>
     </div>
-    <div className="p-6 flex-grow flex flex-col">
-      <h3 className="text-xl font-bold text-navy-dark mb-2 group-hover:text-solar-red transition-colors">
+    <div className="p-4 sm:p-6 flex-grow flex flex-col">
+      <h3 className="text-lg sm:text-xl font-bold text-navy-dark mb-2 group-hover:text-solar-red transition-colors">
         {product.title}
       </h3>
-      <p className="text-gray-600 text-sm leading-relaxed mb-4 flex-grow">
+      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4 flex-grow">
         {product.description}
       </p>
       <CtaButton
         ctaId={ctaId}
-        className="!w-full !text-center !bg-gray-50 !text-navy-dark !px-4 !py-2 !text-base !font-semibold hover:!bg-solar-red hover:!text-white !border !border-gray-200 hover:!border-solar-red !shadow-none hover:!shadow-md !transform-none hover:!-translate-y-0"
+        className="!w-full !text-center !bg-gray-50 !text-navy-dark !px-4 !py-2 !text-sm sm:!text-base !font-semibold hover:!bg-solar-red hover:!text-white !border !border-gray-200 hover:!border-solar-red !shadow-none hover:!shadow-md !transform-none hover:!-translate-y-0"
         variant="outline"
         trackEventName="product_card_cta_click"
       />
@@ -85,19 +84,19 @@ export default function Products() {
   });
 
   return (
-    <section id="products" className="py-20 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-end mb-12">
+    <section id="products" className="py-12 sm:py-16 md:py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 sm:mb-12 gap-4">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-dark mb-2 sm:mb-4">
               {t.products.title}
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600">
               {t.products.subtitle}
             </p>
           </div>
 
-          <div className="hidden md:flex gap-2">
+          <div className="hidden md:flex gap-2 flex-shrink-0">
             <button
               onClick={() => scroll("left")}
               className="p-2 rounded-full bg-white border border-gray-300 text-navy-dark hover:bg-solar-red hover:text-white hover:border-solar-red transition-colors shadow-sm"
@@ -117,7 +116,7 @@ export default function Products() {
 
         <div
           ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar"
+          className="flex gap-3 sm:gap-4 md:gap-6 overflow-x-auto pb-4 sm:pb-8 snap-x snap-mandatory hide-scrollbar -mx-4 px-4"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}
         >
           {products.map((product, index) => (

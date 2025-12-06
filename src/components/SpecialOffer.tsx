@@ -8,21 +8,21 @@ export default function SpecialOffer() {
   const { currentLanguage } = useLanguage();
   const t = getTranslations(currentLanguage);
   return (
-    <section id="special-offer" className="py-20 bg-gradient-to-br from-navy-dark to-navy-DEFAULT text-white overflow-hidden relative w-full">
+    <section id="special-offer" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-navy-dark to-navy-DEFAULT text-white overflow-hidden relative">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/images/pattern.png')] bg-repeat opacity-20"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-12">
-          <span className="inline-block bg-solar-red text-white px-4 py-1 rounded-full text-sm font-bold mb-4 animate-pulse">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-hidden">
+        <div className="text-center mb-8 sm:mb-12">
+          <span className="inline-block bg-solar-red text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-3 sm:mb-4 animate-pulse">
             {t.specialOffer.badge}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4">
             {t.specialOffer.title}
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
             {t.specialOffer.subtitle}
           </p>
         </div>

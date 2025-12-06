@@ -24,17 +24,17 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-gray-50">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-gray-50 overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-navy-dark mb-4">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-navy-dark mb-3 sm:mb-4">
             {t.faq.title}
           </h2>
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm sm:text-base">
             {t.faq.subtitle}
           </p>
         </div>

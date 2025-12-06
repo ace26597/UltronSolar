@@ -10,9 +10,9 @@ export default function Footer() {
   const t = getTranslations(currentLanguage);
 
   return (
-    <footer className="bg-navy-dark text-white pt-16 pb-8 border-t border-navy-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16">
+    <footer className="bg-navy-dark text-white pt-10 sm:pt-12 md:pt-16 pb-6 sm:pb-8 border-t border-navy-light overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-12 mb-10 sm:mb-12 md:mb-16">
           {/* Brand Information */}
           <div className="space-y-6">
             <div>

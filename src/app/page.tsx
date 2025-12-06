@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden w-full">
+    <main className="min-h-screen overflow-x-hidden w-full max-w-[100vw]">
       <Navbar />
       <Hero />
       <WeServe />

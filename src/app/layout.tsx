@@ -195,7 +195,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} overflow-x-hidden w-full max-w-[100vw]`}>
         <CookieConsentProvider>
           <AnalyticsScripts />
           <LanguageProvider>

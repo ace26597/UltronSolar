@@ -24,9 +24,9 @@ export default function WeServe() {
   ];
 
   return (
-    <section className="bg-white py-12 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4 mb-8">
+    <section className="bg-white py-8 sm:py-12 border-b border-gray-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
           {sectors.map((sector, index) => (
             <Link
               key={index}

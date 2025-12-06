@@ -8,7 +8,7 @@ export default function About() {
   const { currentLanguage } = useLanguage();
   const t = getTranslations(currentLanguage);
   return (
-    <section id="about" className="py-20 bg-white relative overflow-hidden">
+    <section id="about" className="py-12 sm:py-16 md:py-20 bg-white relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -16,25 +16,25 @@ export default function About() {
         }}></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="relative">
-            <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden shadow-2xl w-full">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[3/4] lg:aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/ultron_marketing_fam.jpg"
                 alt="Happy Indian Family with Solar Savings - Ultron Power Systems Marketing"
                 fill
                 className="object-cover object-center"
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
-                quality={85}
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgIBAwQDAAAAAAAAAAAAAQIDBAAFESEGEhMxQVFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAaEQACAwEBAAAAAAAAAAAAAAABAgADESEx/9oADAMBAAIRAxEAPwCvq2oarHbkSG9ZRFYqoWRgAAo2AA9AADj2Mxh6i1U9azNLJNJI7sWZnYkkn2Sf3GYpVr0lTGJJWf/Z"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-solar-red p-6 rounded-lg shadow-xl hidden lg:block">
-              <div className="text-3xl font-bold text-white">10+</div>
-              <div className="text-sm text-white">{t.about.yearsExperience}</div>
+            {/* Years experience badge - visible on all screens */}
+            <div className="absolute -bottom-3 right-2 sm:-bottom-4 sm:right-4 lg:-bottom-6 lg:-right-6 bg-solar-red p-3 sm:p-4 lg:p-6 rounded-lg shadow-xl">
+              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">10+</div>
+              <div className="text-xs sm:text-sm text-white">{t.about.yearsExperience}</div>
             </div>
           </div>
 

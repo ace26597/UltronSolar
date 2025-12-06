@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
     return (
-        <main className="min-h-screen bg-gray-50 overflow-x-hidden w-full">
+        <main className="min-h-screen bg-gray-50">
             <Navbar />
 
             {/* Header */}
@@ -38,9 +38,8 @@ export default function ProductsPage() {
                                     src={product.imageUrl}
                                     alt={product.name}
                                     fill
-                                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                    quality={85}
                                 />
                             </Link>
                             <div className="p-6 flex-1 flex flex-col">

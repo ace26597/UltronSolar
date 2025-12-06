@@ -15,7 +15,7 @@ export default function Hero() {
     language: currentLanguage,
   });
   return (
-    <section id="home" className="relative h-screen min-h-[500px] max-h-[800px] md:min-h-[600px] md:max-h-none flex items-center justify-center text-white overflow-hidden w-full">
+    <section id="home" className="relative min-h-[100svh] sm:min-h-[500px] sm:max-h-[800px] md:min-h-[600px] md:max-h-none flex items-center justify-center text-white overflow-hidden w-full">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <Image
@@ -34,17 +34,17 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight px-2">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
           {t.hero.title} <br />
           <span className="text-solar-red">{t.hero.titleHighlight}</span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-gray-100 max-w-3xl mx-auto font-light px-2">
+        <p className="text-sm sm:text-base md:text-xl lg:text-2xl mb-6 md:mb-8 text-gray-100 max-w-3xl mx-auto font-light px-1">
           {t.hero.subtitle}
         </p>
 
-        <div className="flex justify-center items-center px-2">
+        <div className="flex justify-center items-center">
           <CtaButton
             ctaId={primaryCta.id}
             variant="primary"
@@ -54,7 +54,7 @@ export default function Hero() {
           />
         </div>
 
-        <div className="mt-8 md:mt-12 inline-block bg-white/10 backdrop-blur-md rounded-full px-4 md:px-6 py-2 border border-white/20 mx-2">
+        <div className="mt-6 md:mt-12 inline-block bg-white/10 backdrop-blur-md rounded-full px-3 sm:px-4 md:px-6 py-2 border border-white/20">
           <span className="text-white font-medium text-xs sm:text-sm md:text-base">{t.hero.priceNote}</span>
         </div>
       </div>

@@ -71,13 +71,13 @@ export default function YouTubeVideos() {
   }
 
   return (
-    <section id="videos" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
+    <section id="videos" className="py-12 sm:py-16 md:py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-dark mb-3 sm:mb-4">
             Our Videos
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Watch our installation process, customer testimonials, and solar energy solutions
           </p>
         </div>
@@ -91,7 +91,7 @@ export default function YouTubeVideos() {
               {videos.map((video, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 px-2 sm:px-4"
+                  className="flex-shrink-0 px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-lg h-full flex flex-col">
@@ -135,13 +135,15 @@ export default function YouTubeVideos() {
 
           {/* Dots Navigation */}
           {maxIndex > 0 && (
-            <div className="flex justify-center mt-8 gap-2">
+            <div className="flex justify-center items-center mt-6 sm:mt-8 gap-1 sm:gap-2">
               {Array.from({ length: maxIndex + 1 }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 box-content p-2 ${
-                    i === currentIndex ? 'bg-solar-red w-8' : 'bg-gray-300 hover:bg-gray-400'
+                  className={`rounded-full transition-all duration-300 touch-manipulation ${
+                    i === currentIndex 
+                      ? 'w-6 sm:w-8 h-3 bg-solar-red' 
+                      : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />

@@ -63,7 +63,7 @@ export default async function ProductPage({ params }: Props) {
     }
 
     return (
-        <main className="min-h-screen bg-white overflow-x-hidden w-full">
+        <main className="min-h-screen bg-white">
             <Navbar />
 
             <div className="pt-24 pb-16">
@@ -84,10 +84,9 @@ export default async function ProductPage({ params }: Props) {
                                 src={product.imageUrl}
                                 alt={product.name}
                                 fill
-                                className="object-cover object-center"
+                                className="object-cover"
                                 priority
                                 sizes="(max-width: 1024px) 100vw, 50vw"
-                                quality={85}
                             />
                         </div>
 

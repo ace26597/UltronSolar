@@ -91,8 +91,8 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
             What Our Clients Say
@@ -123,23 +123,23 @@ export default function Testimonials() {
                   className="flex-shrink-0 px-2 sm:px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
-                  <div className="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full flex flex-col relative">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-md border-4 border-white">
+                  <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full flex flex-col relative mx-auto max-w-[calc(100vw-3rem)] sm:max-w-none">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold shadow-md border-4 border-white">
                       {testimonial.name.charAt(0)}
                     </div>
 
-                    <div className="flex justify-center text-solar-red mb-4 mt-4">
+                    <div className="flex justify-center text-solar-red mb-3 sm:mb-4 mt-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-lg">★</span>
+                        <span key={i} className="text-base sm:text-lg">★</span>
                       ))}
                     </div>
 
-                    <p className="text-gray-700 mb-6 italic leading-relaxed flex-grow text-sm md:text-base">
+                    <p className="text-gray-700 mb-4 sm:mb-6 italic leading-relaxed flex-grow text-xs sm:text-sm md:text-base">
                       &quot;{testimonial.content}&quot;
                     </p>
 
                     <div>
-                      <h3 className="text-lg font-bold text-navy-dark">
+                      <h3 className="text-base sm:text-lg font-bold text-navy-dark">
                         {testimonial.name}
                       </h3>
                       <p className="text-primary-blue text-xs font-medium mt-1">
@@ -169,12 +169,15 @@ export default function Testimonials() {
           </button>
 
           {/* Dots Navigation */}
-          <div className="flex justify-center mt-8 gap-2">
+          <div className="flex justify-center items-center mt-8 gap-1 sm:gap-2">
               {Array.from({ length: maxIndex + 1 }).map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}
-                  className={`w-3 h-3 mx-1 rounded-full transition-all duration-300 box-content p-2 touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center ${i === currentIndex ? 'bg-solar-red w-8' : 'bg-gray-300 hover:bg-gray-400'
+                  className={`rounded-full transition-all duration-300 touch-manipulation ${
+                    i === currentIndex 
+                      ? 'w-6 sm:w-8 h-3 bg-solar-red' 
+                      : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />

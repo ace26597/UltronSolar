@@ -63,19 +63,19 @@ export default function FacebookPage() {
   const facebookPageUrl = "https://www.facebook.com/ultronpowersystems";
 
   return (
-    <section ref={sectionRef} id="facebook-timeline" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
+    <section ref={sectionRef} id="facebook-timeline" className="py-12 sm:py-16 md:py-20 bg-gray-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy-dark mb-3 sm:mb-4">
             Follow Us on Facebook
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Stay updated with our latest projects, promotions, and solar energy news
           </p>
         </div>
 
         <div className="w-full flex justify-center overflow-hidden">
-          <div className="w-full max-w-[500px] overflow-hidden bg-white rounded-lg shadow-sm min-h-[400px]">
+          <div className="w-full max-w-full sm:max-w-[500px] overflow-hidden bg-white rounded-lg shadow-sm min-h-[350px] sm:min-h-[400px]">
             {isVisible ? (
               <div
                 className="fb-page"

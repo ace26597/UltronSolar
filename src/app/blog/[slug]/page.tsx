@@ -73,19 +73,18 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const primaryTag = post.tags?.[0] ?? "Solar Insights";
 
     return (
-        <main className="min-h-screen bg-white overflow-x-hidden w-full">
+        <main className="min-h-screen bg-white">
             <Navbar />
 
             <article>
-                <section className="relative h-[420px] md:h-[520px] w-full overflow-hidden">
+                <section className="relative h-[420px] md:h-[520px] w-full">
                     <Image
                         src={post.imageUrl}
                         alt={post.title}
                         fill
                         priority
-                        className="object-cover object-center"
-                        sizes="100vw"
-                        quality={85}
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/80"></div>
                     <div className="absolute inset-0 flex items-end">
@@ -127,8 +126,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     if (parts.length > 2) {
                                         // Insert after the second paragraph
                                         const imageHtml = `
-                                            <div class="float-none md:float-right ml-0 md:ml-6 mb-6 w-full md:w-1/2 relative h-64 md:h-80 rounded-xl overflow-hidden my-4">
-                                                <img src="${post.containerImageUrl}" alt="Blog container image" class="object-cover object-center w-full h-full" style="max-width: 100%; height: auto;" />
+                                            <div class="float-right ml-6 mb-6 w-full md:w-1/2 relative h-64 md:h-80 rounded-xl overflow-hidden my-4">
+                                                <img src="${post.containerImageUrl}" alt="Blog container image" class="object-cover w-full h-full" />
                                             </div>
                                         `;
                                         // Reconstruct the content: first 2 paragraphs + image + rest
@@ -147,9 +146,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                         src={post.footerImageUrl}
                                         alt="Blog footer image"
                                         fill
-                                        className="object-cover object-center"
-                                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 800px"
-                                        quality={85}
+                                        className="object-cover"
                                     />
                                 </div>
                             )}
