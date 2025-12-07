@@ -11,7 +11,11 @@ import CookieBanner from "@/components/CookieBanner";
 import MobileContactBar from "@/components/MobileContactBar";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap', // Prevents font from blocking render - improves FCP
+  preload: true,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ultronsolar.in"),
@@ -183,11 +187,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preload critical hero image for faster FCP */}
+        <link
+          rel="preload"
+          href="/images/gallery-project-9.jpg"
+          as="image"
+          type="image/jpeg"
+        />
         {/* Preconnect to critical origins for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
