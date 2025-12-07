@@ -18,13 +18,13 @@ export default function About() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="relative">
-            <div className="relative w-full aspect-[4/3] sm:aspect-[3/4] lg:aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+          <div className="relative w-full">
+            <div className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[550px] rounded-xl overflow-hidden shadow-2xl bg-gray-50">
               <Image
                 src="/images/ultron_marketing_fam.jpg"
                 alt="Happy Indian Family with Solar Savings - Ultron Power Systems Marketing"
                 fill
-                className="object-cover object-center"
+                className="object-contain object-center"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
                 loading="lazy"
                 placeholder="blur"
