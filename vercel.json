@@ -5,8 +5,7 @@
       "maxDuration": 10
     },
     "api/solar.py": {
-      "maxDuration": 60,
-      "runtime": "python3.9"
+      "maxDuration": 60
     }
   },
   "headers": [
