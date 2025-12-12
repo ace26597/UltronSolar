@@ -29,6 +29,7 @@ npm install
 ```env
 OPENAI_API_KEY=sk-your-openai-api-key-here
 OPENAI_MODEL_NAME=gpt-4o-mini
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your-google-maps-api-key-here
 ```
 
 3. Run the development server:
@@ -45,14 +46,19 @@ For the AI chatbot to work, you need to set up the following environment variabl
 **Local Development (`.env.local`):**
 - `OPENAI_API_KEY` (required): Your OpenAI API key
 - `OPENAI_MODEL_NAME` (optional): Model to use, defaults to `gpt-4o-mini`
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` (optional): Google Maps API key for map features
 
 **Vercel Deployment:**
 1. Go to Vercel Dashboard → Your Project → Settings → Environment Variables
 2. Add the following variables:
    - `OPENAI_API_KEY` = your OpenAI API key
    - `OPENAI_MODEL_NAME` = `gpt-4o-mini` (optional)
+   - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` = your Google Maps API key (optional)
 
-**Note:** The OpenAI API key is kept secure on the server-side. Never expose it in client-side code.
+**Important Security Notes:**
+- The OpenAI API key is kept secure on the server-side. Never expose it in client-side code.
+- The Google Maps API key uses the `NEXT_PUBLIC_` prefix because it's needed client-side. **Always restrict your Google Maps API key** in Google Cloud Console to specific domains (e.g., `ultronsolar.in`, `ultronsolar.vercel.app`) to prevent unauthorized usage.
+- Never commit API keys to the repository. Always use environment variables.
 
 ### Build for Production
 
