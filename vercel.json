@@ -5,9 +5,11 @@
       "maxDuration": 10
     },
     "api/solar.py": {
+      "runtime": "@vercel/python",
       "maxDuration": 60
     },
     "api/test.py": {
+      "runtime": "@vercel/python",
       "maxDuration": 10
     }
   },
