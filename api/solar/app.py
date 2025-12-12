@@ -64,7 +64,7 @@ except ValueError as e:
     logger.warning(f"ImageService initialization failed: {e}. Some endpoints may not work.")
 
 
-@app.post("/jobs", response_model=SolarJobResponse)
+@app.post("/api/solar/jobs", response_model=SolarJobResponse)
 async def create_solar_job(
     image: UploadFile = File(...),
     meta: str = Form(...)
@@ -124,7 +124,7 @@ async def create_solar_job(
         )
 
 
-@app.post("/jobs/{job_id}/run", response_model=SolarJobResponse)
+@app.post("/api/solar/jobs/{job_id}/run", response_model=SolarJobResponse)
 async def run_solar_job(job_id: str):
     """
     Process a solar simulation job.
@@ -222,7 +222,7 @@ async def run_solar_job(job_id: str):
         )
 
 
-@app.get("/jobs/{job_id}", response_model=SolarJobStatus)
+@app.get("/api/solar/jobs/{job_id}", response_model=SolarJobStatus)
 async def get_solar_job_status(job_id: str):
     """
     Get the status of a solar simulation job.
@@ -264,21 +264,21 @@ async def get_solar_job_status(job_id: str):
         )
 
 
-@app.get("/")
+@app.get("/api/solar")
 async def root():
     """Root endpoint for debugging."""
     return {
         "service": "solar-simulation-api",
         "version": "2.0.0",
         "endpoints": {
-            "POST /jobs": "Create a solar simulation job",
-            "POST /jobs/{job_id}/run": "Process a solar simulation job",
-            "GET /jobs/{job_id}": "Get job status",
-            "GET /health": "Health check"
+            "POST /api/solar/jobs": "Create a solar simulation job",
+            "POST /api/solar/jobs/{job_id}/run": "Process a solar simulation job",
+            "GET /api/solar/jobs/{job_id}": "Get job status",
+            "GET /api/solar/health": "Health check"
         }
     }
 
-@app.get("/health")
+@app.get("/api/solar/health")
 async def health_check():
     """Health check endpoint."""
     return {
