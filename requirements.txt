@@ -1,0 +1,8 @@
+# Root requirements.txt for Vercel Python functions
+# This file is read by Vercel for all Python serverless functions
+openai>=1.40.0
+fastapi==0.109.0
+python-multipart>=0.0.6
+pydantic==2.5.3
+mangum>=0.17.0
+

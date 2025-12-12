@@ -313,23 +313,23 @@ async def health_check():
         "image_service_available": image_service is not None
     }
 
-# Catch-all route for debugging
-@app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
-async def catch_all(path: str, request):
-    """Catch-all route to debug routing issues."""
+# Catch-all route for debugging (must be last, after all specific routes)
+@app.api_route("/api/solar/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
+async def catch_all_solar(path: str, request):
+    """Catch-all route for /api/solar/* paths that don't match specific routes."""
     logger.error(f"=== CATCH-ALL ROUTE HIT ===")
     logger.error(f"Path: {path}")
     logger.error(f"Method: {request.method}")
     logger.error(f"Full URL: {request.url}")
-    logger.error(f"Available routes: {[route.path for route in app.routes]}")
+    logger.error(f"Available routes: {[route.path for route in app.routes if hasattr(route, 'path')]}")
     
     return JSONResponse(
         status_code=404,
         content={
             "error": "Route not found",
-            "requested_path": path,
+            "requested_path": f"/api/solar/{path}",
             "method": request.method,
-            "available_routes": [{"path": route.path, "methods": list(route.methods)} for route in app.routes if hasattr(route, 'path')]
+            "available_routes": [{"path": route.path, "methods": list(route.methods)} for route in app.routes if hasattr(route, 'path') and hasattr(route, 'methods')]
         }
     )
 
