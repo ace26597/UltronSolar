@@ -38,14 +38,24 @@ app = FastAPI(
 # Add request logging middleware
 @app.middleware("http")
 async def log_requests(request, call_next):
-    logger.info(f"=== INCOMING REQUEST ===")
+    logger.info("=" * 60)
+    logger.info("=== INCOMING REQUEST ===")
     logger.info(f"Method: {request.method}")
-    logger.info(f"URL: {request.url}")
+    logger.info(f"URL: {str(request.url)}")
     logger.info(f"Path: {request.url.path}")
+    logger.info(f"Query params: {dict(request.url.query_params)}")
     logger.info(f"Headers: {dict(request.headers)}")
-    response = await call_next(request)
-    logger.info(f"Response status: {response.status_code}")
-    return response
+    try:
+        response = await call_next(request)
+        logger.info(f"Response status: {response.status_code}")
+        logger.info("=" * 60)
+        return response
+    except Exception as e:
+        logger.error(f"=== ERROR IN MIDDLEWARE ===")
+        logger.error(f"Error: {str(e)}")
+        import traceback
+        logger.error(traceback.format_exc())
+        raise
 
 # Configure CORS
 app.add_middleware(
@@ -79,9 +89,12 @@ async def create_solar_job(
     Returns:
         Job ID and initial status
     """
+    logger.info("=" * 50)
     logger.info("=== CREATE SOLAR JOB ENDPOINT CALLED ===")
-    logger.info(f"Request received - image filename: {image.filename}, content_type: {image.content_type}")
+    logger.info(f"Image filename: {image.filename}")
+    logger.info(f"Image content_type: {image.content_type}")
     logger.info(f"Meta data: {meta}")
+    logger.info(f"Meta data type: {type(meta)}")
     try:
         # Parse metadata
         try:
@@ -265,17 +278,30 @@ async def get_solar_job_status(job_id: str):
 
 
 @app.get("/api/solar")
+@app.get("/api/solar/")
 async def root():
     """Root endpoint for debugging."""
+    logger.info("=== ROOT ENDPOINT CALLED ===")
+    routes_info = []
+    for route in app.routes:
+        if hasattr(route, 'path') and hasattr(route, 'methods'):
+            routes_info.append({
+                "path": route.path,
+                "methods": list(route.methods)
+            })
+    
     return {
         "service": "solar-simulation-api",
         "version": "2.0.0",
+        "status": "running",
         "endpoints": {
             "POST /api/solar/jobs": "Create a solar simulation job",
             "POST /api/solar/jobs/{job_id}/run": "Process a solar simulation job",
             "GET /api/solar/jobs/{job_id}": "Get job status",
             "GET /api/solar/health": "Health check"
-        }
+        },
+        "registered_routes": routes_info,
+        "image_service_available": image_service is not None
     }
 
 @app.get("/api/solar/health")
@@ -287,11 +313,26 @@ async def health_check():
         "image_service_available": image_service is not None
     }
 
+# Catch-all route for debugging
+@app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
+async def catch_all(path: str, request):
+    """Catch-all route to debug routing issues."""
+    logger.error(f"=== CATCH-ALL ROUTE HIT ===")
+    logger.error(f"Path: {path}")
+    logger.error(f"Method: {request.method}")
+    logger.error(f"Full URL: {request.url}")
+    logger.error(f"Available routes: {[route.path for route in app.routes]}")
+    
+    return JSONResponse(
+        status_code=404,
+        content={
+            "error": "Route not found",
+            "requested_path": path,
+            "method": request.method,
+            "available_routes": [{"path": route.path, "methods": list(route.methods)} for route in app.routes if hasattr(route, 'path')]
+        }
+    )
 
-# Vercel serverless handler
-def handler(request):
-    """Vercel serverless function handler."""
-    from mangum import Mangum
-    asgi_handler = Mangum(app)
-    return asgi_handler(request)
+
+# Note: Handler is defined in api/solar.py for Vercel
 
