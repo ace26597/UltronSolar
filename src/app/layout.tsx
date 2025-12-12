@@ -187,13 +187,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical hero image for faster FCP */}
-        <link
-          rel="preload"
-          href="/images/gallery-project-9.jpg"
-          as="image"
-          type="image/jpeg"
-        />
         {/* Preconnect to critical origins for faster loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
