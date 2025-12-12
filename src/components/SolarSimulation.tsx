@@ -2,12 +2,8 @@
 
 import { useState, useRef } from "react";
 import { createSolarJob, runSolar, checkSolarStatus, SolarMeta } from "@/lib/solarApi";
-import { useLanguage } from "@/context/LanguageContext";
-import { getTranslations } from "@/lib/translations";
 
 export default function SolarSimulation() {
-  const { currentLanguage } = useLanguage();
-  const t = getTranslations(currentLanguage);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -68,36 +64,71 @@ export default function SolarSimulation() {
       await runSolar(response.jobId);
 
       // Poll for status
-      const pollInterval = setInterval(async () => {
+      let pollInterval: NodeJS.Timeout;
+      let timeoutId: NodeJS.Timeout;
+
+      const checkStatus = async () => {
         try {
           const statusResponse = await checkSolarStatus(response.jobId);
           
           if (statusResponse.status === "done") {
             clearInterval(pollInterval);
+            clearTimeout(timeoutId);
             setStatus("done");
             if (statusResponse.resultImage) {
               setResultImage(statusResponse.resultImage);
             }
           } else if (statusResponse.status === "error") {
             clearInterval(pollInterval);
+            clearTimeout(timeoutId);
             setStatus("error");
             setError("Processing failed. Please try again.");
           }
         } catch (err) {
           clearInterval(pollInterval);
+          clearTimeout(timeoutId);
           setStatus("error");
           setError(err instanceof Error ? err.message : "Failed to check status");
         }
-      }, 2000); // Poll every 2 seconds
+      };
+
+      pollInterval = setInterval(checkStatus, 2000); // Poll every 2 seconds
 
       // Timeout after 60 seconds
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         clearInterval(pollInterval);
-        if (status === "processing") {
-          setStatus("error");
-          setError("Processing timed out. Please try again.");
-        }
+        setStatus("error");
+        setError("Processing timed out. Please try again.");
       }, 60000);
+
+      // Clear timeout when job completes
+      const checkStatus = async () => {
+        try {
+          const statusResponse = await checkSolarStatus(response.jobId);
+          
+          if (statusResponse.status === "done") {
+            clearInterval(pollInterval);
+            clearTimeout(timeoutId);
+            setStatus("done");
+            if (statusResponse.resultImage) {
+              setResultImage(statusResponse.resultImage);
+            }
+          } else if (statusResponse.status === "error") {
+            clearInterval(pollInterval);
+            clearTimeout(timeoutId);
+            setStatus("error");
+            setError("Processing failed. Please try again.");
+          }
+        } catch (err) {
+          clearInterval(pollInterval);
+          clearTimeout(timeoutId);
+          setStatus("error");
+          setError(err instanceof Error ? err.message : "Failed to check status");
+        }
+      };
+
+      // Poll for status
+      const intervalId = setInterval(checkStatus, 2000); // Poll every 2 seconds
 
     } catch (err) {
       setStatus("error");
