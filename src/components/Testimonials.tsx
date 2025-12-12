@@ -123,28 +123,30 @@ export default function Testimonials() {
                   className="flex-shrink-0 px-2 sm:px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
-                  <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 text-center h-full flex flex-col relative mx-auto max-w-[calc(100vw-3rem)] sm:max-w-none">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold shadow-md border-4 border-white">
+                  <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col relative mx-auto max-w-[calc(100vw-3rem)] sm:max-w-none">
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold shadow-md border-4 border-white z-10">
                       {testimonial.name.charAt(0)}
                     </div>
 
-                    <div className="flex justify-center text-solar-red mb-3 sm:mb-4 mt-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i} className="text-base sm:text-lg">★</span>
-                      ))}
-                    </div>
+                    <div className="pt-6 sm:pt-8 flex flex-col">
+                      <div className="flex justify-center text-solar-red mb-3 sm:mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <span key={i} className="text-base sm:text-lg">★</span>
+                        ))}
+                      </div>
 
-                    <p className="text-gray-700 mb-4 sm:mb-6 italic leading-relaxed flex-grow text-xs sm:text-sm md:text-base">
-                      &quot;{testimonial.content}&quot;
-                    </p>
-
-                    <div>
-                      <h3 className="text-base sm:text-lg font-bold text-navy-dark">
-                        {testimonial.name}
-                      </h3>
-                      <p className="text-primary-blue text-xs font-medium mt-1">
-                        {testimonial.seoInfo}
+                      <p className="text-gray-700 mb-4 sm:mb-6 italic leading-relaxed text-xs sm:text-sm md:text-base">
+                        &quot;{testimonial.content}&quot;
                       </p>
+
+                      <div>
+                        <h3 className="text-base sm:text-lg font-bold text-navy-dark">
+                          {testimonial.name}
+                        </h3>
+                        <p className="text-primary-blue text-xs font-medium mt-1">
+                          {testimonial.seoInfo}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
