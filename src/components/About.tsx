@@ -21,7 +21,7 @@ export default function About() {
           <div className="relative w-full">
             <div className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-[550px] rounded-xl overflow-hidden shadow-2xl bg-gray-50">
               <Image
-                src="/images/ultron_marketing_fam.jpg"
+                src="/images/ultron_marketing_fam_1.jpg"
                 alt="Happy Indian Family with Solar Savings - Ultron Power Systems Marketing"
                 fill
                 className="object-contain object-center"

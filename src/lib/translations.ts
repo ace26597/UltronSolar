@@ -252,7 +252,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       serving: 'Serving Dhule, Jalgaon & North Maharashtra',
     },
     features: {
-      title: 'Why Choose Ultron?',
+      title: 'Professional Solar Services',
       subtitle: 'Comprehensive solar solutions tailored to meet your unique needs with quality and reliability.',
       expertInstallations: {
         title: 'Expert Installations',
@@ -777,7 +777,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       serving: 'Serving Dhule, Jalgaon & North Maharashtra',
     },
     features: {
-      title: 'Why Choose Ultron?',
+      title: 'Professional Solar Services',
       subtitle: 'Comprehensive solar solutions tailored to meet your unique needs with quality and reliability.',
       expertInstallations: {
         title: 'Expert Installations',
