@@ -101,35 +101,6 @@ export default function SolarSimulation() {
         setError("Processing timed out. Please try again.");
       }, 60000);
 
-      // Clear timeout when job completes
-      const checkStatus = async () => {
-        try {
-          const statusResponse = await checkSolarStatus(response.jobId);
-          
-          if (statusResponse.status === "done") {
-            clearInterval(pollInterval);
-            clearTimeout(timeoutId);
-            setStatus("done");
-            if (statusResponse.resultImage) {
-              setResultImage(statusResponse.resultImage);
-            }
-          } else if (statusResponse.status === "error") {
-            clearInterval(pollInterval);
-            clearTimeout(timeoutId);
-            setStatus("error");
-            setError("Processing failed. Please try again.");
-          }
-        } catch (err) {
-          clearInterval(pollInterval);
-          clearTimeout(timeoutId);
-          setStatus("error");
-          setError(err instanceof Error ? err.message : "Failed to check status");
-        }
-      };
-
-      // Poll for status
-      const intervalId = setInterval(checkStatus, 2000); // Poll every 2 seconds
-
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Failed to create job");
