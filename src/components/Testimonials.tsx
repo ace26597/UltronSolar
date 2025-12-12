@@ -124,22 +124,32 @@ export default function Testimonials() {
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
                   <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col mx-auto max-w-[calc(100vw-3rem)] sm:max-w-none">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col h-full">
+                      {/* Name and Avatar at Top */}
+                      <div className="flex items-center justify-center gap-3 mb-3 sm:mb-4">
+                        <div className="bg-primary-blue text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-base sm:text-lg font-bold shadow-sm flex-shrink-0">
+                          {testimonial.name.charAt(0)}
+                        </div>
+                        <h3 className="text-base sm:text-lg font-bold text-navy-dark">
+                          {testimonial.name}
+                        </h3>
+                      </div>
+
+                      {/* Star Rating */}
                       <div className="flex justify-center text-solar-red mb-3 sm:mb-4">
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <span key={i} className="text-base sm:text-lg">★</span>
                         ))}
                       </div>
 
-                      <p className="text-gray-700 mb-4 sm:mb-6 italic leading-relaxed text-xs sm:text-sm md:text-base">
+                      {/* Review Text */}
+                      <p className="text-gray-700 mb-4 sm:mb-6 italic leading-relaxed text-xs sm:text-sm md:text-base flex-grow">
                         &quot;{testimonial.content}&quot;
                       </p>
 
-                      <div>
-                        <h3 className="text-base sm:text-lg font-bold text-navy-dark">
-                          {testimonial.name}
-                        </h3>
-                        <p className="text-primary-blue text-xs font-medium mt-1">
+                      {/* Tags at Bottom */}
+                      <div className="mt-auto">
+                        <p className="text-primary-blue text-xs font-medium">
                           {testimonial.seoInfo}
                         </p>
                       </div>
