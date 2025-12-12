@@ -20,6 +20,35 @@ export interface SolarJobStatus {
 const SOLAR_API_BASE = process.env.NEXT_PUBLIC_SOLAR_API_URL || '/api/solar';
 
 /**
+ * Test function to verify Vercel Python functions are working
+ * @returns Promise with test response
+ */
+export async function testPythonFunction(): Promise<any> {
+  try {
+    console.log('[Test] Calling test Python function at /api/test...');
+    const response = await fetch('/api/test', {
+      method: 'GET',
+    });
+
+    console.log('[Test] Response status:', response.status);
+    console.log('[Test] Response headers:', Object.fromEntries(response.headers.entries()));
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('[Test] Error response:', errorText);
+      throw new Error(`Test failed: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log('[Test] Success! Response:', data);
+    return data;
+  } catch (error) {
+    console.error('[Test] Exception:', error);
+    throw error;
+  }
+}
+
+/**
  * Compress and resize image before upload
  * @param file - Original image file
  * @param maxWidth - Maximum width in pixels (default: 3000)

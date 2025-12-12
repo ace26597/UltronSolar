@@ -1,12 +1,30 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { createSolarJob, runSolar, checkSolarStatus, SolarMeta } from "@/lib/solarApi";
+import { useState, useRef, useEffect } from "react";
+import { createSolarJob, runSolar, checkSolarStatus, SolarMeta, testPythonFunction } from "@/lib/solarApi";
 
 export default function SolarSimulation() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [testResult, setTestResult] = useState<string | null>(null);
+
+  // Test Python function on component mount
+  useEffect(() => {
+    const runTest = async () => {
+      try {
+        console.log('[SolarSimulation] Testing Python function...');
+        const result = await testPythonFunction();
+        setTestResult(`✅ Test passed: ${JSON.stringify(result, null, 2)}`);
+        console.log('[SolarSimulation] Test result:', result);
+      } catch (error) {
+        const errorMsg = error instanceof Error ? error.message : String(error);
+        setTestResult(`❌ Test failed: ${errorMsg}`);
+        console.error('[SolarSimulation] Test error:', error);
+      }
+    };
+    runTest();
+  }, []);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [bill, setBill] = useState<string>("");
   const [kw, setKw] = useState<string>("");
@@ -132,6 +150,20 @@ export default function SolarSimulation() {
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Upload a photo of your terrace and see how solar panels would look installed. Our AI will analyze your space and create a realistic visualization.
           </p>
+          
+          {/* Test Result Display */}
+          {testResult && (
+            <div className={`mt-4 p-3 rounded-lg text-sm text-left max-w-2xl mx-auto ${
+              testResult.startsWith('✅') 
+                ? 'bg-green-50 text-green-800 border border-green-200' 
+                : 'bg-red-50 text-red-800 border border-red-200'
+            }`}>
+              <div className="font-semibold mb-1">Python Function Test:</div>
+              <pre className="whitespace-pre-wrap text-xs overflow-auto max-h-32">
+                {testResult}
+              </pre>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
