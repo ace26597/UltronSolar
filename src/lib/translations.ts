@@ -445,7 +445,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
     },
     serviceAreas: {
       title: 'Serving North Maharashtra',
-      locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon',
+      locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon • Navapur • Amalner • Chopda • Yaval • Faizpur • Bhusawal',
       note: 'Available for projects in nearby villages & industrial areas',
     },
     brands: {
@@ -970,7 +970,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
     },
     serviceAreas: {
       title: 'Serving North Maharashtra',
-      locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon',
+      locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon • Navapur • Amalner • Chopda • Yaval • Faizpur • Bhusawal',
       note: 'Available for projects in nearby villages & industrial areas',
     },
     brands: {
