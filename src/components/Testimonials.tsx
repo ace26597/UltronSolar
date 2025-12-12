@@ -123,12 +123,8 @@ export default function Testimonials() {
                   className="flex-shrink-0 px-2 sm:px-4"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
-                  <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col relative mx-auto max-w-[calc(100vw-3rem)] sm:max-w-none">
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-blue text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold shadow-md border-4 border-white z-10">
-                      {testimonial.name.charAt(0)}
-                    </div>
-
-                    <div className="pt-6 sm:pt-8 flex flex-col">
+                  <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 text-center flex flex-col mx-auto max-w-[calc(100vw-3rem)] sm:max-w-none">
+                    <div className="flex flex-col">
                       <div className="flex justify-center text-solar-red mb-3 sm:mb-4">
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <span key={i} className="text-base sm:text-lg">★</span>
