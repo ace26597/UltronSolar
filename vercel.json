@@ -2,7 +2,7 @@
   "regions": ["bom1"],
   "functions": {
     "src/app/api/**/*.ts": {
-      "runtime": "nodejs22.x"
+      "maxDuration": 10
     }
   },
   "headers": [
