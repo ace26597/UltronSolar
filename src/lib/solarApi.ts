@@ -115,40 +115,71 @@ export async function createSolarJob(
   compress: boolean = true
 ): Promise<SolarJobResponse> {
   try {
+    console.log('[Solar API] Starting job creation...', { 
+      fileName: file.name, 
+      fileSize: file.size,
+      meta 
+    });
+
     // Compress image before upload
     let imageFile = file;
     if (compress) {
+      console.log('[Solar API] Compressing image...');
       imageFile = await compressImage(file);
+      console.log('[Solar API] Image compressed:', { 
+        originalSize: file.size, 
+        compressedSize: imageFile.size 
+      });
     }
 
     const formData = new FormData();
     formData.append('image', imageFile);
     formData.append('meta', JSON.stringify(meta));
 
-    const response = await fetch(`${SOLAR_API_BASE}/jobs`, {
+    const apiUrl = `${SOLAR_API_BASE}/jobs`;
+    console.log('[Solar API] Sending request to:', apiUrl);
+    console.log('[Solar API] Request method: POST');
+    console.log('[Solar API] FormData keys:', Array.from(formData.keys()));
+
+    const response = await fetch(apiUrl, {
       method: 'POST',
       body: formData,
     });
 
+    console.log('[Solar API] Response status:', response.status);
+    console.log('[Solar API] Response headers:', Object.fromEntries(response.headers.entries()));
+
     if (!response.ok) {
       const errorText = await response.text();
+      console.error('[Solar API] Error response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText
+      });
+      
       let errorMessage = `Solar job creation error: ${response.status}`;
       try {
         const errorData = JSON.parse(errorText);
         errorMessage = errorData.detail || errorData.error || errorMessage;
+        console.error('[Solar API] Parsed error data:', errorData);
       } catch {
         errorMessage = errorText || errorMessage;
+        console.error('[Solar API] Could not parse error as JSON');
       }
       throw new Error(errorMessage);
     }
 
     const data = await response.json();
+    console.log('[Solar API] Success! Job created:', data);
     return {
       jobId: data.jobId,
       status: data.status || 'queued',
     };
   } catch (error) {
+    console.error('[Solar API] Exception caught:', error);
     if (error instanceof Error) {
+      console.error('[Solar API] Error message:', error.message);
+      console.error('[Solar API] Error stack:', error.stack);
       throw error;
     }
     throw new Error('Failed to create solar job');

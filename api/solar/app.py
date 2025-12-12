@@ -35,6 +35,18 @@ app = FastAPI(
     version="2.0.0"
 )
 
+# Add request logging middleware
+@app.middleware("http")
+async def log_requests(request, call_next):
+    logger.info(f"=== INCOMING REQUEST ===")
+    logger.info(f"Method: {request.method}")
+    logger.info(f"URL: {request.url}")
+    logger.info(f"Path: {request.url.path}")
+    logger.info(f"Headers: {dict(request.headers)}")
+    response = await call_next(request)
+    logger.info(f"Response status: {response.status_code}")
+    return response
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
@@ -52,7 +64,7 @@ except ValueError as e:
     logger.warning(f"ImageService initialization failed: {e}. Some endpoints may not work.")
 
 
-@app.post("/api/solar/jobs", response_model=SolarJobResponse)
+@app.post("/jobs", response_model=SolarJobResponse)
 async def create_solar_job(
     image: UploadFile = File(...),
     meta: str = Form(...)
@@ -67,6 +79,9 @@ async def create_solar_job(
     Returns:
         Job ID and initial status
     """
+    logger.info("=== CREATE SOLAR JOB ENDPOINT CALLED ===")
+    logger.info(f"Request received - image filename: {image.filename}, content_type: {image.content_type}")
+    logger.info(f"Meta data: {meta}")
     try:
         # Parse metadata
         try:
@@ -109,7 +124,7 @@ async def create_solar_job(
         )
 
 
-@app.post("/api/solar/jobs/{job_id}/run", response_model=SolarJobResponse)
+@app.post("/jobs/{job_id}/run", response_model=SolarJobResponse)
 async def run_solar_job(job_id: str):
     """
     Process a solar simulation job.
@@ -207,7 +222,7 @@ async def run_solar_job(job_id: str):
         )
 
 
-@app.get("/api/solar/jobs/{job_id}", response_model=SolarJobStatus)
+@app.get("/jobs/{job_id}", response_model=SolarJobStatus)
 async def get_solar_job_status(job_id: str):
     """
     Get the status of a solar simulation job.
@@ -249,7 +264,21 @@ async def get_solar_job_status(job_id: str):
         )
 
 
-@app.get("/api/solar/health")
+@app.get("/")
+async def root():
+    """Root endpoint for debugging."""
+    return {
+        "service": "solar-simulation-api",
+        "version": "2.0.0",
+        "endpoints": {
+            "POST /jobs": "Create a solar simulation job",
+            "POST /jobs/{job_id}/run": "Process a solar simulation job",
+            "GET /jobs/{job_id}": "Get job status",
+            "GET /health": "Health check"
+        }
+    }
+
+@app.get("/health")
 async def health_check():
     """Health check endpoint."""
     return {
