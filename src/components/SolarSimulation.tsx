@@ -229,7 +229,7 @@ export default function SolarSimulation() {
                   disabled={status === "uploading" || status === "processing"}
                 />
                 <p className="mt-1 text-sm text-gray-500">
-                  We'll calculate the required system size automatically
+                  We&apos;ll calculate the required system size automatically
                 </p>
               </div>
 
