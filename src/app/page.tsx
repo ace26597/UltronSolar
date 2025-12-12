@@ -15,7 +15,6 @@ import FacebookPage from "@/components/FacebookPage";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
-import SolarSimulation from "@/components/SolarSimulation";
 
 export const metadata: Metadata = {
   alternates: {
@@ -32,7 +31,6 @@ export default function Home() {
       <About />
       <Features />
       <Products />
-      <SolarSimulation />
       <SpecialOffer />
       <Brands />
       <Gallery />
