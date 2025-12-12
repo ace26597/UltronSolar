@@ -198,7 +198,6 @@ if (status.status === 'done' && status.resultImage) {
 │   │   ├── models.py       # Pydantic models
 │   │   └── services/       # Business logic services
 │   └── solar.py            # Vercel serverless handler
-├── backend/                # Chat API backend (FastAPI)
 ├── public/                 # Static assets
 ├── tailwind.config.ts      # Tailwind configuration with solar theme
 └── next.config.js          # Next.js configuration
