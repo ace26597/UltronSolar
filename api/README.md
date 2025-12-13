@@ -18,13 +18,12 @@ All Python code is in the `api/` directory so Vercel can detect and deploy it:
 ## Request Flow
 
 1. Frontend calls `/python/solar/jobs` (POST)
-2. `vercel.json` rewrites to `/api/solar/jobs`
-3. Vercel calls `api/solar.py` serverless function
-4. Vercel strips `/api/solar` prefix and passes `/jobs` to FastAPI
-5. FastAPI matches `@app.post("/jobs")` route
+2. `vercel.json` rewrites to `/api/solar` (single Python function)
+3. Vercel executes `api/solar/index.py` (ASGI app export)
+4. The ASGI wrapper strips `/python/solar` from the incoming path
+5. FastAPI matches routes like `@app.post("/jobs")`
 
 ## Notes
 
-- Vercel automatically strips the `/api/` prefix when calling serverless functions
-- FastAPI routes are defined relative to the function path (e.g., `/jobs` not `/api/solar/jobs`)
-- No `root_path` configuration needed - Vercel handles path stripping automatically
+- Vercel rewrites keep the browser URL the same (e.g. `/python/solar/jobs`)
+- The function receives that original path, so we strip the public prefix in `api/solar/index.py`

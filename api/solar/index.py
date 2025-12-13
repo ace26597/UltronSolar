@@ -3,6 +3,7 @@ import sys
 import os
 import logging
 from pathlib import Path
+from typing import Callable, Awaitable, Any, Dict
 
 # Configure logging to stdout (Vercel captures this)
 logging.basicConfig(
@@ -35,14 +36,46 @@ try:
     from solar.app import app as fastapi_app
     log_both("Solar app imported successfully")
     
-    # For Vercel Python runtime with ASGI (FastAPI), we export 'app' directly
-    # Vercel natively supports ASGI applications, no need for Mangum wrapper
-    # According to Vercel docs: "define an app variable that exposes a WSGI or ASGI Application"
-    # 
-    # Note: Vercel automatically strips the /api/ prefix when calling serverless functions.
-    # When a request comes to /api/solar/jobs, Vercel calls this function and passes /jobs to FastAPI.
-    # So we don't need to set root_path - FastAPI routes like @app.post("/jobs") will work directly.
-    app = fastapi_app
+    class _StripPrefixASGI:
+        """
+        Vercel rewrites preserve the original URL path (e.g. /python/solar/jobs)
+        even when routing traffic to /api/solar. Our FastAPI routes are defined
+        as /jobs, /health, etc, so we strip the public prefix before routing.
+        """
+
+        def __init__(self, inner_app, prefixes):
+            self.inner_app = inner_app
+            # Normalize prefixes: no trailing slash (except root)
+            self.prefixes = []
+            for p in prefixes:
+                if not p or p == "/":
+                    continue
+                self.prefixes.append(p[:-1] if p.endswith("/") else p)
+
+        async def __call__(self, scope: Dict[str, Any], receive: Callable[[], Awaitable[Any]], send: Callable[[Any], Awaitable[None]]):
+            if scope.get("type") in ("http", "websocket"):
+                path = scope.get("path") or ""
+                for prefix in self.prefixes:
+                    if path == prefix:
+                        new_path = "/"
+                        break
+                    if path.startswith(prefix + "/"):
+                        new_path = path[len(prefix):] or "/"
+                        break
+                else:
+                    new_path = None
+
+                if new_path is not None and new_path != path:
+                    scope = dict(scope)
+                    scope["path"] = new_path
+                    # Keep raw_path aligned for frameworks/middleware that use it
+                    scope["raw_path"] = new_path.encode("utf-8")
+
+            return await self.inner_app(scope, receive, send)
+
+    # Public routes are under /python/solar/* (frontend), and we also accept /api/solar/*
+    # in case it's called directly.
+    app = _StripPrefixASGI(fastapi_app, prefixes=["/python/solar", "/api/solar"])
     log_both("=== APP EXPORTED SUCCESSFULLY ===")
     log_both("=" * 60)
     

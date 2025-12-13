@@ -15,7 +15,7 @@
   "rewrites": [
     {
       "source": "/python/solar/(.*)",
-      "destination": "/api/solar/$1"
+      "destination": "/api/solar"
     },
     {
       "source": "/python/test",
