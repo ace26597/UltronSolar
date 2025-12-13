@@ -1,4 +1,4 @@
-"""Vercel serverless function handler for Solar API."""
+"""Vercel serverless function handler for Solar API (ASGI)."""
 import sys
 import os
 import logging
@@ -25,28 +25,31 @@ log_both(f"Current directory: {os.getcwd()}")
 log_both(f"Script path: {__file__}")
 log_both(f"Python path: {sys.path}")
 
-# Add api_py directory to path
-api_py_dir = Path(__file__).parent
+# Add api_py directory to path (go up from api/solar to root, then to api_py)
+root_dir = Path(__file__).parent.parent.parent
+api_py_dir = root_dir / "api_py"
 sys.path.insert(0, str(api_py_dir))
 log_both(f"Added to path: {api_py_dir}")
 
 try:
-    log_both("Importing mangum...")
-    from mangum import Mangum
-    log_both("Mangum imported successfully")
-    
     log_both("Importing solar.app...")
-    from solar.app import app
+    from solar.app import app as fastapi_app
     log_both("Solar app imported successfully")
     
-    log_both("Creating Mangum handler...")
-    handler = Mangum(app, lifespan="off")
-    log_both("=== HANDLER CREATED SUCCESSFULLY ===")
+    # For Vercel Python runtime with ASGI (FastAPI), we export 'app' directly
+    # Vercel natively supports ASGI applications, no need for Mangum wrapper
+    # According to Vercel docs: "define an app variable that exposes a WSGI or ASGI Application"
+    # 
+    # Note: Vercel automatically strips the /api/ prefix when calling serverless functions.
+    # When a request comes to /api/solar/jobs, Vercel calls this function and passes /jobs to FastAPI.
+    # So we don't need to set root_path - FastAPI routes like @app.post("/jobs") will work directly.
+    app = fastapi_app
+    log_both("=== APP EXPORTED SUCCESSFULLY ===")
     log_both("=" * 60)
     
 except Exception as e:
     log_both("=" * 60)
-    log_both("=== ERROR INITIALIZING HANDLER ===")
+    log_both("=== ERROR INITIALIZING APP ===")
     log_both(f"Error type: {type(e).__name__}")
     log_both(f"Error message: {str(e)}")
     import traceback
@@ -54,3 +57,6 @@ except Exception as e:
     log_both("=" * 60)
     raise
 
+# Export app for Vercel (ASGI application)
+# According to Vercel docs: "define an app variable that exposes a WSGI or ASGI Application"
+__all__ = ['app']

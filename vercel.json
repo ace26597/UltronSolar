@@ -4,7 +4,7 @@
     "src/app/api/**/*.ts": {
       "maxDuration": 10
     },
-    "api/solar.py": {
+    "api/solar/**/*.py": {
       "maxDuration": 60,
       "excludeFiles": "**/node_modules/**"
     },
@@ -14,8 +14,8 @@
   },
   "rewrites": [
     {
-      "source": "/python/solar/:path*",
-      "destination": "/api/solar/:path*"
+      "source": "/python/solar/(.*)",
+      "destination": "/api/solar/$1"
     },
     {
       "source": "/python/test",
