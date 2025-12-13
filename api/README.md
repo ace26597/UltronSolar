@@ -1,23 +1,19 @@
 # API Directory Structure
 
-This directory contains Vercel serverless function entry points.
+This directory contains all Python code for Vercel serverless functions.
 
 ## Structure
 
-- `api/` - Vercel serverless function entry points (Python)
-- `api_py/` - Python application code (FastAPI app, services, models)
+All Python code is in the `api/` directory so Vercel can detect and deploy it:
 
-## How It Works
-
-1. **Entry Points** (`api/`):
-   - `api/solar/index.py` - Exports FastAPI ASGI app for solar simulation API (handles all `/api/solar/*` routes)
-   - `api/test.py` - Simple test endpoint
-
-2. **Application Code** (`api_py/`):
-   - `api_py/solar/app.py` - Main FastAPI application
-   - `api_py/solar/models.py` - Pydantic models
-   - `api_py/solar/services/` - Business logic (image processing, calculations)
-   - `api_py/solar_jobs_store.py` - Job storage
+- `api/solar/index.py` - Entry point that exports FastAPI ASGI app (handles all `/api/solar/*` routes)
+- `api/solar/app.py` - Main FastAPI application
+- `api/solar/models.py` - Pydantic models
+- `api/solar/services/` - Business logic (image processing, calculations)
+  - `image_service.py` - OpenAI image processing
+  - `calculation_service.py` - Solar system calculations
+- `api/solar_jobs_store.py` - In-memory job storage
+- `api/test.py` - Simple test endpoint
 
 ## Request Flow
 

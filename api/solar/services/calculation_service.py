@@ -134,4 +134,3 @@ def calculate_system_specs(kw: Optional[float] = None, bill: Optional[float] = N
         "panel_wattage": DEFAULT_PANEL_WATTAGE,
         "panel_dimensions": PANEL_DIMENSIONS
     }
-

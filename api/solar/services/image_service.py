@@ -279,4 +279,3 @@ Make the installation look professional, clean, and realistic. The panels should
         except Exception as e:
             logger.error(f"Error processing solar simulation: {str(e)}")
             raise
-

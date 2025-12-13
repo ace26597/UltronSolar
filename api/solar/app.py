@@ -12,17 +12,17 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-# Add parent directory to path for imports
-api_py_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(api_py_dir))
+# Import shared jobs store (from parent api directory)
+import sys as sys_module
+api_dir = Path(__file__).parent.parent
+sys_module.path.insert(0, str(api_dir))
 
-# Import shared jobs store
 from solar_jobs_store import jobs
 
-# Import solar API modules
-from solar.models import SolarMeta, SolarJobResponse, SolarJobStatus, SolarRunRequest
-from solar.services.image_service import ImageService
-from solar.services.calculation_service import calculate_system_specs
+# Import solar API modules using relative imports
+from .models import SolarMeta, SolarJobResponse, SolarJobStatus, SolarRunRequest
+from .services.image_service import ImageService
+from .services.calculation_service import calculate_system_specs
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -331,7 +331,3 @@ async def catch_all_solar(path: str, request):
             "available_routes": [{"path": route.path, "methods": list(route.methods)} for route in app.routes if hasattr(route, 'path') and hasattr(route, 'methods')]
         }
     )
-
-
-# Note: Handler is defined in api_py/solar.py for Vercel
-

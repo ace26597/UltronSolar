@@ -27,4 +27,3 @@ class SolarJobStatus(BaseModel):
 class SolarRunRequest(BaseModel):
     """Request to run a solar simulation job."""
     jobId: str
-

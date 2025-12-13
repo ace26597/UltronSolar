@@ -25,11 +25,10 @@ log_both(f"Current directory: {os.getcwd()}")
 log_both(f"Script path: {__file__}")
 log_both(f"Python path: {sys.path}")
 
-# Add api_py directory to path (go up from api/solar to root, then to api_py)
-root_dir = Path(__file__).parent.parent.parent
-api_py_dir = root_dir / "api_py"
-sys.path.insert(0, str(api_py_dir))
-log_both(f"Added to path: {api_py_dir}")
+# Add api directory to path (for imports)
+api_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(api_dir))
+log_both(f"Added to path: {api_dir}")
 
 try:
     log_both("Importing solar.app...")
