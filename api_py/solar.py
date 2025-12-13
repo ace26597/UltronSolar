@@ -25,10 +25,10 @@ log_both(f"Current directory: {os.getcwd()}")
 log_both(f"Script path: {__file__}")
 log_both(f"Python path: {sys.path}")
 
-# Add api directory to path
-api_dir = Path(__file__).parent
-sys.path.insert(0, str(api_dir))
-log_both(f"Added to path: {api_dir}")
+# Add api_py directory to path
+api_py_dir = Path(__file__).parent
+sys.path.insert(0, str(api_py_dir))
+log_both(f"Added to path: {api_py_dir}")
 
 try:
     log_both("Importing mangum...")

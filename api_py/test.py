@@ -2,7 +2,7 @@ import json
 import sys
 import os
 
-def handler(event, context):
+def handler(request):
     print("TEST HANDLER CALLED", flush=True)
     
     response = {
@@ -15,3 +15,4 @@ def handler(event, context):
     }
     
     return response
+

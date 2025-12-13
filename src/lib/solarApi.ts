@@ -17,7 +17,7 @@ export interface SolarJobStatus {
 }
 
 // Base URL for solar API
-const SOLAR_API_BASE = process.env.NEXT_PUBLIC_SOLAR_API_URL || '/api/solar';
+const SOLAR_API_BASE = process.env.NEXT_PUBLIC_SOLAR_API_URL || '/python/solar';
 
 /**
  * Test function to verify Vercel Python functions are working
@@ -25,8 +25,8 @@ const SOLAR_API_BASE = process.env.NEXT_PUBLIC_SOLAR_API_URL || '/api/solar';
  */
 export async function testPythonFunction(): Promise<any> {
   try {
-    console.log('[Test] Calling test Python function at /api/test...');
-    const response = await fetch('/api/test', {
+    console.log('[Test] Calling test Python function at /python/test...');
+    const response = await fetch('/python/test', {
       method: 'GET',
     });
 

@@ -13,8 +13,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 # Add parent directory to path for imports
-api_dir = Path(__file__).parent.parent
-sys.path.insert(0, str(api_dir))
+api_py_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(api_py_dir))
 
 # Import shared jobs store
 from solar_jobs_store import jobs
@@ -74,7 +74,7 @@ except ValueError as e:
     logger.warning(f"ImageService initialization failed: {e}. Some endpoints may not work.")
 
 
-@app.post("/api/solar/jobs", response_model=SolarJobResponse)
+@app.post("/jobs", response_model=SolarJobResponse)
 async def create_solar_job(
     image: UploadFile = File(...),
     meta: str = Form(...)
@@ -137,7 +137,7 @@ async def create_solar_job(
         )
 
 
-@app.post("/api/solar/jobs/{job_id}/run", response_model=SolarJobResponse)
+@app.post("/jobs/{job_id}/run", response_model=SolarJobResponse)
 async def run_solar_job(job_id: str):
     """
     Process a solar simulation job.
@@ -235,7 +235,7 @@ async def run_solar_job(job_id: str):
         )
 
 
-@app.get("/api/solar/jobs/{job_id}", response_model=SolarJobStatus)
+@app.get("/jobs/{job_id}", response_model=SolarJobStatus)
 async def get_solar_job_status(job_id: str):
     """
     Get the status of a solar simulation job.
@@ -277,8 +277,7 @@ async def get_solar_job_status(job_id: str):
         )
 
 
-@app.get("/api/solar")
-@app.get("/api/solar/")
+@app.get("/")
 async def root():
     """Root endpoint for debugging."""
     logger.info("=== ROOT ENDPOINT CALLED ===")
@@ -295,16 +294,16 @@ async def root():
         "version": "2.0.0",
         "status": "running",
         "endpoints": {
-            "POST /api/solar/jobs": "Create a solar simulation job",
-            "POST /api/solar/jobs/{job_id}/run": "Process a solar simulation job",
-            "GET /api/solar/jobs/{job_id}": "Get job status",
-            "GET /api/solar/health": "Health check"
+            "POST /jobs": "Create a solar simulation job",
+            "POST /jobs/{job_id}/run": "Process a solar simulation job",
+            "GET /jobs/{job_id}": "Get job status",
+            "GET /health": "Health check"
         },
         "registered_routes": routes_info,
         "image_service_available": image_service is not None
     }
 
-@app.get("/api/solar/health")
+@app.get("/health")
 async def health_check():
     """Health check endpoint."""
     return {
@@ -314,9 +313,9 @@ async def health_check():
     }
 
 # Catch-all route for debugging (must be last, after all specific routes)
-@app.api_route("/api/solar/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
+@app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"])
 async def catch_all_solar(path: str, request):
-    """Catch-all route for /api/solar/* paths that don't match specific routes."""
+    """Catch-all route for paths that don't match specific routes."""
     logger.error(f"=== CATCH-ALL ROUTE HIT ===")
     logger.error(f"Path: {path}")
     logger.error(f"Method: {request.method}")
@@ -327,12 +326,12 @@ async def catch_all_solar(path: str, request):
         status_code=404,
         content={
             "error": "Route not found",
-            "requested_path": f"/api/solar/{path}",
+            "requested_path": f"/{path}",
             "method": request.method,
             "available_routes": [{"path": route.path, "methods": list(route.methods)} for route in app.routes if hasattr(route, 'path') and hasattr(route, 'methods')]
         }
     )
 
 
-# Note: Handler is defined in api/solar.py for Vercel
+# Note: Handler is defined in api_py/solar.py for Vercel
 
