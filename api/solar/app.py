@@ -45,7 +45,8 @@ async def log_requests(request, call_next):
     logger.info(f"Method: {request.method}")
     logger.info(f"URL: {str(request.url)}")
     logger.info(f"Path: {request.url.path}")
-    logger.info(f"Query params: {dict(request.url.query_params)}")
+    # Starlette Request exposes parsed query params on request.query_params
+    logger.info(f"Query params: {dict(request.query_params)}")
     logger.info(f"Headers: {dict(request.headers)}")
     try:
         response = await call_next(request)
