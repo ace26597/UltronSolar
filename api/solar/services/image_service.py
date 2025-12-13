@@ -38,6 +38,15 @@ class ImageService:
         """
         name = (model_name or "").lower()
         return name.startswith("gpt-5") or name.startswith("o1") or name.startswith("o3") or name.startswith("o4")
+
+    @staticmethod
+    def _supports_sampling_params(model_name: str) -> bool:
+        """
+        Some models only support default sampling params (e.g. temperature must be default).
+        For those, we should omit temperature/top_p/etc entirely.
+        """
+        name = (model_name or "").lower()
+        return not (name.startswith("gpt-5") or name.startswith("o1") or name.startswith("o3") or name.startswith("o4"))
     
     def _retry_with_backoff(self, func, *args, **kwargs):
         """Execute function with exponential backoff retry logic."""
@@ -101,11 +110,12 @@ Provide a detailed analysis in JSON format with:
 """
 
             def _analyze():
-                token_kwargs = (
-                    {"max_completion_tokens": 1000}
-                    if self._uses_max_completion_tokens(self.analysis_model)
-                    else {"max_tokens": 1000}
-                )
+                # For GPT-5 / o-series, avoid optional params (some reject non-default temperature
+                # and/or token limit fields). Let the API apply defaults.
+                if self._supports_sampling_params(self.analysis_model):
+                    token_kwargs = {"max_tokens": 1000, "temperature": 0.3}
+                else:
+                    token_kwargs = {}
                 response = self.client.chat.completions.create(
                     model=self.analysis_model,
                     messages=[
@@ -126,7 +136,6 @@ Provide a detailed analysis in JSON format with:
                         }
                     ],
                     **token_kwargs,
-                    temperature=0.3
                 )
                 return response.choices[0].message.content
             
