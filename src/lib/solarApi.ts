@@ -75,8 +75,8 @@ export async function compressImage(
         
         if (width > maxWidth || height > maxHeight) {
           const ratio = Math.min(maxWidth / width, maxHeight / height);
-          width = width * ratio;
-          height = height * ratio;
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
         }
         
         // Create canvas and resize
@@ -131,6 +131,34 @@ export async function compressImage(
   });
 }
 
+const MAX_VERCEL_UPLOAD_BYTES = 4_000_000; // keep well below typical serverless body limits
+
+async function compressImageForVercel(file: File): Promise<File> {
+  // Already small enough - keep original to avoid quality loss.
+  if (file.size <= MAX_VERCEL_UPLOAD_BYTES) return file;
+
+  // Try progressively smaller dimensions/quality until we're under limit.
+  const attempts: Array<{ max: number; quality: number }> = [
+    { max: 2000, quality: 0.82 },
+    { max: 1600, quality: 0.78 },
+    { max: 1400, quality: 0.72 },
+    { max: 1280, quality: 0.68 },
+    { max: 1024, quality: 0.62 },
+  ];
+
+  let current = file;
+  for (const a of attempts) {
+    current = await compressImage(current, a.max, a.max, a.quality);
+    if (current.size <= MAX_VERCEL_UPLOAD_BYTES) return current;
+  }
+
+  // If we still couldn't get under the limit, fail with a helpful message.
+  throw new Error(
+    `Image is too large to upload (${Math.round(current.size / 1024 / 1024)}MB). ` +
+      `Please choose a smaller photo or crop it and try again.`
+  );
+}
+
 /**
  * Create a new solar simulation job by uploading an image and metadata
  * @param file - The image file to upload (will be compressed automatically)
@@ -154,7 +182,7 @@ export async function createSolarJob(
     let imageFile = file;
     if (compress) {
       console.log('[Solar API] Compressing image...');
-      imageFile = await compressImage(file);
+      imageFile = await compressImageForVercel(file);
       console.log('[Solar API] Image compressed:', { 
         originalSize: file.size, 
         compressedSize: imageFile.size 

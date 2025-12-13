@@ -14,8 +14,8 @@
   },
   "rewrites": [
     {
-      "source": "/python/solar/(.*)",
-      "destination": "/api/solar"
+      "source": "/python/solar/:path*",
+      "destination": "/api/solar?__path=:path*"
     },
     {
       "source": "/python/test",

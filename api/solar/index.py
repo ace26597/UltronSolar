@@ -4,6 +4,7 @@ import os
 import logging
 from pathlib import Path
 from typing import Callable, Awaitable, Any, Dict
+from urllib.parse import parse_qs, urlencode
 
 # Configure logging to stdout (Vercel captures this)
 logging.basicConfig(
@@ -38,9 +39,16 @@ try:
     
     class _StripPrefixASGI:
         """
-        Vercel rewrites preserve the original URL path (e.g. /python/solar/jobs)
-        even when routing traffic to /api/solar. Our FastAPI routes are defined
-        as /jobs, /health, etc, so we strip the public prefix before routing.
+        Our public API paths are `/python/solar/*` but we route traffic to the
+        single Vercel function mounted at `/api/solar` (index.py).
+
+        Depending on Vercel's rewrite behavior, the ASGI scope may contain:
+        - the original path (e.g. `/python/solar/jobs`), OR
+        - the destination path (e.g. `/api/solar`) + a query param carrying the
+          intended sub-path (e.g. `?__path=jobs`)
+
+        This wrapper normalizes the ASGI scope path so FastAPI routes like
+        `/jobs`, `/health`, etc, continue to match.
         """
 
         def __init__(self, inner_app, prefixes):
@@ -55,6 +63,11 @@ try:
         async def __call__(self, scope: Dict[str, Any], receive: Callable[[], Awaitable[Any]], send: Callable[[Any], Awaitable[None]]):
             if scope.get("type") in ("http", "websocket"):
                 path = scope.get("path") or ""
+                query_bytes: bytes = scope.get("query_string") or b""
+
+                new_path = None
+
+                # Case A: scope has original path including known prefix.
                 for prefix in self.prefixes:
                     if path == prefix:
                         new_path = "/"
@@ -62,8 +75,23 @@ try:
                     if path.startswith(prefix + "/"):
                         new_path = path[len(prefix):] or "/"
                         break
-                else:
-                    new_path = None
+
+                # Case B: scope only has destination path; recover intended sub-path from query.
+                if new_path is None and path in ("/", "/api/solar", "/python/solar"):
+                    try:
+                        qs = parse_qs(query_bytes.decode("utf-8"), keep_blank_values=True)
+                    except Exception:
+                        qs = {}
+
+                    forwarded = (qs.get("__path") or [None])[0]
+                    if forwarded is not None:
+                        forwarded = str(forwarded).lstrip("/")
+                        new_path = "/" + forwarded if forwarded else "/"
+
+                        # Remove the internal routing param so it doesn't leak into the app.
+                        qs.pop("__path", None)
+                        scope = dict(scope)
+                        scope["query_string"] = urlencode(qs, doseq=True).encode("utf-8") if qs else b""
 
                 if new_path is not None and new_path != path:
                     scope = dict(scope)
