@@ -5,7 +5,8 @@
       "maxDuration": 10
     },
     "api/python/**/*.py": {
-      "maxDuration": 60
+      "maxDuration": 60,
+      "excludeFiles": "**/node_modules/**"
     }
   },
   "rewrites": [

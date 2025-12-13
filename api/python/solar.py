@@ -1,4 +1,4 @@
-"""Vercel serverless function handler for Solar API."""
+"""Vercel serverless function handler for Solar API (ASGI)."""
 import sys
 import os
 import logging
@@ -32,24 +32,26 @@ sys.path.insert(0, str(api_py_dir))
 log_both(f"Added to path: {api_py_dir}")
 
 try:
-    log_both("Importing mangum...")
-    from mangum import Mangum
-    log_both("Mangum imported successfully")
-    
     log_both("Importing solar.app...")
-    from solar.app import app
+    from solar.app import app as fastapi_app
     log_both("Solar app imported successfully")
     
-    log_both("Creating Mangum handler...")
-    # Configure Mangum to handle the root path correctly for Vercel
-    # The root_path tells Mangum to strip /api/python/solar from the path
-    handler = Mangum(app, lifespan="off", root_path="/api/python/solar")
-    log_both("=== HANDLER CREATED SUCCESSFULLY ===")
+    # Configure root_path for Vercel routing
+    # When requests come to /api/python/solar/jobs, FastAPI needs to know
+    # the base path is /api/python/solar to correctly match /jobs route
+    fastapi_app.root_path = "/api/python/solar"
+    
+    # For Vercel Python runtime with ASGI (FastAPI), we export 'app' directly
+    # Vercel natively supports ASGI applications, no need for Mangum wrapper
+    # According to Vercel docs: "define an app variable that exposes a WSGI or ASGI Application"
+    app = fastapi_app
+    log_both("=== APP EXPORTED SUCCESSFULLY ===")
+    log_both(f"Root path configured: {app.root_path}")
     log_both("=" * 60)
     
 except Exception as e:
     log_both("=" * 60)
-    log_both("=== ERROR INITIALIZING HANDLER ===")
+    log_both("=== ERROR INITIALIZING APP ===")
     log_both(f"Error type: {type(e).__name__}")
     log_both(f"Error message: {str(e)}")
     import traceback
@@ -57,5 +59,6 @@ except Exception as e:
     log_both("=" * 60)
     raise
 
-# Export handler for Vercel
-__all__ = ['handler']
+# Export app for Vercel (ASGI application)
+# According to Vercel docs: "define an app variable that exposes a WSGI or ASGI Application"
+__all__ = ['app']
