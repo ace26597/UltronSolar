@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { createSolarJob, runSolar, checkSolarStatus, SolarMeta, testPythonFunction } from "@/lib/solarApi";
 
 export default function SolarSimulation() {
@@ -183,10 +184,13 @@ export default function SolarSimulation() {
                   <div className="space-y-1 text-center">
                     {imagePreview ? (
                       <div className="relative">
-                        <img
+                        <Image
                           src={imagePreview}
                           alt="Preview"
+                          width={400}
+                          height={192}
                           className="mx-auto h-48 w-auto rounded-lg object-contain"
+                          unoptimized
                         />
                         <button
                           type="button"
@@ -387,10 +391,13 @@ export default function SolarSimulation() {
               {status === "done" && resultImage && (
                 <div className="space-y-4">
                   <div className="relative rounded-lg overflow-hidden border border-gray-200">
-                    <img
+                    <Image
                       src={`data:image/jpeg;base64,${resultImage}`}
                       alt="Solar panel visualization"
+                      width={1200}
+                      height={900}
                       className="w-full h-auto"
+                      unoptimized
                     />
                   </div>
                   <div className="flex gap-4">

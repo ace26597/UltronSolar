@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Script from 'next/script';
+import Image from 'next/image';
 import { useAnalyticsConsent, useMarketingConsent } from '@/context/CookieConsentContext';
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-N5PL09KWTM';
@@ -51,12 +52,13 @@ const AnalyticsScripts: React.FC = () => {
             fbq('track', 'PageView');
           `}</Script>
           <noscript>
-            <img
-              height="1"
-              width="1"
+            <Image
+              height={1}
+              width={1}
               style={{ display: 'none' }}
               src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
               alt=""
+              unoptimized
             />
           </noscript>
         </>
