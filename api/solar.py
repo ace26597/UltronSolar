@@ -25,8 +25,8 @@ log_both(f"Current directory: {os.getcwd()}")
 log_both(f"Script path: {__file__}")
 log_both(f"Python path: {sys.path}")
 
-# Add api_py directory to path (go up from api/python to root, then to api_py)
-root_dir = Path(__file__).parent.parent.parent
+# Add api_py directory to path (go up from api to root, then to api_py)
+root_dir = Path(__file__).parent.parent
 api_py_dir = root_dir / "api_py"
 sys.path.insert(0, str(api_py_dir))
 log_both(f"Added to path: {api_py_dir}")
@@ -37,9 +37,10 @@ try:
     log_both("Solar app imported successfully")
     
     # Configure root_path for Vercel routing
-    # When requests come to /api/python/solar/jobs, FastAPI needs to know
-    # the base path is /api/python/solar to correctly match /jobs route
-    fastapi_app.root_path = "/api/python/solar"
+    # The public URL is /python/solar, so FastAPI should use that as root_path
+    # This allows FastAPI to correctly match routes like /jobs when requests
+    # come through the rewrite from /python/solar/jobs -> /api/solar/jobs
+    fastapi_app.root_path = "/python/solar"
     
     # For Vercel Python runtime with ASGI (FastAPI), we export 'app' directly
     # Vercel natively supports ASGI applications, no need for Mangum wrapper
