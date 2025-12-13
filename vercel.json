@@ -4,21 +4,18 @@
     "src/app/api/**/*.ts": {
       "maxDuration": 10
     },
-    "api_py/*.py": {
-      "maxDuration": 60
-    },
-    "api_py/solar.py": {
+    "api/python/**/*.py": {
       "maxDuration": 60
     }
   },
   "rewrites": [
     {
-      "source": "/python/:path*",
-      "destination": "/api_py/:path*"
+      "source": "/python/solar/:path*",
+      "destination": "/api/python/solar/:path*"
     },
     {
-      "source": "/python/solar/:path*",
-      "destination": "/api_py/solar.py"
+      "source": "/python/test",
+      "destination": "/api/python/test"
     }
   ],
   "headers": [
