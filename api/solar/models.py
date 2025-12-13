@@ -22,6 +22,12 @@ class SolarJobStatus(BaseModel):
     jobId: str
     status: str  # queued, processing, done, error
     resultImage: Optional[str] = None  # base64 encoded image
+    # Progress / intermediate outputs (best-effort; may not persist across serverless instances)
+    step: Optional[str] = None  # analyzing, cleanup, panels, done, error
+    message: Optional[str] = None
+    analysis: Optional[str] = None
+    cleanedImage: Optional[str] = None
+    error: Optional[str] = None
 
 
 class SolarRunRequest(BaseModel):

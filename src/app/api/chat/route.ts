@@ -58,7 +58,8 @@ export async function POST(req: NextRequest) {
       })),
     ];
 
-    const modelName = process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
+    // Keep chat fast to avoid Vercel timeouts; use a dedicated env var.
+    const modelName = process.env.OPENAI_CHAT_MODEL || process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
     
     // Use default parameters - let OpenAI handle defaults for temperature, max_tokens, etc.
     const completion = await openai.chat.completions.create({
@@ -105,7 +106,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       { 
         error: errorMessage,
-        model: process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini',
+        model: process.env.OPENAI_CHAT_MODEL || process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini',
         details: process.env.NODE_ENV === 'development' ? {
           message: error?.message,
           status: error?.status,

@@ -33,6 +33,10 @@ export default function SolarSimulation() {
   const [jobId, setJobId] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "uploading" | "processing" | "done" | "error">("idle");
   const [resultImage, setResultImage] = useState<string | null>(null);
+  const [cleanedImage, setCleanedImage] = useState<string | null>(null);
+  const [progressStep, setProgressStep] = useState<string | null>(null);
+  const [progressMessage, setProgressMessage] = useState<string | null>(null);
+  const [analysisText, setAnalysisText] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,6 +70,10 @@ export default function SolarSimulation() {
       setStatus("uploading");
       setError(null);
       setResultImage(null);
+      setCleanedImage(null);
+      setProgressStep(null);
+      setProgressMessage(null);
+      setAnalysisText(null);
 
       // Prepare metadata
       const meta: SolarMeta = {
@@ -80,7 +88,10 @@ export default function SolarSimulation() {
 
       // Start processing
       setStatus("processing");
-      await runSolar(response.jobId);
+      // Fire-and-forget so we can poll and show step-by-step progress in UI
+      runSolar(response.jobId).catch((err) => {
+        console.error('[Solar API] runSolar failed:', err);
+      });
 
       // Poll for status
       let pollInterval: NodeJS.Timeout;
@@ -89,6 +100,10 @@ export default function SolarSimulation() {
       const checkStatus = async () => {
         try {
           const statusResponse = await checkSolarStatus(response.jobId);
+          setProgressStep(statusResponse.step || null);
+          setProgressMessage(statusResponse.message || null);
+          if (statusResponse.analysis) setAnalysisText(statusResponse.analysis);
+          if (statusResponse.cleanedImage) setCleanedImage(statusResponse.cleanedImage);
           
           if (statusResponse.status === "done") {
             clearInterval(pollInterval);
@@ -101,7 +116,7 @@ export default function SolarSimulation() {
             clearInterval(pollInterval);
             clearTimeout(timeoutId);
             setStatus("error");
-            setError("Processing failed. Please try again.");
+            setError(statusResponse.error || "Processing failed. Please try again.");
           }
         } catch (err) {
           clearInterval(pollInterval);
@@ -135,6 +150,10 @@ export default function SolarSimulation() {
     setJobId(null);
     setStatus("idle");
     setResultImage(null);
+    setCleanedImage(null);
+    setProgressStep(null);
+    setProgressMessage(null);
+    setAnalysisText(null);
     setError(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -378,13 +397,42 @@ export default function SolarSimulation() {
               )}
 
               {status === "processing" && (
-                <div className="flex flex-col items-center justify-center h-64 bg-gray-50 rounded-lg">
+                <div className="space-y-4">
+                  <div className="flex flex-col items-center justify-center h-40 bg-gray-50 rounded-lg">
                   <svg className="animate-spin h-12 w-12 text-primary-blue mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  <p className="text-gray-600">AI is processing your image...</p>
-                  <p className="text-sm text-gray-500 mt-2">This may take 30-60 seconds</p>
+                    <p className="text-gray-600">{progressMessage || "AI is processing your image..."}</p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      {progressStep ? `Step: ${progressStep}` : "This may take 30-60 seconds"}
+                    </p>
+                  </div>
+
+                  {analysisText && (
+                    <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                      <div className="font-semibold text-gray-800 mb-1">Step output: Analysis</div>
+                      <pre className="whitespace-pre-wrap text-xs text-gray-700 max-h-40 overflow-auto">
+                        {analysisText}
+                      </pre>
+                    </div>
+                  )}
+
+                  {cleanedImage && (
+                    <div className="space-y-2">
+                      <div className="font-semibold text-gray-800">Step output: Cleaned terrace</div>
+                      <div className="relative rounded-lg overflow-hidden border border-gray-200">
+                        <Image
+                          src={`data:image/jpeg;base64,${cleanedImage}`}
+                          alt="Cleaned terrace"
+                          width={1200}
+                          height={900}
+                          className="w-full h-auto"
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
 

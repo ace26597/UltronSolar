@@ -147,8 +147,12 @@ async def create_solar_job(
         job_id = str(uuid.uuid4())
         jobs[job_id] = {
             "status": "queued",
+            "step": "queued",
+            "message": "Queued",
             "meta": meta_dict,
             "image_b64": img_b64,
+            "analysis": None,
+            "cleaned_b64": None,
             "output_b64": None,
             "error": None
         }
@@ -213,6 +217,8 @@ async def run_solar_job(job_id: str):
         
         # Update status to processing
         job["status"] = "processing"
+        job["step"] = "analyzing"
+        job["message"] = "Analyzing terrace image..."
         job["error"] = None
         
         logger.info(f"Processing job {job_id}...")
@@ -227,16 +233,32 @@ async def run_solar_job(job_id: str):
             bill=meta_dict.get("bill")
         )
         
-        # Process image (two-pass: cleanup + add panels)
+        # Process image (analyze -> cleanup -> add panels) and write intermediate outputs
         try:
-            final_image_b64 = image_service.process_solar_simulation(
-                image_b64,
-                system_specs
-            )
+            # Step 1: Analyze
+            analysis = image_service.analyze_image(image_b64, system_specs)
+            analysis_text = analysis.get("analysis")
+            job["analysis"] = analysis_text
+
+            cleanup_instructions = analysis_text or "Remove all people, temporary items, and clutter from the terrace."
+            panel_layout = analysis_text or f"Install {system_specs.get('panel_count', 'N/A')} panels in optimal locations."
+
+            # Step 2: Cleanup
+            job["step"] = "cleanup"
+            job["message"] = "Cleaning up terrace image..."
+            cleaned_image_b64 = image_service.cleanup_image(image_b64, cleanup_instructions)
+            job["cleaned_b64"] = cleaned_image_b64
+
+            # Step 3: Add panels
+            job["step"] = "panels"
+            job["message"] = "Adding solar panels..."
+            final_image_b64 = image_service.add_solar_panels(cleaned_image_b64, panel_layout, system_specs)
             
             # Update job with result
             job["output_b64"] = final_image_b64
             job["status"] = "done"
+            job["step"] = "done"
+            job["message"] = "Completed"
             
             logger.info(f"Job {job_id} completed successfully")
             
@@ -249,6 +271,8 @@ async def run_solar_job(job_id: str):
             # Update job with error
             error_msg = str(e)
             job["status"] = "error"
+            job["step"] = "error"
+            job["message"] = "Failed"
             job["error"] = error_msg
             
             logger.error(f"Job {job_id} failed: {error_msg}")
@@ -291,7 +315,12 @@ async def get_solar_job_status(job_id: str):
         
         response = SolarJobStatus(
             jobId=job_id,
-            status=job["status"]
+            status=job["status"],
+            step=job.get("step"),
+            message=job.get("message"),
+            analysis=job.get("analysis"),
+            cleanedImage=job.get("cleaned_b64"),
+            error=job.get("error"),
         )
         
         # Include result image if available

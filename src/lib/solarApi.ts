@@ -14,6 +14,11 @@ export interface SolarJobStatus {
   jobId: string;
   status: 'queued' | 'processing' | 'done' | 'error';
   resultImage?: string; // base64 encoded image
+  step?: string;
+  message?: string;
+  analysis?: string;
+  cleanedImage?: string; // base64 encoded intermediate image
+  error?: string;
 }
 
 // Base URL for solar API

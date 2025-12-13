@@ -10,8 +10,8 @@ from io import BytesIO
 logger = logging.getLogger(__name__)
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_IMAGE_MODEL = os.getenv("OPENAI_IMAGE_MODEL", "gpt-image-1")
-OPENAI_MODEL_NAME = os.getenv("OPENAI_MODEL_NAME", "gpt-5.2")
+OPENAI_SOLAR_IMAGE_MODEL = os.getenv("OPENAI_SOLAR_IMAGE_MODEL", os.getenv("OPENAI_IMAGE_MODEL", "gpt-image-1"))
+OPENAI_SOLAR_ANALYSIS_MODEL = os.getenv("OPENAI_SOLAR_ANALYSIS_MODEL", os.getenv("OPENAI_MODEL_NAME", "gpt-5.2"))
 
 # Retry configuration
 MAX_RETRIES = 3
@@ -27,8 +27,17 @@ class ImageService:
             raise ValueError("OPENAI_API_KEY environment variable is not set")
         
         self.client = OpenAI(api_key=OPENAI_API_KEY)
-        self.image_model = OPENAI_IMAGE_MODEL
-        self.analysis_model = OPENAI_MODEL_NAME
+        self.image_model = OPENAI_SOLAR_IMAGE_MODEL
+        self.analysis_model = OPENAI_SOLAR_ANALYSIS_MODEL
+
+    @staticmethod
+    def _uses_max_completion_tokens(model_name: str) -> bool:
+        """
+        Some newer/reasoning models (e.g. GPT-5 / o-series) reject `max_tokens`
+        and require `max_completion_tokens` instead.
+        """
+        name = (model_name or "").lower()
+        return name.startswith("gpt-5") or name.startswith("o1") or name.startswith("o3") or name.startswith("o4")
     
     def _retry_with_backoff(self, func, *args, **kwargs):
         """Execute function with exponential backoff retry logic."""
@@ -39,6 +48,10 @@ class ImageService:
                 return func(*args, **kwargs)
             except Exception as e:
                 last_exception = e
+                # Don't retry invalid requests (bad params, etc.)
+                status_code = getattr(e, "status_code", None) or getattr(e, "status", None)
+                if status_code == 400:
+                    raise
                 if attempt < MAX_RETRIES - 1:
                     delay = RETRY_DELAY * (2 ** attempt)  # Exponential backoff
                     logger.warning(f"Attempt {attempt + 1} failed: {str(e)}. Retrying in {delay}s...")
@@ -88,6 +101,11 @@ Provide a detailed analysis in JSON format with:
 """
 
             def _analyze():
+                token_kwargs = (
+                    {"max_completion_tokens": 1000}
+                    if self._uses_max_completion_tokens(self.analysis_model)
+                    else {"max_tokens": 1000}
+                )
                 response = self.client.chat.completions.create(
                     model=self.analysis_model,
                     messages=[
@@ -107,7 +125,7 @@ Provide a detailed analysis in JSON format with:
                             ]
                         }
                     ],
-                    max_tokens=1000,
+                    **token_kwargs,
                     temperature=0.3
                 )
                 return response.choices[0].message.content
