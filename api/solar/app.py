@@ -38,8 +38,10 @@ app = FastAPI(
 # Add request logging middleware
 @app.middleware("http")
 async def log_requests(request, call_next):
+    request_id = str(uuid.uuid4())
     logger.info("=" * 60)
     logger.info("=== INCOMING REQUEST ===")
+    logger.info(f"Request ID: {request_id}")
     logger.info(f"Method: {request.method}")
     logger.info(f"URL: {str(request.url)}")
     logger.info(f"Path: {request.url.path}")
@@ -48,14 +50,44 @@ async def log_requests(request, call_next):
     try:
         response = await call_next(request)
         logger.info(f"Response status: {response.status_code}")
+        logger.info(f"Request ID: {request_id} completed")
         logger.info("=" * 60)
         return response
     except Exception as e:
         logger.error(f"=== ERROR IN MIDDLEWARE ===")
+        logger.error(f"Request ID: {request_id}")
         logger.error(f"Error: {str(e)}")
         import traceback
         logger.error(traceback.format_exc())
-        raise
+        # Ensure client gets JSON (Vercel otherwise may show plain text 500)
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": "Internal Server Error",
+                "requestId": request_id,
+            },
+        )
+
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request, exc):
+    """
+    Final catch-all so we always respond with JSON + a requestId.
+    This makes debugging on Vercel much easier than the generic 'Internal Server Error'.
+    """
+    request_id = str(uuid.uuid4())
+    logger.error("=== UNHANDLED EXCEPTION ===")
+    logger.error(f"Request ID: {request_id}")
+    logger.error(f"Path: {request.url.path} Method: {request.method}")
+    import traceback
+    logger.error(traceback.format_exc())
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "Internal Server Error",
+            "requestId": request_id,
+        },
+    )
 
 # Configure CORS
 app.add_middleware(
