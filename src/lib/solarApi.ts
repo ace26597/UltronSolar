@@ -69,35 +69,35 @@ export async function compressImage(
 ): Promise<File> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
       const img = new Image();
-      
+
       img.onload = () => {
         // Calculate new dimensions
         let width = img.width;
         let height = img.height;
-        
+
         if (width > maxWidth || height > maxHeight) {
           const ratio = Math.min(maxWidth / width, maxHeight / height);
           width = Math.round(width * ratio);
           height = Math.round(height * ratio);
         }
-        
+
         // Create canvas and resize
         const canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
-        
+
         const ctx = canvas.getContext('2d');
         if (!ctx) {
           reject(new Error('Failed to get canvas context'));
           return;
         }
-        
+
         // Draw resized image
         ctx.drawImage(img, 0, 0, width, height);
-        
+
         // Convert to blob
         canvas.toBlob(
           (blob) => {
@@ -105,33 +105,33 @@ export async function compressImage(
               reject(new Error('Failed to compress image'));
               return;
             }
-            
+
             // Create new File with original name
             const compressedFile = new File([blob], file.name, {
               type: 'image/jpeg',
               lastModified: Date.now(),
             });
-            
+
             resolve(compressedFile);
           },
           'image/jpeg',
           quality
         );
       };
-      
+
       img.onerror = () => {
         reject(new Error('Failed to load image'));
       };
-      
+
       if (e.target?.result) {
         img.src = e.target.result as string;
       }
     };
-    
+
     reader.onerror = () => {
       reject(new Error('Failed to read file'));
     };
-    
+
     reader.readAsDataURL(file);
   });
 }
@@ -160,7 +160,7 @@ async function compressImageForVercel(file: File): Promise<File> {
   // If we still couldn't get under the limit, fail with a helpful message.
   throw new Error(
     `Image is too large to upload (${Math.round(current.size / 1024 / 1024)}MB). ` +
-      `Please choose a smaller photo or crop it and try again.`
+    `Please choose a smaller photo or crop it and try again.`
   );
 }
 
@@ -177,10 +177,10 @@ export async function createSolarJob(
   compress: boolean = true
 ): Promise<SolarJobResponse> {
   try {
-    console.log('[Solar API] Starting job creation...', { 
-      fileName: file.name, 
+    console.log('[Solar API] Starting job creation...', {
+      fileName: file.name,
       fileSize: file.size,
-      meta 
+      meta
     });
 
     // Compress image before upload
@@ -188,9 +188,9 @@ export async function createSolarJob(
     if (compress) {
       console.log('[Solar API] Compressing image...');
       imageFile = await compressImageForVercel(file);
-      console.log('[Solar API] Image compressed:', { 
-        originalSize: file.size, 
-        compressedSize: imageFile.size 
+      console.log('[Solar API] Image compressed:', {
+        originalSize: file.size,
+        compressedSize: imageFile.size
       });
     }
 
@@ -218,7 +218,7 @@ export async function createSolarJob(
         statusText: response.statusText,
         body: errorText
       });
-      
+
       let errorMessage = `Solar job creation error: ${response.status}`;
       try {
         const errorData = JSON.parse(errorText);
@@ -324,3 +324,56 @@ export async function runSolar(jobId: string): Promise<SolarJobResponse> {
   }
 }
 
+// ============================================
+// Estimate API Client Functions
+// ============================================
+
+import type { EstimateInput, EstimateOutput, PackInput, PackOutput } from '@/types/solar';
+
+/**
+ * Get solar estimate from bill/consumption data
+ * @param input - Estimate input parameters
+ * @returns Promise with estimate results
+ */
+export async function getSolarEstimate(input: EstimateInput): Promise<EstimateOutput> {
+  const response = await fetch('/api/solar/estimate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Estimate failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+  if (!data.success) {
+    throw new Error(data.error?.message || 'Estimate calculation failed');
+  }
+  return data.data;
+}
+
+/**
+ * Pack panels on roof polygons
+ * @param input - Pack input parameters
+ * @returns Promise with panel positions
+ */
+export async function packRoof(input: PackInput): Promise<PackOutput> {
+  const response = await fetch('/api/solar/roof/pack', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Pack failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+  if (!data.success) {
+    throw new Error(data.error?.message || 'Pack calculation failed');
+  }
+  return data.data;
+}

@@ -10,24 +10,45 @@ const config: Config = {
     extend: {
       colors: {
         solar: {
+          50: "#FFFBEB",
+          100: "#FEF3C7",
+          200: "#FDE68A",
+          300: "#FCD34D",
+          400: "#FBBF24",
+          500: "#F59E0B",
+          600: "#D97706",
+          700: "#B45309",
           red: "#DC2626",
           "red-dark": "#B91C1C",
           "red-light": "#EF4444",
         },
+        eco: {
+          50: "#ECFDF5",
+          100: "#D1FAE5",
+          200: "#A7F3D0",
+          500: "#10B981",
+          600: "#059669",
+          700: "#047857",
+        },
         energy: {
-          green: "#15803d", // Darker green for better contrast with white text (WCAG AA compliant)
-          "green-dark": "#166534", // Even darker for hover state
-          "green-light": "#22c55e", // Lighter green for accents only
+          green: "#15803d",
+          "green-dark": "#166534",
+          "green-light": "#22c55e",
         },
         primary: {
           blue: "#2563EB",
           "blue-dark": "#1E40AF",
           "blue-light": "#3B82F6",
+          "blue-50": "#EFF6FF",
+          "blue-100": "#DBEAFE",
         },
         navy: {
           DEFAULT: "#1e3a8a",
           dark: "#1e293b",
           light: "#334155",
+          600: "#1e40af",
+          700: "#1e3a8a",
+          800: "#1e3057",
         },
         neutral: {
           grey: "#6B7280",
