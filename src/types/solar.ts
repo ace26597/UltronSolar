@@ -218,7 +218,7 @@ export type SolarApiResponse<T> =
 // UI State Types
 // ============================================
 
-export type SimulatorTab = 'quick-estimate' | 'draw-roof' | 'compare' | 'photo';
+export type SimulatorTab = 'quick-estimate' | 'draw-roof' | 'compare';
 
 export interface SimulatorState {
     activeTab: SimulatorTab;
