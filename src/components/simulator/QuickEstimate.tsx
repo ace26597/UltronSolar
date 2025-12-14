@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
     EstimateInput,
     EstimateOutput,
@@ -377,12 +378,12 @@ export default function QuickEstimate({ onEstimateComplete }: QuickEstimateProps
                         </div>
 
                         {/* CTA */}
-                        <a
+                        <Link
                             href="/#contact"
                             className="block w-full bg-primary-blue text-white text-center font-bold py-4 rounded-lg hover:bg-primary-blue-dark transition-all shadow-lg hover:shadow-xl"
                         >
                             Get a Free Quote
-                        </a>
+                        </Link>
 
                         {/* Assumptions Note */}
                         <p className="text-xs text-gray-500 text-center">
