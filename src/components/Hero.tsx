@@ -14,60 +14,102 @@ export default function Hero() {
     audience: 'residential',
     language: currentLanguage,
   });
+
   return (
-    <section id="home" className="relative min-h-[100svh] sm:min-h-[500px] sm:max-h-[800px] md:min-h-[600px] md:max-h-none flex items-center justify-center text-white overflow-hidden w-full">
-      {/* Background Image with Overlay */}
+    <section id="home" className="relative min-h-[90svh] lg:min-h-screen flex items-center justify-center text-white overflow-hidden w-full font-sans">
+      {/* Background Image with Strategic Overlays */}
       <div className="absolute inset-0 z-0 w-full h-full">
         <Image
           src="/images/gallery-project-9.jpg"
-          alt="Rooftop Solar Panel Installation in Dhule, Maharashtra"
+          alt="Rooftop Solar Panel Installation in Dhule, North Maharashtra"
           fill
           className="object-cover object-center"
           priority
           fetchPriority="high"
-          quality={60}
+          quality={80}
           sizes="100vw"
-          placeholder="blur"
-          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgIBAwQDAAAAAAAAAAAAAQIDBAAFESEGEhMxQVFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAaEQACAwEBAAAAAAAAAAAAAAABAgADESEx/9oADAMBAAIRAxEAPwCvq2oarHbkSG9ZRFYqoWRgAAo2AA9AADj2Mxh6i1U9azNLJNJI7sWZnYkkn2Sf3GYpVr0lTGJJWf/Z"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/80 via-navy-dark/60 to-navy-dark/90"></div>
+        {/* Multi-stage gradient for text focus */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/60 to-transparent hidden lg:block"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/80 via-navy/40 to-navy lg:hidden"></div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-          {t.hero.title} <br />
-          <span className="text-solar-red">{t.hero.titleHighlight}</span>
-        </h1>
+      {/* Hero Content Container */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:w-2/3 xl:w-1/2 text-center lg:text-left">
+          {/* Badge for trust/localization */}
+          <div className="inline-flex items-center gap-2 bg-solar-orange/20 border border-solar-orange/30 rounded-full px-4 py-1.5 mb-8 animate-fade-in">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-solar-orange opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-solar-orange"></span>
+            </span>
+            <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-solar-orange">
+              Trusted in North Maharashtra since 2006
+            </span>
+          </div>
 
-        <p className="text-sm sm:text-base md:text-xl lg:text-2xl mb-6 md:mb-8 text-gray-100 max-w-3xl mx-auto font-light px-1">
-          {t.hero.subtitle}
-        </p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-heading font-black mb-6 leading-tight lg:leading-[1.1] tracking-tight">
+            <span className="block">{t.hero.title}</span>
+            <span className="block text-solar-orange drop-shadow-sm">{t.hero.titleHighlight}</span>
+          </h1>
 
-        <div className="flex justify-center items-center">
-          <CtaButton
-            ctaId={primaryCta.id}
-            variant="primary"
-            className="!text-white text-sm sm:text-base"
-            trackEventName="hero_primary_cta_click"
-            showSubtext={true}
-          />
-        </div>
+          <p className="text-lg sm:text-xl md:text-2xl mb-10 text-gray-200 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+            {t.hero.subtitle}
+          </p>
 
-        <div className="mt-6 md:mt-12 inline-block bg-white/10 backdrop-blur-md rounded-full px-3 sm:px-4 md:px-6 py-2 border border-white/20">
-          <span className="text-white font-medium text-xs sm:text-sm md:text-base">{t.hero.priceNote}</span>
+          <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-6">
+            <CtaButton
+              ctaId={primaryCta.id}
+              variant="primary"
+              variantOverride={{ label: t.nav.getQuote }}
+              className="w-full sm:w-auto px-10 py-5 text-base sm:text-lg font-bold shadow-2xl shadow-solar-orange/20"
+              trackEventName="hero_primary_cta_click"
+              showSubtext={true}
+            />
+
+            <div className="flex flex-col items-center lg:items-start text-xs sm:text-sm text-gray-400">
+              <div className="flex items-center gap-2 mb-1">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="w-8 h-8 rounded-full border-2 border-navy bg-gray-200 overflow-hidden">
+                      <Image src={`/images/team/team-${i}.jpg`} alt="Ultron Team" width={32} height={32} className="grayscale hover:grayscale-0 transition-all object-cover" />
+                    </div>
+                  ))}
+                  <div className="w-8 h-8 rounded-full border-2 border-navy bg-solar-orange flex items-center justify-center text-[10px] font-bold text-navy">
+                    500+
+                  </div>
+                </div>
+                <span className="font-bold text-white">4.9/5 Rating</span>
+              </div>
+              <span>based on genuine Google reviews</span>
+            </div>
+          </div>
+
+          <div className="mt-12 lg:mt-16 flex flex-wrap justify-center lg:justify-start items-center gap-8 opacity-70 grayscale contrast-125">
+            <div className="text-white font-bold text-sm tracking-widest uppercase flex flex-col">
+              <span className="text-solar-orange text-xl">15+</span>
+              <span>Years</span>
+            </div>
+            <div className="text-white font-bold text-sm tracking-widest uppercase flex flex-col">
+              <span className="text-solar-orange text-xl">25MW+</span>
+              <span>Installed</span>
+            </div>
+            <div className="text-white font-bold text-sm tracking-widest uppercase flex flex-col">
+              <span className="text-solar-orange text-xl">100%</span>
+              <span>Subsidy Help</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#features" className="text-white opacity-80 hover:opacity-100 transition-opacity touch-manipulation" aria-label="Scroll to features">
-          <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </a>
+      {/* Decorative Wave at bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] transform rotate-180">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(116%+1.3px)] h-[40px] md:h-[80px] fill-white">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,105,114.24,103,172,94.52,232,85,285.49,70.52,321.39,56.44Z"></path>
+        </svg>
       </div>
     </section>
   );
 }
+
 

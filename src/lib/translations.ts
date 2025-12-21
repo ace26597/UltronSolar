@@ -10,8 +10,12 @@ export interface Translations {
     blog: string;
     contact: string;
     menu: string;
+    residential: string;
+    agriculture: string;
+    commercial: string;
+    getQuote: string;
   };
-  
+
   // Hero Section
   hero: {
     title: string;
@@ -19,12 +23,12 @@ export interface Translations {
     subtitle: string;
     priceNote: string;
   };
-  
+
   // Top Bar
   topBar: {
     serving: string;
   };
-  
+
   // Features Section
   features: {
     title: string;
@@ -46,7 +50,7 @@ export interface Translations {
       description: string;
     };
   };
-  
+
   // About Section
   about: {
     title: string;
@@ -74,7 +78,7 @@ export interface Translations {
       contactButton: string;
     };
   };
-  
+
   // Footer
   footer: {
     description: string;
@@ -110,7 +114,7 @@ export interface Translations {
       sitemap: string;
     };
   };
-  
+
   // FAQ Section
   faq: {
     title: string;
@@ -120,7 +124,7 @@ export interface Translations {
       answer: string;
     }>;
   };
-  
+
   // Special Offer Section
   specialOffer: {
     badge: string;
@@ -146,7 +150,7 @@ export interface Translations {
     claimButton: string;
     terms: string;
   };
-  
+
   // Contact Section
   contact: {
     title: string;
@@ -179,7 +183,7 @@ export interface Translations {
       emailUs: string;
     };
   };
-  
+
   // WeServe Section
   weServe: {
     sectors: Array<{
@@ -191,27 +195,40 @@ export interface Translations {
       description: string;
     };
   };
-  
+
+  trustBar: {
+    title: string;
+  };
+
+  howItWorks: {
+    title: string;
+    subtitle: string;
+    steps: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+
   // ServiceAreas Section
   serviceAreas: {
     title: string;
     locations: string;
     note: string;
   };
-  
+
   // Brands Section
   brands: {
     title: string;
     subtitle: string;
   };
-  
+
   // Gallery Section
   gallery: {
     title: string;
     subtitle: string;
     clickToView: string;
   };
-  
+
   // Products Section
   products: {
     title: string;
@@ -222,7 +239,7 @@ export interface Translations {
       description: string;
     }>;
   };
-  
+
   // Common
   common: {
     readMore: string;
@@ -231,7 +248,7 @@ export interface Translations {
   };
 }
 
-const translations: Partial<Record<Language, Translations>> & { en: Translations; mr: Translations } = {
+const translations: Record<Language, Translations> = {
   en: {
     nav: {
       home: 'Home',
@@ -241,6 +258,10 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       blog: 'Blog',
       contact: 'Contact',
       menu: 'Menu',
+      residential: 'Residential',
+      agriculture: 'Agriculture',
+      commercial: 'Commercial',
+      getQuote: 'Get Free Quote',
     },
     hero: {
       title: 'Power Your Future',
@@ -443,6 +464,19 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },
     },
+    trustBar: {
+      title: "Trusted by 500+ Families & Industry Leaders in North Maharashtra",
+    },
+    howItWorks: {
+      title: "Your Journey to Solar Excellence",
+      subtitle: "A seamless 4-step process designed to get you running on sunshine in no time.",
+      steps: [
+        { title: "Expert Consultation", description: "Our engineers visit your site for a precise shadow analysis and load calculation." },
+        { title: "Custom Engineering", description: "We design a high-efficiency system tailored to your roof and budget needs." },
+        { title: "Hassle-Free Install", description: "Professional installation by our certified team with minimal disruption." },
+        { title: "Liaison & Activation", description: "We handle all net-metering and subsidy paperwork for a smooth start." },
+      ]
+    },
     serviceAreas: {
       title: 'Serving North Maharashtra',
       locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon • Navapur • Amalner • Chopda • Yaval • Faizpur • Bhusawal',
@@ -503,6 +537,10 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       blog: 'ब्लॉग',
       contact: 'संपर्क',
       menu: 'मेनू',
+      residential: 'निवासी',
+      agriculture: 'शेती',
+      commercial: 'व्यावसायिक',
+      getQuote: 'विनामूल्य कोट मिळवा',
     },
     hero: {
       title: 'तुमच्या भविष्याला शक्ती द्या',
@@ -607,7 +645,7 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         },
         {
           question: '3kW प्रणाली किती युनिट निर्माण करेल?',
-          answer: 'महाराष्ट्राच्या हवामानात, 3kW प्रणाली दररोज अंदाजे 12-15 युनिट किंवा दरमहा सुमारे 360-450 युनिट निर्माण करते, सूर्यप्रकाशाची उपलब्धता आणि पॅनेल कार्यक्षमतेवर अवलंबून.',
+          answer: 'महाराष्ट्राच्या हवामानात, 3kW प्रणाली दररोज अंदाजे 12-15 युनिट किंवा दरमहा सुमारे 360-450 युनिट निर्माण करते, सूर्यप्रकाशाची उपलब्धता und पॅनेल कार्यक्षमतेवर अवलंबून.',
         },
         {
           question: 'तुमच्या सौर प्रणालींवर वॉरंटी काय आहे?',
@@ -705,6 +743,19 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         description: 'तुमच्या व्यवसाय किंवा उद्योगासाठी सौर उपाय शोधत आहात? आम्ही ऑपरेशनल खर्च कमी करण्यासाठी आणि स्थिरता सुधारण्यासाठी डिझाइन केलेले सानुकूलित सौर प्रणाली प्रदान करतो.',
       },
     },
+    trustBar: {
+      title: "उत्तर महाराष्ट्रातील ५००+ कुटुंबे आणि उद्योगांचा आमच्यावर विश्वास",
+    },
+    howItWorks: {
+      title: "सौर उत्कृष्टतेचा तुमचा प्रवास",
+      subtitle: "तुम्हाला काही वेळातच सूर्याच्या प्रकाशावर चालवण्यासाठी डिझाइन केलेली ४-टप्प्यांची प्रक्रिया.",
+      steps: [
+        { title: "तज्ञ सल्ला", description: "आमचे अभियंते अचूक शॅडो विश्लेषण आणि लोड मोजणीसाठी तुमच्या साइटला भेट देतात." },
+        { title: "सानुकूल अभियांत्रिकी", description: "आम्ही तुमच्या छतासाठी und बजेटच्या गरजांनुसार उच्च-कार्यक्षमता प्रणाली डिझाइन करतो." },
+        { title: "त्रास-मुक्त स्थापना", description: "आमच्या प्रमाणित टीमद्वारे किमान व्यत्यय सह व्यावसायिक स्थापना." },
+        { title: "संपर्क आणि सक्रियकरण", description: "आम्ही सुरळीत सुरुवातीसाठी सर्व नेट-मीटरिंग आणि सबसिडीची कागदपत्रे हाताळतो." },
+      ]
+    },
     serviceAreas: {
       title: 'उत्तर महाराष्ट्रात सेवा देत आहोत',
       locations: 'धुळे • जळगाव • नाशिक • नंदुरबार • साक्री • शिरपूर • दोंडाईचा • मालेगाव',
@@ -756,7 +807,6 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       getStarted: 'सुरू करा',
     },
   },
-  // Hindi translations - using English for now, can be translated later
   hi: {
     nav: {
       home: 'Home',
@@ -766,6 +816,10 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
       blog: 'Blog',
       contact: 'Contact',
       menu: 'Menu',
+      residential: 'Residential',
+      agriculture: 'Agriculture',
+      commercial: 'Commercial',
+      getQuote: 'Get Free Quote',
     },
     hero: {
       title: 'Power Your Future',
@@ -968,6 +1022,19 @@ const translations: Partial<Record<Language, Translations>> & { en: Translations
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },
     },
+    trustBar: {
+      title: "उत्तर महाराष्ट्र के 500+ परिवारों और उद्योग जगत के नेताओं द्वारा विश्वसनीय",
+    },
+    howItWorks: {
+      title: "सौर उत्कृष्टता की आपकी यात्रा",
+      subtitle: "आपको कुछ ही समय में धूप पर चलाने के लिए डिज़ाइन की गई एक सहज 4-चरणीय प्रक्रिया।",
+      steps: [
+        { title: "विशेषज्ञ परामर्श", description: "हमारे इंजीनियर सटीक शैडो विश्लेषण और लोड गणना के लिए आपकी साइट का दौरा करते हैं।" },
+        { title: "कस्टम इंजीनियरिंग", description: "हम आपकी छत और बजट की जरूरतों के अनुरूप एक उच्च दक्षता वाली प्रणाली डिजाइन करते हैं।" },
+        { title: "परेशानी मुक्त स्थापना", description: "न्यूनतम व्यवधान के साथ हमारी प्रमाणित टीम द्वारा पेशेवर स्थापना।" },
+        { title: "संपर्क और सक्रियकरण", description: "हम सुचारू शुरुआत के लिए सभी नेट-मीटरिंग और सब्सिडी कागजी कार्रवाई को संभालते हैं।" },
+      ]
+    },
     serviceAreas: {
       title: 'Serving North Maharashtra',
       locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon • Navapur • Amalner • Chopda • Yaval • Faizpur • Bhusawal',
@@ -1030,4 +1097,3 @@ export function getTranslations(lang: Language | string): Translations {
 export function t(lang: Language): Translations {
   return getTranslations(lang);
 }
-

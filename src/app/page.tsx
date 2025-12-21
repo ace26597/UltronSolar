@@ -22,17 +22,21 @@ export const metadata: Metadata = {
   },
 };
 
+import TrustBar from "@/components/TrustBar";
+import HowItWorks from "@/components/HowItWorks";
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden w-full max-w-[100vw]">
       <Navbar />
       <Hero />
+      <TrustBar />
       <WeServe />
       <About />
       <Features />
       <Products />
+      <HowItWorks />
       <SpecialOffer />
-      <Brands />
       <GalleryPreview />
       <YouTubeVideos />
       <Testimonials />

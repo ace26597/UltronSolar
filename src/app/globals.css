@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
+  --foreground-rgb: 30, 41, 59;
   --background-rgb: 255, 255, 255;
+  --primary-solar: #FF9933;
+  --primary-navy: #003366;
+  --brand-bg: #F9F9F9;
 }
 
 /* Force light mode - prevent dark mode issues */
@@ -13,17 +16,22 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   color-scheme: light;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
-  @apply antialiased;
+  @apply antialiased text-brand-text;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Mobile optimizations */
