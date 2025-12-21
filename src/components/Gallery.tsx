@@ -11,55 +11,55 @@ export default function Gallery() {
   const t = getTranslations(currentLanguage);
 
   const projects = [
-    { src: "/images/gallery-project-1.jpg", caption: "5 kW Residential Rooftop Solar System – Dhule, Maharashtra" },
-    { src: "/images/gallery-project-2.jpg", caption: "10 kW Commercial Solar Installation – Dhule" },
-    { src: "/images/gallery-project-3.jpg", caption: "Industrial Solar Panel Array Setup" },
-    { src: "/images/gallery-project-4.jpg", caption: "Residential Rooftop Solar Power System" },
-    { src: "/images/gallery-project-5.jpg", caption: "Large Scale Commercial Solar Installation" },
-    { src: "/images/gallery-project-6.jpg", caption: "Agricultural Solar Water Pump System – Near Dhule" },
-    { src: "/images/gallery-project-7.jpg", caption: "Commercial Rooftop Solar Plant – Dhule" },
-    { src: "/images/gallery-project-8.jpg", caption: "Home Solar Energy Setup – Maharashtra" },
-    { src: "/images/gallery-project-9.jpg", caption: "Professional Solar Installation Project" },
-    { src: "/images/gallery-project-10.jpg", caption: "Farm Solar Water Pump Solution – Rural Maharashtra" },
-    { src: "/images/gallery-project-11.jpg", caption: "Industrial Solar Power System" },
-    { src: "/images/gallery-project-12.png", caption: "Complete Solar EPC Project Execution" },
+    { src: "/images/gallery-project-1.jpg", caption: "5 kW Residential Rooftop Solar System – Dhule, Maharashtra", impact: "Electricity bill reduced to zero", city: "Dhule" },
+    { src: "/images/gallery-project-2.jpg", caption: "10 kW Commercial Solar Installation – Dhule", impact: "₹1.2 Lakh annual savings", city: "Dhule" },
+    { src: "/images/gallery-project-3.jpg", caption: "Industrial Solar Panel Array Setup", impact: "3-Year ROI achieved", city: "North Maharashtra" },
+    { src: "/images/gallery-project-4.jpg", caption: "Residential Rooftop Solar Power System", impact: "Zero grid dependence", city: "Jalgaon" },
+    { src: "/images/gallery-project-5.jpg", caption: "Large Scale Commercial Solar Installation", impact: "35% reduction in OPEX", city: "Dhule" },
+    { src: "/images/gallery-project-6.jpg", caption: "Agricultural Solar Water Pump System – Near Dhule", impact: "Diesel costs eliminated", city: "Sakri" },
+    { src: "/images/gallery-project-7.jpg", caption: "Commercial Rooftop Solar Plant – Dhule", impact: "Tax benefits and accelerated depreciation", city: "Dhule" },
+    { src: "/images/gallery-project-8.jpg", caption: "Home Solar Energy Setup – Maharashtra", impact: "₹4,500 monthly savings", city: "Maharashtra" },
+    { src: "/images/gallery-project-9.jpg", caption: "Professional Solar Installation Project", impact: "Certified high-yield design", city: "Jalgaon" },
+    { src: "/images/gallery-project-10.jpg", caption: "Farm Solar Water Pump Solution – Rural Maharashtra", impact: "Reliable irrigation for 10+ acres", city: "Maharashtra" },
+    { src: "/images/gallery-project-11.jpg", caption: "Industrial Solar Power System", impact: "Carbon footprint reduced by 60%", city: "Dhule" },
+    { src: "/images/gallery-project-12.png", caption: "Complete Solar EPC Project Execution", impact: "End-to-end turnkey solution", city: "North Maharashtra" },
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-gray-50 overflow-hidden">
+    <section id="gallery" className="py-24 bg-brand-bg overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-4">
-            {t.gallery.title}
+        <div className="text-center mb-20">
+          <div className="inline-block bg-navy/5 text-navy px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.4em] mb-6">
+            Our Proven Track Record
+          </div>
+          <h2 className="text-4xl md:text-5xl font-heading font-black text-navy-dark mb-6">
+            Recent Deployments Across <span className="text-solar-orange">Maharashtra</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {t.gallery.subtitle}
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto italic">
+            Visual proof of our commitment to engineering excellence and customer success. 500+ projects executed with 100% technical compliance.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {projects.map((project, index) => (
             <div
               key={index}
               onClick={() => setSelectedImage(index)}
-              className="relative h-48 sm:h-56 md:h-64 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1 touch-manipulation bg-gray-200"
+              className="relative h-64 md:h-72 rounded-[2rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 group cursor-pointer hover:-translate-y-2 touch-manipulation bg-navy/10 border-2 border-white/50"
             >
               <Image
                 src={project.src}
                 alt={project.caption}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 loading="lazy"
-                quality={70}
-                placeholder="blur"
-                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMCwsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAUH/8QAIhAAAgIBAwQDAAAAAAAAAAAAAQIDBAAFESEGEhMxQVFh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAaEQACAwEBAAAAAAAAAAAAAAABAgADESEx/9oADAMBAAIRAxEAPwCvq2oarHbkSG9ZRFYqoWRgAAo2AA9AADj2Mxh6i1U9azNLJNJI7sWZnYkkn2Sf3GYpVr0lTGJJWf/Z"
+                quality={80}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-sm font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  {project.caption}
-                  <div className="mt-2 text-xs text-gray-300 uppercase tracking-wider">{t.gallery.clickToView}</div>
-                </div>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy via-navy/40 to-transparent p-6 pt-12 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="text-solar-orange text-[10px] font-black uppercase tracking-widest mb-1">{project.city}</div>
+                <div className="text-white text-sm font-bold line-clamp-2 mb-2">{project.caption}</div>
+                <div className="h-1 w-0 group-hover:w-12 bg-solar-orange transition-all duration-500"></div>
               </div>
             </div>
           ))}
@@ -69,56 +69,40 @@ export default function Gallery() {
       {/* Lightbox Modal */}
       {selectedImage !== null && (
         <div
-          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-fade-in"
+          className="fixed inset-0 z-[60] bg-navy/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
           <button
-            className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white text-3xl sm:text-4xl md:text-5xl hover:text-solar-red transition-colors z-50 focus:outline-none touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center bg-black/50 rounded-full"
+            className="absolute top-6 right-6 text-white text-5xl hover:text-solar-orange transition-all z-50 focus:outline-none touch-manipulation p-4 rounded-full bg-white/5 backdrop-blur-md"
             onClick={() => setSelectedImage(null)}
-            aria-label="Close image"
           >
             &times;
           </button>
 
-          {/* Mobile swipe navigation hint */}
-          <button
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-full transition-colors bg-black/30"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedImage((prev) => (prev === null || prev === 0 ? projects.length - 1 : prev - 1));
-            }}
-          >
-            <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-          </button>
-
           <div
-            className="relative w-full max-w-5xl h-[70vh] sm:h-[80vh] flex flex-col items-center justify-center mx-8 sm:mx-12"
+            className="relative w-full max-w-6xl h-[85vh] flex flex-col items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-full">
+            <div className="relative w-full flex-1 rounded-[3rem] overflow-hidden border-4 border-white/10 shadow-2xl">
               <Image
                 src={projects[selectedImage].src}
                 alt={projects[selectedImage].caption}
                 fill
                 className="object-contain"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80vw"
-                quality={90}
+                sizes="100vw"
+                quality={95}
               />
-            </div>
-            <p className="text-white text-sm sm:text-base md:text-lg mt-2 sm:mt-4 font-medium text-center bg-black/50 px-3 sm:px-6 py-2 rounded-full backdrop-blur-md max-w-[90vw]">
-              {projects[selectedImage].caption}
-            </p>
-          </div>
 
-          <button
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 text-white p-2 hover:bg-white/10 rounded-full transition-colors bg-black/30"
-            onClick={(e) => {
-              e.stopPropagation();
-              setSelectedImage((prev) => (prev === null || prev === projects.length - 1 ? 0 : prev + 1));
-            }}
-          >
-            <svg className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-          </button>
+              {/* Overlay Stat */}
+              <div className="absolute bottom-8 left-8 right-8">
+                <div className="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-[2rem] max-w-2xl text-white shadow-2xl shadow-black/30">
+                  <div className="text-solar-orange text-xs font-black uppercase tracking-[0.3em] mb-3">Project Impact</div>
+                  <div className="text-2xl md:text-3xl font-black mb-4 leading-tight">{projects[selectedImage].impact}</div>
+                  <div className="text-sm text-white/70 italic">&quot;{projects[selectedImage].caption}&quot;</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </section>

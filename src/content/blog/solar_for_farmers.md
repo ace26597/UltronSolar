@@ -1,7 +1,7 @@
 ---
 title: "Best Solar Options for Farmers in Maharashtra, India"
 excerpt: "From solar water pumps to street lights and small rooftop systems, discover the best solar solutions for farms and villages across Maharashtra."
-author: "Ultron Solar Team"
+author: "Er. Chandrakant Patil"
 date: "November 26, 2025"
 imageUrl: "/images/blog_1_solar_for_farmers_maharashtra.png"
 containerImageUrl: "/images/blog_2_solar_for_farmers_maharashtra.png"
@@ -67,7 +67,7 @@ Solar is attractive for farmers because:
 
 ## Solar Water Pumps: Reliable Water Without Diesel
 
-If diesel and erratic single-phase supply are your biggest headache, **solar water pumping** is usually the first thing to evaluate.
+If diesel and erratic single-phase supply are your biggest headache, **[solar water pumping](/agriculture/pumps)** is usually the first thing to evaluate.
 
 ### Types of Solar Water Pumps
 
@@ -143,6 +143,8 @@ Over **5–10 years**, especially for farmers using diesel heavily, solar often 
 
 - Diesel costs + maintenance keep adding every season.
 - Solar capex is largely one-time, with modest maintenance.
+
+### [LEAD_MAGNET:solar_pump_guide]
 
 ### Where Solar Pumps Make the Most Sense
 
@@ -271,6 +273,8 @@ Both the **central government** and the **Government of Maharashtra** run scheme
 - **Solar water pumps** for agriculture.  
 - **Decentralised solar plants** linked to agriculture feeders.  
 - **Small solar systems** for farmers, FPOs, or rural enterprises.
+
+Learn more about the **[PM-KUSUM Scheme](/agriculture/kusum)** and how it can benefit your farm.
 
 The exact scheme names, subsidy percentages and eligibility conditions **change over time**:
 

@@ -6,6 +6,8 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
+import { getAuthor, Author } from '@/data/authors';
+
 export interface BlogPost {
     id: string;
     title: string;
@@ -13,6 +15,7 @@ export interface BlogPost {
     excerpt: string;
     content: string;
     author: string;
+    authorDetails?: Author;
     date: string;
     imageUrl: string;
     containerImageUrl?: string;
@@ -21,7 +24,7 @@ export interface BlogPost {
     tags: string[];
 }
 
-export function getSortedPostsData(): Omit<BlogPost, 'content'>[] {
+export function getSortedPostsData(): Omit<BlogPost, 'content' | 'authorDetails'>[] {
     // Create directory if it doesn't exist
     if (!fs.existsSync(postsDirectory)) {
         return [];
@@ -44,7 +47,7 @@ export function getSortedPostsData(): Omit<BlogPost, 'content'>[] {
             id,
             slug: id,
             ...matterResult.data,
-        } as Omit<BlogPost, 'content'>;
+        } as Omit<BlogPost, 'content' | 'authorDetails'>;
     });
 
     // Sort posts by date
@@ -84,11 +87,16 @@ export async function getPostData(slug: string): Promise<BlogPost> {
         .process(matterResult.content);
     const contentHtml = processedContent.toString();
 
+    // Fetch author details
+    const authorName = (matterResult.data.author as string) || 'Ultron Solar Team';
+    const authorDetails = getAuthor(authorName);
+
     // Combine the data with the id and contentHtml
     return {
         id: slug,
         slug,
         content: contentHtml,
+        authorDetails,
         ...matterResult.data,
     } as BlogPost;
 }

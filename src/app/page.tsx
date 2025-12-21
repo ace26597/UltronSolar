@@ -23,6 +23,7 @@ export const metadata: Metadata = {
 };
 
 import TrustBar from "@/components/TrustBar";
+import SolarWizard from "@/components/SolarWizard";
 import HowItWorks from "@/components/HowItWorks";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <TrustBar />
+      <SolarWizard />
       <WeServe />
       <About />
       <Features />

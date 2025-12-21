@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AuthorBio from "@/components/blog/AuthorBio";
+import LeadMagnet from "@/components/blog/LeadMagnet";
 import { getPostData, getAllPostIds, getSortedPostsData } from "@/lib/blog";
 
 type BlogPostPageProps = {
@@ -86,32 +88,32 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black/80"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-navy/20 via-navy/50 to-navy/90"></div>
                     <div className="absolute inset-0 flex items-end">
                         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 text-white">
-                            <Link href="/blog" className="inline-flex items-center text-sm font-semibold uppercase tracking-wide text-white/80 hover:text-white transition-colors">
-                                ← Back to all articles
+                            <Link href="/blog" className="inline-flex items-center text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-solar-orange transition-colors">
+                                ← Dispatch Intelligence
                             </Link>
-                            <div className="flex flex-wrap items-center gap-3 text-sm md:text-base mt-6">
-                                <span className="bg-solar-red px-4 py-1 rounded-full font-semibold">{primaryTag}</span>
-                                <span>{post.date}</span>
-                                <span>•</span>
-                                <span>{post.readTime}</span>
-                                <span>•</span>
-                                <span>By {post.author}</span>
+                            <div className="flex flex-wrap items-center gap-3 text-sm md:text-base mt-8">
+                                <span className="bg-solar-orange text-white px-5 py-1.5 rounded-full font-black uppercase tracking-widest text-[10px]">{primaryTag}</span>
+                                <span className="text-gray-300">{post.date}</span>
+                                <span className="text-gray-500">•</span>
+                                <span className="text-gray-300">{post.readTime}</span>
                             </div>
-                            <h1 className="text-3xl md:text-5xl font-bold leading-tight mt-6">
+                            <h1 className="text-4xl md:text-6xl font-heading font-black leading-tight mt-6 max-w-4xl">
                                 {post.title}
                             </h1>
-                            {post.tags?.length > 1 && (
-                                <div className="flex flex-wrap gap-2 mt-6">
-                                    {post.tags.map((tag) => (
-                                        <span key={tag} className="bg-white/10 border border-white/25 px-3 py-1 rounded-full text-sm font-medium">
-                                            #{tag}
-                                        </span>
-                                    ))}
+                            <div className="flex items-center gap-4 mt-8">
+                                {post.authorDetails && (
+                                    <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-solar-orange/30">
+                                        <Image src={post.authorDetails.avatarUrl} alt={post.authorDetails.name} fill className="object-cover" />
+                                    </div>
+                                )}
+                                <div className="text-sm">
+                                    <div className="text-white/70 uppercase tracking-widest text-[9px] font-black">Prepared By</div>
+                                    <div className="text-white font-bold">{post.authorDetails?.name || post.author}</div>
                                 </div>
-                            )}
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -130,13 +132,43 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                                 <img src="${post.containerImageUrl}" alt="Blog container image" class="object-cover w-full h-full" />
                                             </div>
                                         `;
-                                        // Reconstruct the content: first 2 paragraphs + image + rest
-                                        // Note: split consumes '</p>', so we need to add it back for the parts we join
                                         const firstPart = parts.slice(0, 2).join('</p>') + '</p>';
                                         const rest = parts.slice(2).join('</p>');
                                         contentHtml = firstPart + imageHtml + rest;
                                     }
                                 }
+
+                                // Check for lead magnet placeholder
+                                if (contentHtml.includes('[LEAD_MAGNET:')) {
+                                    const parts = contentHtml.split(/\[LEAD_MAGNET:[^\]]+\]/);
+                                    const magnetMatch = contentHtml.match(/\[LEAD_MAGNET:([^\]]+)\]/);
+                                    const slug = magnetMatch ? magnetMatch[1] : '';
+
+                                    return (
+                                        <>
+                                            <div className="blog-content" dangerouslySetInnerHTML={{ __html: parts[0] }} />
+                                            <LeadMagnet
+                                                title={
+                                                    slug === 'dhule_roi' ? "Get Your Custom ROI Report" :
+                                                        slug === 'solar_pump_guide' ? "Free Solar Pump Feasibility Report" :
+                                                            "PM Surya Ghar Subsidy Guide 2024"
+                                                }
+                                                description={
+                                                    slug === 'dhule_roi' ? "See exactly how much you can save in Dhule with the latest government subsidies." :
+                                                        slug === 'solar_pump_guide' ? "Assess your borewell capacity and see how much diesel you can save with a solar irrigation system." :
+                                                            "Download our step-by-step guide to claiming your solar subsidy."
+                                                }
+                                                buttonText={
+                                                    slug === 'dhule_roi' ? "Calculate My Savings" :
+                                                        slug === 'solar_pump_guide' ? "Get My Farm Assessment" :
+                                                            "Download the Guide"
+                                                }
+                                            />
+                                            <div className="blog-content" dangerouslySetInnerHTML={{ __html: parts[1] }} />
+                                        </>
+                                    );
+                                }
+
                                 return <div className="blog-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />;
                             })()}
 
@@ -166,6 +198,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     </Link>
                                 </div>
                             </div>
+
+                            {post.authorDetails && <AuthorBio author={post.authorDetails} />}
                         </div>
 
                         <aside className="space-y-8">

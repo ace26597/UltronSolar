@@ -1,7 +1,7 @@
 ---
 title: "Rooftop Solar in Dhule: Complete Guide for Homeowners (2025 Edition)"
 excerpt: "A practical, locally-focused guide for Dhule homeowners who want to understand rooftop solar costs, savings, subsidy, and the installation process."
-author: "Ultron Solar Team"
+author: "Er. Chandrakant Patil"
 date: "November 25, 2025"
 imageUrl: "/images/blog_1_solar_in_dhule.png"
 containerImageUrl: "/images/blog_2_solar_in_dhule.png"
@@ -28,9 +28,9 @@ Dhule’s location and climate tick almost every box for rooftop solar:
 - **Hot summers, strong sun:** Long, bright summers mean more units generated per kW of solar installed.
 - **High grid tariffs:** Residential tariffs for 101–300 units per month in Maharashtra are now in the ₹12–13 per unit range for many consumers, with additional charges like FAC on top.
 - **Rising fuel adjustment and surcharges:** Even if base tariffs are reduced slightly, periodic hikes in fuel adjustment charges keep pushing bills up.
-- **Government push for rooftop solar:** The central PM Surya Ghar: Muft Bijli Yojana offers significant subsidies (up to ₹78,000) for residential rooftop solar systems up to 3 kW.
+- **Government push for rooftop solar:** The central **[PM Surya Ghar: Muft Bijli Yojana](/residential/subsidy)** offers significant subsidies (up to ₹78,000) for residential rooftop solar systems up to 3 kW.
 
-In Dhule, a properly designed 3kW solar system can easily offset a big chunk of your monthly consumption, especially if your family uses 250–350 units per month.
+In Dhule, a properly designed **[3kW solar system](/residential/rooftop)** can easily offset a big chunk of your monthly consumption, especially if your family uses 250–350 units per month.
 
 For Dhule, Jalgaon, Sakri, Shirpur, and other North Maharashtra towns, rooftop solar is not just “green.” It’s a practical way to:
 
@@ -97,6 +97,8 @@ So if your rooftop solar in Dhule generated a lot of surplus during the day, tha
 
 ---
 
+### [LEAD_MAGNET:dhule_roi]
+
 ## Costs, Subsidy, and Payback
 
 This is what most Dhule homeowners really want to know: **how much does it cost and when does it pay back?**
@@ -112,7 +114,7 @@ For middle-class homes in Dhule and Jalgaon, these sizes are the most common:
 - **3 kW system**
   - Ideal for many 2–3 BHK homes with 200–300+ units/month.
   - Can significantly cut the bill even with a 1–1.5 ton AC used moderately.
-  - This is the most popular “sweet spot” for rooftop solar Dhule.
+  - This is the most popular “sweet spot” for **[rooftop solar in Dhule](/residential/rooftop)**.
 
 - **5 kW system**
   - For larger homes, multiple ACs, or where monthly usage is 350–500+ units.
