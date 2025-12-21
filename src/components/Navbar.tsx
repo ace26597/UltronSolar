@@ -45,7 +45,7 @@ export default function Navbar() {
             </div>
             <div className="flex items-center space-x-2">
               <svg className="w-4 h-4 text-solar-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              <span>ultronvij@gmail.com</span>
+              <span>info@ultronsolar.in</span>
             </div>
           </div>
           <div className="flex space-x-4">
@@ -60,9 +60,9 @@ export default function Navbar() {
           <div className="flex justify-between items-center">
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center gap-2">
-                <Image 
-                  src="/logo/Ultron_Power_Logo_1.png" 
-                  alt="Ultron Power Systems" 
+                <Image
+                  src="/logo/Ultron_Power_Logo_1.png"
+                  alt="Ultron Power Systems"
                   width={200}
                   height={80}
                   className="h-12 sm:h-16 md:h-20 w-auto"
@@ -76,11 +76,11 @@ export default function Navbar() {
               <div className="ml-10 flex items-center space-x-8">
                 {[
                   { key: 'home', label: t.nav.home, href: '/' },
-                  { key: 'services', label: t.nav.services, href: '/#services' },
+                  { key: 'services', label: t.nav.services, href: '/services' },
                   { key: 'products', label: t.nav.products, href: '/products' },
-                  { key: 'about', label: t.nav.about, href: '/#about' },
+                  { key: 'about', label: t.nav.about, href: '/about' },
                   { key: 'blog', label: t.nav.blog, href: '/blog' },
-                  { key: 'contact', label: t.nav.contact, href: '/#contact' },
+                  { key: 'contact', label: t.nav.contact, href: '/contact' },
                 ].map((item) => (
                   <a
                     key={item.key}
@@ -135,11 +135,11 @@ export default function Navbar() {
             <div className="flex-1 overflow-y-auto py-6 px-4 space-y-4">
               {[
                 { key: 'home', label: t.nav.home, href: '/' },
-                { key: 'services', label: t.nav.services, href: '/#services' },
+                { key: 'services', label: t.nav.services, href: '/services' },
                 { key: 'products', label: t.nav.products, href: '/products' },
-                { key: 'about', label: t.nav.about, href: '/#about' },
+                { key: 'about', label: t.nav.about, href: '/about' },
                 { key: 'blog', label: t.nav.blog, href: '/blog' },
-                { key: 'contact', label: t.nav.contact, href: '/#contact' },
+                { key: 'contact', label: t.nav.contact, href: '/contact' },
               ].map((item) => (
                 <a
                   key={item.key}
@@ -167,7 +167,7 @@ export default function Navbar() {
                 </div>
                 <div className="flex items-center space-x-3 text-gray-600">
                   <svg className="w-5 h-5 text-solar-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                  <span>ultronvij@gmail.com</span>
+                  <span>info@ultronsolar.in</span>
                 </div>
               </div>
             </div>

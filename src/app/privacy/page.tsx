@@ -47,8 +47,9 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold text-navy-dark mb-4">1. Who we are</h2>
               <div className="bg-gray-50 rounded-lg p-6 mb-4">
                 <p className="font-semibold text-navy-dark mb-2">Ultron Power Systems</p>
-                <p className="text-gray-700 mb-1">(Registered business details to be added here)</p>
-                <p className="text-gray-700 mb-1">Dhule, Maharashtra, India</p>
+                <p className="text-gray-700 mb-1">Plot No. 4, Survey No. 48/2A/2,</p>
+                <p className="text-gray-700 mb-1">Behind Gurudwara, Mohadi Upnagar,</p>
+                <p className="text-gray-700 mb-1">Dhule, Maharashtra 424311, India</p>
                 <p className="text-gray-700 mb-1">
                   <strong>Website:</strong> https://www.ultronsolar.in/
                 </p>
@@ -475,7 +476,7 @@ export default function PrivacyPage() {
               <div className="bg-gray-50 rounded-lg p-6">
                 <p className="font-semibold text-navy-dark mb-2">Ultron Power Systems</p>
                 <p className="text-gray-700 mb-1">
-                  <strong>Email:</strong> ultronvij@gmail.com
+                  <strong>Email:</strong> info@ultronsolar.in
                 </p>
                 <p className="text-gray-700 mb-1">
                   <strong>Phone:</strong> +91-94227 87438

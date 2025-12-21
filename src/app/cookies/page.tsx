@@ -307,7 +307,7 @@ export default function CookiesPage() {
               <div className="bg-gray-50 rounded-lg p-6">
                 <p className="font-semibold text-navy-dark mb-2">Ultron Power Systems</p>
                 <p className="text-gray-700 mb-1">
-                  <strong>Email:</strong> ultronvij@gmail.com
+                  <strong>Email:</strong> info@ultronsolar.in
                 </p>
                 <p className="text-gray-700 mb-1">
                   <strong>Phone:</strong> +91-94227 87438

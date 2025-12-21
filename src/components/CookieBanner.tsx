@@ -90,9 +90,7 @@ const CookieBanner: React.FC = () => {
                 We use cookies to improve your experience
               </h2>
             )}
-            <h2 className="text-base md:text-lg font-semibold">
-              We use cookies to improve your experience
-            </h2>
+
             <p className="mt-1 text-xs md:text-sm text-gray-300">
               We use essential cookies to make this site work, and optional analytics and
               marketing cookies to understand usage and show relevant offers. You can
