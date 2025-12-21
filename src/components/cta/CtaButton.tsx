@@ -43,9 +43,9 @@ export default function CtaButton({
 
     // Handle scrolling or navigation
     if (finalCta.scrollToId) {
-      e.preventDefault();
       const element = document.getElementById(finalCta.scrollToId);
       if (element) {
+        e.preventDefault();
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
@@ -55,7 +55,7 @@ export default function CtaButton({
   // Determine button styles based on variant
   const getButtonClasses = () => {
     const baseClasses = 'px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1';
-    
+
     switch (variant) {
       case 'primary':
         return `${baseClasses} bg-solar-red text-white hover:bg-solar-red-dark`;
@@ -70,7 +70,7 @@ export default function CtaButton({
 
   const buttonElement = (
     <a
-      href={finalCta.href || (finalCta.scrollToId ? `#${finalCta.scrollToId}` : '#contact')}
+      href={finalCta.href || (finalCta.scrollToId ? `/#${finalCta.scrollToId}` : '/#contact')}
       onClick={handleClick}
       className={`${getButtonClasses()} ${className}`}
     >

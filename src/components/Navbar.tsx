@@ -136,7 +136,7 @@ export default function Navbar() {
                   </div>
                 </div>
 
-                <Link href="/projects" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
+                <Link href="/gallery" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
                   Our Work
                 </Link>
 
@@ -216,7 +216,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <Link href="/projects" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
+              <Link href="/gallery" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
                 Our Work
               </Link>
 

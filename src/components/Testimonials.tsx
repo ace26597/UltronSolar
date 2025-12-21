@@ -111,8 +111,8 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden">
-          <div className="overflow-hidden">
+        <div className="relative">
+          <div className="overflow-hidden px-4 -mx-4">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
@@ -163,14 +163,14 @@ export default function Testimonials() {
           {/* Navigation Arrows */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-6 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-navy-dark z-10 border border-gray-200 hidden md:block touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="absolute -left-2 sm:-left-4 md:-left-6 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-navy-dark z-10 border border-gray-200 hidden md:block touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Previous testimonial"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-6 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-navy-dark z-10 border border-gray-200 hidden md:block touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+            className="absolute -right-2 sm:-right-4 md:-right-6 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 text-navy-dark z-10 border border-gray-200 hidden md:block touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Next testimonial"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
@@ -178,18 +178,17 @@ export default function Testimonials() {
 
           {/* Dots Navigation */}
           <div className="flex justify-center items-center mt-8 gap-1 sm:gap-2">
-              {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentIndex(i)}
-                  className={`rounded-full transition-all duration-300 touch-manipulation ${
-                    i === currentIndex 
-                      ? 'w-6 sm:w-8 h-3 bg-solar-red' 
-                      : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+            {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`rounded-full transition-all duration-300 touch-manipulation ${i === currentIndex
+                    ? 'w-6 sm:w-8 h-3 bg-solar-red'
+                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                   }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                />
-              ))}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
           </div>
         </div>
 

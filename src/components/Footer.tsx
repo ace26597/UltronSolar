@@ -28,7 +28,29 @@ export default function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               {t.footer.description}
             </p>
-            <div className="flex space-x-4 pt-2">
+            <div className="flex flex-col space-y-4 pt-2">
+              <div className="flex items-start group">
+                <span className="text-solar-orange mr-3 mt-1">📍</span>
+                <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">
+                  Kanishka Apartment, Kshire Colony,<br />
+                  Deopur, Dhule, Maharashtra 424002
+                </p>
+              </div>
+              <div className="flex items-center group">
+                <span className="text-solar-orange mr-3">📞</span>
+                <a href="tel:+919422787438" className="text-gray-400 text-sm group-hover:text-solar-orange transition-colors">
+                  +91 94227 87438
+                </a>
+              </div>
+              <div className="flex items-center group">
+                <span className="text-solar-orange mr-3">✉️</span>
+                <a href="mailto:ultronvij@gmail.com" className="text-gray-400 text-sm group-hover:text-solar-orange transition-colors">
+                  ultronvij@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div className="flex space-x-4 pt-4 border-t border-white/5">
               <a href="https://facebook.com/ultronpowersystems" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-solar-orange hover:text-white transition-all duration-300 group">
                 <span className="sr-only">Facebook</span>
                 <svg fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 opacity-80 group-hover:opacity-100"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
@@ -56,7 +78,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li><Link href="/" className="hover:text-solar-orange transition-colors flex items-center group"><span className="w-1.5 h-1.5 rounded-full bg-solar-orange/30 mr-3 group-hover:bg-solar-orange transition-colors"></span> {t.footer.quickLinksItems.home}</Link></li>
-              <li><Link href="/projects" className="hover:text-solar-orange transition-colors flex items-center group"><span className="w-1.5 h-1.5 rounded-full bg-solar-orange/30 mr-3 group-hover:bg-solar-orange transition-colors"></span> Our Work</Link></li>
+              <li><Link href="/gallery" className="hover:text-solar-orange transition-colors flex items-center group"><span className="w-1.5 h-1.5 rounded-full bg-solar-orange/30 mr-3 group-hover:bg-solar-orange transition-colors"></span> Our Work</Link></li>
               <li><Link href="/blog" className="hover:text-solar-orange transition-colors flex items-center group"><span className="w-1.5 h-1.5 rounded-full bg-solar-orange/30 mr-3 group-hover:bg-solar-orange transition-colors"></span> Knowledge Hub</Link></li>
               <li><Link href="/about" className="hover:text-solar-orange transition-colors flex items-center group"><span className="w-1.5 h-1.5 rounded-full bg-solar-orange/30 mr-3 group-hover:bg-solar-orange transition-colors"></span> About Ultron</Link></li>
               <li><Link href="/contact" className="hover:text-solar-orange transition-colors flex items-center group"><span className="w-1.5 h-1.5 rounded-full bg-solar-orange/30 mr-3 group-hover:bg-solar-orange transition-colors"></span> {t.footer.quickLinksItems.contact}</Link></li>

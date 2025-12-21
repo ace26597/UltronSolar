@@ -88,15 +88,15 @@ export default function Hero() {
           <div className="mt-12 lg:mt-16 flex flex-wrap justify-center lg:justify-start items-center gap-12">
             <div className="font-sans flex flex-col group">
               <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">15+</span>
-              <span className="text-gray-300 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Years</span>
+              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Years</span>
             </div>
             <div className="font-sans flex flex-col group">
               <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">25MW+</span>
-              <span className="text-gray-300 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Installed</span>
+              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Installed</span>
             </div>
             <div className="font-sans flex flex-col group">
               <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">100%</span>
-              <span className="text-gray-300 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Subsidy Help</span>
+              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Subsidy Help</span>
             </div>
           </div>
         </div>
