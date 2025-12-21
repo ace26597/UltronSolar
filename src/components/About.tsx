@@ -32,43 +32,43 @@ export default function About() {
               />
             </div>
             {/* Years experience badge - visible on all screens */}
-            <div className="absolute -bottom-3 right-2 sm:-bottom-4 sm:right-4 lg:-bottom-6 lg:-right-6 bg-solar-red p-3 sm:p-4 lg:p-6 rounded-lg shadow-xl">
-              <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">10+</div>
-              <div className="text-xs sm:text-sm text-white">{t.about.yearsExperience}</div>
+            <div className="absolute -bottom-3 right-2 sm:-bottom-4 sm:right-4 lg:-bottom-6 lg:-right-6 bg-solar-orange p-6 sm:p-8 rounded-3xl shadow-2xl animate-bounce-slow">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white leading-none">10+</div>
+              <div className="text-xs sm:text-sm font-bold text-white/90 uppercase tracking-wider">{t.about.yearsExperience}</div>
             </div>
           </div>
 
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy-dark mb-6">
+            <h2 className="text-3xl md:text-5xl font-heading font-black text-navy mb-8">
               {t.about.title}
             </h2>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <span className="text-solar-red text-xl mr-3">✓</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-brand-bg transition-colors group">
+                <span className="text-solar-orange text-2xl group-hover:scale-110 transition-transform">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">{t.about.completeEPC.title}</h3>
-                  <p className="text-gray-600">{t.about.completeEPC.description}</p>
+                  <h3 className="font-heading font-bold text-navy mb-1">{t.about.completeEPC.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t.about.completeEPC.description}</p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <span className="text-solar-red text-xl mr-3">✓</span>
+              <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-brand-bg transition-colors group">
+                <span className="text-solar-orange text-2xl group-hover:scale-110 transition-transform">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">{t.about.multipleApplications.title}</h3>
-                  <p className="text-gray-600">{t.about.multipleApplications.description}</p>
+                  <h3 className="font-heading font-bold text-navy mb-1">{t.about.multipleApplications.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t.about.multipleApplications.description}</p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <span className="text-solar-red text-xl mr-3">✓</span>
+              <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-brand-bg transition-colors group">
+                <span className="text-solar-orange text-2xl group-hover:scale-110 transition-transform">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">{t.about.highQuality.title}</h3>
-                  <p className="text-gray-600">{t.about.highQuality.description}</p>
+                  <h3 className="font-heading font-bold text-navy mb-1">{t.about.highQuality.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t.about.highQuality.description}</p>
                 </div>
               </div>
-              <div className="flex items-start">
-                <span className="text-solar-red text-xl mr-3">✓</span>
+              <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-brand-bg transition-colors group">
+                <span className="text-solar-orange text-2xl group-hover:scale-110 transition-transform">✓</span>
                 <div>
-                  <h3 className="font-semibold text-navy-dark">{t.about.customizedSolutions.title}</h3>
-                  <p className="text-gray-600">{t.about.customizedSolutions.description}</p>
+                  <h3 className="font-heading font-bold text-navy mb-1">{t.about.customizedSolutions.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t.about.customizedSolutions.description}</p>
                 </div>
               </div>
             </div>
@@ -76,23 +76,29 @@ export default function About() {
         </div>
 
         {/* Additional Info Card */}
-        <div className="mt-16 bg-gradient-to-br from-primary-blue to-energy-green p-8 rounded-xl shadow-lg text-white">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="mt-16 bg-gradient-to-br from-navy to-navy-dark p-8 md:p-12 rounded-[2rem] shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-solar-orange/10 rounded-full -mr-32 -mt-32 blur-3xl transition-all group-hover:bg-solar-orange/20"></div>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-4">{t.about.aboutUs.title}</h3>
-              <p className="mb-6 text-lg leading-relaxed">
+              <h3 className="text-3xl md:text-4xl font-heading font-black text-white mb-6">
+                {t.about.aboutUs.title}
+              </h3>
+              <p className="text-gray-200 text-lg leading-relaxed">
                 {t.about.aboutUs.description}
               </p>
             </div>
-            <div>
-              <p className="mb-6 text-lg leading-relaxed">
+            <div className="flex flex-col gap-8">
+              <p className="text-gray-200 text-lg leading-relaxed italic border-l-4 border-solar-orange pl-6">
                 {t.about.aboutUs.description2}
               </p>
               <a
                 href="#contact"
-                className="inline-block bg-energy-green text-white px-6 py-3 rounded-lg font-semibold hover:bg-energy-green-dark transition-colors"
+                className="inline-flex items-center justify-center bg-solar-orange text-white px-10 py-5 rounded-full font-bold hover:bg-solar-orange/90 hover:scale-105 transition-all shadow-xl shadow-solar-orange/20 group"
               >
                 {t.about.aboutUs.contactButton}
+                <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
             </div>
           </div>
