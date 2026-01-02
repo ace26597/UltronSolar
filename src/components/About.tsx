@@ -55,6 +55,7 @@ export default function About() {
                 <div>
                   <h3 className="font-heading font-bold text-navy mb-1">{t.about.multipleApplications.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{t.about.multipleApplications.description}</p>
+                  <p className="text-xs text-solar-orange font-bold mt-1">Includes Solar Carports & Parking Lots</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-brand-bg transition-colors group">

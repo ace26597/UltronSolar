@@ -146,6 +146,14 @@ export interface Translations {
         title: string;
         description: string;
       };
+      lowMaintenance: {
+        title: string;
+        description: string;
+      };
+      govtSubsidy: {
+        title: string;
+        description: string;
+      };
     };
     claimButton: string;
     terms: string;
@@ -190,7 +198,7 @@ export interface Translations {
       title: string;
       getQuote: string;
     }>;
-    commercial: {
+    commercial: { 
       title: string;
       description: string;
     };
@@ -301,7 +309,7 @@ const translations: Record<Language, Translations> = {
       },
       multipleApplications: {
         title: 'Multiple Applications',
-        description: 'We serve residential properties, commercial businesses, industrial facilities, farms, and apartments with customized solutions.',
+        description: 'We serve residential properties, commercial businesses, industrial facilities, farms, apartments, and solar parking lots with customized solutions.',
       },
       highQuality: {
         title: 'High-Quality & Reliable',
@@ -313,7 +321,7 @@ const translations: Record<Language, Translations> = {
       },
       aboutUs: {
         title: 'About Us',
-        description: 'Ultron Power Systems is the go-to provider of solar power systems and products. Our team of experts is dedicated to customizing solutions tailored to meet the unique needs of each customer. From rooftop installations to farm, residential and business applications, we have you covered.',
+        description: 'Ultron Power Systems is the go-to provider of solar power systems and products. Our team of experts is dedicated to customizing solutions tailored to meet the unique needs of each customer. From rooftop installations to farm, residential, business, and solar carport applications, we have you covered.',
         description2: 'Our high-quality, reliable and full-service approach ensures peace of mind. Contact us today to learn how we can power your future with solar technology.',
         contactButton: 'Contact Us Today',
       },
@@ -409,6 +417,14 @@ const translations: Record<Language, Translations> = {
           title: 'Eco-Friendly',
           description: 'Reduce your carbon footprint',
         },
+        lowMaintenance: {
+          title: 'Low Maintenance',
+          description: 'Minimal cleaning & long-lasting components',
+        },
+        govtSubsidy: {
+          title: 'Govt. Subsidy',
+          description: 'Get up to ₹78,000 subsidy immediately',
+        },
       },
       claimButton: 'Claim Offer Now',
       terms: '*Terms & Conditions apply. Price subject to site inspection and government subsidy availability.',
@@ -440,6 +456,7 @@ const translations: Record<Language, Translations> = {
         'Commercial Solar System',
         'Solar Water Pump',
         'Industrial Solar Solution',
+        'Solar Carport / Parking Lot',
         'Solar UPS/Inverter',
         'Other',
       ],
@@ -459,7 +476,7 @@ const translations: Record<Language, Translations> = {
         { title: 'Farms & Pumps', getQuote: 'Get Quote →' },
         { title: 'Apartments', getQuote: 'Get Quote →' },
       ],
-      commercial: {
+      commercial: { 
         title: 'Commercial & Industrial Solutions',
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },
@@ -580,7 +597,7 @@ const translations: Record<Language, Translations> = {
       },
       multipleApplications: {
         title: 'अनेक अनुप्रयोग',
-        description: 'आम्ही निवासी मालमत्ता, व्यावसायिक व्यवसाय, औद्योगिक सुविधा, शेत आणि अपार्टमेंट्ससाठी सानुकूलित उपाय प्रदान करतो.',
+        description: 'आम्ही निवासी मालमत्ता, व्यावसायिक व्यवसाय, औद्योगिक सुविधा, शेत, अपार्टमेंट्स आणि सोलर पार्किंग लॉट्ससाठी सानुकूलित उपाय प्रदान करतो.',
       },
       highQuality: {
         title: 'उच्च-गुणवत्ता आणि विश्वासार्ह',
@@ -592,7 +609,7 @@ const translations: Record<Language, Translations> = {
       },
       aboutUs: {
         title: 'आमच्याबद्दल',
-        description: 'अल्ट्रॉन पॉवर सिस्टम्स ही सौर ऊर्जा प्रणाली आणि उत्पादनांची मुख्य प्रदाता आहे. आमच्या तज्ञांची टीम प्रत्येक ग्राहकाच्या अद्वितीय गरजा पूर्ण करण्यासाठी सानुकूलित उपाय तयार करण्यासाठी समर्पित आहे. छतावरील स्थापनेपासून शेत, निवासी आणि व्यावसायिक अनुप्रयोगांपर्यंत, आम्ही तुम्हाला कव्हर केले आहे.',
+        description: 'अल्ट्रॉन पॉवर सिस्टम्स ही सौर ऊर्जा प्रणाली आणि उत्पादनांची मुख्य प्रदाता आहे. आमची तज्ञांची टीम प्रत्येक ग्राहकाच्या अद्वितीय गरजा पूर्ण करण्यासाठी सानुकूलित उपाय तयार करण्यासाठी समर्पित आहे. छतावरील स्थापनेपासून शेत, निवासी, व्यावसायिक आणि सोलर कारपोर्ट अनुप्रयोगांपर्यंत, आम्ही तुम्हाला कव्हर केले आहे.',
         description2: 'आमचा उच्च-गुणवत्ता, विश्वासार्ह आणि पूर्ण-सेवा दृष्टीकोन मनाची शांती सुनिश्चित करतो. सौर तंत्रज्ञानासह तुमच्या भविष्याला शक्ती कशी देऊ शकतो हे जाणून घेण्यासाठी आजच आमच्याशी संपर्क साधा.',
         contactButton: 'आजच आमच्याशी संपर्क साधा',
       },
@@ -688,6 +705,14 @@ const translations: Record<Language, Translations> = {
           title: 'पर्यावरण-अनुकूल',
           description: 'तुमचा कार्बन फुटप्रिंट कमी करा',
         },
+        lowMaintenance: {
+          title: 'कमी देखभाल',
+          description: 'किमान स्वच्छता आणि दीर्घकाळ टिकणारे घटक',
+        },
+        govtSubsidy: {
+          title: 'सरकारी सबसिडी',
+          description: 'त्वरीत ₹78,000 पर्यंत सबसिडी मिळवा',
+        },
       },
       claimButton: 'आता ऑफर क्लेम करा',
       terms: '*अटी आणि नियम लागू. किंमत साइट तपासणी आणि सरकारी सबसिडी उपलब्धतेवर अवलंबून.',
@@ -719,6 +744,7 @@ const translations: Record<Language, Translations> = {
         'व्यावसायिक सौर प्रणाली',
         'सौर पाणी पंप',
         'औद्योगिक सौर उपाय',
+        'सौर कारपोर्ट / पार्किंग लॉट (Solar Carport)',
         'सौर UPS/इन्व्हर्टर',
         'इतर',
       ],
@@ -738,9 +764,9 @@ const translations: Record<Language, Translations> = {
         { title: 'शेत आणि पंप', getQuote: 'कोट मिळवा →' },
         { title: 'अपार्टमेंट', getQuote: 'कोट मिळवा →' },
       ],
-      commercial: {
+      commercial: { 
         title: 'व्यावसायिक आणि औद्योगिक उपाय',
-        description: 'तुमच्या व्यवसाय किंवा उद्योगासाठी सौर उपाय शोधत आहात? आम्ही ऑपरेशनल खर्च कमी करण्यासाठी आणि स्थिरता सुधारण्यासाठी डिझाइन केलेले सानुकूलित सौर प्रणाली प्रदान करतो.',
+        description: 'तुमच्या व्यवसाय, उद्योग किंवा पार्किंगच्या जागेसाठी सौर उपाय शोधत आहात? आम्ही ऑपरेशनल खर्च कमी करण्यासाठी आणि स्थिरता सुधारण्यासाठी डिझाइन केलेले सानुकूलित सौर प्रणाली प्रदान करतो.',
       },
     },
     trustBar: {
@@ -859,7 +885,7 @@ const translations: Record<Language, Translations> = {
       },
       multipleApplications: {
         title: 'Multiple Applications',
-        description: 'We serve residential properties, commercial businesses, industrial facilities, farms, and apartments with customized solutions.',
+        description: 'We serve residential properties, commercial businesses, industrial facilities, farms, apartments, and solar parking lots with customized solutions.',
       },
       highQuality: {
         title: 'High-Quality & Reliable',
@@ -871,7 +897,7 @@ const translations: Record<Language, Translations> = {
       },
       aboutUs: {
         title: 'About Us',
-        description: 'Ultron Power Systems is the go-to provider of solar power systems and products. Our team of experts is dedicated to customizing solutions tailored to meet the unique needs of each customer. From rooftop installations to farm, residential and business applications, we have you covered.',
+        description: 'Ultron Power Systems is the go-to provider of solar power systems and products. Our team of experts is dedicated to customizing solutions tailored to meet the unique needs of each customer. From rooftop installations to farm, residential, business, and solar carport applications, we have you covered.',
         description2: 'Our high-quality, reliable and full-service approach ensures peace of mind. Contact us today to learn how we can power your future with solar technology.',
         contactButton: 'Contact Us Today',
       },
@@ -967,6 +993,14 @@ const translations: Record<Language, Translations> = {
           title: 'Eco-Friendly',
           description: 'Reduce your carbon footprint',
         },
+        lowMaintenance: {
+          title: 'Low Maintenance',
+          description: 'Minimal cleaning & long-lasting components',
+        },
+        govtSubsidy: {
+          title: 'Govt. Subsidy',
+          description: 'Get up to ₹78,000 subsidy immediately',
+        },
       },
       claimButton: 'Claim Offer Now',
       terms: '*Terms & Conditions apply. Price subject to site inspection and government subsidy availability.',
@@ -1017,7 +1051,7 @@ const translations: Record<Language, Translations> = {
         { title: 'Farms & Pumps', getQuote: 'Get Quote →' },
         { title: 'Apartments', getQuote: 'Get Quote →' },
       ],
-      commercial: {
+      commercial: { 
         title: 'Commercial & Industrial Solutions',
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },

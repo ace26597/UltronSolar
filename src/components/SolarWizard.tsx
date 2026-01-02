@@ -4,10 +4,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CtaButton from "./cta/CtaButton";
 
-type WizardStep = 1 | 2 | 3 | 4;
+type WizardStep = 1 | 2 | 3 | 4 | 5;
 
 export default function SolarWizard() {
     const [step, setStep] = useState<WizardStep>(1);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
         sector: "",
         bill: "",
@@ -20,8 +21,24 @@ export default function SolarWizard() {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
-    const nextStep = () => setStep(prev => (prev < 4 ? (prev + 1) as WizardStep : prev));
+    const nextStep = () => setStep(prev => (prev < 5 ? (prev + 1) as WizardStep : prev));
     const prevStep = () => setStep(prev => (prev > 1 ? (prev - 1) as WizardStep : prev));
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        setIsSubmitting(false);
+        nextStep();
+    };
+
+    const calculateEstimatedSystem = (bill: string) => {
+        const amount = parseInt(bill) || 0;
+        if (amount < 2000) return "1-2 kW";
+        if (amount < 5000) return "3-5 kW";
+        if (amount < 10000) return "5-8 kW";
+        return "10+ kW";
+    };
 
     return (
         <section className="py-24 bg-brand-bg relative overflow-hidden">
@@ -47,8 +64,8 @@ export default function SolarWizard() {
                     <div className="absolute top-0 left-0 w-full h-2 bg-gray-100">
                         <motion.div
                             className="h-full bg-solar-orange"
-                            initial={{ width: "25%" }}
-                            animate={{ width: `${(step / 4) * 100}%` }}
+                            initial={{ width: "20%" }}
+                            animate={{ width: `${(step / 5) * 100}%` }}
                             transition={{ duration: 0.5, ease: "easeInOut" }}
                         />
                     </div>
@@ -186,16 +203,66 @@ export default function SolarWizard() {
                                         />
                                     </div>
                                     <div className="flex flex-col items-center gap-6 mt-8">
-                                        <CtaButton
-                                            ctaId="expert_consultation"
-                                            variantOverride={{ label: "Get My Expert Summary" }}
-                                            className="w-full max-w-md py-6 text-xl font-black bg-solar-orange shadow-2xl shadow-solar-orange/30 hover:bg-navy hover:text-white transition-all transform hover:-translate-y-1"
-                                        />
+                                        <button
+                                            onClick={handleSubmit}
+                                            disabled={!formData.name || !formData.phone || isSubmitting}
+                                            className="w-full max-w-md py-6 text-xl rounded-xl font-black bg-solar-orange text-white shadow-2xl shadow-solar-orange/30 hover:bg-navy hover:text-white transition-all transform hover:-translate-y-1 disabled:opacity-50 flex items-center justify-center gap-3"
+                                        >
+                                            {isSubmitting ? (
+                                                <>
+                                                    <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                                                    Processing...
+                                                </>
+                                            ) : "Get My Expert Summary"}
+                                        </button>
                                         <button onClick={prevStep} className="font-bold text-gray-400 hover:text-navy-dark transition-colors text-sm">Review My Answers</button>
                                     </div>
                                     <p className="text-center text-[10px] text-gray-400">
                                         By clicking, you agree to our privacy policy. No spam, we promise.
                                     </p>
+                                </motion.div>
+                            )}
+
+                            {step === 5 && (
+                                <motion.div
+                                    key="step5"
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="text-center space-y-8"
+                                >
+                                    <div className="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl">
+                                        ✓
+                                    </div>
+                                    <div className="space-y-4">
+                                        <h3 className="text-3xl font-black text-navy-dark">Thank You, {formData.name.split(' ')[0]}!</h3>
+                                        <p className="text-xl text-gray-600">Your solar analysis plan is on its way to <span className="text-navy font-bold">{formData.phone}</span>.</p>
+                                    </div>
+
+                                    <div className="bg-brand-bg rounded-[2rem] p-8 max-w-md mx-auto border border-gray-100 text-left">
+                                        <h4 className="font-black text-navy-dark uppercase tracking-widest text-sm mb-6 pb-4 border-b border-gray-200">Pre-Analysis Summary</h4>
+                                        <div className="space-y-4">
+                                            <div className="flex justify-between">
+                                                <span className="text-gray-500">Location</span>
+                                                <span className="font-bold text-navy-dark">{formData.location}</span>
+                                            </div>
+                                            <div className="flex justify-between">
+                                                <span className="text-gray-500">Avg. Monthly Bill</span>
+                                                <span className="font-bold text-navy-dark">₹{formData.bill}</span>
+                                            </div>
+                                            <div className="flex justify-between pt-4 border-t border-dashed border-gray-300">
+                                                <span className="text-navy-dark font-black">Estimated System</span>
+                                                <span className="font-black text-solar-orange text-lg">{calculateEstimatedSystem(formData.bill)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-8">
+                                        <p className="text-gray-500 mb-6">Want to see our latest work while you wait?</p>
+                                        <div className="flex justify-center gap-4">
+                                            <a href="/gallery" className="px-8 py-4 bg-navy text-white rounded-full font-bold hover:bg-solar-orange transition-all">View Gallery</a>
+                                            <button onClick={() => setStep(1)} className="px-8 py-4 border-2 border-gray-100 rounded-full font-bold hover:border-navy transition-all">Start Over</button>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>
