@@ -92,7 +92,7 @@ export default function About() {
                 {t.about.aboutUs.description2}
               </p>
               <a
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center bg-solar-orange text-white px-10 py-5 rounded-full font-bold hover:bg-solar-orange/90 hover:scale-105 transition-all shadow-xl shadow-solar-orange/20 group"
               >
                 {t.about.aboutUs.contactButton}

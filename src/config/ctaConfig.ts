@@ -26,7 +26,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'Estimate your rooftop solar cost and monthly savings in Dhule & North Maharashtra.',
     audience: 'residential',
     intent: 'quote',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'en',
   },
   hero_commercial_assessment_en: {
@@ -35,7 +35,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'For shops, offices, and small industries who want lower electricity bills.',
     audience: 'commercial',
     intent: 'consultation',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'en',
   },
   // Residential section - English
@@ -45,7 +45,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'Typical homes save 60–90% on light bills after switching to rooftop solar.',
     audience: 'residential',
     intent: 'quote',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'en',
   },
   // Commercial / industrial section - English
@@ -55,7 +55,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'Share your last 3 months\' bills and we\'ll send a simple solar saving report.',
     audience: 'commercial',
     intent: 'quote',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'en',
   },
   // Agriculture / solar pump section - English
@@ -65,7 +65,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'Farm-friendly solutions for borewell pumps, farmhouses and shed roofs.',
     audience: 'agriculture',
     intent: 'consultation',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'en',
   },
   // Generic fallback - English
@@ -75,7 +75,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'Share your number and preferred time; our team will call you within 24 hours.',
     audience: 'generic',
     intent: 'callback',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'en',
   },
   // Hero / generic - Marathi
@@ -85,7 +85,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'धुळे आणि उत्तर महाराष्ट्रातील घरांसाठी अंदाजे खर्च आणि बचत समजून घ्या.',
     audience: 'residential',
     intent: 'quote',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'mr',
   },
   hero_commercial_assessment_mr: {
@@ -94,7 +94,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'दुकान, ऑफिस किंवा लहान उद्योगांसाठी सोलर बचत रिपोर्ट मिळवा.',
     audience: 'commercial',
     intent: 'consultation',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'mr',
   },
   // Residential section - Marathi
@@ -104,7 +104,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'बहुतांश घरांचे वीज बिल 60–90% पर्यंत कमी होते.',
     audience: 'residential',
     intent: 'quote',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'mr',
   },
   // Commercial / industrial section - Marathi
@@ -114,7 +114,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'गेल्या 3 महिन्यांची बिले सामायिक करा आणि आम्ही सोलर बचत रिपोर्ट पाठवू.',
     audience: 'commercial',
     intent: 'quote',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'mr',
   },
   // Agriculture / solar pump section - Marathi
@@ -124,7 +124,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'बोरवेल पंप, फार्महाऊस आणि शेड छतांसाठी शेत-मैत्रीपूर्ण उपाय.',
     audience: 'agriculture',
     intent: 'consultation',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'mr',
   },
   // Generic fallback - Marathi
@@ -134,7 +134,7 @@ export const CTA_DICTIONARY: CtaDictionary = {
     subtext: 'तुमचा मोबाईल नंबर आणि वेळ द्या; आमची टीम 24 तासांत कॉल करेल.',
     audience: 'generic',
     intent: 'callback',
-    scrollToId: 'contact',
+    href: '/contact',
     language: 'mr',
   },
 };

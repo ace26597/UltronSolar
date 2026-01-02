@@ -16,11 +16,11 @@ export default function WeServe() {
   });
 
   const sectors = [
-    { title: t.weServe.sectors[0].title, icon: "🏠", link: "#contact", getQuote: t.weServe.sectors[0].getQuote },
-    { title: t.weServe.sectors[1].title, icon: "🏢", link: "#contact", getQuote: t.weServe.sectors[1].getQuote },
-    { title: t.weServe.sectors[2].title, icon: "🏭", link: "#contact", getQuote: t.weServe.sectors[2].getQuote },
-    { title: t.weServe.sectors[3].title, icon: "🚜", link: "#contact", getQuote: t.weServe.sectors[3].getQuote },
-    { title: t.weServe.sectors[4].title, icon: "🏢", link: "#contact", getQuote: t.weServe.sectors[4].getQuote },
+    { title: t.weServe.sectors[0].title, icon: "🏠", link: "/contact", getQuote: t.weServe.sectors[0].getQuote },
+    { title: t.weServe.sectors[1].title, icon: "🏢", link: "/contact", getQuote: t.weServe.sectors[1].getQuote },
+    { title: t.weServe.sectors[2].title, icon: "🏭", link: "/contact", getQuote: t.weServe.sectors[2].getQuote },
+    { title: t.weServe.sectors[3].title, icon: "🚜", link: "/contact", getQuote: t.weServe.sectors[3].getQuote },
+    { title: t.weServe.sectors[4].title, icon: "🏢", link: "/contact", getQuote: t.weServe.sectors[4].getQuote },
   ];
 
   return (
@@ -43,7 +43,7 @@ export default function WeServe() {
             </Link>
           ))}
         </div>
-        
+
         {/* Commercial CTA Section */}
         <div className="mt-8 pt-8 border-t border-gray-200">
           <div className="text-center">

@@ -57,8 +57,8 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <LanguageToggle />
             <div className="flex items-center space-x-3 border-l border-white/20 pl-4">
-              <a href="#" className="hover:text-solar-orange transform hover:scale-110 transition-all"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg></a>
-              <a href="#" className="hover:text-solar-orange transform hover:scale-110 transition-all"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></a>
+              <a href="https://facebook.com/ultronpowersystems" target="_blank" rel="noopener noreferrer" className="hover:text-solar-orange transform hover:scale-110 transition-all"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg></a>
+              <a href="https://youtube.com/@ultronpowersystems" target="_blank" rel="noopener noreferrer" className="hover:text-solar-orange transform hover:scale-110 transition-all"><svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.017 3.017 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></a>
             </div>
           </div>
         </div>
@@ -88,6 +88,10 @@ export default function Navbar() {
               <div className="flex items-center space-x-1 lg:space-x-4">
                 <Link href="/" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
                   {t.nav.home}
+                </Link>
+
+                <Link href="/about" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
+                  {t.nav.about}
                 </Link>
 
                 {/* Segmented Dropdowns */}
@@ -136,12 +140,20 @@ export default function Navbar() {
                   </div>
                 </div>
 
+                <Link href="/products" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
+                  {t.nav.products}
+                </Link>
+
                 <Link href="/gallery" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
                   Our Work
                 </Link>
 
                 <Link href="/blog" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
                   Knowledge Hub
+                </Link>
+
+                <Link href="/contact" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
+                  {t.nav.contact}
                 </Link>
 
                 <div className="ml-4 flex items-center">
@@ -192,6 +204,10 @@ export default function Navbar() {
                 {t.nav.home}
               </Link>
 
+              <Link href="/about" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
+                {t.nav.about}
+              </Link>
+
               <div className="space-y-4">
                 <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t.nav.residential}</h4>
                 <div className="pl-4 space-y-3">
@@ -215,6 +231,10 @@ export default function Navbar() {
                   <Link href="/commercial/benefits" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">Tax Benefits</Link>
                 </div>
               </div>
+
+              <Link href="/products" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
+                {t.nav.products}
+              </Link>
 
               <Link href="/gallery" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
                 Our Work
