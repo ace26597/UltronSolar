@@ -11,7 +11,7 @@ import CookieBanner from "@/components/CookieBanner";
 import MobileContactBar from "@/components/MobileContactBar";
 import "./globals.css";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   display: 'swap', // Prevents font from blocking render - improves FCP
   preload: true,
@@ -201,6 +201,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} overflow-x-hidden w-full max-w-[100vw]`}>
+        <div id="fb-root"></div>
         <CookieConsentProvider>
           <AnalyticsScripts />
           <LanguageProvider>
