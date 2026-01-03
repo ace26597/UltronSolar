@@ -107,7 +107,7 @@ export default function Testimonials() {
                 <span key={i}>★</span>
               ))}
             </div>
-            <span className="text-gray-500 text-sm">(based on Google Reviews)</span>
+            <span className="text-gray-500 text-sm">(based on 56 Google Reviews)</span>
           </div>
         </div>
 
@@ -183,8 +183,8 @@ export default function Testimonials() {
                 key={i}
                 onClick={() => setCurrentIndex(i)}
                 className={`rounded-full transition-all duration-300 touch-manipulation ${i === currentIndex
-                    ? 'w-6 sm:w-8 h-3 bg-solar-red'
-                    : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
+                  ? 'w-6 sm:w-8 h-3 bg-solar-red'
+                  : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
                   }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
@@ -194,7 +194,7 @@ export default function Testimonials() {
 
         <div className="mt-12 text-center">
           <a
-            href="https://www.google.com/search?q=Ultron+Power+Systems+Dhule"
+            href="https://share.google/CH2sVR1u2AtKPQ9R1"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-navy-dark hover:text-primary-blue font-semibold transition-colors bg-gray-50 px-6 py-3 rounded-full hover:bg-gray-100 border border-gray-200 touch-manipulation min-h-[48px] text-sm sm:text-base"

@@ -198,7 +198,7 @@ export interface Translations {
       title: string;
       getQuote: string;
     }>;
-    commercial: { 
+    commercial: {
       title: string;
       description: string;
     };
@@ -476,13 +476,13 @@ const translations: Record<Language, Translations> = {
         { title: 'Farms & Pumps', getQuote: 'Get Quote →' },
         { title: 'Apartments', getQuote: 'Get Quote →' },
       ],
-      commercial: { 
+      commercial: {
         title: 'Commercial & Industrial Solutions',
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },
     },
     trustBar: {
-      title: "Trusted by 500+ Families & Industry Leaders in North Maharashtra",
+      title: "Trusted by 50+ Families & Industry Leaders in North Maharashtra",
     },
     howItWorks: {
       title: "Your Journey to Solar Excellence",
@@ -764,13 +764,13 @@ const translations: Record<Language, Translations> = {
         { title: 'शेत आणि पंप', getQuote: 'कोट मिळवा →' },
         { title: 'अपार्टमेंट', getQuote: 'कोट मिळवा →' },
       ],
-      commercial: { 
+      commercial: {
         title: 'व्यावसायिक आणि औद्योगिक उपाय',
         description: 'तुमच्या व्यवसाय, उद्योग किंवा पार्किंगच्या जागेसाठी सौर उपाय शोधत आहात? आम्ही ऑपरेशनल खर्च कमी करण्यासाठी आणि स्थिरता सुधारण्यासाठी डिझाइन केलेले सानुकूलित सौर प्रणाली प्रदान करतो.',
       },
     },
     trustBar: {
-      title: "उत्तर महाराष्ट्रातील ५००+ कुटुंबे आणि उद्योगांचा आमच्यावर विश्वास",
+      title: "उत्तर महाराष्ट्रातील ५०+ कुटुंबे आणि उद्योगांचा आमच्यावर विश्वास",
     },
     howItWorks: {
       title: "सौर उत्कृष्टतेचा तुमचा प्रवास",
@@ -1051,13 +1051,13 @@ const translations: Record<Language, Translations> = {
         { title: 'Farms & Pumps', getQuote: 'Get Quote →' },
         { title: 'Apartments', getQuote: 'Get Quote →' },
       ],
-      commercial: { 
+      commercial: {
         title: 'Commercial & Industrial Solutions',
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },
     },
     trustBar: {
-      title: "उत्तर महाराष्ट्र के 500+ परिवारों और उद्योग जगत के नेताओं द्वारा विश्वसनीय",
+      title: "उत्तर महाराष्ट्र के 50+ परिवारों और उद्योग जगत के नेताओं द्वारा विश्वसनीय",
     },
     howItWorks: {
       title: "सौर उत्कृष्टता की आपकी यात्रा",

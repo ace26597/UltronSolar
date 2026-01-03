@@ -39,7 +39,7 @@ export default function ResidentialRooftop() {
                                 <span className="text-solar-orange">Watch Your Bills Drop to Zero</span>
                             </h1>
                             <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-                                Join 500+ families in North Maharashtra who are saving thousands every month. Premium quality, hassle-free installation, and maximum government subsidy guaranteed.
+                                Join 50+ families in North Maharashtra who are saving thousands every month. Premium quality, hassle-free installation, and maximum government subsidy guaranteed.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <CtaButton

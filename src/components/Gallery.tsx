@@ -36,7 +36,7 @@ export default function Gallery() {
             Recent Deployments Across <span className="text-solar-orange">Maharashtra</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto italic">
-            Visual proof of our commitment to engineering excellence and customer success. 500+ projects executed with 100% technical compliance.
+            Visual proof of our commitment to engineering excellence and customer success. 50+ projects executed with 100% technical compliance.
           </p>
         </div>
 

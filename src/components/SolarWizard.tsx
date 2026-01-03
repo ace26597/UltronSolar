@@ -302,7 +302,7 @@ export default function SolarWizard() {
                     <div className="bg-gray-50 px-8 py-6 border-t border-gray-100 flex items-center justify-center gap-8 opacity-50 text-[10px] font-black uppercase tracking-widest text-gray-500 grayscale group-hover:grayscale-0 transition-all">
                         <span className="flex items-center gap-2">🛡️ ISO Certified</span>
                         <span className="flex items-center gap-2">☀️ Authorized Dealer</span>
-                        <span className="flex items-center gap-2">⚡ 500+ Installs</span>
+                        <span className="flex items-center gap-2">⚡ 50+ Installs</span>
                     </div>
                 </div>
             </div>

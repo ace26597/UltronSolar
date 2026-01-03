@@ -67,22 +67,27 @@ export default function Hero() {
               showSubtext={true}
             />
 
-            <div className="flex flex-col items-center lg:items-start text-xs sm:text-sm text-gray-400">
+            <a
+              href="https://share.google/CH2sVR1u2AtKPQ9R1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/rating hover:opacity-80 transition-opacity"
+            >
               <div className="flex items-center gap-2 mb-1">
                 <div className="flex -space-x-2">
                   {[1, 2, 3, 4].map(i => (
                     <div key={i} className="w-8 h-8 rounded-full border-2 border-navy bg-gray-200 overflow-hidden">
-                      <Image src={`/images/team/team-${i}.jpg`} alt="Ultron Team" width={32} height={32} className="grayscale hover:grayscale-0 transition-all object-cover" />
+                      <Image src={`/images/team/team-${i}.jpg`} alt="Ultron Team" width={32} height={32} className="grayscale group-hover/rating:grayscale-0 transition-all object-cover" />
                     </div>
                   ))}
                   <div className="w-8 h-8 rounded-full border-2 border-navy bg-solar-orange flex items-center justify-center text-[10px] font-bold text-navy">
-                    500+
+                    50+
                   </div>
                 </div>
                 <span className="font-bold text-white">4.9/5 Rating</span>
               </div>
-              <span>based on genuine Google reviews</span>
-            </div>
+              <span className="text-gray-400">based on 56 genuine Google reviews</span>
+            </a>
           </div>
 
           <div className="mt-12 lg:mt-16 flex flex-wrap justify-center lg:justify-start items-center gap-12">

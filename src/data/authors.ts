@@ -12,7 +12,7 @@ export const authors: Author[] = [
         id: "chandrakant-patil",
         name: "Er. Chandrakant Patil",
         role: "Founder & Chief Engineer",
-        bio: "With over 15 years of experience in electrical systems and solar EPC, Er. Patil has led 500+ solar installations across North Maharashtra. He is a recognized expert in grid-connected systems and PM-KUSUM implementation.",
+        bio: "With over 15 years of experience in electrical systems and solar EPC, Er. Patil has led 50+ solar installations across North Maharashtra. He is a recognized expert in grid-connected systems and PM-KUSUM implementation.",
         avatarUrl: "/images/team-patil.jpg",
         linkedin: "https://www.linkedin.com/in/chandrakant-patil-ultron"
     },
