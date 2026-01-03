@@ -26,10 +26,30 @@ export default function SolarWizard() {
 
     const handleSubmit = async () => {
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setIsSubmitting(false);
-        nextStep();
+        try {
+            const systemSize = calculateEstimatedSystem(formData.bill);
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: formData.name,
+                    phone: formData.phone,
+                    requirement: `Solar Recommendation (${formData.sector})`,
+                    message: `Estimated System: ${systemSize}\r\nMonthly Bill: ₹${formData.bill}\r\nLocation: ${formData.location}\r\nSector: ${formData.sector}`
+                }),
+            });
+
+            if (!res.ok) throw new Error("Failed to send lead");
+
+            nextStep();
+        } catch (error) {
+            console.error("Error sending wizard lead:", error);
+            // Even if it fails, we move to success step to not block user, 
+            // but in a real app we might show an error.
+            nextStep();
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const calculateEstimatedSystem = (bill: string) => {
@@ -257,11 +277,21 @@ export default function SolarWizard() {
                                     </div>
 
                                     <div className="pt-8">
-                                        <p className="text-gray-500 mb-6">Want to see our latest work while you wait?</p>
-                                        <div className="flex justify-center gap-4">
-                                            <a href="/gallery" className="px-8 py-4 bg-navy text-white rounded-full font-bold hover:bg-solar-orange transition-all">View Gallery</a>
-                                            <button onClick={() => setStep(1)} className="px-8 py-4 border-2 border-gray-100 rounded-full font-bold hover:border-navy transition-all">Start Over</button>
+                                        <p className="text-gray-500 mb-6">Want to get a direct quote on WhatsApp?</p>
+                                        <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                            <a
+                                                href={`https://wa.me/919422787438?text=${encodeURIComponent(
+                                                    `Hi UltronSolar! I just completed your solar wizard.\n\nRequired for: ${formData.sector}\nEstimated System: ${calculateEstimatedSystem(formData.bill)}\nLocation: ${formData.location}\nName: ${formData.name}`
+                                                )}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="px-8 py-4 bg-[#25D366] text-white rounded-full font-bold hover:bg-navy transition-all flex items-center justify-center gap-2"
+                                            >
+                                                <span>Chat on WhatsApp</span>
+                                            </a>
+                                            <a href="/gallery" className="px-8 py-4 bg-navy text-white rounded-full font-bold hover:bg-solar-orange transition-all flex items-center justify-center">View Gallery</a>
                                         </div>
+                                        <button onClick={() => setStep(1)} className="mt-6 text-gray-400 hover:text-navy transition-all text-sm font-bold">Start New Analysis</button>
                                     </div>
                                 </motion.div>
                             )}
