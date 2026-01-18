@@ -12,8 +12,10 @@ import { getTranslations } from "@/lib/translations";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
   const { currentLanguage } = useLanguage();
   const t = getTranslations(currentLanguage);
+
   const navbarCta = selectCta({
     page: 'home',
     audience: 'residential',
@@ -22,20 +24,19 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleAccordion = (name: string) => {
+    setMobileAccordion(mobileAccordion === name ? null : name);
+  };
+
   return (
     <>
-      {/* Utility Top Bar */}
+      {/* Utility Top Bar - Same as before */}
       <div className="bg-navy text-white py-1.5 text-xs sm:text-sm hidden md:block border-b border-navy-light/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <div className="flex items-center space-x-6">
@@ -72,102 +73,55 @@ export default function Navbar() {
             <div className="flex-shrink-0">
               <Link href="/" className="flex items-center group">
                 <div className="relative overflow-hidden">
-                  <Image
-                    src="/logo/Ultron_Power_Logo_1.png"
-                    alt="Ultron Power Systems"
-                    width={220}
-                    height={85}
-                    className="h-10 sm:h-12 md:h-16 w-auto transition-transform duration-500 group-hover:scale-105"
-                    priority
-                  />
+                  <Image src="/logo/Ultron_Power_Logo_1.png" alt="Ultron Power Systems" width={220} height={85} className="h-10 sm:h-12 md:h-16 w-auto transition-transform duration-500 group-hover:scale-105" priority />
                 </div>
               </Link>
             </div>
 
-            {/* Desktop Menu */}
+            {/* Desktop Menu - Grouped */}
             <div className="hidden lg:block">
               <div className="flex items-center space-x-1 lg:space-x-4">
-                <Link href="/" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  {t.nav.home}
-                </Link>
+                <Link href="/" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">{t.nav.home}</Link>
+                <Link href="/about" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">{t.nav.about}</Link>
 
-                <Link href="/about" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  {t.nav.about}
-                </Link>
-
-                {/* Segmented Dropdowns */}
+                {/* Services Dropdown */}
                 <div className="relative group">
                   <button className="flex items-center gap-1 px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                    {t.nav.residential}
-                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                  </button>
-                  <div className="absolute top-full left-0 w-56 bg-white shadow-2xl rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 border border-gray-100 overflow-hidden">
-                    <Link href="/residential/rooftop" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">
-                      Rooftop Solar Solutions
-                    </Link>
-                    <Link href="/residential/subsidy" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">
-                      PM Surya Ghar Guide
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="relative group">
-                  <button className="flex items-center gap-1 px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                    {t.nav.agriculture}
-                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                  </button>
-                  <div className="absolute top-full left-0 w-56 bg-white shadow-2xl rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 border border-gray-100 overflow-hidden">
-                    <Link href="/agriculture/pumps" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">
-                      Solar Water Pumps
-                    </Link>
-                    <Link href="/agriculture/kusum" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">
-                      PM-KUSUM Yojana
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="relative group">
-                  <button className="flex items-center gap-1 px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                    {t.nav.commercial}
+                    {t.nav.sections.services}
                     <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                   </button>
                   <div className="absolute top-full left-0 w-64 bg-white shadow-2xl rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 border border-gray-100 overflow-hidden">
-                    <Link href="/commercial/industrial" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">
-                      Industrial Captive Plants
-                    </Link>
-                    <Link href="/commercial/benefits" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">
-                      Tax & ROI Benefits
-                    </Link>
+                    <div className="px-4 py-2 border-b border-gray-100 text-xs text-gray-400 font-bold uppercase tracking-widest">{t.nav.residential}</div>
+                    <Link href="/residential/rooftop" className="block px-4 py-2 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange">Rooftop Solar</Link>
+                    <Link href="/residential/subsidy" className="block px-4 py-2 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange">PM Surya Ghar</Link>
+
+                    <div className="px-4 py-2 border-b border-gray-100 text-xs text-gray-400 font-bold uppercase tracking-widest mt-2">{t.nav.agriculture}</div>
+                    <Link href="/agriculture/pumps" className="block px-4 py-2 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange">Solar Pumps</Link>
+                    <Link href="/agriculture/kusum" className="block px-4 py-2 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange">PM-KUSUM</Link>
+
+                    <div className="px-4 py-2 border-b border-gray-100 text-xs text-gray-400 font-bold uppercase tracking-widest mt-2">{t.nav.commercial}</div>
+                    <Link href="/commercial/industrial" className="block px-4 py-2 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange">Industrial Plants</Link>
                   </div>
                 </div>
 
-                <Link href="/products" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  {t.nav.products}
-                </Link>
+                {/* Resources Dropdown */}
+                <div className="relative group">
+                  <button className="flex items-center gap-1 px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
+                    {t.nav.resources}
+                    <svg className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </button>
+                  <div className="absolute top-full left-0 w-56 bg-white shadow-2xl rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 border border-gray-100 overflow-hidden">
+                    <Link href="/products" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">{t.nav.products}</Link>
+                    <Link href="/gallery" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">Our Work</Link>
+                    <Link href="/blog" className="block px-4 py-2.5 text-sm text-navy hover:bg-solar-orange/5 hover:text-solar-orange transition-colors">Knowledge Hub</Link>
+                  </div>
+                </div>
 
-                <Link href="/gallery" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  Our Work
-                </Link>
-
-                <Link href="/blog" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  Knowledge Hub
-                </Link>
-
-                <Link href="/tools" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  {t.nav.tools}
-                </Link>
-
-                <Link href="/contact" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
-                  {t.nav.contact}
-                </Link>
+                <Link href="/tools" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider text-solar-orange">{t.nav.tools}</Link>
+                <Link href="/contact" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">{t.nav.contact}</Link>
 
                 <div className="ml-4 flex items-center">
-                  <CtaButton
-                    ctaId={navbarCta.id}
-                    variantOverride={{ label: t.nav.getQuote }}
-                    className="px-6 py-3 text-sm font-bold shadow-lg shadow-solar-orange/20 hover:shadow-solar-orange/40"
-                    trackEventName="navbar_cta_click"
-                  />
+                  <CtaButton ctaId={navbarCta.id} variantOverride={{ label: t.nav.getQuote }} className="px-6 py-3 text-sm font-bold shadow-lg shadow-solar-orange/20 hover:shadow-solar-orange/40" trackEventName="navbar_cta_click" />
                 </div>
               </div>
             </div>
@@ -177,104 +131,66 @@ export default function Navbar() {
               <a href="tel:+919422787438" className="p-2 text-solar-orange bg-solar-orange/10 rounded-full">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
               </a>
-              <button
-                onClick={() => setIsOpen(true)}
-                className="text-navy hover:text-solar-orange transition-colors p-2"
-                aria-label="Open menu"
-              >
-                <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+              <button onClick={() => setIsOpen(true)} className="text-navy hover:text-solar-orange transition-colors p-2" aria-label="Open menu">
+                <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu Drawer */}
+        {/* Mobile Menu Drawer - Accordion Style */}
         <div className={`fixed inset-0 z-[100] transform ${isOpen ? "translate-x-0" : "translate-x-full"} transition-transform duration-500 ease-in-out lg:hidden`}>
           <div className={`absolute inset-0 bg-navy/80 backdrop-blur-sm transition-opacity duration-500 ${isOpen ? "opacity-100" : "opacity-0"}`} onClick={() => setIsOpen(false)}></div>
-
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl flex flex-col">
             <div className="p-6 flex justify-between items-center border-b border-gray-100">
               <span className="text-xl font-bold text-navy uppercase tracking-widest">{t.nav.menu}</span>
               <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-solar-orange transition-colors p-2 rounded-full hover:bg-gray-100">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto py-8 px-6 space-y-6">
-              <Link href="/" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
-                {t.nav.home}
-              </Link>
+            <div className="flex-1 overflow-y-auto py-6 px-6 space-y-2">
+              <Link href="/" onClick={() => setIsOpen(false)} className="block py-3 text-lg font-bold text-navy hover:text-solar-orange transition-colors border-b border-gray-50">{t.nav.home}</Link>
+              <Link href="/about" onClick={() => setIsOpen(false)} className="block py-3 text-lg font-bold text-navy hover:text-solar-orange transition-colors border-b border-gray-50">{t.nav.about}</Link>
 
-              <Link href="/about" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
-                {t.nav.about}
-              </Link>
+              {/* Services Accordion */}
+              <div className="border-b border-gray-50">
+                <button onClick={() => toggleAccordion('services')} className="flex items-center justify-between w-full py-3 text-lg font-bold text-navy hover:text-solar-orange transition-colors">
+                  {t.nav.sections.services}
+                  <svg className={`w-5 h-5 transition-transform duration-300 ${mobileAccordion === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div className={`pl-4 space-y-3 overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAccordion === 'services' ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'}`}>
+                  <p className="text-xs font-bold text-gray-400 uppercase">{t.nav.residential}</p>
+                  <Link href="/residential/rooftop" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">Rooftop Solar</Link>
+                  <Link href="/residential/subsidy" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">PM Surya Ghar</Link>
 
-              <div className="space-y-4">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t.nav.residential}</h4>
-                <div className="pl-4 space-y-3">
-                  <Link href="/residential/rooftop" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">Rooftop Solar</Link>
-                  <Link href="/residential/subsidy" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">PM Surya Ghar</Link>
+                  <p className="text-xs font-bold text-gray-400 uppercase mt-2">{t.nav.agriculture}</p>
+                  <Link href="/agriculture/pumps" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">Solar Pumps</Link>
+                  <Link href="/agriculture/kusum" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">PM-KUSUM</Link>
+
+                  <p className="text-xs font-bold text-gray-400 uppercase mt-2">{t.nav.commercial}</p>
+                  <Link href="/commercial/industrial" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">Industrial Plants</Link>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t.nav.agriculture}</h4>
-                <div className="pl-4 space-y-3">
-                  <Link href="/agriculture/pumps" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">Solar Pumps</Link>
-                  <Link href="/agriculture/kusum" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">PM-KUSUM</Link>
+              {/* Resources Accordion */}
+              <div className="border-b border-gray-50">
+                <button onClick={() => toggleAccordion('resources')} className="flex items-center justify-between w-full py-3 text-lg font-bold text-navy hover:text-solar-orange transition-colors">
+                  {t.nav.resources}
+                  <svg className={`w-5 h-5 transition-transform duration-300 ${mobileAccordion === 'resources' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div className={`pl-4 space-y-3 overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAccordion === 'resources' ? 'max-h-48 opacity-100 pb-4' : 'max-h-0 opacity-0'}`}>
+                  <Link href="/products" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">{t.nav.products}</Link>
+                  <Link href="/gallery" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">Our Work</Link>
+                  <Link href="/blog" onClick={() => setIsOpen(false)} className="block text-navy/80 hover:text-solar-orange">Knowledge Hub</Link>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t.nav.commercial}</h4>
-                <div className="pl-4 space-y-3">
-                  <Link href="/commercial/industrial" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">Industrial Plants</Link>
-                  <Link href="/commercial/benefits" onClick={() => setIsOpen(false)} className="block text-base text-navy hover:text-solar-orange">Tax Benefits</Link>
-                </div>
-              </div>
+              <Link href="/tools" onClick={() => setIsOpen(false)} className="block py-3 text-lg font-bold text-solar-orange hover:text-navy transition-colors border-b border-gray-50">{t.nav.tools}</Link>
+              <Link href="/contact" onClick={() => setIsOpen(false)} className="block py-3 text-lg font-bold text-navy hover:text-solar-orange transition-colors border-b border-gray-50">{t.nav.contact}</Link>
 
-              <Link href="/products" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
-                {t.nav.products}
-              </Link>
-
-              <Link href="/gallery" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
-                Our Work
-              </Link>
-
-              <Link href="/blog" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
-                Knowledge Hub
-              </Link>
-
-              <Link href="/tools" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
-                {t.nav.tools}
-              </Link>
-
-              <div className="pt-8 border-t border-gray-100">
-                <CtaButton
-                  ctaId={navbarCta.id}
-                  variantOverride={{ label: t.nav.getQuote }}
-                  className="w-full text-center py-4 text-base font-bold"
-                  trackEventName="mobile_navbar_cta_click"
-                />
-              </div>
-
-              <div className="mt-8 pt-8 space-y-4 px-2">
-                <div className="flex items-center space-x-3 text-sm text-gray-500">
-                  <div className="w-8 h-8 rounded-full bg-solar-orange/10 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-solar-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                  </div>
-                  <span>+91 94227 87438</span>
-                </div>
-                <div className="flex items-center space-x-3 text-sm text-gray-500">
-                  <div className="w-8 h-8 rounded-full bg-solar-orange/10 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-solar-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                  </div>
-                  <span>info@ultronsolar.in</span>
-                </div>
+              <div className="pt-6">
+                <CtaButton ctaId={navbarCta.id} variantOverride={{ label: t.nav.getQuote }} className="w-full text-center py-4 text-base font-bold" trackEventName="mobile_navbar_cta_click" />
               </div>
             </div>
           </div>

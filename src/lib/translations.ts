@@ -14,7 +14,21 @@ export interface Translations {
     agriculture: string;
     commercial: string;
     tools: string;
+    resources: string;
+    quickLinks: string; // For mobile menu header
     getQuote: string;
+    sections: {
+      services: string;
+      resources: string;
+    };
+  };
+
+  // Bottom Navigation
+  bottomNav: {
+    home: string;
+    tools: string;
+    call: string;
+    whatsapp: string;
   };
 
   // TrustBar Section
@@ -380,7 +394,19 @@ const translations: Record<Language, Translations> = {
       agriculture: 'Agriculture',
       commercial: 'Commercial',
       tools: 'Solar Tools',
+      resources: 'Resources',
+      quickLinks: 'Quick Links',
       getQuote: 'Get Free Quote',
+      sections: {
+        services: 'Our Services',
+        resources: 'Resources',
+      },
+    },
+    bottomNav: {
+      home: 'Home',
+      tools: 'Tools',
+      call: 'Call',
+      whatsapp: 'WhatsApp',
     },
     trustBar: {
       badge: 'Certified EPC Partner',
@@ -773,7 +799,19 @@ const translations: Record<Language, Translations> = {
       agriculture: 'शेती',
       commercial: 'व्यावसायिक',
       tools: 'सोलर टूल्स',
+      resources: 'संसाधने',
+      quickLinks: 'क्विक लिंक्स',
       getQuote: 'विनामूल्य कोट मिळवा',
+      sections: {
+        services: 'आमच्या सेवा',
+        resources: 'संसाधने',
+      },
+    },
+    bottomNav: {
+      home: 'होम',
+      tools: 'टूल्स',
+      call: 'कॉल करा',
+      whatsapp: 'व्हॉट्सॲप',
     },
     trustBar: {
       badge: 'प्रमाणित EPC भागीदार',
@@ -1166,7 +1204,19 @@ const translations: Record<Language, Translations> = {
       agriculture: 'कृषि',
       commercial: 'व्यावसायिक',
       tools: 'सोलर टूल्स',
+      resources: 'संसाधन',
+      quickLinks: 'क्विक लिंक्स',
       getQuote: 'फ्री कोट प्राप्त करें',
+      sections: {
+        services: 'हमारी सेवाएँ',
+        resources: 'संसाधन',
+      },
+    },
+    bottomNav: {
+      home: 'होम',
+      tools: 'टूल्स',
+      call: 'कॉल',
+      whatsapp: 'व्हाट्सएप',
     },
     topBar: {
       serving: 'उत्तर महाराष्ट्र में सेवा दे रहे हैं',
