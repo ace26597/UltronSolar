@@ -10,6 +10,7 @@ export default function Contact() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
+    email: "",
     city: "",
     requirement: t.contact.requirements[0],
     message: "",
@@ -60,6 +61,7 @@ export default function Contact() {
       setForm({
         name: "",
         phone: "",
+        email: "",
         city: "",
         requirement: t.contact.requirements[0],
         message: "",
@@ -123,6 +125,21 @@ export default function Contact() {
                     autoComplete="tel"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
                     placeholder={t.contact.form.phonePlaceholder || '10-digit mobile'}
+                    disabled={status === "loading"}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.email || 'Email Address'}</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
+                    placeholder={t.contact.form.emailPlaceholder || 'your@email.com (optional)'}
                     disabled={status === "loading"}
                   />
                 </div>

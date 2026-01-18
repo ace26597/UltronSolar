@@ -54,7 +54,7 @@ export default function PrivacyPage() {
                   <strong>Website:</strong> https://www.ultronsolar.in/
                 </p>
                 <p className="text-gray-700 mb-1">
-                  <strong>Email:</strong> info@ultronsolar.in
+                  <strong>Email:</strong> ultronvij@gmail.com
                 </p>
                 <p className="text-gray-700">
                   <strong>Phone:</strong> +91-94227 87438
@@ -476,7 +476,7 @@ export default function PrivacyPage() {
               <div className="bg-gray-50 rounded-lg p-6">
                 <p className="font-semibold text-navy-dark mb-2">Ultron Power Systems</p>
                 <p className="text-gray-700 mb-1">
-                  <strong>Email:</strong> info@ultronsolar.in
+                  <strong>Email:</strong> ultronvij@gmail.com
                 </p>
                 <p className="text-gray-700 mb-1">
                   <strong>Phone:</strong> +91-94227 87438

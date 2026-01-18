@@ -2,60 +2,13 @@
 
 import { useState, useEffect } from "react";
 
+import testimonialsData from "@/data/testimonials.json";
+
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemsToShow, setItemsToShow] = useState(1);
 
-  const testimonials = [
-    {
-      name: "Pradip Deore",
-      seoInfo: "Best Solar • Quality Products",
-      content: "My experience at Ultron Power Systems was outstanding! Their hassle-free process made installation a breeze. The high-quality solar products exceeded my expectations, and I appreciated the available discounts. Timely delivery and a reliable partner ensured everything arrived as promised. The experienced staff provided excellent support throughout. Highly recommended!",
-      rating: 5,
-    },
-    {
-      name: "Pritish Mekha",
-      seoInfo: "Best Solar Installation • Professional Service",
-      content: "Exceptional service and top-notch installation from Ultron Solar Power System. The team was professional, knowledgeable, and efficient from initial consultation to final setup. The installation process was smooth and timely, with clear communication throughout. Their attention to detail and commitment to customer satisfaction truly sets them apart. A solid 5/5 experience—highly recommended for anyone considering solar energy.",
-      rating: 5,
-    },
-    {
-      name: "Shubham Mali",
-      seoInfo: "Best Home Solar • Expert Team",
-      content: "We had an absolutely fantastic experience with Ultron Services for our home solar installation! From our very first inquiry to the final activation, their team demonstrated professionalism, expertise, and a genuine commitment to customer satisfaction.",
-      rating: 5,
-    },
-    {
-      name: "Rohit Patil",
-      seoInfo: "Quality Products • Best Solar",
-      content: "The experience was wonderful with Ultron solar team was very humble and cooperative, they have given quality products and even more than they have promised, and also completed there job in Time. Thank you Ultron solar team, For dedication of your work and have bright future in what you do.",
-      rating: 5,
-    },
-    {
-      name: "Shubham Patil",
-      seoInfo: "Best Net Metering • 3kW Solar System",
-      content: "I Have Installed 3kw net metering solar system from Ultron Power Systems. Good workmanship of installation and work was executed in time. Fully satisfied with services provided. Experienced good team work of company.",
-      rating: 5,
-    },
-    {
-      name: "Nilesh Rajput",
-      seoInfo: "Best Solar Inverter • Battery System",
-      content: "Using battery inverters for the past eight years and using solar net meter system for the past four years has been a great service from time to time. Owner's nature is very nice.",
-      rating: 5,
-    },
-    {
-      name: "Nagaraj Mahajan",
-      seoInfo: "Best Solar Service • Expert Guidance",
-      content: "Excellent coordination and great team work and enthusiastic staff nice and useful guidance for the customer and service very good",
-      rating: 5,
-    },
-    {
-      name: "Narendra Khalane",
-      seoInfo: "4KW Solar System • Quality Products • Technical Advice",
-      content: "I have installed 4KW solar system, genuinely satisfied. Technical advice, Quality products/instruments/meters provided & Excellent team of staff",
-      rating: 5,
-    }
-  ];
+  const testimonials = testimonialsData;
 
   useEffect(() => {
     const handleResize = () => {

@@ -44,8 +44,8 @@ export default function Footer() {
               </div>
               <div className="flex items-center group">
                 <span className="text-solar-orange mr-3">✉️</span>
-                <a href="mailto:info@ultronsolar.in" className="text-gray-400 text-sm group-hover:text-solar-orange transition-colors">
-                  info@ultronsolar.in
+                <a href="mailto:ultronvij@gmail.com" className="text-gray-400 text-sm group-hover:text-solar-orange transition-colors">
+                  ultronvij@gmail.com
                 </a>
               </div>
             </div>

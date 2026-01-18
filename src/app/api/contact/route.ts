@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { name, phone, email, requirement, message } = body;
+    const { name, phone, email, city, requirement, message } = body;
 
     // Basic validation
     if (!name || !phone || !requirement) {
@@ -54,6 +54,7 @@ New lead from UltronSolar website:
 Name: ${name}
 Phone: ${phone}
 Email: ${email || "not provided"}
+City: ${city || "not provided"}
 Requirement: ${requirement}
 
 Additional Details/Query:
@@ -66,6 +67,7 @@ Follow up ASAP.
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Email:</strong> ${email || "not provided"}</p>
+        <p><strong>City:</strong> ${city || "not provided"}</p>
         <p><strong>Requirement:</strong> ${requirement}</p>
         <p><strong>Additional Details:</strong><br/>${message ? message.replace(/\n/g, '<br>') : "None"}</p>
       `,
