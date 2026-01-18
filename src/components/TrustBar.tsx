@@ -24,10 +24,10 @@ export default function TrustBar() {
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
                     <div className="lg:w-1/3 text-center lg:text-left relative">
                         <div className="inline-block bg-navy/5 text-navy px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-3">
-                            Certified EPC Partner
+                            {t.trustBar.badge}
                         </div>
                         <p className="text-navy font-heading font-black text-2xl lg:text-3xl leading-tight">
-                            Authorized Dealer for <span className="text-solar-orange">Industry Leaders</span>
+                            {t.trustBar.title} <span className="text-solar-orange">{t.trustBar.titleHighlight}</span>
                         </p>
                     </div>
 

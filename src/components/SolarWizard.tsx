@@ -3,10 +3,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CtaButton from "./cta/CtaButton";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslations } from "@/lib/translations";
 
 type WizardStep = 1 | 2 | 3 | 4 | 5;
 
 export default function SolarWizard() {
+    const { currentLanguage } = useLanguage();
+    const t = getTranslations(currentLanguage);
     const [step, setStep] = useState<WizardStep>(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({
@@ -37,7 +41,7 @@ export default function SolarWizard() {
     const formatCurrency = (val: string) => {
         if (!val) return "";
         const num = val.replace(/\D/g, "");
-        return new Intl.NumberFormat('en-IN').format(parseInt(num));
+        return new Intl.NumberFormat(currentLanguage === 'hi' ? 'hi-IN' : currentLanguage === 'mr' ? 'mr-IN' : 'en-IN').format(parseInt(num));
     };
 
     const handleSubmit = async () => {
@@ -93,13 +97,18 @@ export default function SolarWizard() {
             <div className="max-w-4xl mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
                     <div className="inline-block bg-solar-orange/10 border border-solar-orange/20 text-solar-orange text-xs font-black uppercase tracking-[0.4em] px-4 py-1.5 rounded-full mb-6">
-                        Personalized Recommendations
+                        {t.wizard.badge}
                     </div>
                     <h2 className="text-4xl md:text-5xl font-heading font-black text-navy-dark mb-6 leading-tight">
-                        Find the perfect <span className="text-solar-orange">Solar Solution</span> in 60 seconds.
+                        {t.wizard.title.split('Solar Solution').map((part, i, arr) => (
+                            <span key={i}>
+                                {part}
+                                {i < arr.length - 1 && <span className="text-solar-orange">Solar Solution</span>}
+                            </span>
+                        ))}
                     </h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto italic">
-                        Tell us about your needs and get an instant ROI summary tailored for North Maharashtra.
+                        {t.wizard.subtitle}
                     </p>
                 </div>
 
@@ -125,14 +134,14 @@ export default function SolarWizard() {
                                     className="space-y-8"
                                 >
                                     <div className="text-center">
-                                        <h3 className="text-2xl font-black text-navy-dark mb-2">Where would you like to install solar?</h3>
-                                        <p className="text-gray-500">Select the sector that best describes your project.</p>
+                                        <h3 className="text-2xl font-black text-navy-dark mb-2">{t.wizard.steps.step1.title}</h3>
+                                        <p className="text-gray-500">{t.wizard.steps.step1.subtitle}</p>
                                     </div>
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                         {[
-                                            { id: "residential", label: "My Home", icon: "🏠" },
-                                            { id: "agriculture", label: "My Farm", icon: "🚜" },
-                                            { id: "commercial", label: "My Business", icon: "🏢" },
+                                            { id: "residential", label: t.wizard.steps.step1.options.residential, icon: "🏠" },
+                                            { id: "agriculture", label: t.wizard.steps.step1.options.agriculture, icon: "🚜" },
+                                            { id: "commercial", label: t.wizard.steps.step1.options.commercial, icon: "🏢" },
                                         ].map((opt) => (
                                             <button
                                                 key={opt.id}
@@ -159,15 +168,15 @@ export default function SolarWizard() {
                                     className="space-y-8"
                                 >
                                     <div className="text-center">
-                                        <h3 className="text-2xl font-black text-navy-dark mb-2">What&apos;s your average monthly bill?</h3>
-                                        <p className="text-gray-500">This helps us estimate the system size you need.</p>
+                                        <h3 className="text-2xl font-black text-navy-dark mb-2">{t.wizard.steps.step2.title}</h3>
+                                        <p className="text-gray-500">{t.wizard.steps.step2.subtitle}</p>
                                     </div>
                                     <div className="max-w-md mx-auto relative group">
                                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black text-gray-300 group-focus-within:text-solar-orange transition-colors">₹</span>
                                         <input
                                             type="text"
                                             inputMode="numeric"
-                                            placeholder="5,000"
+                                            placeholder={t.wizard.steps.step2.placeholder}
                                             value={formatCurrency(formData.bill)}
                                             onChange={(e) => updateField("bill", e.target.value.replace(/\D/g, ""))}
                                             className="w-full pl-14 pr-8 py-6 rounded-2xl border-2 border-gray-100 focus:border-solar-orange outline-none text-2xl font-black text-navy-dark transition-all bg-white/50"
@@ -175,13 +184,13 @@ export default function SolarWizard() {
                                         />
                                     </div>
                                     <div className="flex justify-center gap-4 mt-8">
-                                        <button onClick={prevStep} className="px-8 py-4 font-bold text-gray-400 hover:text-navy-dark transition-colors">Back</button>
+                                        <button onClick={prevStep} className="px-8 py-4 font-bold text-gray-400 hover:text-navy-dark transition-colors">{t.wizard.common.back}</button>
                                         <button
                                             onClick={nextStep}
                                             disabled={!formData.bill}
                                             className="px-12 py-4 bg-navy text-white rounded-full font-black uppercase tracking-widest text-sm hover:bg-solar-orange transition-all disabled:opacity-50"
                                         >
-                                            Next Step
+                                            {t.wizard.common.next}
                                         </button>
                                     </div>
                                 </motion.div>
@@ -196,8 +205,8 @@ export default function SolarWizard() {
                                     className="space-y-8"
                                 >
                                     <div className="text-center">
-                                        <h3 className="text-2xl font-black text-navy-dark mb-2">Where is the property located?</h3>
-                                        <p className="text-gray-500">We optimize designs based on local solar irradiation.</p>
+                                        <h3 className="text-2xl font-black text-navy-dark mb-2">{t.wizard.steps.step3.title}</h3>
+                                        <p className="text-gray-500">{t.wizard.steps.step3.subtitle}</p>
                                     </div>
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                         {["Dhule", "Jalgaon", "Nashik", "Sakri", "Shirpur", "Malegaon", "Bhusawal", "Other"].map((city) => (
@@ -214,7 +223,7 @@ export default function SolarWizard() {
                                         ))}
                                     </div>
                                     <div className="flex justify-center mt-8">
-                                        <button onClick={prevStep} className="px-8 py-4 font-bold text-gray-400 hover:text-navy-dark transition-colors">Back</button>
+                                        <button onClick={prevStep} className="px-8 py-4 font-bold text-gray-400 hover:text-navy-dark transition-colors">{t.wizard.common.back}</button>
                                     </div>
                                 </motion.div>
                             )}
@@ -228,20 +237,20 @@ export default function SolarWizard() {
                                     className="space-y-8"
                                 >
                                     <div className="text-center">
-                                        <h3 className="text-2xl font-black text-navy-dark mb-2">Final Step: Where should we send your plan?</h3>
-                                        <p className="text-gray-500">Our engineers will draft a quick summary for you.</p>
+                                        <h3 className="text-2xl font-black text-navy-dark mb-2">{t.wizard.steps.step4.title}</h3>
+                                        <p className="text-gray-500">{t.wizard.steps.step4.subtitle}</p>
                                     </div>
                                     <div className="max-w-md mx-auto space-y-4">
                                         <input
                                             type="text"
-                                            placeholder="Your Full Name"
+                                            placeholder={t.wizard.steps.step4.namePlaceholder}
                                             value={formData.name}
                                             onChange={(e) => updateField("name", e.target.value)}
                                             className="w-full px-8 py-4 rounded-xl border-2 border-gray-100 focus:border-solar-orange outline-none font-bold text-navy-dark transition-all"
                                         />
                                         <input
                                             type="tel"
-                                            placeholder="WhatsApp Number"
+                                            placeholder={t.wizard.steps.step4.phonePlaceholder}
                                             value={formData.phone}
                                             onChange={(e) => updateField("phone", e.target.value)}
                                             className="w-full px-8 py-4 rounded-xl border-2 border-gray-100 focus:border-solar-orange outline-none font-bold text-navy-dark transition-all"
@@ -256,14 +265,14 @@ export default function SolarWizard() {
                                             {isSubmitting ? (
                                                 <>
                                                     <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                                                    Processing...
+                                                    {t.wizard.steps.step4.processing}
                                                 </>
-                                            ) : "Get My Expert Summary"}
+                                            ) : t.wizard.steps.step4.submit}
                                         </button>
-                                        <button onClick={prevStep} className="font-bold text-gray-400 hover:text-navy-dark transition-colors text-sm">Review My Answers</button>
+                                        <button onClick={prevStep} className="font-bold text-gray-400 hover:text-navy-dark transition-colors text-sm">{t.wizard.common.review}</button>
                                     </div>
                                     <p className="text-center text-[10px] text-gray-400">
-                                        By clicking, you agree to our privacy policy. No spam, we promise.
+                                        {t.wizard.steps.step4.privacyNote}
                                     </p>
                                 </motion.div>
                             )}
@@ -279,44 +288,48 @@ export default function SolarWizard() {
                                         ✓
                                     </div>
                                     <div className="space-y-4">
-                                        <h3 className="text-3xl font-black text-navy-dark">Thank You, {formData.name.split(' ')[0]}!</h3>
-                                        <p className="text-xl text-gray-600">Your solar analysis plan is on its way to <span className="text-navy font-bold">{formData.phone}</span>.</p>
+                                        <h3 className="text-3xl font-black text-navy-dark">
+                                            {t.wizard.steps.step5.title.replace('{name}', formData.name.split(' ')[0])}
+                                        </h3>
+                                        <p className="text-xl text-gray-600">
+                                            {t.wizard.steps.step5.subtitle.replace('{phone}', formData.phone)}
+                                        </p>
                                     </div>
 
                                     <div className="bg-brand-bg rounded-[2rem] p-8 max-w-md mx-auto border border-gray-100 text-left">
-                                        <h4 className="font-black text-navy-dark uppercase tracking-widest text-sm mb-6 pb-4 border-b border-gray-200">Pre-Analysis Summary</h4>
+                                        <h4 className="font-black text-navy-dark uppercase tracking-widest text-sm mb-6 pb-4 border-b border-gray-200">{t.wizard.steps.step5.summaryTitle}</h4>
                                         <div className="space-y-4">
                                             <div className="flex justify-between">
-                                                <span className="text-gray-500">Location</span>
+                                                <span className="text-gray-500">{t.wizard.steps.step5.labels.location}</span>
                                                 <span className="font-bold text-navy-dark">{formData.location}</span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span className="text-gray-500">Avg. Monthly Bill</span>
+                                                <span className="text-gray-500">{t.wizard.steps.step5.labels.bill}</span>
                                                 <span className="font-bold text-navy-dark">₹{formatCurrency(formData.bill)}</span>
                                             </div>
                                             <div className="flex justify-between pt-4 border-t border-dashed border-gray-300">
-                                                <span className="text-navy-dark font-black">Estimated System</span>
+                                                <span className="text-navy-dark font-black">{t.wizard.steps.step5.labels.system}</span>
                                                 <span className="font-black text-solar-orange text-lg">{calculateEstimatedSystem(formData.bill)}</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="pt-8">
-                                        <p className="text-gray-500 mb-6">Want to get a direct quote on WhatsApp?</p>
+                                        <p className="text-gray-500 mb-6">{t.wizard.steps.step5.subtitle}</p>
                                         <div className="flex flex-col sm:flex-row justify-center gap-4">
                                             <a
                                                 href={`https://wa.me/919422787438?text=${encodeURIComponent(
-                                                    `Hi UltronSolar! I just completed your solar wizard.\n\nRequired for: ${formData.sector}\nEstimated System: ${calculateEstimatedSystem(formData.bill)}\nLocation: ${formData.location}\nName: ${formData.name}`
+                                                    `${t.wizard.steps.step5.cta.whatsappText}\n\nRequired for: ${formData.sector}\nEstimated System: ${calculateEstimatedSystem(formData.bill)}\nLocation: ${formData.location}\nName: ${formData.name}`
                                                 )}`}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="px-8 py-4 bg-[#25D366] text-white rounded-full font-bold hover:bg-navy transition-all flex items-center justify-center gap-2"
                                             >
-                                                <span>Chat on WhatsApp</span>
+                                                <span>{t.wizard.steps.step5.cta.whatsapp}</span>
                                             </a>
-                                            <a href="/gallery" className="px-8 py-4 bg-navy text-white rounded-full font-bold hover:bg-solar-orange transition-all flex items-center justify-center">View Gallery</a>
+                                            <a href="/gallery" className="px-8 py-4 bg-navy text-white rounded-full font-bold hover:bg-solar-orange transition-all flex items-center justify-center">{t.wizard.steps.step5.cta.gallery}</a>
                                         </div>
-                                        <button onClick={() => setStep(1)} className="mt-6 text-gray-400 hover:text-navy transition-all text-sm font-bold">Start New Analysis</button>
+                                        <button onClick={() => setStep(1)} className="mt-6 text-gray-400 hover:text-navy transition-all text-sm font-bold">{t.wizard.steps.step5.cta.restart}</button>
                                     </div>
                                 </motion.div>
                             )}
@@ -325,9 +338,9 @@ export default function SolarWizard() {
 
                     {/* Trust Footnote */}
                     <div className="bg-gray-50 px-8 py-6 border-t border-gray-100 flex items-center justify-center gap-8 opacity-50 text-[10px] font-black uppercase tracking-widest text-gray-500 grayscale group-hover:grayscale-0 transition-all">
-                        <span className="flex items-center gap-2">🛡️ ISO Certified</span>
-                        <span className="flex items-center gap-2">☀️ Authorized Dealer</span>
-                        <span className="flex items-center gap-2">⚡ 50+ Installs</span>
+                        {t.wizard.trustLines.map((line, i) => (
+                            <span key={i} className="flex items-center gap-2">{line}</span>
+                        ))}
                     </div>
                 </div>
             </div>

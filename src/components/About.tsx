@@ -33,7 +33,7 @@ export default function About() {
             </div>
             {/* Years experience badge - visible on all screens */}
             <div className="absolute -bottom-3 right-2 sm:-bottom-4 sm:right-4 lg:-bottom-6 lg:-right-6 bg-solar-orange p-6 sm:p-8 rounded-3xl shadow-2xl animate-bounce-slow">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white leading-none">10+</div>
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-white leading-none">{t.about.yearsValue}</div>
               <div className="text-xs sm:text-sm font-bold text-white/90 uppercase tracking-wider">{t.about.yearsExperience}</div>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function About() {
                 <div>
                   <h3 className="font-heading font-bold text-navy mb-1">{t.about.multipleApplications.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">{t.about.multipleApplications.description}</p>
-                  <p className="text-xs text-solar-orange font-bold mt-1">Includes Solar Carports & Parking Lots</p>
+                  <p className="text-xs text-solar-orange font-bold mt-1">{t.about.multipleApplications.extraNote}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 p-4 rounded-2xl hover:bg-brand-bg transition-colors group">

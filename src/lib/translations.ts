@@ -16,12 +16,30 @@ export interface Translations {
     getQuote: string;
   };
 
+  // TrustBar Section
+  trustBar: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+  };
+
   // Hero Section
   hero: {
     title: string;
     titleHighlight: string;
     subtitle: string;
     priceNote: string;
+    trustBadge: string;
+    rating: string;
+    reviews: string;
+    stats: {
+      years: string;
+      yearsLabel: string;
+      installed: string;
+      installedLabel: string;
+      subsidy: string;
+      subsidyLabel: string;
+    };
   };
 
   // Top Bar
@@ -31,6 +49,7 @@ export interface Translations {
 
   // Features Section
   features: {
+    badge: string;
     title: string;
     subtitle: string;
     expertInstallations: {
@@ -55,6 +74,7 @@ export interface Translations {
   about: {
     title: string;
     yearsExperience: string;
+    yearsValue: string;
     completeEPC: {
       title: string;
       description: string;
@@ -62,6 +82,7 @@ export interface Translations {
     multipleApplications: {
       title: string;
       description: string;
+      extraNote: string;
     };
     highQuality: {
       title: string;
@@ -181,6 +202,8 @@ export interface Translations {
       cityPlaceholder: string;
       emailPlaceholder: string;
       messagePlaceholder: string;
+      addMessage: string;
+      hideMessage: string;
     };
     requirements: string[];
     contactInfo: {
@@ -188,8 +211,68 @@ export interface Translations {
       visitUs: string;
       address: string;
       callUs: string;
+      phone: string;
       emailUs: string;
+      email: string;
     };
+  };
+
+  // Wizard Section
+  wizard: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    steps: {
+      step1: {
+        title: string;
+        subtitle: string;
+        options: {
+          residential: string;
+          agriculture: string;
+          commercial: string;
+        };
+      };
+      step2: {
+        title: string;
+        subtitle: string;
+        placeholder: string;
+      };
+      step3: {
+        title: string;
+        subtitle: string;
+      };
+      step4: {
+        title: string;
+        subtitle: string;
+        namePlaceholder: string;
+        phonePlaceholder: string;
+        submit: string;
+        processing: string;
+        privacyNote: string;
+      };
+      step5: {
+        title: string;
+        subtitle: string;
+        summaryTitle: string;
+        labels: {
+          location: string;
+          bill: string;
+          system: string;
+        };
+        cta: {
+          whatsapp: string;
+          whatsappText: string;
+          gallery: string;
+          restart: string;
+        };
+      };
+    };
+    common: {
+      next: string;
+      back: string;
+      review: string;
+    };
+    trustLines: string[];
   };
 
   // WeServe Section
@@ -202,10 +285,6 @@ export interface Translations {
       title: string;
       description: string;
     };
-  };
-
-  trustBar: {
-    title: string;
   };
 
   howItWorks: {
@@ -238,6 +317,14 @@ export interface Translations {
     clickToView: string;
   };
 
+  // Testimonials Section
+  testimonials: {
+    title: string;
+    subtitle: string;
+    ratingSuffix: string;
+    readMoreGoogle: string;
+  };
+
   // Products Section
   products: {
     title: string;
@@ -249,7 +336,6 @@ export interface Translations {
     }>;
   };
 
-  // Common
   common: {
     readMore: string;
     learnMore: string;
@@ -272,16 +358,33 @@ const translations: Record<Language, Translations> = {
       commercial: 'Commercial',
       getQuote: 'Get Free Quote',
     },
+    trustBar: {
+      badge: 'Certified EPC Partner',
+      title: 'Authorized Dealer for',
+      titleHighlight: 'Industry Leaders',
+    },
     hero: {
-      title: 'Power Your Future',
-      titleHighlight: 'With Solar Energy',
-      subtitle: 'Premium rooftop solar solutions for homes, farms, and businesses in Dhule & North Maharashtra.',
-      priceNote: '⚡ Systems starting at ₹99,999',
+      title: 'Powering Your Home with',
+      titleHighlight: 'Clean Energy',
+      subtitle: 'Premium Rooftop Solar Solutions with complete subsidy support and expert installation in North Maharashtra.',
+      priceNote: '*Exclusive offer for Dhule & North Maharashtra',
+      trustBadge: 'Trusted in North Maharashtra since 2006',
+      rating: '4.9/5 Rating',
+      reviews: 'based on 56 genuine Google reviews',
+      stats: {
+        years: '15+',
+        yearsLabel: 'Years',
+        installed: '25MW+',
+        installedLabel: 'Installed',
+        subsidy: '100%',
+        subsidyLabel: 'Subsidy Help',
+      },
     },
     topBar: {
-      serving: 'Serving Dhule, Jalgaon & North Maharashtra',
+      serving: 'Serving North Maharashtra',
     },
     features: {
+      badge: 'Why Choose Us',
       title: 'Professional Solar Services',
       subtitle: 'Comprehensive solar solutions tailored to meet your unique needs with quality and reliability.',
       expertInstallations: {
@@ -304,6 +407,7 @@ const translations: Record<Language, Translations> = {
     about: {
       title: 'Why Ultron Power Systems?',
       yearsExperience: 'Years Experience',
+      yearsValue: '10+',
       completeEPC: {
         title: 'Complete EPC Solutions',
         description: 'From initial design and engineering to procurement and construction, we handle every aspect of your solar project.',
@@ -311,6 +415,7 @@ const translations: Record<Language, Translations> = {
       multipleApplications: {
         title: 'Multiple Applications',
         description: 'We serve residential properties, commercial businesses, industrial facilities, farms, apartments, and solar parking lots with customized solutions.',
+        extraNote: 'Includes Solar Carports & Parking Lots',
       },
       highQuality: {
         title: 'High-Quality & Reliable',
@@ -451,6 +556,8 @@ const translations: Record<Language, Translations> = {
         cityPlaceholder: 'Dhule, Nashik, etc.',
         emailPlaceholder: 'your@email.com',
         messagePlaceholder: 'Any specific requirements or questions?',
+        addMessage: 'Add message',
+        hideMessage: 'Hide message',
       },
       requirements: [
         'Home Solar System',
@@ -466,8 +573,66 @@ const translations: Record<Language, Translations> = {
         visitUs: 'Visit Us',
         address: 'Kanishka Apartment, Kshire Colony, Deopur, Dhule, Maharashtra 424002',
         callUs: 'Call Us',
+        phone: '+91 94227 87438',
         emailUs: 'Email Us',
+        email: 'ultronvij@gmail.com',
       },
+    },
+    wizard: {
+      badge: 'Personalized Recommendations',
+      title: 'Find the perfect Solar Solution in 60 seconds.',
+      subtitle: 'Tell us about your needs and get an instant ROI summary tailored for North Maharashtra.',
+      steps: {
+        step1: {
+          title: 'Where would you like to install solar?',
+          subtitle: 'Select the sector that best describes your project.',
+          options: {
+            residential: 'My Home',
+            agriculture: 'My Farm',
+            commercial: 'My Business',
+          }
+        },
+        step2: {
+          title: "What's your average monthly bill?",
+          subtitle: 'This helps us estimate the system size you need.',
+          placeholder: '5,000',
+        },
+        step3: {
+          title: 'Where is the property located?',
+          subtitle: 'We optimize designs based on local solar irradiation.',
+        },
+        step4: {
+          title: 'Final Step: Where should we send your plan?',
+          subtitle: 'Our engineers will draft a quick summary for you.',
+          namePlaceholder: 'Your Full Name',
+          phonePlaceholder: 'WhatsApp Number',
+          submit: 'Get My Expert Summary',
+          processing: 'Processing...',
+          privacyNote: 'By clicking, you agree to our privacy policy. No spam, we promise.',
+        },
+        step5: {
+          title: 'Thank You, {name}!',
+          subtitle: 'Your solar analysis plan is on its way to {phone}.',
+          summaryTitle: 'Pre-Analysis Summary',
+          labels: {
+            location: 'Location',
+            bill: 'Avg. Monthly Bill',
+            system: 'Estimated System',
+          },
+          cta: {
+            whatsapp: 'Chat on WhatsApp',
+            whatsappText: 'Hi UltronSolar! I just completed your solar wizard.',
+            gallery: 'View Gallery',
+            restart: 'Start New Analysis',
+          }
+        }
+      },
+      common: {
+        next: 'Next Step',
+        back: 'Back',
+        review: 'Review My Answers',
+      },
+      trustLines: ['🛡️ ISO Certified', '☀️ Authorized Dealer', '⚡ 50+ Installs'],
     },
     weServe: {
       sectors: [
@@ -482,9 +647,7 @@ const translations: Record<Language, Translations> = {
         description: 'Looking for solar solutions for your business or industry? We provide customized solar systems designed to reduce operational costs and improve sustainability.',
       },
     },
-    trustBar: {
-      title: "Trusted by 50+ Families & Industry Leaders in North Maharashtra",
-    },
+
     howItWorks: {
       title: "Your Journey to Solar Excellence",
       subtitle: "A seamless 4-step process designed to get you running on sunshine in no time.",
@@ -509,6 +672,12 @@ const translations: Record<Language, Translations> = {
       title: 'Our Recent Projects',
       subtitle: 'Glimpses of our successful installations and happy customers',
       clickToView: 'Click to view',
+    },
+    testimonials: {
+      title: 'What Our Clients Say',
+      subtitle: 'Trusted by homeowners and businesses across Maharashtra',
+      ratingSuffix: '(based on 56 Google Reviews)',
+      readMoreGoogle: 'Read more reviews on Google',
     },
     products: {
       title: 'Our Products',
@@ -561,16 +730,33 @@ const translations: Record<Language, Translations> = {
       commercial: 'व्यावसायिक',
       getQuote: 'विनामूल्य कोट मिळवा',
     },
-    hero: {
-      title: 'तुमच्या भविष्याला शक्ती द्या',
-      titleHighlight: 'सौर ऊर्जेसह',
-      subtitle: 'धुळे आणि उत्तर महाराष्ट्रातील घरे, शेतजमीन आणि व्यवसायांसाठी प्रीमियम छतावरील सौर उपाय.',
-      priceNote: '⚡ ₹99,999 पासून सुरू होणारी प्रणाली',
+    trustBar: {
+      badge: 'प्रमाणित EPC भागीदार',
+      title: 'साठी अधिकृत विक्रेता',
+      titleHighlight: 'उद्योग नेते',
     },
     topBar: {
-      serving: 'धुळे, जळगाव आणि उत्तर महाराष्ट्रात सेवा देत आहोत',
+      serving: 'उत्तर महाराष्ट्रात सेवा देत आहोत',
+    },
+    hero: {
+      title: 'तुमच्या घराला उर्जा द्या',
+      titleHighlight: 'स्वच्छ उर्जेने',
+      subtitle: 'उत्तर महाराष्ट्रात पूर्ण सबसिडी सपोर्ट आणि तज्ञ इन्स्टॉलेशनसह प्रीमियम रूफटॉप सोलर सोल्यूशन्स.',
+      priceNote: '*धुळे आणि उत्तर महाराष्ट्रासाठी खास ऑफर',
+      trustBadge: '२००६ पासून उत्तर महाराष्ट्रात विश्वसनीय',
+      rating: '४.९/५ रेटिंग',
+      reviews: '५६ अस्सल गूगल रिव्ह्यूवर आधारित',
+      stats: {
+        years: '१५+',
+        yearsLabel: 'वर्षे',
+        installed: '२५MW+',
+        installedLabel: 'इन्स्टॉल केलेले',
+        subsidy: '१००%',
+        subsidyLabel: 'सबसिडी मदत',
+      },
     },
     features: {
+      badge: 'आम्हाला का निवडावे',
       title: 'आम्हाला का निवडा',
       subtitle: 'आम्ही तुमच्या गरजांनुसार सानुकूलित सर्वसमावेशक सौर उपाय प्रदान करतो',
       expertInstallations: {
@@ -593,6 +779,7 @@ const translations: Record<Language, Translations> = {
     about: {
       title: 'अल्ट्रॉन पॉवर सिस्टम्स का?',
       yearsExperience: 'वर्षांचा अनुभव',
+      yearsValue: '१०+',
       completeEPC: {
         title: 'पूर्ण EPC उपाय',
         description: 'प्रारंभिक डिझाइन आणि अभियांत्रिकीपासून खरेदी आणि बांधकामापर्यंत, आम्ही तुमच्या सौर प्रकल्पाच्या प्रत्येक पैलूची हाताळणी करतो.',
@@ -600,6 +787,7 @@ const translations: Record<Language, Translations> = {
       multipleApplications: {
         title: 'अनेक अनुप्रयोग',
         description: 'आम्ही निवासी मालमत्ता, व्यावसायिक व्यवसाय, औद्योगिक सुविधा, शेत, अपार्टमेंट्स आणि सोलर पार्किंग लॉट्ससाठी सानुकूलित उपाय प्रदान करतो.',
+        extraNote: 'सोलर कारपोर्ट्स आणि पार्किंग लॉट्स समाविष्ट आहेत',
       },
       highQuality: {
         title: 'उच्च-गुणवत्ता आणि विश्वासार्ह',
@@ -740,6 +928,8 @@ const translations: Record<Language, Translations> = {
         cityPlaceholder: 'धुळे, नाशिक, इ.',
         emailPlaceholder: 'तुमचा@ईमेल.com',
         messagePlaceholder: 'कोणतीही विशिष्ट गरज किंवा प्रश्न?',
+        addMessage: 'संदेश जोडा',
+        hideMessage: 'संदेश लपवा',
       },
       requirements: [
         'घरासाठी सौर प्रणाली',
@@ -755,8 +945,67 @@ const translations: Record<Language, Translations> = {
         visitUs: 'आम्हाला भेट द्या',
         address: 'कनिष्का अपार्टमेंट, क्षीर कॉलनी, देवपूर, धुळे, महाराष्ट्र 424002',
         callUs: 'आम्हाला कॉल करा',
+        phone: '+९१ ९४२२७ ८७४३८',
         emailUs: 'आम्हाला ईमेल करा',
+        email: 'ultronvij@gmail.com',
       },
+    },
+
+    wizard: {
+      badge: 'वैयक्तिकृत शिफारसी',
+      title: '६० सेकंदात परिपूर्ण सौर समाधान शोधा.',
+      subtitle: 'आम्हाला तुमच्या गरजांबद्दल सांगा आणि उत्तर महाराष्ट्रासाठी तयार केलेला झटपट ROI सारांश मिळवा.',
+      steps: {
+        step1: {
+          title: 'तुम्हाला सोलर कोठे बसवायला आवडेल?',
+          subtitle: 'तुमच्या प्रकल्पाचे उत्तम वर्णन करणारे क्षेत्र निवडा.',
+          options: {
+            residential: 'माझे घर',
+            agriculture: 'माझे शेत',
+            commercial: 'माझा व्यवसाय',
+          }
+        },
+        step2: {
+          title: "तुमचे सरासरी मासिक बिल किती आहे?",
+          subtitle: 'हे आम्हाला तुम्हाला आवश्यक असलेल्या सिस्टमच्या आकाराचा अंदाज लावण्यास मदत करते.',
+          placeholder: '५,०००',
+        },
+        step3: {
+          title: 'मालमत्ता कोठे आहे?',
+          subtitle: 'आम्ही स्थानिक सौर विकिरणांच्या आधारे डिझाइन ऑप्टिमाइझ करतो.',
+        },
+        step4: {
+          title: 'अंतिम टप्पा: आम्ही तुमची योजना कोठे पाठवू?',
+          subtitle: 'आमचे अभियंते तुमच्यासाठी एक त्वरित सारांश तयार करतील.',
+          namePlaceholder: 'तुमचे पूर्ण नाव',
+          phonePlaceholder: 'व्हॉट्सॲप नंबर',
+          submit: 'माझा तज्ञ सारांश मिळवा',
+          processing: 'प्रक्रिया सुरू आहे...',
+          privacyNote: 'क्लिक करून, तुम्ही आमच्या गोपनीयता धोरणाशी सहमत आहात.',
+        },
+        step5: {
+          title: 'धन्यवाद, {name}!',
+          subtitle: 'तुमचा सौर विश्लेषण आराखडा {phone} वर पाठवला जात आहे.',
+          summaryTitle: 'पूर्व-विश्लेषण सारांश',
+          labels: {
+            location: 'ठिकाण',
+            bill: 'सरासरी मासिक बिल',
+            system: 'अंदाजित सिस्टम',
+          },
+          cta: {
+            whatsapp: 'व्हॉट्सॲपवर चॅट करा',
+            whatsappText: 'नमस्ते UltronSolar! मी आताच तुमचा सोलर विझार्ड पूर्ण केला आहे.',
+            gallery: 'गॅलरी पहा',
+            restart: 'नवीन विश्लेषण सुरू करा',
+          }
+        }
+      },
+      common: {
+        next: 'पुढचा टप्पा',
+        back: 'मागे',
+        review: 'माझ्या उत्तरांचे पुनरावलोकन करा',
+      },
+      trustLines: ['🛡️ ISO प्रमाणित', '☀️ अधिकृत विक्रेता', '⚡ ५०+ इन्स्टॉलेशन्स'],
     },
     weServe: {
       sectors: [
@@ -770,9 +1019,6 @@ const translations: Record<Language, Translations> = {
         title: 'व्यावसायिक आणि औद्योगिक उपाय',
         description: 'तुमच्या व्यवसाय, उद्योग किंवा पार्किंगच्या जागेसाठी सौर उपाय शोधत आहात? आम्ही ऑपरेशनल खर्च कमी करण्यासाठी आणि स्थिरता सुधारण्यासाठी डिझाइन केलेले सानुकूलित सौर प्रणाली प्रदान करतो.',
       },
-    },
-    trustBar: {
-      title: "उत्तर महाराष्ट्रातील ५०+ कुटुंबे आणि उद्योगांचा आमच्यावर विश्वास",
     },
     howItWorks: {
       title: "सौर उत्कृष्टतेचा तुमचा प्रवास",
@@ -798,6 +1044,12 @@ const translations: Record<Language, Translations> = {
       title: 'आमचे अलीकडील प्रकल्प',
       subtitle: 'आमच्या यशस्वी स्थापना आणि आनंदी ग्राहकांचे झलक',
       clickToView: 'पाहण्यासाठी क्लिक करा',
+    },
+    testimonials: {
+      title: 'आमचे ग्राहक काय म्हणतात',
+      subtitle: 'महाराष्ट्रभरातील घरमालक आणि व्यवसायांचा विश्वास',
+      ratingSuffix: '(५६ गूगल रिव्ह्यूवर आधारित)',
+      readMoreGoogle: 'गूगलवर अधिक रिव्ह्यू वाचा',
     },
     products: {
       title: 'आमची उत्पादने',
@@ -838,134 +1090,148 @@ const translations: Record<Language, Translations> = {
   },
   hi: {
     nav: {
-      home: 'Home',
-      services: 'Services',
-      products: 'Products',
-      about: 'About',
-      blog: 'Blog',
-      contact: 'Contact',
-      menu: 'Menu',
-      residential: 'Residential',
-      agriculture: 'Agriculture',
-      commercial: 'Commercial',
-      getQuote: 'Get Free Quote',
-    },
-    hero: {
-      title: 'Power Your Future',
-      titleHighlight: 'With Solar Energy',
-      subtitle: 'Premium rooftop solar solutions for homes, farms, and businesses in Dhule & North Maharashtra.',
-      priceNote: '⚡ Systems starting at ₹99,999',
+      home: 'होम',
+      services: 'सेवायें',
+      products: 'उत्पाद',
+      about: 'हमारे बारे में',
+      blog: 'ब्लॉग',
+      contact: 'संपर्क',
+      menu: 'मेनू',
+      residential: 'आवासीय',
+      agriculture: 'कृषि',
+      commercial: 'व्यावसायिक',
+      getQuote: 'फ्री कोट प्राप्त करें',
     },
     topBar: {
-      serving: 'Serving Dhule, Jalgaon & North Maharashtra',
+      serving: 'उत्तर महाराष्ट्र में सेवा दे रहे हैं',
+    },
+    hero: {
+      title: 'अपने घर को शक्ति दें',
+      titleHighlight: 'स्वच्छ ऊर्जा से',
+      subtitle: 'उत्तर महाराष्ट्र में पूर्ण सब्सिडी सहायता और विशेषज्ञ स्थापना के साथ प्रीमियम रूफटॉप सोलर समाधान।',
+      priceNote: '*धुले और उत्तर महाराष्ट्र के लिए विशेष प्रस्ताव',
+      trustBadge: '2006 से उत्तर महाराष्ट्र में विश्वसनीय',
+      rating: '4.9/5 रेटिंग',
+      reviews: '56 वास्तविक गूगल समीक्षाओं पर आधारित',
+      stats: {
+        years: '15+',
+        yearsLabel: 'वर्ष',
+        installed: '25MW+',
+        installedLabel: 'स्थापित',
+        subsidy: '100%',
+        subsidyLabel: 'सब्सिडी सहायता',
+      },
     },
     features: {
-      title: 'Professional Solar Services',
-      subtitle: 'Comprehensive solar solutions tailored to meet your unique needs with quality and reliability.',
+      badge: 'हमें क्यों चुनें',
+      title: 'पेशेवर सौर सेवाएं',
+      subtitle: 'गुणवत्ता और विश्वसनीयता के साथ आपकी विशिष्ट आवश्यकताओं को पूरा करने के लिए तैयार व्यापक सौर समाधान।',
       expertInstallations: {
-        title: 'Expert Installations',
-        description: 'We specialize in offering premium solar panel installation services for homes, businesses, apartments, and farms. Our team of experts is skilled in effective installation and deeply knowledgeable about optimizing the positioning of solar panels to maximize sunlight exposure and energy generation.',
+        title: 'विशेषज्ञ स्थापना',
+        description: 'हम घरों, व्यवसायों, अपार्टमेंट और खेतों के लिए प्रीमियम सौर पैनल स्थापना सेवाएं प्रदान करने में माहिर हैं। हमारी विशेषज्ञों की टीम प्रभावी स्थापना में कुशल है और सौर पैनलों की स्थिति के अनुकूलन के बारे में गहराई से जानती है ताकि सूर्य के प्रकाश का अधिकतम लाभ उठाया जा सके।',
       },
       flexiblePayment: {
-        title: 'Flexible Payment Options',
-        description: 'We understand that every customer has different preferences when it comes to payment. We provide assistance for bank loans with streamlined processing specifically for solar projects. Additionally, we guide our customers in availing government subsidies designed to support the adoption of solar technology.',
+        title: 'लचीले भुगतान विकल्प',
+        description: 'हम समझते हैं कि भुगतान के मामले में हर ग्राहक की अलग-अलग प्राथमिकताएं होती हैं। हम सौर परियोजनाओं के लिए बैंक ऋण के लिए सहायता प्रदान करते हैं। इसके अतिरिक्त, हम ग्राहकों को सौर तकनीक अपनाने के लिए सरकारी सब्सिडी का लाभ उठाने में मार्गदर्शन करते हैं।',
       },
       completeEPC: {
-        title: 'Complete EPC Solutions',
-        description: 'At Ultron Power Systems, we offer complete solar EPC (Engineering, Procurement, and Construction) solutions. From initial design and engineering to procurement of high-quality solar equipment and construction of the solar power system, we handle every aspect of the project.',
+        title: 'पूर्ण EPC समाधान',
+        description: 'अल्ट्रॉन पावर सिस्टम्स में, हम पूर्ण सौर EPC (इंजीनियरिंग, खरीद और निर्माण) समाधान प्रदान करते हैं। डिजाइन और इंजीनियरिंग से लेकर उच्च गुणवत्ता वाले सौर उपकरणों की खरीद और सौर ऊर्जा प्रणाली के निर्माण तक, हम परियोजना के हर पहलू को संभालते हैं।',
       },
       warranty: {
-        title: 'Peace of Mind Warranty',
-        description: 'We stand behind the quality of our work and the products we install. That\'s why we offer a comprehensive warranty on all our solar installations as per terms and conditions of principal suppliers of solar panels and materials. With us, you can have peace of mind knowing that your solar system is protected.',
+        title: 'शांति की गारंटी वाली वारंटी',
+        description: 'हम अपने काम की गुणवत्ता और हमारे द्वारा स्थापित उत्पादों के पीछे खड़े हैं। इसीलिए हम प्रमुख सौर पैनल और सामग्री आपूर्तिकर्ताओं के नियमों और शर्तों के अनुसार अपनी सभी सौर स्थापनाओं पर व्यापक वारंटी प्रदान करते हैं।',
       },
     },
     about: {
-      title: 'Why Ultron Power Systems?',
-      yearsExperience: 'Years Experience',
+      title: 'अल्ट्रॉन पावर सिस्टम्स क्यों?',
+      yearsExperience: 'वर्षों का अनुभव',
+      yearsValue: '10+',
       completeEPC: {
-        title: 'Complete EPC Solutions',
-        description: 'From initial design and engineering to procurement and construction, we handle every aspect of your solar project.',
+        title: 'पूर्ण EPC समाधान',
+        description: 'प्रारंभिक डिजाइन और इंजीनियरिंग से लेकर खरीद और निर्माण तक, हम आपकी सौर परियोजना के हर पहलू को संभालते हैं।',
       },
       multipleApplications: {
-        title: 'Multiple Applications',
-        description: 'We serve residential properties, commercial businesses, industrial facilities, farms, apartments, and solar parking lots with customized solutions.',
+        title: 'एकाधिक अनुप्रयोग',
+        description: 'हम आवासीय संपत्तियों, वाणिज्यिक व्यवसायों, औद्योगिक सुविधाओं, खेतों, अपार्टमेंट और सोलर पार्किंग लॉट्स के लिए अनुकूलित समाधान प्रदान करते हैं।',
+        extraNote: 'सोलर कारपोर्ट और पार्किंग स्थल शामिल हैं',
       },
       highQuality: {
-        title: 'High-Quality & Reliable',
-        description: 'Our full-service approach ensures peace of mind with premium equipment and expert installation.',
+        title: 'उच्च-गुणवत्ता और विश्वसनीय',
+        description: 'हमारा पूर्ण-सेवा दृष्टिकोण प्रीमियम उपकरणों और विशेषज्ञ स्थापना के साथ मानसिक शांति सुनिश्चित करता है।',
       },
       customizedSolutions: {
-        title: 'Customized Solutions',
-        description: 'We tailor solutions to meet the unique needs of each customer, ensuring optimal performance and value.',
+        title: 'अनुकूलित समाधान',
+        description: 'हम प्रत्येक ग्राहक की अद्वितीय आवश्यकताओं को पूरा करने के लिए समाधान तैयार करते हैं, जो इष्टतम प्रदर्शन और मूल्य सुनिश्चित करते हैं।',
       },
       aboutUs: {
-        title: 'About Us',
-        description: 'Ultron Power Systems is the go-to provider of solar power systems and products. Our team of experts is dedicated to customizing solutions tailored to meet the unique needs of each customer. From rooftop installations to farm, residential, business, and solar carport applications, we have you covered.',
-        description2: 'Our high-quality, reliable and full-service approach ensures peace of mind. Contact us today to learn how we can power your future with solar technology.',
-        contactButton: 'Contact Us Today',
+        title: 'हमारे बारे में',
+        description: 'अल्ट्रॉन पावर सिस्टम्स सौर ऊर्जा प्रणालियों और उत्पादों का प्रमुख प्रदाता है। हमारी विशेषज्ञों की टीम प्रत्येक ग्राहक की विशिष्ट आवश्यकताओं के लिए समाधान तैयार करने के लिए समर्पित है।',
+        description2: 'हमारा उच्च-गुणवत्ता, विश्वसनीय और पूर्ण-सेवा दृष्टिकोण मानसिक शांति सुनिश्चित करता है। यह जानने के लिए आज ही हमसे संपर्क करें कि हम आपके भविष्य को सौर तकनीक से कैसे रोशन कर सकते हैं।',
+        contactButton: 'आज ही हमसे संपर्क करें',
       },
     },
     footer: {
-      description: 'Empowering Maharashtra with sustainable solar energy solutions. Quality installation, reliable support, and guaranteed savings.',
-      quickLinks: 'Quick Links',
-      services: 'Our Services',
-      contact: 'Contact',
-      followUs: 'Follow Us',
-      copyright: '© 2024 Ultron Power Systems. All rights reserved.',
+      description: 'टिकाऊ सौर ऊर्जा समाधानों के साथ महाराष्ट्र को सशक्त बनाना। गुणवत्तापूर्ण स्थापना, विश्वसनीय सहायता और गारंटीड बचत।',
+      quickLinks: 'क्विक लिंक्स',
+      services: 'हमारी सेवाएं',
+      contact: 'संपर्क',
+      followUs: 'हमें फॉलो करें',
+      copyright: '© 2024 अल्ट्रॉन पावर सिस्टम्स। सर्वाधिकार सुरक्षित।',
       quickLinksItems: {
-        home: 'Home',
-        services: 'Services',
-        products: 'Products',
-        projects: 'Projects',
-        contact: 'Contact Us',
+        home: 'होम',
+        services: 'सेवायें',
+        products: 'उत्पाद',
+        projects: 'प्रोजेक्ट्स',
+        contact: 'संपर्क करें',
       },
       servicesList: {
-        residential: 'Residential Rooftop',
-        commercial: 'Commercial Solar',
-        pumps: 'Solar Water Pumps',
-        industrial: 'Industrial Solutions',
-        maintenance: 'Operation & Maintenance',
+        residential: 'आवासीय रूफटॉप',
+        commercial: 'वाणिज्यिक सोलर',
+        pumps: 'सोलर वाटर पंप',
+        industrial: 'औद्योगिक समाधान',
+        maintenance: 'संचालन और रखरखाव',
       },
       newsletter: {
-        title: 'Stay Updated',
-        description: 'Subscribe to our newsletter for latest solar trends and exclusive offers.',
-        placeholder: 'Enter your email',
-        button: 'Subscribe',
+        title: 'अपडेट रहें',
+        description: 'नवीनतम सौर रुझानों और विशेष ऑफ़र के लिए हमारे न्यूज़लेटर की सदस्यता लें।',
+        placeholder: 'अपना ईमेल दर्ज करें',
+        button: 'सब्सक्राइब',
       },
       links: {
-        privacy: 'Privacy Policy',
-        cookies: 'Cookie Policy',
-        cookieSettings: 'Cookie Settings',
-        sitemap: 'Sitemap',
+        privacy: 'प्राइवेसी पॉलिसी',
+        cookies: 'कुकी पॉलिसी',
+        cookieSettings: 'कुकी सेटिंग्स',
+        sitemap: 'साइटमैप',
       },
     },
     faq: {
-      title: 'Frequently Asked Questions',
-      subtitle: 'Common questions about solar installation in Maharashtra',
+      title: 'अक्सर पूछे जाने वाले प्रश्न',
+      subtitle: 'महाराष्ट्र में सौर स्थापना के बारे में सामान्य प्रश्न',
       questions: [
         {
-          question: 'How much does a 3kW solar system cost in Dhule?',
-          answer: 'A standard 3kW on-grid solar system typically ranges from ₹1.8 Lakh to ₹2.2 Lakh before subsidy. Prices vary based on component brands (panels, inverters) and site conditions. Contact us for a precise quote tailored to your roof.',
+          question: 'धुले में 3kW सौर प्रणाली की कीमत क्या है?',
+          answer: 'एक मानक 3kW ऑन-ग्रिड सौर प्रणाली आमतौर पर सब्सिडी से पहले ₹1.8 लाख से ₹2.2 लाख तक होती है। कीमतें कंपोनेंट ब्रांड (पैनल, इन्वर्टर) और साइट की स्थितियों के आधार पर भिन्न होती हैं। सटीक कोट के लिए हमसे संपर्क करें।',
         },
         {
-          question: 'What subsidies are available in Maharashtra?',
-          answer: 'Under the PM Surya Ghar Muft Bijli Yojana, residential consumers can get subsidies up to ₹30,000 per kW for the first 2kW and ₹18,000 for additional capacity up to 3kW. We assist with the entire application process.',
+          question: 'महाराष्ट्र में कौन सी सब्सिडी उपलब्ध हैं?',
+          answer: 'पीएम सूर्य घर मुफ्त बिजली योजना के तहत, आवासीय उपभोक्ता पहले 2kW के लिए ₹30,000 प्रति kW और 3kW तक की अतिरिक्त क्षमता के लिए ₹18,000 की सब्सिडी प्राप्त कर सकते हैं। हम पूरी आवेदन प्रक्रिया में सहायता करते हैं।',
         },
         {
-          question: 'How many units will a 3kW system generate?',
-          answer: 'In Maharashtra\'s climate, a 3kW system generates approximately 12-15 units per day, or about 360-450 units per month, depending on sunlight availability and panel efficiency.',
+          question: '3kW की प्रणाली कितनी यूनिट बिजली बनाएगी?',
+          answer: 'महाराष्ट्र की जलवायु में, 3kW की प्रणाली प्रतिदिन लगभग 12-15 यूनिट, या प्रति माह लगभग 360-450 यूनिट बिजली बनाती है।',
         },
         {
-          question: 'What is the warranty on your solar systems?',
-          answer: 'We provide a standard 25-year performance warranty on solar panels and a 5-10 year warranty on inverters, backed by the respective manufacturers. Our installation workmanship is also guaranteed.',
+          question: 'आपकी सौर प्रणालियों पर क्या वारंटी है?',
+          answer: 'हम सौर पैनलों पर मानक 25 साल की प्रदर्शन वारंटी और इन्वर्टर पर 5-10 साल की वारंटी प्रदान करते हैं। हमारी स्थापना कारीगरी की भी गारंटी है।',
         },
         {
-          question: 'Do I need batteries for my solar system?',
-          answer: 'For on-grid systems (most common in cities), batteries are not required as you export excess power to the grid. Off-grid or hybrid systems require batteries for backup during power cuts.',
+          question: 'क्या मुझे अपने सोलर सिस्टम के लिए बैटरी की जरूरत है?',
+          answer: 'ऑन-ग्रिड सिस्टम (शहरों में सबसे आम) के लिए, बैटरी की आवश्यकता नहीं होती है क्योंकि आप ग्रिड को अतिरिक्त बिजली निर्यात करते हैं। ऑफ-ग्रिड सिस्टम के लिए बैटरी की आवश्यकता होती है।',
         },
         {
-          question: 'How much roof space is required?',
-          answer: 'Approximately 100 sq. ft. of shadow-free area is required for every 1kW of solar capacity. So, a 3kW system would need about 300 sq. ft. of clear roof space.',
+          question: 'कितनी छत की जगह की आवश्यकता है?',
+          answer: 'प्रत्येक 1kW सौर क्षमता के लिए लगभग 100 वर्ग फुट छाया-मुक्त क्षेत्र की आवश्यकता होती है। इसलिए, 3kW की प्रणाली को लगभग 300 वर्ग फुट खाली छत की जगह की आवश्यकता होगी।',
         },
       ],
     },
@@ -1029,6 +1295,8 @@ const translations: Record<Language, Translations> = {
         cityPlaceholder: 'धुले, नाशिक, आदि।',
         emailPlaceholder: 'your@email.com',
         messagePlaceholder: 'कोई विशेष आवश्यकता या प्रश्न?',
+        addMessage: 'संदेश जोड़ें',
+        hideMessage: 'संदेश छुपाएं',
       },
       requirements: [
         'घरेलू सोलर सिस्टम',
@@ -1043,8 +1311,67 @@ const translations: Record<Language, Translations> = {
         visitUs: 'हमसे मिलने आएं',
         address: 'कनिष्क अपार्टमेंट, क्षीर कॉलोनी, देवपुर, धुले, महाराष्ट्र 424002',
         callUs: 'हमें कॉल करें',
+        phone: '+91 94227 87438',
         emailUs: 'हमें ईमेल करें',
+        email: 'ultronvij@gmail.com',
       },
+    },
+
+    wizard: {
+      badge: 'व्यक्तिगत सिफारिशें',
+      title: '60 सेकंड में सही सोलर समाधान खोजें।',
+      subtitle: 'हमें अपनी जरूरतों के बारे में बताएं और उत्तर महाराष्ट्र के लिए तैयार तत्काल ROI सारांश प्राप्त करें।',
+      steps: {
+        step1: {
+          title: 'आप सोलर कहाँ लगवाना चाहेंगे?',
+          subtitle: 'उस क्षेत्र का चयन करें जो आपके प्रोजेक्ट का सबसे अच्छा वर्णन करता है।',
+          options: {
+            residential: 'मेरा घर',
+            agriculture: 'मेरा खेत',
+            commercial: 'मेरा व्यवसाय',
+          }
+        },
+        step2: {
+          title: "आपका औसत मासिक बिल क्या है?",
+          subtitle: 'यह हमें आपके लिए आवश्यक सिस्टम आकार का अनुमान लगाने में मदद करता है।',
+          placeholder: '5,000',
+        },
+        step3: {
+          title: 'संपत्ति कहाँ स्थित है?',
+          subtitle: 'हम स्थानीय सौर विकिरण के आधार पर डिजाइन को अनुकूलित करते हैं।',
+        },
+        step4: {
+          title: 'अंतिम चरण: हम आपकी योजना कहाँ भेजें?',
+          subtitle: 'हमारे इंजीनियर आपके लिए एक त्वरित सारांश तैयार करेंगे।',
+          namePlaceholder: 'आपका पूरा नाम',
+          phonePlaceholder: 'व्हाट्सएप नंबर',
+          submit: 'मेरा विशेषज्ञ सारांश प्राप्त करें',
+          processing: 'प्रक्रिया चल रही है...',
+          privacyNote: 'क्लिक करके, आप हमारी गोपनीयता नीति से सहमत होते हैं।',
+        },
+        step5: {
+          title: 'धन्यवाद, {name}!',
+          subtitle: 'आपका सौर विश्लेषण प्लान {phone} पर भेजा जा रहा है।',
+          summaryTitle: 'पूर्व-विश्लेषण सारांश',
+          labels: {
+            location: 'स्थान',
+            bill: 'औसत मासिक बिल',
+            system: 'अंदाजित सिस्टम',
+          },
+          cta: {
+            whatsapp: 'व्हाट्सएप पर चैट करें',
+            whatsappText: 'नमस्ते UltronSolar! मैंने अभी आपका सोलर विज़ार्ड पूरा किया है।',
+            gallery: 'गैलरी देखें',
+            restart: 'नया विश्लेषण शुरू करें',
+          }
+        }
+      },
+      common: {
+        next: 'अगला चरण',
+        back: 'पीछे',
+        review: 'मेरे उत्तरों की समीक्षा करें',
+      },
+      trustLines: ['🛡️ ISO प्रमाणित', '☀️ अधिकृत विक्रेता', '⚡ 50+ इंस्टॉलेशन्स'],
     },
     weServe: {
       sectors: [
@@ -1060,7 +1387,9 @@ const translations: Record<Language, Translations> = {
       },
     },
     trustBar: {
-      title: "उत्तर महाराष्ट्र के 50+ परिवारों और उद्योग जगत के नेताओं द्वारा विश्वसनीय",
+      badge: 'प्रमाणित ईपीसी पार्टनर',
+      title: 'के लिए अधिकृत विक्रेता',
+      titleHighlight: 'उद्योग जगत के दिग्गज',
     },
     howItWorks: {
       title: "सौर उत्कृष्टता की आपकी यात्रा",
@@ -1122,6 +1451,12 @@ const translations: Record<Language, Translations> = {
       readMore: 'और पढ़ें',
       learnMore: 'अधिक जानें',
       getStarted: 'शुरू करें',
+    },
+    testimonials: {
+      title: 'हमारे ग्राहक क्या कहते हैं',
+      subtitle: 'महाराष्ट्र भर में घर मालिकों और व्यवसायों द्वारा विश्वसनीय',
+      ratingSuffix: '(56 गूगल समीक्षाओं पर आधारित)',
+      readMoreGoogle: 'गूगल पर और समीक्षाएं पढ़ें',
     },
   },
 };

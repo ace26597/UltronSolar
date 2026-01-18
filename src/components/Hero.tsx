@@ -43,9 +43,7 @@ export default function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-solar-orange opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-solar-orange"></span>
             </span>
-            <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-solar-orange">
-              Trusted in North Maharashtra since 2006
-            </span>
+            {t.hero.trustBadge}
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-heading font-black mb-6 leading-tight lg:leading-[1.1] tracking-tight">
@@ -84,24 +82,24 @@ export default function Hero() {
                     50+
                   </div>
                 </div>
-                <span className="font-bold text-white">4.9/5 Rating</span>
+                <span className="font-bold text-white">{t.hero.rating}</span>
               </div>
-              <span className="text-gray-400">based on 56 genuine Google reviews</span>
+              <span className="text-gray-400">{t.hero.reviews}</span>
             </a>
           </div>
 
           <div className="mt-12 lg:mt-16 flex flex-wrap justify-center lg:justify-start items-center gap-12">
             <div className="font-sans flex flex-col group">
-              <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">15+</span>
-              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Years</span>
+              <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">{t.hero.stats.years}</span>
+              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">{t.hero.stats.yearsLabel}</span>
             </div>
             <div className="font-sans flex flex-col group">
-              <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">25MW+</span>
-              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Installed</span>
+              <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">{t.hero.stats.installed}</span>
+              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">{t.hero.stats.installedLabel}</span>
             </div>
             <div className="font-sans flex flex-col group">
-              <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">100%</span>
-              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">Subsidy Help</span>
+              <span className="text-solar-orange text-3xl font-black mb-1 drop-shadow-md">{t.hero.stats.subsidy}</span>
+              <span className="text-white/80 font-bold text-xs tracking-[0.2em] uppercase transition-colors group-hover:text-white">{t.hero.stats.subsidyLabel}</span>
             </div>
           </div>
         </div>

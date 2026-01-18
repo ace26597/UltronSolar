@@ -89,7 +89,7 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="bg-gray-50 rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 border border-gray-100">
             <h3 className="text-2xl font-bold text-navy-dark mb-6">
-              {t.contact.formTitle || 'Request a Free Quote'}
+              {t.contact.formTitle}
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
@@ -106,7 +106,7 @@ export default function Contact() {
                     required
                     autoComplete="name"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
-                    placeholder={t.contact.form.namePlaceholder || 'Your Name'}
+                    placeholder={t.contact.form.namePlaceholder}
                     disabled={status === "loading"}
                   />
                 </div>
@@ -124,13 +124,13 @@ export default function Contact() {
                     inputMode="numeric"
                     autoComplete="tel"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
-                    placeholder={t.contact.form.phonePlaceholder || '10-digit mobile'}
+                    placeholder={t.contact.form.phonePlaceholder}
                     disabled={status === "loading"}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.email || 'Email Address'}</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.email}</label>
                   <input
                     type="email"
                     id="email"
@@ -139,7 +139,7 @@ export default function Contact() {
                     onChange={handleChange}
                     autoComplete="email"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
-                    placeholder={t.contact.form.emailPlaceholder || 'your@email.com (optional)'}
+                    placeholder={t.contact.form.emailPlaceholder}
                     disabled={status === "loading"}
                   />
                 </div>
@@ -147,7 +147,7 @@ export default function Contact() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.city || 'City'} *</label>
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">{t.contact.form.city} *</label>
                   <input
                     type="text"
                     id="city"
@@ -157,7 +157,7 @@ export default function Contact() {
                     required
                     autoComplete="address-level2"
                     className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white touch-manipulation"
-                    placeholder={t.contact.form.cityPlaceholder || 'Dhule, Nashik, etc.'}
+                    placeholder={t.contact.form.cityPlaceholder}
                     disabled={status === "loading"}
                   />
                 </div>
@@ -192,13 +192,13 @@ export default function Contact() {
                   onClick={() => setShowOptional(!showOptional)}
                   className="text-sm text-primary-blue hover:text-primary-blue-dark flex items-center gap-1 touch-manipulation"
                 >
-                  {showOptional ? '− Hide' : '+ Add'} message (optional)
+                  {showOptional ? `− ${t.contact.form.hideMessage}` : `+ ${t.contact.form.addMessage}`}
                 </button>
               </div>
 
               <div className={`${showOptional ? 'block' : 'hidden'} sm:block`}>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  {t.contact.form.message} <span className="text-gray-400 font-normal">(optional)</span>
+                  {t.contact.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -207,7 +207,7 @@ export default function Contact() {
                   onChange={handleChange}
                   rows={3}
                   className="w-full px-4 py-3 text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent transition-all outline-none bg-white resize-none touch-manipulation"
-                  placeholder={t.contact.form.messagePlaceholder || 'Any specific requirements? (optional)'}
+                  placeholder={t.contact.form.messagePlaceholder}
                   disabled={status === "loading"}
                 />
               </div>
@@ -231,7 +231,7 @@ export default function Contact() {
               {status === "success" && (
                 <div className="p-4 bg-green-50 text-green-700 rounded-lg text-center border border-green-200 animate-fade-in">
                   <p className="font-semibold">{t.contact.form.success}</p>
-                  <p className="text-sm mt-1">{t.contact.form.successSubtext || 'We will contact you within 24 hours.'}</p>
+                  <p className="text-sm mt-1">{t.contact.form.successSubtext}</p>
                 </div>
               )}
 
@@ -249,7 +249,7 @@ export default function Contact() {
               <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-5 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-solar-red opacity-10 rounded-full blur-3xl"></div>
 
-              <h3 className="text-2xl font-bold mb-6 relative z-10">{t.contact.contactInfo?.title || 'Contact Information'}</h3>
+              <h3 className="text-2xl font-bold mb-6 relative z-10">{t.contact.contactInfo.title}</h3>
 
               <div className="space-y-6 relative z-10">
                 <div className="flex items-start">
@@ -257,9 +257,9 @@ export default function Contact() {
                     <span className="text-2xl">📍</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">{t.contact.contactInfo?.visitUs || 'Visit Us'}</p>
+                    <p className="font-semibold text-lg">{t.contact.contactInfo.visitUs}</p>
                     <p className="text-gray-300 mt-1">
-                      {t.contact.contactInfo?.address || 'Kanishka Apartment, Kshire Colony, Deopur, Dhule, Maharashtra 424002'}
+                      {t.contact.contactInfo.address}
                     </p>
                   </div>
                 </div>
@@ -269,9 +269,9 @@ export default function Contact() {
                     <span className="text-2xl">📞</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">{t.contact.contactInfo?.callUs || 'Call Us'}</p>
-                    <a href="tel:+919422787438" className="text-gray-300 mt-1 block hover:text-white transition-colors">
-                      +91 94227 87438
+                    <p className="font-semibold text-lg">{t.contact.contactInfo.callUs}</p>
+                    <a href={`tel:${t.contact.contactInfo.phone.replace(/\s/g, '')}`} className="text-gray-300 mt-1 block hover:text-white transition-colors">
+                      {t.contact.contactInfo.phone}
                     </a>
                   </div>
                 </div>
@@ -281,9 +281,9 @@ export default function Contact() {
                     <span className="text-2xl">📧</span>
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">{t.contact.contactInfo?.emailUs || 'Email Us'}</p>
-                    <a href="mailto:ultronvij@gmail.com" className="text-gray-300 mt-1 block hover:text-white transition-colors">
-                      ultronvij@gmail.com
+                    <p className="font-semibold text-lg">{t.contact.contactInfo.emailUs}</p>
+                    <a href={`mailto:${t.contact.contactInfo.email}`} className="text-gray-300 mt-1 block hover:text-white transition-colors">
+                      {t.contact.contactInfo.email}
                     </a>
                   </div>
                 </div>
@@ -301,14 +301,14 @@ export default function Contact() {
 
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[250px] sm:h-[300px] md:h-[400px] border border-gray-100">
               <iframe
-                src={`https://www.google.com/maps?q=20.916225468005663,74.76856980970072&hl=en&z=17&output=embed`}
+                src={`https://www.google.com/maps?q=20.916225468005663,74.76856980970072&hl=${currentLanguage}&z=17&output=embed`}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Ultron Power Systems Location"
+                title={t.contact.contactInfo.title}
               ></iframe>
             </div>
           </div>
