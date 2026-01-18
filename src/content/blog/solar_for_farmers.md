@@ -119,6 +119,8 @@ A 3 HP solar pump might suit a small holding with shallow to medium-depth bore a
 
 ### Diesel vs Solar Pump Over 5–10 Years
 
+![Solar vs Diesel Explanation Animation](/images/solar_explanation.gif)
+
 Farmers feel the diesel cost every week. The math is brutal over time.
 
 **Diesel pump:**
