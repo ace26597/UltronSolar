@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AuthorBio from "@/components/blog/AuthorBio";
 import LeadMagnet from "@/components/blog/LeadMagnet";
+import ReadingProgress from "@/components/blog/ReadingProgress";
+import TableOfContents from "@/components/blog/TableOfContents";
+import ShareButtons from "@/components/blog/ShareButtons";
 import { getPostData, getAllPostIds, getSortedPostsData } from "@/lib/blog";
 
 type BlogPostPageProps = {
@@ -76,6 +79,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
     return (
         <main className="min-h-screen bg-white">
+            <ReadingProgress />
             <Navbar />
 
             <article>
@@ -118,9 +122,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </div>
                 </section>
 
-                <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                    <div className="grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(250px,1fr)]">
-                        <div>
+                <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                    <div className="grid gap-12 lg:grid-cols-[80px_minmax(0,1fr)_300px] relative">
+                        {/* Left Sidebar: Share Buttons */}
+                        <aside className="hidden lg:block relative">
+                            <div className="sticky top-32">
+                                <ShareButtons title={post.title} />
+                            </div>
+                        </aside>
+
+                        {/* Main Content */}
+                        <div className="min-w-0">
                             {(() => {
                                 let contentHtml = post.content;
                                 if (post.containerImageUrl) {
@@ -200,16 +212,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             </div>
 
                             {post.authorDetails && <AuthorBio author={post.authorDetails} />}
+
+                            {/* Mobile Share Buttons */}
+                            <div className="lg:hidden mt-8 pt-8 border-t border-gray-100">
+                                <p className="text-sm font-bold uppercase tracking-widest text-gray-500 mb-4">Share this post</p>
+                                <ShareButtons title={post.title} />
+                            </div>
                         </div>
 
-                        <aside className="space-y-8">
-                            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
+                        {/* Right Sidebar: TOC and Related */}
+                        <aside className="space-y-8 lg:sticky lg:top-24 lg:h-[calc(100vh-100px)] lg:overflow-y-auto hide-scrollbar">
+                            <TableOfContents />
+
+                            <div className="rounded-2xl border border-gray-100 p-6 shadow-sm bg-white">
                                 <h3 className="text-lg font-semibold text-navy-dark mb-4">Quick facts</h3>
                                 <ul className="space-y-3 text-sm text-gray-600">
-                                    <li><strong className="text-navy-dark">Primary topic:</strong> {primaryTag}</li>
-                                    <li><strong className="text-navy-dark">Estimated read:</strong> {post.readTime}</li>
-                                    <li><strong className="text-navy-dark">Published:</strong> {post.date}</li>
-                                    <li><strong className="text-navy-dark">Author:</strong> {post.author}</li>
+                                    <li><strong className="text-navy-dark block mb-0.5">Primary topic</strong> {primaryTag}</li>
+                                    <li><strong className="text-navy-dark block mb-0.5">Estimated read</strong> {post.readTime}</li>
+                                    <li><strong className="text-navy-dark block mb-0.5">Published</strong> {post.date}</li>
+                                    <li><strong className="text-navy-dark block mb-0.5">Author</strong> {post.author}</li>
                                 </ul>
                             </div>
 
@@ -232,6 +253,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </article>
 
             <Footer />
-        </main>
+        </main >
     );
 }
