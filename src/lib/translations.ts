@@ -1075,6 +1075,7 @@ const translations: Record<Language, Translations> = {
     serviceAreas: {
       title: 'Serving North Maharashtra',
       locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon • Navapur • Amalner • Chopda • Yaval • Faizpur • Bhusawal',
+      description: 'As your local solar partner, we provide end-to-end solar EPC services, subsidy assistance, and 24/7 maintenance support across all cities in the North Maharashtra region.',
       note: 'Available for projects in nearby villages & industrial areas',
     },
     brands: {

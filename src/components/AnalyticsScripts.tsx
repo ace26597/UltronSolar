@@ -52,6 +52,7 @@ const AnalyticsScripts: React.FC = () => {
             fbq('track', 'PageView', {}, { eventID: 'page_view_' + Date.now() });
           `}</Script>
           <noscript>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               height="1"
               width="1"
