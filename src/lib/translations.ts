@@ -13,6 +13,7 @@ export interface Translations {
     residential: string;
     agriculture: string;
     commercial: string;
+    tools: string;
     getQuote: string;
   };
 
@@ -341,6 +342,28 @@ export interface Translations {
     learnMore: string;
     getStarted: string;
   };
+
+  // Tools Hub
+  toolsHub: {
+    title: string;
+    subtitle: string;
+    billAnalyzer: {
+      title: string;
+      description: string;
+    };
+    instantQuote: {
+      title: string;
+      description: string;
+    };
+    subsidyWizard: {
+      title: string;
+      description: string;
+    };
+    emiCalculator: {
+      title: string;
+      description: string;
+    };
+  };
 }
 
 const translations: Record<Language, Translations> = {
@@ -356,6 +379,7 @@ const translations: Record<Language, Translations> = {
       residential: 'Residential',
       agriculture: 'Agriculture',
       commercial: 'Commercial',
+      tools: 'Solar Tools',
       getQuote: 'Get Free Quote',
     },
     trustBar: {
@@ -715,6 +739,26 @@ const translations: Record<Language, Translations> = {
       learnMore: 'Learn More',
       getStarted: 'Get Started',
     },
+    toolsHub: {
+      title: 'Interactive Solar Tools',
+      subtitle: 'Smart tools to help you transition to clean energy with confidence.',
+      billAnalyzer: {
+        title: 'Electricity Bill Analyzer',
+        description: 'Upload your bill and get an instant solar recommendation.',
+      },
+      instantQuote: {
+        title: 'Instant Quote Configurator',
+        description: 'Get a range quote for your rooftop in 30 seconds.',
+      },
+      subsidyWizard: {
+        title: 'Subsidy Wizard',
+        description: 'Check eligibility and generate your document checklist.',
+      },
+      emiCalculator: {
+        title: 'EMI vs Savings Calculator',
+        description: 'See how solar pays for itself with flexible financing.',
+      },
+    },
   },
   mr: {
     nav: {
@@ -728,6 +772,7 @@ const translations: Record<Language, Translations> = {
       residential: 'निवासी',
       agriculture: 'शेती',
       commercial: 'व्यावसायिक',
+      tools: 'सोलर टूल्स',
       getQuote: 'विनामूल्य कोट मिळवा',
     },
     trustBar: {
@@ -1087,6 +1132,26 @@ const translations: Record<Language, Translations> = {
       learnMore: 'अधिक जाणून घ्या',
       getStarted: 'सुरू करा',
     },
+    toolsHub: {
+      title: 'परस्परसंवादी सोलर टूल्स',
+      subtitle: 'स्वच्छ उर्जेकडे आत्मविश्वासाने जाण्यासाठी मदत करणारी स्मार्ट टूल्स.',
+      billAnalyzer: {
+        title: 'वीज बिल विश्लेषक',
+        description: 'तुमचे बिल अपलोड करा आणि त्वरित सोलर शिफारस मिळवा.',
+      },
+      instantQuote: {
+        title: 'इन्स्टंट कोट कॉन्फिग्युरेटर',
+        description: '३० सेकंदात तुमच्या छतासाठी कोट मिळवा.',
+      },
+      subsidyWizard: {
+        title: 'सबसिडी विझार्ड',
+        description: 'पात्रता तपासा आणि तुमची दस्तऐवज चेकलिस्ट तयार करा.',
+      },
+      emiCalculator: {
+        title: 'ईएमआय वि बचत कॅल्क्युलेटर',
+        description: 'लवचिक फायनान्सिंगसह सोलर स्वतःचा खर्च कसा फेडते ते पहा.',
+      },
+    },
   },
   hi: {
     nav: {
@@ -1100,6 +1165,7 @@ const translations: Record<Language, Translations> = {
       residential: 'आवासीय',
       agriculture: 'कृषि',
       commercial: 'व्यावसायिक',
+      tools: 'सोलर टूल्स',
       getQuote: 'फ्री कोट प्राप्त करें',
     },
     topBar: {
@@ -1451,6 +1517,26 @@ const translations: Record<Language, Translations> = {
       readMore: 'और पढ़ें',
       learnMore: 'अधिक जानें',
       getStarted: 'शुरू करें',
+    },
+    toolsHub: {
+      title: 'इंटरैक्टिव सोलर टूल्स',
+      subtitle: 'स्वच्छ ऊर्जा की ओर आत्मविश्वास से बढ़ने में आपकी मदद करने वाले स्मार्ट टूल्स।',
+      billAnalyzer: {
+        title: 'बिजली बिल विश्लेषक',
+        description: 'अपना बिल अपलोड करें और तुरंत सोलर अनुशंसा प्राप्त करें।',
+      },
+      instantQuote: {
+        title: 'इंस्टेंट कोट कॉन्फ़िगरेशन',
+        description: '30 सेकंड में अपनी छत के लिए कोट प्राप्त करें।',
+      },
+      subsidyWizard: {
+        title: 'सब्सिडी विज़ार्ड',
+        description: 'पात्रता की जांच करें और अपनी दस्तावेज़ चेकलिस्ट तैयार करें।',
+      },
+      emiCalculator: {
+        title: 'ईएमआई बनाम बचत कैलकुलेटर',
+        description: 'देखें कि कैसे सोलर लचीले वित्तपोषण के साथ अपना भुगतान स्वयं करता है।',
+      },
     },
     testimonials: {
       title: 'हमारे ग्राहक क्या कहते हैं',

@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 import TrustBar from "@/components/TrustBar";
 import SolarWizard from "@/components/SolarWizard";
 import HowItWorks from "@/components/HowItWorks";
+import QuickTools from "@/components/QuickTools";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <SolarWizard />
+      <QuickTools />
       <WeServe />
       <About />
       <Features />

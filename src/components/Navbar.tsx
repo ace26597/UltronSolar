@@ -153,6 +153,10 @@ export default function Navbar() {
                   Knowledge Hub
                 </Link>
 
+                <Link href="/tools" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
+                  {t.nav.tools}
+                </Link>
+
                 <Link href="/contact" className="px-3 py-2 text-navy hover:text-solar-orange font-semibold transition-colors text-sm uppercase tracking-wider">
                   {t.nav.contact}
                 </Link>
@@ -243,6 +247,10 @@ export default function Navbar() {
 
               <Link href="/blog" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
                 Knowledge Hub
+              </Link>
+
+              <Link href="/tools" onClick={() => setIsOpen(false)} className="block text-lg font-bold text-navy hover:text-solar-orange transition-colors">
+                {t.nav.tools}
               </Link>
 
               <div className="pt-8 border-t border-gray-100">
