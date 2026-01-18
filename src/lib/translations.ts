@@ -221,6 +221,7 @@ export interface Translations {
   serviceAreas: {
     title: string;
     locations: string;
+    description: string;
     note: string;
   };
 
@@ -497,6 +498,7 @@ const translations: Record<Language, Translations> = {
     serviceAreas: {
       title: 'Serving North Maharashtra',
       locations: 'Dhule • Jalgaon • Nashik • Nandurbar • Sakri • Shirpur • Dondaicha • Malegaon • Navapur • Amalner • Chopda • Yaval • Faizpur • Bhusawal',
+      description: 'As your local solar partner, we provide end-to-end solar EPC services, subsidy assistance, and 24/7 maintenance support across all cities in the North Maharashtra region.',
       note: 'Available for projects in nearby villages & industrial areas',
     },
     brands: {
@@ -785,6 +787,7 @@ const translations: Record<Language, Translations> = {
     serviceAreas: {
       title: 'उत्तर महाराष्ट्रात सेवा देत आहोत',
       locations: 'धुळे • जळगाव • नाशिक • नंदुरबार • साक्री • शिरपूर • दोंडाईचा • मालेगाव',
+      description: 'तुमचे स्थानिक सौर भागीदार म्हणून, आम्ही उत्तर महाराष्ट्र प्रदेशातील सर्व शहरांमध्ये एंड-टू-एंड सौर EPC सेवा, सबसिडी सहाय्य आणि २४/७ देखभाल समर्थन प्रदान करतो.',
       note: 'जवळच्या गावांमध्ये आणि औद्योगिक क्षेत्रांमध्ये प्रकल्पांसाठी उपलब्ध',
     },
     brands: {

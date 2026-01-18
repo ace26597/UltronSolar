@@ -21,12 +21,36 @@ export default function SolarWizard() {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
-    const nextStep = () => setStep(prev => (prev < 5 ? (prev + 1) as WizardStep : prev));
+    const nextStep = () => {
+        // Track step completion in GA4
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'wizard_step_complete', {
+                'step_number': step,
+                'sector': formData.sector,
+                'location': formData.location
+            });
+        }
+        setStep(prev => (prev < 5 ? (prev + 1) as WizardStep : prev));
+    };
     const prevStep = () => setStep(prev => (prev > 1 ? (prev - 1) as WizardStep : prev));
+
+    const formatCurrency = (val: string) => {
+        if (!val) return "";
+        const num = val.replace(/\D/g, "");
+        return new Intl.NumberFormat('en-IN').format(parseInt(num));
+    };
 
     const handleSubmit = async () => {
         setIsSubmitting(true);
         try {
+            if (typeof window !== 'undefined' && (window as any).gtag) {
+                (window as any).gtag('event', 'generate_lead', {
+                    'event_category': 'engagement',
+                    'event_label': 'Solar Wizard Completion',
+                    'value': parseInt(formData.bill) || 0
+                });
+            }
+
             const systemSize = calculateEstimatedSystem(formData.bill);
             const res = await fetch("/api/contact", {
                 method: "POST",
@@ -35,7 +59,7 @@ export default function SolarWizard() {
                     name: formData.name,
                     phone: formData.phone,
                     requirement: `Solar Recommendation (${formData.sector})`,
-                    message: `Estimated System: ${systemSize}\r\nMonthly Bill: ₹${formData.bill}\r\nLocation: ${formData.location}\r\nSector: ${formData.sector}`
+                    message: `Estimated System: ${systemSize}\r\nMonthly Bill: ₹${formatCurrency(formData.bill)}\r\nLocation: ${formData.location}\r\nSector: ${formData.sector}`
                 }),
             });
 
@@ -79,7 +103,7 @@ export default function SolarWizard() {
                     </p>
                 </div>
 
-                <div className="bg-white rounded-[3rem] shadow-2xl shadow-navy/5 border border-gray-100 overflow-hidden relative">
+                <div className="bg-white/70 backdrop-blur-xl rounded-[3rem] shadow-2xl shadow-navy/5 border border-white/20 overflow-hidden relative">
                     {/* Progress Bar */}
                     <div className="absolute top-0 left-0 w-full h-2 bg-gray-100">
                         <motion.div
@@ -141,11 +165,12 @@ export default function SolarWizard() {
                                     <div className="max-w-md mx-auto relative group">
                                         <span className="absolute left-6 top-1/2 -translate-y-1/2 text-2xl font-black text-gray-300 group-focus-within:text-solar-orange transition-colors">₹</span>
                                         <input
-                                            type="number"
+                                            type="text"
+                                            inputMode="numeric"
                                             placeholder="5,000"
-                                            value={formData.bill}
-                                            onChange={(e) => updateField("bill", e.target.value)}
-                                            className="w-full pl-14 pr-8 py-6 rounded-2xl border-2 border-gray-100 focus:border-solar-orange outline-none text-2xl font-black text-navy-dark transition-all"
+                                            value={formatCurrency(formData.bill)}
+                                            onChange={(e) => updateField("bill", e.target.value.replace(/\D/g, ""))}
+                                            className="w-full pl-14 pr-8 py-6 rounded-2xl border-2 border-gray-100 focus:border-solar-orange outline-none text-2xl font-black text-navy-dark transition-all bg-white/50"
                                             autoFocus
                                         />
                                     </div>
@@ -267,7 +292,7 @@ export default function SolarWizard() {
                                             </div>
                                             <div className="flex justify-between">
                                                 <span className="text-gray-500">Avg. Monthly Bill</span>
-                                                <span className="font-bold text-navy-dark">₹{formData.bill}</span>
+                                                <span className="font-bold text-navy-dark">₹{formatCurrency(formData.bill)}</span>
                                             </div>
                                             <div className="flex justify-between pt-4 border-t border-dashed border-gray-300">
                                                 <span className="text-navy-dark font-black">Estimated System</span>

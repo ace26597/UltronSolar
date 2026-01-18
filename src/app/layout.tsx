@@ -110,10 +110,16 @@ export default function RootLayout({
           "latitude": 20.916225468005663,
           "longitude": 74.76856980970072
         },
-        "areaServed": {
-          "@type": "City",
-          "name": "Dhule"
-        },
+        "areaServed": [
+          { "@type": "City", "name": "Dhule" },
+          { "@type": "City", "name": "Jalgaon" },
+          { "@type": "City", "name": "Nashik" },
+          { "@type": "City", "name": "Nandurbar" },
+          { "@type": "City", "name": "Sakri" },
+          { "@type": "City", "name": "Shirpur" },
+          { "@type": "City", "name": "Malegaon" },
+          { "@type": "City", "name": "Navapur" }
+        ],
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [

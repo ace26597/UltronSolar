@@ -7,7 +7,7 @@ import { getTranslations } from "@/lib/translations";
 export default function ServiceAreas() {
   const { currentLanguage } = useLanguage();
   const t = getTranslations(currentLanguage);
-  
+
   return (
     <section className="py-10 sm:py-12 bg-navy-dark text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
@@ -17,7 +17,10 @@ export default function ServiceAreas() {
         <p className="text-gray-300 text-base sm:text-lg">
           {t.serviceAreas.locations}
         </p>
-        <p className="text-xs sm:text-sm text-gray-400 mt-2">
+        <p className="text-gray-400 text-sm mt-4 max-w-2xl mx-auto italic">
+          {t.serviceAreas.description}
+        </p>
+        <p className="text-[10px] sm:text-xs text-gray-500 mt-4 uppercase tracking-[0.2em]">
           {t.serviceAreas.note}
         </p>
       </div>

@@ -37,9 +37,9 @@ const AnalyticsScripts: React.FC = () => {
       )}
 
       {/* Meta Pixel - lazyOnload for better mobile performance */}
-      {allowMarketing && META_PIXEL_ID && (
+      {allowMarketing && META_PIXEL_ID && META_PIXEL_ID !== 'undefined' && (
         <>
-          <Script id="meta-pixel" strategy="lazyOnload">{`
+          <Script id="meta-pixel" strategy="afterInteractive">{`
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -49,16 +49,15 @@ const AnalyticsScripts: React.FC = () => {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${META_PIXEL_ID}');
-            fbq('track', 'PageView');
+            fbq('track', 'PageView', {}, { eventID: 'page_view_' + Date.now() });
           `}</Script>
           <noscript>
-            <Image
-              height={1}
-              width={1}
+            <img
+              height="1"
+              width="1"
               style={{ display: 'none' }}
               src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
               alt=""
-              unoptimized
             />
           </noscript>
         </>
