@@ -41,7 +41,10 @@ export default function SolarWizard() {
     const formatCurrency = (val: string) => {
         if (!val) return "";
         const num = val.replace(/\D/g, "");
-        return new Intl.NumberFormat(currentLanguage === 'hi' ? 'hi-IN' : currentLanguage === 'mr' ? 'mr-IN' : 'en-IN').format(parseInt(num));
+        if (!num) return "";
+        // Always use en-IN to ensure ASCII digits are returned (no Devanagari numerals)
+        // This prevents input issues when the formatted value is used in onChange
+        return new Intl.NumberFormat('en-IN').format(parseInt(num));
     };
 
     const handleSubmit = async () => {
