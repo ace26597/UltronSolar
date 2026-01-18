@@ -1,4 +1,4 @@
-<!-- ---
+---
 title: "Best Solar Installer in Dhule and Maharashtra: How to Choose the Right EPC Partner (2025 Guide)"
 excerpt: "A practical checklist for Dhule and Maharashtra homeowners and businesses to compare solar EPC companies on quality, subsidy support, and long-term service."
 author: "Ultron Solar Team"
@@ -353,20 +353,3 @@ Use this checklist to interrogate every EPC company you speak to:
 - **Service commitment**
 
 If you want a starting point, talk to **Ultron Power Systems** with this checklist in your hand. Whether you choose us or someone else, you’ll make a decision based on facts instead of marketing lines.
-
----
-<!-- 
-## Image Prompts (Updated for Dhule + Maharashtra)
-
-### 1. Hero Image – `blog_best_solar_installer_dhule_maharashtra_hero.png`
-
-> Wide 16:9 hero illustration for a blog titled “Best Solar Installer in Dhule and Maharashtra”. Show a bright rooftop scene in a Maharashtrian town: foreground house with blue solar panels on the terrace, water tank, and typical Indian parapet wall. In the background, faint outline of Maharashtra state map with a pin on “Dhule”. In the foreground, a local solar engineer in helmet and safety vest showing a tablet to a Maharashtrian family (parents + one child), with faint checklist icons above the tablet (tick marks, shield, rupee symbol). Use clean flat-vector style, professional but friendly colours.
-
-
-### 2. In-Article Checklist Image – `blog_best_solar_installer_dhule_maharashtra_checklist.png`
-
-> 16:9 infographic titled “Solar Installer Checklist for Dhule & Maharashtra”. Split the graphic into 5 columns or blocks: “1) Registration & Local Office”, “2) Design & Survey”, “3) ALMM & Safety”, “4) Subsidy & Net Metering”, “5) Service & Warranty”. Use simple icons for each: office building, blueprint/helmet, solar panel with checkmark, document with rupee and meter icon, wrench and shield. In the background, very light outline of Maharashtra with Dhule highlighted. Minimal text, big readable headings, flat-vector design.
-
-### 3. Footer / Closing Image – `blog_best_solar_installer_dhule_maharashtra_footer.png`
-
-> 16:9 map-style illustration of Maharashtra with Dhule highlighted. Show a simplified state outline, mark Dhule with a bright pin and small text label. Around the state, place small solar icons representing homes, a shop, and a small factory. At the bottom, add a banner-style text “Rooftop Solar by Local EPC Experts in Dhule and Across Maharashtra”. Keep colours consistent with the hero image (blue, orange, green) and use a clean, minimal flat-vector style suitable for a website footer. --> -->
