@@ -1,7 +1,7 @@
 ---
 title: "Rooftop Solar in Dhule: Complete Guide for Homeowners (2025 Edition)"
 excerpt: "A practical, locally-focused guide for Dhule homeowners who want to understand rooftop solar costs, savings, subsidy, and the installation process."
-author: "Er. Chandrakant Patil"
+author: "Ultron Solar Team"
 date: "November 25, 2025"
 imageUrl: "/images/blog_1_solar_in_dhule.png"
 containerImageUrl: "/images/blog_2_solar_in_dhule.png"

@@ -1,7 +1,7 @@
 ---
 title: "Best Solar Options for Farmers in Maharashtra, India"
 excerpt: "From solar water pumps to street lights and small rooftop systems, discover the best solar solutions for farms and villages across Maharashtra."
-author: "Er. Chandrakant Patil"
+author: "Ultron Solar Team"
 date: "November 26, 2025"
 imageUrl: "/images/blog_1_solar_for_farmers_maharashtra.png"
 containerImageUrl: "/images/blog_2_solar_for_farmers_maharashtra.png"
