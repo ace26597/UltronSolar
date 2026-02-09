@@ -76,7 +76,8 @@ export function getAllPostIds() {
 }
 
 export async function getPostData(slug: string): Promise<BlogPost> {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
+    const sanitizedSlug = slug.replace(/[^a-zA-Z0-9-_]/g, '');
+    const fullPath = path.join(postsDirectory, `${sanitizedSlug}.md`);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
@@ -85,7 +86,7 @@ export async function getPostData(slug: string): Promise<BlogPost> {
     // Use remark to convert markdown into HTML string
     const processedContent = await remark()
         .use(remarkGfm)
-        .use(html)
+        .use(html, { sanitize: true })
         .process(matterResult.content);
     const contentHtml = processedContent.toString();
 
@@ -95,8 +96,8 @@ export async function getPostData(slug: string): Promise<BlogPost> {
 
     // Combine the data with the id and contentHtml
     return {
-        id: slug,
-        slug,
+        id: sanitizedSlug,
+        slug: sanitizedSlug,
         content: contentHtml,
         authorDetails,
         ...matterResult.data,

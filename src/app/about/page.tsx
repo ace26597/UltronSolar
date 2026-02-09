@@ -1,17 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import AboutClient from "./AboutClient";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import About from "@/components/About";
+export const metadata: Metadata = {
+  title: "About Ultron Power Systems | 20+ Years Solar Expertise in Dhule",
+  description: "Learn about Ultron Power Systems - Dhule's trusted solar energy provider since 2006. 1000+ installations across North Maharashtra.",
+  alternates: { canonical: "https://www.ultronsolar.in/about" },
+};
 
 export default function AboutPage() {
-    return (
-        <main className="min-h-screen">
-            <Navbar />
-            <div className="pt-20">
-                <About />
-            </div>
-            <Footer />
-        </main>
-    );
+  return <AboutClient />;
 }

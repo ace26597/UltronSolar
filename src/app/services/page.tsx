@@ -1,17 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import ServicesClient from "./ServicesClient";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import WeServe from "@/components/WeServe";
+export const metadata: Metadata = {
+  title: "Solar Services | Residential, Commercial & Agricultural Solar in Dhule",
+  description: "Ultron Power Systems offers complete solar services - rooftop solar, water pumps, EPC solutions for homes, businesses, and farms in North Maharashtra.",
+  alternates: { canonical: "https://www.ultronsolar.in/services" },
+};
 
 export default function ServicesPage() {
-    return (
-        <main className="min-h-screen">
-            <Navbar />
-            <div className="pt-20">
-                <WeServe />
-            </div>
-            <Footer />
-        </main>
-    );
+  return <ServicesClient />;
 }

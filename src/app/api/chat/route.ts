@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { createRateLimiter, checkRateLimit } from "@/lib/rateLimit";
+
+const chatLimiter = createRateLimiter(20, "1 m");
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -26,6 +29,13 @@ Keep responses conversational and helpful.`;
 
 export async function POST(req: NextRequest) {
   try {
+    try {
+      const allowed = await checkRateLimit(chatLimiter, req);
+      if (!allowed) {
+        return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+      }
+    } catch {}  // Don't block if rate limit service is down
+
     // Check if API key is configured
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json(
@@ -44,16 +54,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Sanitize messages - only allow user/assistant roles, limit history
+    const validRoles = new Set(['user', 'assistant']);
+    const filteredMessages = messages
+      .filter((msg: any) => validRoles.has(msg.role))
+      .slice(-20)
+      .map((msg: any) => ({ role: msg.role, content: String(msg.content).slice(0, 2000) }));
+
     // Build messages list with system prompt
     const chatMessages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
       {
         role: 'system',
         content: context && context.length > 0
-          ? `${SYSTEM_PROMPT}\n\nRelevant information:\n${context.map((doc: { content: string }) => `- ${doc.content}`).join('\n')}`
+          ? `${SYSTEM_PROMPT}\n\nRelevant information:\n${context.slice(0, 5).map((doc: { content: string }) => `- ${doc.content.substring(0, 500)}`).join('\n')}`
           : SYSTEM_PROMPT,
       },
-      ...messages.map((msg: { role: string; content: string }) => ({
-        role: msg.role as 'user' | 'assistant' | 'system',
+      ...filteredMessages.map((msg: { role: string; content: string }) => ({
+        role: msg.role as 'user' | 'assistant',
         content: msg.content,
       })),
     ];

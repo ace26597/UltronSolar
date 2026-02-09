@@ -5,27 +5,23 @@ import WeServe from "@/components/WeServe";
 import Features from "@/components/Features";
 import Products from "@/components/Products";
 import SpecialOffer from "@/components/SpecialOffer";
-import Brands from "@/components/Brands";
 import GalleryPreview from "@/components/GalleryPreview";
 import YouTubeVideos from "@/components/YouTubeVideos";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import ServiceAreas from "@/components/ServiceAreas";
-import FacebookPage from "@/components/FacebookPage";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import About from "@/components/About";
+import TrustBar from "@/components/TrustBar";
+import SolarWizard from "@/components/SolarWizard";
+import HowItWorks from "@/components/HowItWorks";
+import QuickTools from "@/components/QuickTools";
 
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.ultronsolar.in/",
   },
 };
-
-import TrustBar from "@/components/TrustBar";
-import SolarWizard from "@/components/SolarWizard";
-import HowItWorks from "@/components/HowItWorks";
-import QuickTools from "@/components/QuickTools";
 
 export default function Home() {
   return (
@@ -34,22 +30,19 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <SolarWizard />
-      <QuickTools />
-      <WeServe />
-      <About />
-      <Features />
-      <Products />
-      <HowItWorks />
       <SpecialOffer />
+      <QuickTools />
+      <Products />
+      <Features />
+      <HowItWorks />
+      <WeServe />
       <GalleryPreview />
-      <YouTubeVideos />
       <Testimonials />
       <FAQ />
+      <YouTubeVideos />
       <ServiceAreas />
-      <FacebookPage />
       <Contact />
       <Footer />
     </main>
   );
 }
-

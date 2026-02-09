@@ -53,9 +53,10 @@ export const metadata: Metadata = {
     description: "Expert solar installation for homes, businesses, and farms in North Maharashtra.",
     images: ["/images/gallery-project-2.jpg"],
   },
-  verification: {
-    google: "google-site-verification-code-here",
-  },
+  // TODO: Add real Google Search Console verification code
+  // verification: {
+  //   google: "your-actual-verification-code",
+  // },
 };
 
 export default function RootLayout({

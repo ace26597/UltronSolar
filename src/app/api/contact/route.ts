@@ -1,10 +1,24 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { createRateLimiter, checkRateLimit } from "@/lib/rateLimit";
+
+const contactLimiter = createRateLimiter(3, "1 m");
+
+function escapeHtml(str: string): string {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
 
 export const runtime = "nodejs"; // make sure this runs on Node, not edge
 
 export async function POST(req: Request) {
   try {
+    try {
+      const allowed = await checkRateLimit(contactLimiter, req);
+      if (!allowed) {
+        return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+      }
+    } catch {}  // Don't block if rate limit service is down
+
     let body;
     try {
       body = await req.json();
@@ -16,6 +30,23 @@ export async function POST(req: Request) {
     }
 
     const { name, phone, email, city, requirement, message } = body;
+
+    // Input validation
+    if (name && name.length > 100) {
+      return NextResponse.json({ error: "Name too long" }, { status: 400 });
+    }
+    if (phone && !/^[\d\s\+\-()]{7,20}$/.test(phone)) {
+      return NextResponse.json({ error: "Invalid phone number" }, { status: 400 });
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    }
+    if (requirement && requirement.length > 200) {
+      return NextResponse.json({ error: "Requirement too long" }, { status: 400 });
+    }
+    if (message && message.length > 2000) {
+      return NextResponse.json({ error: "Message too long" }, { status: 400 });
+    }
 
     // Basic validation
     if (!name || !phone || !requirement) {
@@ -64,12 +95,12 @@ Follow up ASAP.
       `.trim(),
       html: `
         <h3>New Lead from Website</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email || "not provided"}</p>
-        <p><strong>City:</strong> ${city || "not provided"}</p>
-        <p><strong>Requirement:</strong> ${requirement}</p>
-        <p><strong>Additional Details:</strong><br/>${message ? message.replace(/\n/g, '<br>') : "None"}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+        <p><strong>Email:</strong> ${email ? escapeHtml(email) : "not provided"}</p>
+        <p><strong>City:</strong> ${city ? escapeHtml(city) : "not provided"}</p>
+        <p><strong>Requirement:</strong> ${escapeHtml(requirement)}</p>
+        <p><strong>Additional Details:</strong><br/>${message ? escapeHtml(message).replace(/\n/g, '<br>') : "None"}</p>
       `,
     });
 
@@ -84,7 +115,7 @@ Follow up ASAP.
           html: `
             <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
               <h2 style="color: #1e40af;">Thank you for contacting Ultron Power Systems!</h2>
-              <p>We have received your inquiry regarding <strong>${requirement}</strong>.</p>
+              <p>We have received your inquiry regarding <strong>${escapeHtml(requirement)}</strong>.</p>
               <p>Our team will review your requirements and get back to you within 24 hours.</p>
               <p>For immediate assistance, you can call us at <a href="tel:+919422787438" style="color: #16a34a; font-weight: bold;">+91 9422787438</a>.</p>
               <br>

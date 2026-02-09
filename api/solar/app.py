@@ -93,10 +93,10 @@ async def unhandled_exception_handler(request, exc):
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, restrict to specific origins
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["https://ultronsolar.in", "https://www.ultronsolar.in", "http://localhost:3000"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 # Initialize image service
@@ -136,7 +136,7 @@ async def create_solar_job(
         except (json.JSONDecodeError, ValueError) as e:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Invalid metadata format: {str(e)}"
+                detail="Invalid metadata format"
             )
         
         # Read and encode image
@@ -170,7 +170,7 @@ async def create_solar_job(
         logger.error(f"Error creating job: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to create job: {str(e)}"
+            detail="Failed to create job"
         )
 
 
@@ -279,7 +279,7 @@ async def run_solar_job(job_id: str):
             
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"Image processing failed: {error_msg}"
+                detail="Image processing failed"
             )
     
     except HTTPException:
@@ -288,7 +288,7 @@ async def run_solar_job(job_id: str):
         logger.error(f"Error processing job {job_id}: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to process job: {str(e)}"
+            detail="Failed to process job"
         )
 
 
@@ -335,34 +335,18 @@ async def get_solar_job_status(job_id: str):
         logger.error(f"Error getting job status {job_id}: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to get job status: {str(e)}"
+            detail="Failed to get job status"
         )
 
 
 @app.get("/")
 async def root():
-    """Root endpoint for debugging."""
+    """Root endpoint."""
     logger.info("=== ROOT ENDPOINT CALLED ===")
-    routes_info = []
-    for route in app.routes:
-        if hasattr(route, 'path') and hasattr(route, 'methods'):
-            routes_info.append({
-                "path": route.path,
-                "methods": list(route.methods)
-            })
-    
     return {
         "service": "solar-simulation-api",
         "version": "2.0.0",
         "status": "running",
-        "endpoints": {
-            "POST /jobs": "Create a solar simulation job",
-            "POST /jobs/{job_id}/run": "Process a solar simulation job",
-            "GET /jobs/{job_id}": "Get job status",
-            "GET /health": "Health check"
-        },
-        "registered_routes": routes_info,
-        "image_service_available": image_service is not None
     }
 
 @app.get("/health")
@@ -388,8 +372,5 @@ async def catch_all_solar(path: str, request):
         status_code=404,
         content={
             "error": "Route not found",
-            "requested_path": f"/{path}",
-            "method": request.method,
-            "available_routes": [{"path": route.path, "methods": list(route.methods)} for route in app.routes if hasattr(route, 'path') and hasattr(route, 'methods')]
         }
     )

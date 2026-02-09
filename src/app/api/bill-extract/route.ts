@@ -6,6 +6,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { BillData } from '@/types/billExtract';
+import { createRateLimiter, checkRateLimit } from "@/lib/rateLimit";
+
+const billExtractLimiter = createRateLimiter(5, "1 m");
 
 // Initialize OpenAI API
 const openai = new OpenAI({
@@ -14,6 +17,13 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
     try {
+        try {
+            const allowed = await checkRateLimit(billExtractLimiter, request);
+            if (!allowed) {
+                return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+            }
+        } catch {}  // Don't block if rate limit service is down
+
         // Check for API key
         if (!process.env.OPENAI_API_KEY) {
             return NextResponse.json(
@@ -43,6 +53,12 @@ export async function POST(request: NextRequest) {
 
         // Convert file to base64
         const bytes = await file.arrayBuffer();
+        if (bytes.byteLength > 10 * 1024 * 1024) {
+            return NextResponse.json(
+                { success: false, error: 'File too large (max 10MB)' },
+                { status: 413 }
+            );
+        }
         const base64Data = Buffer.from(bytes).toString('base64');
 
         // Create the extraction prompt
