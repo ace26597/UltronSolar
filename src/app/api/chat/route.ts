@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function getOpenAIClient() {
+  return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+}
 
 const SYSTEM_PROMPT = `You are a helpful sales and education assistant for Ultron Power Systems, a solar EPC (Engineering, Procurement, and Construction) company based in Dhule, Jalgaon, and North Maharashtra, India.
 
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     const modelName = process.env.OPENAI_CHAT_MODEL || process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
     
     // Use default parameters - let OpenAI handle defaults for temperature, max_tokens, etc.
-    const completion = await openai.chat.completions.create({
+    const completion = await getOpenAIClient().chat.completions.create({
       model: modelName,
       messages: chatMessages,
     });
