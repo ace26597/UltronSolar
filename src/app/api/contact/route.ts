@@ -98,6 +98,24 @@ Follow up ASAP.
       }
     }
 
+    // Also create CRM lead (fire-and-forget)
+    try {
+      await fetch('https://api-crm.acesolartech.com/api/leads/public/quote-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          phone,
+          address: city || '',
+          message: `[${requirement}] ${message || ''}`.trim(),
+          business: 'ultronpower',
+          source: 'website',
+        }),
+      });
+    } catch {
+      // Don't fail the form if CRM is unreachable
+    }
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Contact form error:", err);
