@@ -1,4 +1,4 @@
-"""Service for image editing using OpenAI's gpt-image-1 model."""
+"""Service for image analysis and editing using OpenAI models (IDs come from env vars)."""
 import os
 import base64
 import time
@@ -10,8 +10,20 @@ from io import BytesIO
 logger = logging.getLogger(__name__)
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-OPENAI_SOLAR_IMAGE_MODEL = os.getenv("OPENAI_SOLAR_IMAGE_MODEL", os.getenv("OPENAI_IMAGE_MODEL", "gpt-image-1"))
+# Model IDs come from environment variables so they can be changed in Vercel
+# without a code change. Providers retire models on a schedule.
+#
+# Image model: gpt-image-1 was shut down on 23 Oct 2026. OpenAI's models page
+# lists the gpt-image-2.6 pair as current; "flare" is the fast one, which
+# matters because one job makes two edits inside a 60 second function limit.
+# Use gpt-image-2.6-sunburst for higher edit fidelity at higher cost.
+DEFAULT_IMAGE_MODEL = "gpt-image-2.6-flare"
+OPENAI_SOLAR_IMAGE_MODEL = os.getenv("OPENAI_SOLAR_IMAGE_MODEL") or os.getenv("OPENAI_IMAGE_MODEL") or DEFAULT_IMAGE_MODEL
 OPENAI_SOLAR_ANALYSIS_MODEL = os.getenv("OPENAI_SOLAR_ANALYSIS_MODEL", os.getenv("OPENAI_MODEL_NAME", "gpt-5.2"))
+
+# Output cap for the analysis call on current (reasoning) models. Reasoning
+# tokens count against it, so it is well above the ~1000 tokens of visible text.
+ANALYSIS_MAX_COMPLETION_TOKENS = 4000
 
 # Retry configuration
 MAX_RETRIES = 3
@@ -30,23 +42,38 @@ class ImageService:
         self.image_model = OPENAI_SOLAR_IMAGE_MODEL
         self.analysis_model = OPENAI_SOLAR_ANALYSIS_MODEL
 
-    @staticmethod
-    def _uses_max_completion_tokens(model_name: str) -> bool:
+    # Chat model families that predate `max_completion_tokens`-only behaviour:
+    # gpt-3.5-*, gpt-4, gpt-4-turbo, gpt-4o*, gpt-4.1*. They take `max_tokens`
+    # and custom sampling parameters. Everything else - o-series, gpt-5*,
+    # gpt-6* and whatever comes next - is treated as a current model.
+    #
+    # The check used to be the other way round (a list of "new" prefixes:
+    # gpt-5, o1, o3, o4), so every model released after that list was written,
+    # gpt-6* included, was misclassified as legacy and sent `max_tokens` and
+    # `temperature`, which current models reject. Listing the fixed set of old
+    # families instead means a new model name needs no change here.
+    _LEGACY_CHAT_PREFIXES = ("gpt-3.5", "gpt-4")
+
+    @classmethod
+    def _is_legacy_chat_model(cls, model_name: str) -> bool:
+        name = (model_name or "").strip().lower()
+        return name.startswith(cls._LEGACY_CHAT_PREFIXES)
+
+    @classmethod
+    def _uses_max_completion_tokens(cls, model_name: str) -> bool:
         """
-        Some newer/reasoning models (e.g. GPT-5 / o-series) reject `max_tokens`
+        Current models (o-series, GPT-5, GPT-6 and later) reject `max_tokens`
         and require `max_completion_tokens` instead.
         """
-        name = (model_name or "").lower()
-        return name.startswith("gpt-5") or name.startswith("o1") or name.startswith("o3") or name.startswith("o4")
+        return not cls._is_legacy_chat_model(model_name)
 
-    @staticmethod
-    def _supports_sampling_params(model_name: str) -> bool:
+    @classmethod
+    def _supports_sampling_params(cls, model_name: str) -> bool:
         """
-        Some models only support default sampling params (e.g. temperature must be default).
-        For those, we should omit temperature/top_p/etc entirely.
+        Current reasoning models only support default sampling params (e.g.
+        temperature must be default). For those, omit temperature/top_p entirely.
         """
-        name = (model_name or "").lower()
-        return not (name.startswith("gpt-5") or name.startswith("o1") or name.startswith("o3") or name.startswith("o4"))
+        return cls._is_legacy_chat_model(model_name)
     
     def _retry_with_backoff(self, func, *args, **kwargs):
         """Execute function with exponential backoff retry logic."""
@@ -110,12 +137,15 @@ Provide a detailed analysis in JSON format with:
 """
 
             def _analyze():
-                # For GPT-5 / o-series, avoid optional params (some reject non-default temperature
-                # and/or token limit fields). Let the API apply defaults.
-                if self._supports_sampling_params(self.analysis_model):
-                    token_kwargs = {"max_tokens": 1000, "temperature": 0.3}
+                # Legacy models take `max_tokens` and a temperature. Current models
+                # take `max_completion_tokens` and no sampling params; their cap is
+                # higher because reasoning tokens are counted inside it.
+                if self._uses_max_completion_tokens(self.analysis_model):
+                    token_kwargs = {"max_completion_tokens": ANALYSIS_MAX_COMPLETION_TOKENS}
                 else:
-                    token_kwargs = {}
+                    token_kwargs = {"max_tokens": 1000}
+                if self._supports_sampling_params(self.analysis_model):
+                    token_kwargs["temperature"] = 0.3
                 response = self.client.chat.completions.create(
                     model=self.analysis_model,
                     messages=[
@@ -169,7 +199,7 @@ Provide a detailed analysis in JSON format with:
 Remove all people, temporary items, clutter, and non-permanent structures. Keep only the permanent terrace structure, walls, and fixed installations. Make the terrace look clean and ready for solar panel installation."""
 
             def _cleanup():
-                # Use gpt-image-1 for image editing
+                # Image edit with the configured image model
                 # Note: API structure may vary - adjust based on actual OpenAI API
                 response = self.client.images.edit(
                     model=self.image_model,
@@ -237,7 +267,7 @@ Installation Requirements:
 Make the installation look professional, clean, and realistic. The panels should be properly mounted on the terrace with appropriate mounting hardware."""
 
             def _add_panels():
-                # Use gpt-image-1 for image editing
+                # Image edit with the configured image model
                 # Note: API structure may vary - adjust based on actual OpenAI API
                 response = self.client.images.edit(
                     model=self.image_model,
