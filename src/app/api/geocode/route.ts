@@ -6,6 +6,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { GeoLocation } from '@/types/billExtract';
+import { geminiModel } from '@/lib/aiModels';
 import { rateLimit } from '@/lib/server/rateLimit';
 import { cleanLine, readJsonBody } from '@/lib/server/requestGuards';
 
@@ -82,7 +83,7 @@ export async function POST(request: NextRequest) {
 
         // Call Gemini API
         const model = genAI.getGenerativeModel({
-            model: 'gemini-2.5-flash',
+            model: geminiModel(),
         });
 
         const result = await model.generateContent(prompt);

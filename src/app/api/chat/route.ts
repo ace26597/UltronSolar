@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { chatModel, openAIReasoningEffort } from '@/lib/aiModels';
 import { searchKnowledge } from '@/lib/server/knowledgeSearch';
 import { rateLimit } from '@/lib/server/rateLimit';
 import { readJsonBody } from '@/lib/server/requestGuards';
@@ -146,13 +147,23 @@ export async function POST(req: NextRequest) {
       ...conversation,
     ];
 
-    // Keep chat fast to avoid Vercel timeouts; use a dedicated env var.
-    const modelName = process.env.OPENAI_CHAT_MODEL || process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
+    // Model and reasoning effort come from environment variables (see lib/aiModels).
+    const modelName = chatModel();
+    const reasoningEffort = openAIReasoningEffort();
 
+    // Request shape for current OpenAI models on Chat Completions:
+    // - `max_completion_tokens` is the output cap (`max_tokens` is deprecated
+    //   and rejected by reasoning models). It includes reasoning tokens.
+    // - `reasoning_effort` keeps the reply fast and inside that cap.
+    // - `temperature` / `top_p` are deliberately not sent: reasoning models
+    //   may reject non-default sampling values.
     const completion = await getOpenAIClient().chat.completions.create({
       model: modelName,
       messages: chatMessages,
       max_completion_tokens: MAX_OUTPUT_TOKENS,
+      ...(reasoningEffort
+        ? { reasoning_effort: reasoningEffort as OpenAI.ReasoningEffort }
+        : {}),
     });
 
     const reply = completion.choices[0]?.message?.content;

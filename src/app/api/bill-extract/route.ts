@@ -6,6 +6,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import { BillData } from '@/types/billExtract';
+import { billExtractModel, openAIReasoningEffort } from '@/lib/aiModels';
 import { rateLimit } from '@/lib/server/rateLimit';
 import { cleanLine } from '@/lib/server/requestGuards';
 
@@ -28,6 +29,28 @@ const MAX_OUTPUT_TOKENS = 1000;
 const MAX_FIELD_CHARS = 500;
 
 const UPLOAD_HELP = 'Please upload a JPG, PNG or WebP photo of your bill.';
+
+/** The fields the model must return. Every one is a string; empty when not on the bill. */
+const BILL_FIELDS = [
+    'consumerName',
+    'billingDate',
+    'dueDate',
+    'unitsConsumed',
+    'totalAmount',
+    'ratePerUnit',
+    'address',
+    'provider',
+    'sanctionedLoad',
+    'plotArea',
+] as const;
+
+/** Structured Outputs schema: the model can only answer with exactly these fields. */
+const BILL_SCHEMA = {
+    type: 'object',
+    additionalProperties: false,
+    required: [...BILL_FIELDS],
+    properties: Object.fromEntries(BILL_FIELDS.map(name => [name, { type: 'string' }])),
+};
 
 /**
  * Identify the image from its first bytes rather than trusting the
@@ -167,9 +190,15 @@ export async function POST(request: NextRequest) {
       }
     `;
 
-        // Call OpenAI API
+        // Model and reasoning effort come from environment variables (see lib/aiModels).
+        const reasoningEffort = openAIReasoningEffort();
+
+        // Call OpenAI API. Request shape for current models on Chat Completions:
+        // `max_completion_tokens` (not the deprecated `max_tokens`), Structured
+        // Outputs via `json_schema` (preferred over the older `json_object`
+        // JSON mode), and no `temperature` (reasoning models may reject it).
         const response = await openai.chat.completions.create({
-            model: "gpt-4o",
+            model: billExtractModel(),
             messages: [
                 {
                     role: "user",
@@ -184,8 +213,18 @@ export async function POST(request: NextRequest) {
                     ],
                 },
             ],
-            response_format: { type: "json_object" },
+            response_format: {
+                type: "json_schema",
+                json_schema: {
+                    name: "electricity_bill",
+                    strict: true,
+                    schema: BILL_SCHEMA,
+                },
+            },
             max_completion_tokens: MAX_OUTPUT_TOKENS,
+            ...(reasoningEffort
+                ? { reasoning_effort: reasoningEffort as OpenAI.ReasoningEffort }
+                : {}),
         });
 
         const text = response.choices[0]?.message?.content;
