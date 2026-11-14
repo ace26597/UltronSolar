@@ -5,6 +5,19 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { SolarInsights } from '@/types/billExtract';
+import { rateLimit } from '@/lib/server/rateLimit';
+
+/**
+ * The business only serves India, and every lookup is a paid Google Solar API
+ * call, so coordinates outside this box are refused instead of forwarded.
+ */
+const INDIA_BOUNDS = { minLat: 6, maxLat: 38, minLng: 68, maxLng: 98 };
+
+/** Strict decimal number: no exponents, no trailing text, bounded length. */
+function parseCoordinate(value: string | null): number {
+    if (!value || value.length > 24 || !/^-?\d{1,3}(\.\d+)?$/.test(value)) return NaN;
+    return parseFloat(value);
+}
 
 // Helper to convert degrees to cardinal direction
 function getCardinalDirection(azimuth: number): string {
@@ -31,18 +44,35 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
 }
 
 export async function GET(request: NextRequest) {
+    const limited = rateLimit(request, 'building-insights', { limit: 15, windowMs: 10 * 60_000 });
+    if (limited) return limited;
+
     try {
         const searchParams = request.nextUrl.searchParams;
-        const lat = parseFloat(searchParams.get('lat') || '');
-        const lng = parseFloat(searchParams.get('lng') || '');
+        const rawLat = parseCoordinate(searchParams.get('lat'));
+        const rawLng = parseCoordinate(searchParams.get('lng'));
 
         // Validate coordinates
-        if (isNaN(lat) || isNaN(lng)) {
+        if (isNaN(rawLat) || isNaN(rawLng)) {
             return NextResponse.json(
                 { success: false, error: 'Invalid coordinates. Please provide lat and lng.' },
                 { status: 400 }
             );
         }
+
+        if (
+            rawLat < INDIA_BOUNDS.minLat || rawLat > INDIA_BOUNDS.maxLat ||
+            rawLng < INDIA_BOUNDS.minLng || rawLng > INDIA_BOUNDS.maxLng
+        ) {
+            return NextResponse.json(
+                { success: false, error: 'This location is outside our service area.' },
+                { status: 400 }
+            );
+        }
+
+        // Six decimals is about 10 cm; more precision is noise.
+        const lat = Number(rawLat.toFixed(6));
+        const lng = Number(rawLng.toFixed(6));
 
         // Check for API key
         const apiKey = process.env.GOOGLE_MAPS_API_KEY;
@@ -83,8 +113,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: 'Failed to fetch building insights',
-                details: error instanceof Error ? error.message : 'Unknown error'
+                error: 'Failed to fetch building insights'
             },
             { status: 500 }
         );

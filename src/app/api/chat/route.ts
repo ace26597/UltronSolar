@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import { searchKnowledge } from '@/lib/server/knowledgeSearch';
+import { rateLimit } from '@/lib/server/rateLimit';
+import { readJsonBody } from '@/lib/server/requestGuards';
 
 function getOpenAIClient() {
   return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -21,100 +24,164 @@ Important guidelines:
 - If asked about pricing, mention that prices vary based on system size, components, and site conditions
 - Always encourage users to contact the team for personalized quotes and site visits
 - Never make specific promises about subsidies or government schemes without recommending they verify with the team
+- Only help with solar energy and Ultron Power Systems topics. Politely decline anything else.
 
 Keep responses conversational and helpful.`;
 
+// ---------------------------------------------------------------------------
+// Abuse limits. This route is public and unauthenticated, so everything a
+// caller can use to make a request bigger or more expensive is bounded here.
+// ---------------------------------------------------------------------------
+
+/** Largest request body accepted. A long, genuine conversation is far below this. */
+const MAX_BODY_BYTES = 256_000;
+/** Only the most recent messages are sent to the model; older ones are dropped. */
+const MAX_HISTORY_MESSAGES = 12;
+/** Longest message a visitor may send. The chat input enforces the same limit. */
+const MAX_USER_MESSAGE_CHARS = 2000;
+/** Earlier messages in the history are cut to this length. */
+const MAX_HISTORY_MESSAGE_CHARS = 4000;
+/** Total characters of conversation sent to the model. */
+const MAX_TOTAL_CHARS = 12_000;
+/** Hard cap on the length of one reply, in tokens. */
+const MAX_OUTPUT_TOKENS = 700;
+/** Site content added to the system prompt: documents and characters per document. */
+const MAX_CONTEXT_DOCS = 3;
+const MAX_CONTEXT_DOC_CHARS = 2000;
+
+type ChatTurn = { role: 'user' | 'assistant'; content: string };
+
+function errorResponse(message: string, status: number) {
+  return NextResponse.json({ error: message }, { status });
+}
+
+/**
+ * Validate the caller's messages and reduce them to what is sent to the model.
+ * Only `user` and `assistant` turns are accepted: the system prompt is always
+ * the one in this file, so a caller cannot replace or extend it.
+ */
+function prepareConversation(raw: unknown): ChatTurn[] | NextResponse {
+  if (!Array.isArray(raw) || raw.length === 0) {
+    return errorResponse('Messages array is required', 400);
+  }
+
+  const turns: ChatTurn[] = [];
+  for (const item of raw) {
+    if (!item || typeof item !== 'object') {
+      return errorResponse('Invalid message', 400);
+    }
+    const { role, content } = item as { role?: unknown; content?: unknown };
+    if (role !== 'user' && role !== 'assistant') {
+      return errorResponse('Invalid message role', 400);
+    }
+    if (typeof content !== 'string') {
+      return errorResponse('Invalid message content', 400);
+    }
+    turns.push({ role, content });
+  }
+
+  const latest = turns[turns.length - 1];
+  if (latest.role !== 'user' || !latest.content.trim()) {
+    return errorResponse('A message is required', 400);
+  }
+  if (latest.content.length > MAX_USER_MESSAGE_CHARS) {
+    return errorResponse(
+      `Message is too long. Please keep it under ${MAX_USER_MESSAGE_CHARS} characters.`,
+      413
+    );
+  }
+
+  // Keep the most recent turns, newest first, until a limit is reached.
+  const kept: ChatTurn[] = [];
+  let totalChars = 0;
+  for (let i = turns.length - 1; i >= 0 && kept.length < MAX_HISTORY_MESSAGES; i--) {
+    const content = turns[i].content.slice(0, MAX_HISTORY_MESSAGE_CHARS);
+    if (!content.trim()) continue;
+    if (kept.length > 0 && totalChars + content.length > MAX_TOTAL_CHARS) break;
+    totalChars += content.length;
+    kept.push({ role: turns[i].role, content });
+  }
+
+  return kept.reverse();
+}
+
 export async function POST(req: NextRequest) {
+  const limited = rateLimit(req, 'chat', { limit: 30, windowMs: 5 * 60_000 });
+  if (limited) return limited;
+
   try {
     // Check if API key is configured
     if (!process.env.OPENAI_API_KEY) {
-      return NextResponse.json(
-        { error: 'OpenAI API key is not configured' },
-        { status: 500 }
+      return errorResponse('OpenAI API key is not configured', 500);
+    }
+
+    const body = await readJsonBody(req, MAX_BODY_BYTES);
+    if (!body.ok) {
+      return errorResponse(
+        body.status === 413
+          ? 'This conversation is too long. Please clear the chat and start again.'
+          : body.error,
+        body.status
       );
     }
 
-    const body = await req.json();
-    const { messages, context } = body;
+    const conversation = prepareConversation(body.data.messages);
+    if (conversation instanceof NextResponse) return conversation;
 
-    if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json(
-        { error: 'Messages array is required' },
-        { status: 400 }
-      );
-    }
+    // Site content relevant to the latest question. It is looked up here, on
+    // the server, from this repository's own products, blog and FAQ. Any
+    // `context` sent by the caller is ignored, so nothing a caller writes can
+    // reach the system prompt.
+    const latestQuestion = conversation[conversation.length - 1].content;
+    const contextDocs = searchKnowledge(latestQuestion, MAX_CONTEXT_DOCS);
 
-    // Build messages list with system prompt
+    const systemPrompt = contextDocs.length > 0
+      ? `${SYSTEM_PROMPT}\n\nRelevant information:\n${contextDocs
+          .map(doc => `- ${doc.content.slice(0, MAX_CONTEXT_DOC_CHARS)}`)
+          .join('\n')}`
+      : SYSTEM_PROMPT;
+
     const chatMessages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
-      {
-        role: 'system',
-        content: context && context.length > 0
-          ? `${SYSTEM_PROMPT}\n\nRelevant information:\n${context.map((doc: { content: string }) => `- ${doc.content}`).join('\n')}`
-          : SYSTEM_PROMPT,
-      },
-      ...messages.map((msg: { role: string; content: string }) => ({
-        role: msg.role as 'user' | 'assistant' | 'system',
-        content: msg.content,
-      })),
+      { role: 'system', content: systemPrompt },
+      ...conversation,
     ];
 
     // Keep chat fast to avoid Vercel timeouts; use a dedicated env var.
     const modelName = process.env.OPENAI_CHAT_MODEL || process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini';
-    
-    // Use default parameters - let OpenAI handle defaults for temperature, max_tokens, etc.
+
     const completion = await getOpenAIClient().chat.completions.create({
       model: modelName,
       messages: chatMessages,
+      max_completion_tokens: MAX_OUTPUT_TOKENS,
     });
 
-    const reply = completion.choices[0].message.content;
-    
+    const reply = completion.choices[0]?.message?.content;
+
     if (!reply) {
-      console.error('No content in completion response:', completion);
-      return NextResponse.json(
-        { error: 'No response generated from model' },
-        { status: 500 }
-      );
+      console.error('No content in completion response:', {
+        model: modelName,
+        finish_reason: completion.choices[0]?.finish_reason,
+        usage: completion.usage,
+      });
+      return errorResponse('No response generated from model', 502);
     }
 
     return NextResponse.json({
       reply,
     });
   } catch (error: any) {
-    console.error('Chat API error:', error);
-    console.error('Error details:', JSON.stringify(error, null, 2));
-    
-    // Provide more detailed error information
-    let errorMessage = 'Failed to generate response';
-    let statusCode = 500;
-    
-    // OpenAI SDK error format
-    if (error?.error) {
-      // OpenAI API error object
-      statusCode = error.status || error.error.status || 500;
-      errorMessage = error.error.message || error.message || errorMessage;
-      console.error('OpenAI API error:', error.error);
-    } else if (error?.response) {
-      // Alternative error format
-      statusCode = error.response.status || 500;
-      errorMessage = error.response.data?.error?.message || error.message || errorMessage;
-      console.error('OpenAI API error details:', error.response.data);
-    } else if (error?.message) {
-      errorMessage = error.message;
-    }
-    
-    return NextResponse.json(
-      { 
-        error: errorMessage,
-        model: process.env.OPENAI_CHAT_MODEL || process.env.OPENAI_MODEL_NAME || 'gpt-4o-mini',
-        details: process.env.NODE_ENV === 'development' ? {
-          message: error?.message,
-          status: error?.status,
-          type: error?.type,
-        } : undefined
-      },
-      { status: statusCode }
+    // Full detail goes to the server log only. Provider error text and the
+    // model name are not returned to anonymous callers.
+    console.error('Chat API error:', {
+      status: error?.status,
+      type: error?.type,
+      code: error?.code,
+      message: error?.message,
+    });
+
+    return errorResponse(
+      'The assistant is unavailable right now. Please call or WhatsApp us instead.',
+      502
     );
   }
 }
-

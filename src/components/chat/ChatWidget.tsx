@@ -296,6 +296,7 @@ export default function ChatWidget() {
                       onChange={(e) => setInputValue(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your message..."
+                      maxLength={2000}
                       disabled={isLoading}
                       className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#25D366] disabled:bg-gray-100"
                     />

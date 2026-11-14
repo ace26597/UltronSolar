@@ -8,7 +8,10 @@ import logging
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, status
+import time
+from collections import OrderedDict
+
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -90,14 +93,113 @@ async def unhandled_exception_handler(request, exc):
         },
     )
 
+# ---------------------------------------------------------------------------
+# Abuse limits. These endpoints are public and unauthenticated, and one run
+# makes three paid OpenAI calls (one vision analysis, two image edits).
+# ---------------------------------------------------------------------------
+
+# Origins allowed to call this API from a browser: the site itself. The page
+# calls /python/solar on its own origin, so it needs no CORS at all; this list
+# only decides which *other* sites' pages may read responses. Extra origins
+# (for example a preview domain) can be added with SOLAR_ALLOWED_ORIGINS, a
+# comma-separated list. CORS is enforced by browsers only - it does not stop a
+# script or curl, which is why the limits below exist as well.
+SITE_ORIGINS = [
+    "https://www.ultronsolar.in",
+    "https://ultronsolar.in",
+]
+
+
+def _allowed_origins() -> list:
+    origins = list(SITE_ORIGINS)
+    for value in os.getenv("SOLAR_ALLOWED_ORIGINS", "").split(","):
+        value = value.strip().rstrip("/")
+        if value.startswith("https://") or value.startswith("http://localhost"):
+            origins.append(value)
+    # Vercel sets VERCEL_URL to the deployment's own hostname (previews included).
+    vercel_url = os.getenv("VERCEL_URL", "").strip()
+    if vercel_url:
+        origins.append(f"https://{vercel_url}")
+    return sorted(set(origins))
+
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, restrict to specific origins
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=_allowed_origins(),
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
+
+# Set SOLAR_SIMULATION_DISABLED=1 in Vercel to switch the paid endpoints off
+# without a code change (job creation and job runs then answer 503).
+SIMULATION_DISABLED = os.getenv("SOLAR_SIMULATION_DISABLED", "").strip().lower() in ("1", "true", "yes")
+
+MAX_IMAGE_BYTES = int(4.5 * 1024 * 1024)  # Vercel refuses larger request bodies anyway
+MAX_META_CHARS = 2000
+MAX_NOTES_CHARS = 500
+MAX_STORED_JOBS = 20  # each job holds up to three base64 images in memory
+
+# Best-effort, in-memory, per-IP rate limits. They live in one serverless
+# instance and vanish when it is recycled, and parallel instances each keep
+# their own count - so this slows casual abuse, it is not a spending
+# guarantee. The durable limit belongs in Vercel Firewall (a rate-limit rule
+# on /python/*) plus a monthly budget cap at OpenAI, both set by the owner.
+CREATE_LIMIT = (10, 60 * 60)  # job creations per IP per hour
+RUN_LIMIT = (5, 60 * 60)      # paid runs per IP per hour
+_rate_buckets: "OrderedDict[str, list]" = OrderedDict()
+_MAX_RATE_BUCKETS = 2000
+
+
+def _client_ip(request: Request) -> str:
+    """The caller's IP as set by Vercel (it overwrites these headers itself)."""
+    forwarded = (
+        request.headers.get("x-vercel-forwarded-for")
+        or request.headers.get("x-real-ip")
+        or request.headers.get("x-forwarded-for")
+        or ""
+    )
+    first = forwarded.split(",")[0].strip()
+    return first[:64] or "unknown"
+
+
+def _enforce_rate_limit(scope: str, request: Request, limit: tuple) -> None:
+    max_hits, window_seconds = limit
+    now = time.time()
+    key = f"{scope}:{_client_ip(request)}"
+    bucket = _rate_buckets.get(key)
+    if bucket is None or bucket[1] <= now:
+        if len(_rate_buckets) >= _MAX_RATE_BUCKETS:
+            _rate_buckets.popitem(last=False)
+        bucket = [0, now + window_seconds]
+        _rate_buckets[key] = bucket
+    bucket[0] += 1
+    if bucket[0] > max_hits:
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail="Too many requests. Please try again later.",
+            headers={"Retry-After": str(max(1, int(bucket[1] - now)))},
+        )
+
+
+def _require_enabled() -> None:
+    if SIMULATION_DISABLED:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Solar simulation is not available right now.",
+        )
+
+
+def _sniff_image_type(data: bytes) -> Optional[str]:
+    """Identify the upload from its first bytes instead of the declared type."""
+    if data[:3] == b"\xff\xd8\xff":
+        return "image/jpeg"
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return "image/png"
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        return "image/webp"
+    return None
 
 # Initialize image service
 image_service = None
@@ -109,6 +211,7 @@ except ValueError as e:
 
 @app.post("/jobs", response_model=SolarJobResponse)
 async def create_solar_job(
+    request: Request,
     image: UploadFile = File(...),
     meta: str = Form(...)
 ):
@@ -126,23 +229,57 @@ async def create_solar_job(
     logger.info("=== CREATE SOLAR JOB ENDPOINT CALLED ===")
     logger.info(f"Image filename: {image.filename}")
     logger.info(f"Image content_type: {image.content_type}")
-    logger.info(f"Meta data: {meta}")
-    logger.info(f"Meta data type: {type(meta)}")
+    logger.info(f"Meta data length: {len(meta)}")
+    _require_enabled()
+    _enforce_rate_limit("create", request, CREATE_LIMIT)
     try:
         # Parse metadata
+        if len(meta) > MAX_META_CHARS:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Metadata is too large."
+            )
         try:
             meta_dict = json.loads(meta)
+            if not isinstance(meta_dict, dict):
+                raise ValueError("metadata must be an object")
             solar_meta = SolarMeta(**meta_dict)
-        except (json.JSONDecodeError, ValueError) as e:
+        except (json.JSONDecodeError, ValueError, TypeError):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Invalid metadata format: {str(e)}"
+                detail="Invalid metadata format."
             )
-        
-        # Read and encode image
-        image_bytes = await image.read()
+
+        if solar_meta.kW is not None and not (0 < solar_meta.kW <= 1000):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="kW is out of range.")
+        if solar_meta.bill is not None and not (0 < solar_meta.bill <= 100_000_000):
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="bill is out of range.")
+
+        # Keep only the fields this API uses, with bounded text.
+        meta_dict = {
+            "kW": solar_meta.kW,
+            "bill": solar_meta.bill,
+            "notes": (solar_meta.notes or "")[:MAX_NOTES_CHARS] or None,
+        }
+
+        # Read the image, refusing anything over the size limit or not an image
+        image_bytes = await image.read(MAX_IMAGE_BYTES + 1)
+        if len(image_bytes) > MAX_IMAGE_BYTES:
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail="Image is too large. Please upload a photo smaller than 4.5 MB."
+            )
+        if _sniff_image_type(image_bytes) is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Unsupported image. Please upload a JPG, PNG or WebP photo."
+            )
         img_b64 = base64.b64encode(image_bytes).decode("utf-8")
-        
+
+        # Bound the in-memory store: drop the oldest jobs first.
+        while len(jobs) >= MAX_STORED_JOBS:
+            jobs.pop(next(iter(jobs)))
+
         # Create job
         job_id = str(uuid.uuid4())
         jobs[job_id] = {
@@ -170,12 +307,12 @@ async def create_solar_job(
         logger.error(f"Error creating job: {str(e)}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to create job: {str(e)}"
+            detail="Failed to create job."
         )
 
 
 @app.post("/jobs/{job_id}/run", response_model=SolarJobResponse)
-async def run_solar_job(job_id: str):
+async def run_solar_job(job_id: str, request: Request):
     """
     Process a solar simulation job.
     
@@ -194,7 +331,9 @@ async def run_solar_job(job_id: str):
             )
         
         job = jobs[job_id]
-        
+
+        _require_enabled()
+
         # Check if already processing or done
         if job["status"] == "processing":
             return SolarJobResponse(jobId=job_id, status="processing")
@@ -215,6 +354,9 @@ async def run_solar_job(job_id: str):
                 detail="Image processing service not available"
             )
         
+        # Count this paid run against the caller only once it will really start
+        _enforce_rate_limit("run", request, RUN_LIMIT)
+
         # Update status to processing
         job["status"] = "processing"
         job["step"] = "analyzing"

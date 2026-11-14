@@ -6,11 +6,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { GeoLocation } from '@/types/billExtract';
+import { rateLimit } from '@/lib/server/rateLimit';
+import { cleanLine, readJsonBody } from '@/lib/server/requestGuards';
+
+/** Longest address accepted. A full Indian postal address is well under this. */
+const MAX_ADDRESS_CHARS = 300;
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
 export async function POST(request: NextRequest) {
+    const limited = rateLimit(request, 'geocode', { limit: 15, windowMs: 10 * 60_000 });
+    if (limited) return limited;
+
     try {
         // Check for API key
         if (!process.env.GEMINI_API_KEY) {
@@ -20,12 +28,28 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const body = await request.json();
-        const { address } = body;
+        const body = await readJsonBody(request, 4_000);
+        if (!body.ok) {
+            return NextResponse.json(
+                { success: false, error: body.error },
+                { status: body.status }
+            );
+        }
 
-        if (!address || address.length < 5) {
+        // Single line, no control characters, and no double quotes (the address
+        // is quoted inside the prompt below).
+        const address = cleanLine(body.data.address).replace(/"/g, "'");
+
+        if (address.length < 5) {
             return NextResponse.json(
                 { success: false, error: 'Invalid or empty address' },
+                { status: 400 }
+            );
+        }
+
+        if (address.length > MAX_ADDRESS_CHARS) {
+            return NextResponse.json(
+                { success: false, error: 'Address is too long' },
                 { status: 400 }
             );
         }
@@ -110,8 +134,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(
             {
                 success: false,
-                error: 'Failed to geocode address',
-                details: error instanceof Error ? error.message : 'Unknown error'
+                error: 'Failed to geocode address'
             },
             { status: 500 }
         );
