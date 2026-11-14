@@ -15,10 +15,14 @@ export default function MapView({ address, geoLocation }: MapViewProps) {
     let mapSrc = "";
     const encodedAddress = encodeURIComponent(address);
 
-    // If we have precise coordinates, use them
+    // The geocoder says whether it matched the building itself or only the area.
+    const isApproximate = geoLocation?.precision === 'approximate';
+
+    // If we have coordinates, use them
     if (geoLocation && geoLocation.lat && geoLocation.lng) {
-        // q=lat,lng places a marker at that exact spot
-        mapSrc = `https://maps.google.com/maps?q=${geoLocation.lat},${geoLocation.lng}&t=h&z=19&ie=UTF8&iwloc=&output=embed`;
+        // q=lat,lng places a marker at that spot. Zoom in to roof level only
+        // when the match is a building; an area match is shown from further out.
+        mapSrc = `https://maps.google.com/maps?q=${geoLocation.lat},${geoLocation.lng}&t=h&z=${isApproximate ? 15 : 19}&ie=UTF8&iwloc=&output=embed`;
     } else {
         // Fallback to address search
         mapSrc = `https://maps.google.com/maps?q=${encodedAddress}&t=h&z=18&ie=UTF8&iwloc=&output=embed`;
@@ -71,12 +75,18 @@ export default function MapView({ address, geoLocation }: MapViewProps) {
                 {/* Coordinates overlay */}
                 {geoLocation && geoLocation.lat !== 0 && (
                     <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-sm p-2 rounded-lg shadow text-xs">
-                        <div className="flex items-center text-emerald-700 font-medium mb-1">
-                            <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            Location Found
-                        </div>
+                        {isApproximate ? (
+                            <div className="flex items-center text-amber-700 font-medium mb-1">
+                                Approximate area - exact building not found
+                            </div>
+                        ) : (
+                            <div className="flex items-center text-emerald-700 font-medium mb-1">
+                                <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                                Location Found
+                            </div>
+                        )}
                         <div className="font-mono text-gray-600">
                             {geoLocation.lat.toFixed(5)}, {geoLocation.lng.toFixed(5)}
                         </div>

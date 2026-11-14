@@ -12,6 +12,13 @@ export interface GeoLocation {
     lng: number;
     formattedAddress: string;
     searchQueryUsed?: string;
+    /**
+     * How exact the geocoder's match is. "building" means the whole address
+     * was matched down to a building; "approximate" means only the area
+     * (street, neighbourhood, town) is known, so the coordinates must not be
+     * used to look up a specific roof.
+     */
+    precision?: 'building' | 'approximate';
 }
 
 export interface SolarInsights {

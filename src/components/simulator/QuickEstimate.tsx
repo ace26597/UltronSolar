@@ -103,8 +103,14 @@ export default function QuickEstimate({ onEstimateComplete }: QuickEstimateProps
                             setCustomCity(geocodeData.data.searchQueryUsed || billData.address.split(',')[0]);
                         }
 
-                        // Step 3: Get building insights
-                        if (geocodeData.data.lat && geocodeData.data.lng) {
+                        // Step 3: Get building insights. Only when the address was
+                        // matched to a building: roof data for the building nearest
+                        // an approximate point would describe someone else's roof.
+                        if (
+                            geocodeData.data.lat &&
+                            geocodeData.data.lng &&
+                            geocodeData.data.precision === 'building'
+                        ) {
                             try {
                                 const insightsRes = await fetch(
                                     `/api/building-insights?lat=${geocodeData.data.lat}&lng=${geocodeData.data.lng}`
